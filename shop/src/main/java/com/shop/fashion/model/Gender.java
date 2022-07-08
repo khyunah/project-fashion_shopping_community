@@ -1,5 +1,5 @@
 package com.shop.fashion.model;
 
-public class CommunityBoard {
-
+public enum Gender {
+	MAN, WOMAN
 }
