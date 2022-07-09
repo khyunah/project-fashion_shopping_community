@@ -10,4 +10,5 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	// 회원가입시 아이디 중복체크
 	Optional<User> findByUsername(String username);
+	boolean existsByUsername(String username);
 }

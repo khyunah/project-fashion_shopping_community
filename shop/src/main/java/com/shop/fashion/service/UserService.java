@@ -32,10 +32,8 @@ public class UserService {
 	
 	// 아이디 중복 체크
 	@Transactional
-	public User checkUserId(String username) {
+	public boolean checkUserId(String username) {
 		System.out.println("아이디중복 체크 : " + username);
-		return userRepository.findByUsername(username).orElseGet(() -> {
-			return new User();
-		});
+		return userRepository.existsByUsername(username);
 	}
 }

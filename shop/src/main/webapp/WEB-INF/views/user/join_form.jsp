@@ -22,8 +22,7 @@
   <br/>
   <span id="checkIdResult"></span>
   <div>
-  	<button type="button" id="btn-checkId">check id</button>
-  	<input type="hidden" value="">
+  	<button type="button" id="btn-checkUsername">check id</button>
   </div>
   <br/>
   <label>
@@ -101,21 +100,21 @@ $(document).ready( function(){
 	      }
 	});
 	
-	$( "#btn-checkId" ).bind( "click" , function(){
-		let userId = $( "#username" ).val();
-		console.log(userId);
+	$( "#btn-checkUsername" ).bind( "click" , function(){
+		let username = $( "#username" ).val();
+		console.log(username);
 		$.ajax({
 			type: "POST",
-			url: "/security/join-userIdCheck",
-			data: JSON.stringify(userId),
+			url: "/security/join-usernameCheck",
+			data: JSON.stringify(username),
 			contentType: "application/json; charset=utf-8",
 			dataType: "json"
 		}).done(function(response){
-			console.log(response.data.userId)
-			if(response.data.username == null){
-				$( "#checkIdResult" ).text( "사용가능" );
-			} else {
+			console.log(response)
+			if(response.data == true){
 				$( "#checkIdResult" ).text( "사용 불가능" );
+			} else {
+				$( "#checkIdResult" ).text( "사용 가능" );
 			}
 		}).fail(function(error){
 			

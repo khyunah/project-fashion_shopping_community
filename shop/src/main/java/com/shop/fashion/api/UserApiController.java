@@ -23,11 +23,9 @@ public class UserApiController {
 	 * 입력한 userId가 가입되어 있지 않으면 new User()로 넘어옴 <br>
 	 * 입력한 userId로 이미 가입이 되어있으면 UserEntity로 넘어옴
 	 */
-	@PostMapping("/security/join-userIdCheck")
-	public ResponseDto<User> checkUserId(@RequestBody String username) {
-		System.out.println("입력한 값 : " + username);
-		User checkUser = userService.checkUserId(username);
-		System.out.println("체크한 아이디값 : " + checkUser.getUsername());
-		return new ResponseDto<User>(HttpStatus.OK.value(), checkUser);
+	@PostMapping("/security/join-usernameCheck")
+	public ResponseDto<Boolean> checkUserId(@RequestBody String username) {
+		boolean checkUser = userService.checkUserId(username);
+		return new ResponseDto<>(HttpStatus.OK.value(), checkUser);
 	}
 }
