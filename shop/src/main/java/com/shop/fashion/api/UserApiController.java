@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shop.fashion.dto.ResponseDto;
@@ -23,10 +24,10 @@ public class UserApiController {
 	 * 입력한 userId로 이미 가입이 되어있으면 UserEntity로 넘어옴
 	 */
 	@PostMapping("/security/join-userIdCheck")
-	public ResponseDto<User> checkUserId(String userId) {
-		System.out.println(userId);
+	public ResponseDto<User> checkUserId(@RequestBody String userId) {
+		System.out.println("입력한 값 : " + userId);
 		User checkUser = userService.checkUserId(userId);
-		System.out.println(checkUser.getUserId());
+		System.out.println("체크한 아이디값 : " + checkUser.getUserId());
 		return new ResponseDto<User>(HttpStatus.OK.value(), checkUser);
 	}
 }

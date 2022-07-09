@@ -111,6 +111,7 @@ $(document).ready( function(){
 			contentType: "application/json; charset=utf-8",
 			dataType: "json"
 		}).done(function(response){
+			console.log(response.data.userId)
 			if(response.data.username == null){
 				$( "#checkIdResult" ).text( "사용가능" );
 			} else {

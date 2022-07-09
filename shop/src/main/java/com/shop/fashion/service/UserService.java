@@ -26,12 +26,14 @@ public class UserService {
 		}
 		user.setRole(RollType.USER);
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		System.out.println(user.getPassword());
 		return userRepository.save(user);
 	}
 	
 	// 아이디 중복 체크
 	@Transactional
 	public User checkUserId(String userId) {
+		System.out.println("아이디중복 체크 : " + userId);
 		return userRepository.findByUserId(userId).orElseGet(() -> {
 			return new User();
 		});

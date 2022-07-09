@@ -24,6 +24,6 @@ public class UserController {
 	@PostMapping("/security/join-user")
 	public String joinUser(User user) {
 		userService.joinUser(user);
-		return "redirect:/security/login_form";
+		return "redirect:/security/join_form";
 	}
 }

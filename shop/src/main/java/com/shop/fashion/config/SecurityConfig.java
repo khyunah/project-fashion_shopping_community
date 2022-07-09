@@ -28,6 +28,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.authenticated()
 		.and()
 		.formLogin()
-		.loginPage("/security/login_form");
+		.loginPage("/security/join_form");
 	}
 }
