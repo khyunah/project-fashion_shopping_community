@@ -29,13 +29,13 @@ public class User {
 	private int userIdNumber;
 	
 	@Column(unique = true)
-	private String userId;
+	private String username;
 	
 	@Column(nullable = false)
 	private String password;
 	
 	@Column(nullable = false)
-	private String username;
+	private String name;
 	
 	@Column(nullable = false)
 	private String email;

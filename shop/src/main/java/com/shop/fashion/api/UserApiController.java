@@ -24,10 +24,10 @@ public class UserApiController {
 	 * 입력한 userId로 이미 가입이 되어있으면 UserEntity로 넘어옴
 	 */
 	@PostMapping("/security/join-userIdCheck")
-	public ResponseDto<User> checkUserId(@RequestBody String userId) {
-		System.out.println("입력한 값 : " + userId);
-		User checkUser = userService.checkUserId(userId);
-		System.out.println("체크한 아이디값 : " + checkUser.getUserId());
+	public ResponseDto<User> checkUserId(@RequestBody String username) {
+		System.out.println("입력한 값 : " + username);
+		User checkUser = userService.checkUserId(username);
+		System.out.println("체크한 아이디값 : " + checkUser.getUsername());
 		return new ResponseDto<User>(HttpStatus.OK.value(), checkUser);
 	}
 }

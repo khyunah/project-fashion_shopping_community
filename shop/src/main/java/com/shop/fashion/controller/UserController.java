@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shop.fashion.model.User;
 import com.shop.fashion.service.UserService;
@@ -24,6 +25,7 @@ public class UserController {
 	@PostMapping("/security/join-user")
 	public String joinUser(User user) {
 		userService.joinUser(user);
-		return "redirect:/security/join_form";
+		return "user/login_form";
 	}
+
 }

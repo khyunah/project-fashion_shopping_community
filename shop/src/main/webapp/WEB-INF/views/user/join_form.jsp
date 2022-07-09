@@ -14,7 +14,7 @@
 <form action="/security/join-user" method="post" onsubmit="return checkPassword()">
   <label>
     <p class="label-txt">ENTER YOUR ID</p>
-    <input type="text" class="input" name="userId" id="userId" required>
+    <input type="text" class="input" name="username" id="username" required>
     <div class="line-box">
       <div class="line"></div>
     </div>
@@ -45,7 +45,7 @@
   <br/><br/><br/>
   <label>
     <p class="label-txt">ENTER YOUR NAME</p>
-    <input type="text" class="input" name="username" required>
+    <input type="text" class="input" name="name" required>
     <div class="line-box">
       <div class="line"></div>
     </div>
@@ -102,7 +102,7 @@ $(document).ready( function(){
 	});
 	
 	$( "#btn-checkId" ).bind( "click" , function(){
-		let userId = $( "#userId" ).val();
+		let userId = $( "#username" ).val();
 		console.log(userId);
 		$.ajax({
 			type: "POST",
