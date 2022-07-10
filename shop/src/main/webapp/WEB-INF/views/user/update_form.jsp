@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<sec:authorize access="isAuthenticated()">
+    <sec:authentication property="principal" var="principal"/>
+</sec:authorize>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,17 +17,12 @@
 <body>
 <form action="/security/join-user" method="post" onsubmit="return checkPassword()">
   <label>
-    <p class="label-txt">ENTER YOUR ID</p>
-    <input type="text" class="input" name="username" id="username" required>
+    <p class="label-txt">ID</p>
+    <input type="text" class="input" name="username" id="username" value="${principal.user.username}" readonly="readonly">
     <div class="line-box">
       <div class="line"></div>
     </div>
   </label>
-  <br/>
-  <span id="checkIdResult"></span>
-  <div>
-  	<button type="button" id="btn-checkUsername">check id</button>
-  </div>
   <br/>
   <label>
     <p class="label-txt">ENTER YOUR PASSWORD</p>
@@ -44,36 +42,36 @@
   <span id="checkPasswordResult"></span>
   <br/><br/><br/>
   <label>
-    <p class="label-txt">ENTER YOUR NAME</p>
-    <input type="text" class="input" name="name" required>
+    <p class="label-txt">NAME</p>
+    <input type="text" class="input" name="name" value="${principal.user.name}" required>
     <div class="line-box">
       <div class="line"></div>
     </div>
   </label>
   <label>
-    <p class="label-txt">ENTER YOUR EMAIL</p>
-    <input type="email" class="input" name="email" required>
+    <p class="label-txt">EMAIL</p>
+    <input type="email" class="input" name="email" value="${principal.user.email}" required>
     <div class="line-box">
       <div class="line"></div>
     </div>
   </label>
   <br/>
   <label>
-    <p class="label-txt">ENTER YOUR ADDRESS</p>
-    <input type="text" class="input" name="address" required>
+    <p class="label-txt">ADDRESS</p>
+    <input type="text" class="input" name="address" value="${principal.user.address}" required>
     <div class="line-box">
       <div class="line"></div>
     </div>
   </label>
   <label>
-    <p class="label-txt">ENTER YOUR PHONE</p>
-    <input type="number" class="input" name="phoneNumber" required>
+    <p class="label-txt">PHONE</p>
+    <input type="number" class="input" name="phoneNumber" value="${principal.user.phoneNumber}" required>
     <div class="line-box">
       <div class="line"></div>
     </div>
   </label>
   <br/><br/><br/>
-  <button type="submit" id="btn-join">sign up</button>
+  <button type="submit" id="btn-join">update</button>
 </form>
 <script>
 $(document).ready( function(){
@@ -101,34 +99,10 @@ $(document).ready( function(){
 	      }
 	});
 	
-	$( "#btn-checkUsername" ).bind( "click" , function(){
-		let username = $( "#username" ).val();
-		console.log(username);
-		$.ajax({
-			type: "POST",
-			url: "/security/join-usernameCheck",
-			data: JSON.stringify(username),
-			contentType: "application/json; charset=utf-8",
-			dataType: "json"
-		}).done(function(response){
-			console.log(response)
-			//if(response.data){
-				$( "#checkIdResult" ).text( "사용 불가능" );
-			//} else {
-				//$( "#checkIdResult" ).text( "사용 가능" );
-			//}
-		}).fail(function(error){
-			
-		});
-	});
-	
 });
 
 function checkPassword(){
-	if($("#checkIdResult").text() == "사용 불가능" || $("#checkIdResult").text() == ""){
-		alert("아이디 중복확인을 해주세요.");
-		return false;
-	} else if($("#checkPasswordResult").text() == "불일치" || $("#checkPasswordResult") == ""){
+	if($("#checkPasswordResult").text() == "불일치" || $("#checkPasswordResult") == ""){
 		alert("비밀번호가 일치하지 않습니다.");
 		return false;
 	}

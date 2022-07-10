@@ -31,8 +31,8 @@ public class UserService {
 	}
 	
 	// 아이디 중복 체크
-	@Transactional
-	public boolean checkUserId(String username) {
+	@Transactional(readOnly = true)
+	public boolean checkUsername(String username) {
 		System.out.println("아이디중복 체크 : " + username);
 		return userRepository.existsByUsername(username);
 	}

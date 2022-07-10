@@ -27,5 +27,11 @@ public class UserController {
 		userService.joinUser(user);
 		return "user/login_form";
 	}
+	
+	// 회원 정보 수정 화면
+	@GetMapping("/user/update_form")
+	public String updateUser() {
+		return "user/update_form";
+	}
 
 }
