@@ -5,7 +5,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 public class Item {
 
@@ -22,4 +32,6 @@ public class Item {
 	private Gender gender;
 	@Column(nullable = false)
 	private String content;
+	@ManyToOne
+	private Basket basket;
 }

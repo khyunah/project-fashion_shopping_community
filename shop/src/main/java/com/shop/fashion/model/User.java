@@ -2,6 +2,7 @@ package com.shop.fashion.model;
 
 import java.sql.Timestamp;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,6 +10,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -51,6 +54,10 @@ public class User {
 	
 	@Enumerated(value = EnumType.STRING)
 	private OAuthType oauth;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "basketId", referencedColumnName = "id")
+	private Basket basket;
 	
 	@CreationTimestamp
 	private Timestamp createDate;

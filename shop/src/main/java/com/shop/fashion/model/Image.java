@@ -7,7 +7,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-@Entity
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+//@Entity
 public class Image {
 
 	@Id
@@ -18,5 +29,6 @@ public class Image {
 	@Column(nullable = false)
 	private String originImageTitle;
 	@ManyToOne
+	@JsonIgnoreProperties({"replies", "images", "itemLink", "user"})
 	private Board board;
 }
