@@ -131,7 +131,10 @@ $(document).ready( function(){
 });
 
 function checkPassword(){
-	if($("#checkPasswordResult").text() == "불일치" || $("#checkPasswordResult") == ""){
+	if($("#checkIdResult").text() == "사용불가능" || $("#checkIdResult").text() == ""){
+		alert("아이디 중복확인을 해주세요.");
+		return false;
+	} else if($("#checkPasswordResult").text() == "불일치" || $("#checkPasswordResult") == ""){
 		alert("비밀번호가 일치하지 않습니다.");
 		return false;
 	}
