@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shop.fashion.dto.ResponseDto;
+import com.shop.fashion.model.User;
 import com.shop.fashion.service.UserService;
 
 @RestController
@@ -22,8 +23,9 @@ public class UserApiController {
 	 * 입력한 userId로 이미 가입이 되어있으면 UserEntity로 넘어옴
 	 */
 	@PostMapping("/security/join-usernameCheck")
-	public ResponseDto<Boolean> checkUsername(@RequestBody String username) {
-		boolean checkUser = userService.checkUsername(username);
+	public ResponseDto<User> checkUsername(@RequestBody String username) {
+		User checkUser = userService.checkUsername(username);
+		System.out.println("응답결과 : " + checkUser);
 		return new ResponseDto<>(HttpStatus.OK.value(), checkUser);
 	}
 }

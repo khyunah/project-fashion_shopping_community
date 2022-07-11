@@ -112,11 +112,11 @@ $(document).ready( function(){
 			dataType: "json"
 		}).done(function(response){
 			console.log(response)
-			//if(response.data){
+			if(response.data.username != null){
 				$( "#checkIdResult" ).text( "사용 불가능" );
-			//} else {
-				//$( "#checkIdResult" ).text( "사용 가능" );
-			//}
+			} else {
+				$( "#checkIdResult" ).text( "사용 가능" );
+			}
 		}).fail(function(error){
 			
 		});

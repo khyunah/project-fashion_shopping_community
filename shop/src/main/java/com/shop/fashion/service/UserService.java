@@ -32,8 +32,14 @@ public class UserService {
 	
 	// 아이디 중복 체크
 	@Transactional(readOnly = true)
-	public boolean checkUsername(String username) {
-		System.out.println("아이디중복 체크 : " + username);
-		return userRepository.existsByUsername(username);
+	public User checkUsername(String name) {
+		System.out.println("아이디중복 체크 : " + name);
+//		Optional<User> entityUser = userRepository.findByUsername(username);
+//		System.out.println("entityUser : " + entityUser.get());
+		User userTemp =  userRepository.mSearchUserName(name);
+		System.out.println("22222222222222222");
+		
+		return userTemp;
+		
 	}
 }
