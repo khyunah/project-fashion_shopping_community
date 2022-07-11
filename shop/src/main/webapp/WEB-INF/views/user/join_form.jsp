@@ -102,17 +102,23 @@ $(document).ready( function(){
 	});
 	
 	$( "#btn-checkUsername" ).bind( "click" , function(){
-		let username = $( "#username" ).val();
+		//let username = $( "#username" ).val();
+		
+		let data = {
+			username: $( "#username" ).val()
+		}
+		
 		console.log(username);
 		$.ajax({
 			type: "POST",
 			url: "/security/join-usernameCheck",
-			data: JSON.stringify(username),
+			
+			data: JSON.stringify(data),
 			contentType: "application/json; charset=utf-8",
 			dataType: "json"
 		}).done(function(response){
 			console.log(response)
-			if(response.data.username != null){
+			if(response.data != null){
 				$( "#checkIdResult" ).text( "사용 불가능" );
 			} else {
 				$( "#checkIdResult" ).text( "사용 가능" );
@@ -125,10 +131,7 @@ $(document).ready( function(){
 });
 
 function checkPassword(){
-	if($("#checkIdResult").text() == "사용 불가능" || $("#checkIdResult").text() == ""){
-		alert("아이디 중복확인을 해주세요.");
-		return false;
-	} else if($("#checkPasswordResult").text() == "불일치" || $("#checkPasswordResult") == ""){
+	if($("#checkPasswordResult").text() == "불일치" || $("#checkPasswordResult") == ""){
 		alert("비밀번호가 일치하지 않습니다.");
 		return false;
 	}

@@ -13,7 +13,9 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	// 회원가입시 아이디 중복체크
 	Optional<User> findByUsername(String username);
 	
-	@Query(value = "SELECT * FROM user WHERE username = :username ", nativeQuery = true)
+//	User findByTitleContaining(String title);
+	
+	@Query(value = "SELECT * FROM user WHERE username LIKE %:username%", nativeQuery = true)
 	User mSearchUserName(@Param("username") String username);
 	
 	boolean existsByUsername(String username);

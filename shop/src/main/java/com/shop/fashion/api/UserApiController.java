@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.shop.fashion.dto.ReqUserSearchDto;
 import com.shop.fashion.dto.ResponseDto;
 import com.shop.fashion.model.User;
 import com.shop.fashion.service.UserService;
@@ -23,8 +24,13 @@ public class UserApiController {
 	 * 입력한 userId로 이미 가입이 되어있으면 UserEntity로 넘어옴
 	 */
 	@PostMapping("/security/join-usernameCheck")
-	public ResponseDto<User> checkUsername(@RequestBody String username) {
-		User checkUser = userService.checkUsername(username);
+	public ResponseDto<User> checkUsername(@RequestBody ReqUserSearchDto dto) {
+		System.out.println("username : " + dto.getUsername());
+		// JSON  
+		
+		
+			
+		User checkUser = userService.checkUsername(dto.getUsername());
 		System.out.println("응답결과 : " + checkUser);
 		return new ResponseDto<>(HttpStatus.OK.value(), checkUser);
 	}
