@@ -32,6 +32,4 @@ public class Item {
 	private Gender gender;
 	@Column(nullable = false)
 	private String content;
-	@ManyToOne
-	private Basket basket;
 }

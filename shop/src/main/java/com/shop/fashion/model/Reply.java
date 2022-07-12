@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-//@Entity
+@Entity
 public class Reply {
 	
 	@Id
