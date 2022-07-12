@@ -102,8 +102,6 @@ $(document).ready( function(){
 	});
 	
 	$( "#btn-checkUsername" ).bind( "click" , function(){
-		//let username = $( "#username" ).val();
-		
 		let data = {
 			username: $( "#username" ).val()
 		}
@@ -112,7 +110,6 @@ $(document).ready( function(){
 		$.ajax({
 			type: "POST",
 			url: "/security/join-usernameCheck",
-			
 			data: JSON.stringify(data),
 			contentType: "application/json; charset=utf-8",
 			dataType: "json"
@@ -131,7 +128,7 @@ $(document).ready( function(){
 });
 
 function checkPassword(){
-	if($("#checkIdResult").text() == "사용불가능" || $("#checkIdResult").text() == ""){
+	if($("#checkIdResult").text() == "사용 불가능" || $("#checkIdResult").text() == ""){
 		alert("아이디 중복확인을 해주세요.");
 		return false;
 	} else if($("#checkPasswordResult").text() == "불일치" || $("#checkPasswordResult") == ""){

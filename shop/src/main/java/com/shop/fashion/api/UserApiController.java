@@ -18,20 +18,9 @@ public class UserApiController {
 	private UserService userService;
 
 	// 회원가입시 아이디 중복 체크
-	/**
-	 * 회원가입시 아이디 중복 체크를 하는 기능 <br>
-	 * 입력한 userId가 가입되어 있지 않으면 new User()로 넘어옴 <br>
-	 * 입력한 userId로 이미 가입이 되어있으면 UserEntity로 넘어옴
-	 */
 	@PostMapping("/security/join-usernameCheck")
 	public ResponseDto<User> checkUsername(@RequestBody ReqUserSearchDto dto) {
-		System.out.println("username : " + dto.getUsername());
-		// JSON  
-		
-		
-			
 		User checkUser = userService.checkUsername(dto.getUsername());
-		System.out.println("응답결과 : " + checkUser);
 		return new ResponseDto<>(HttpStatus.OK.value(), checkUser);
 	}
 }
