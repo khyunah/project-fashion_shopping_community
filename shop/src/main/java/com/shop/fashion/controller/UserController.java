@@ -28,6 +28,12 @@ public class UserController {
 		return "user/login_form";
 	}
 	
+	// 로그인 화면 
+	@GetMapping("/security/login_form")
+	public String loginForm() {
+		return "user/login_form";
+	}
+	
 	// 회원 정보 수정 화면
 	@GetMapping("/user/update_form")
 	public String updateUser() {
