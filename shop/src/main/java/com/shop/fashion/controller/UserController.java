@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import com.shop.fashion.model.User;
 import com.shop.fashion.service.UserService;
@@ -38,6 +38,12 @@ public class UserController {
 	@GetMapping("/user/update_form")
 	public String updateUser() {
 		return "user/update_form";
+	}
+	
+	// 테스트 홈 
+	@GetMapping("/")
+	public String home() {
+		return "user/home";
 	}
 
 }

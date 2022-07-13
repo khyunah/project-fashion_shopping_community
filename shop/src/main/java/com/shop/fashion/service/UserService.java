@@ -38,4 +38,21 @@ public class UserService {
 		});
 		return userTemp;
 	}
+	
+	// 회원정보 수정
+	@Transactional
+	public User updateUser(User user) {
+
+		User originUser = userRepository.findById(user.getId()).orElseThrow(() -> {
+			return new IllegalArgumentException("해당 사용자를 찾을 수 없습니다.");
+		});
+		
+		originUser.setName(user.getName());
+		originUser.setEmail(user.getEmail());
+		originUser.setPhoneNumber(user.getPhoneNumber());
+		originUser.setAddress(user.getAddress());
+		originUser.setPassword(passwordEncoder.encode(user.getPassword()));
+
+		return originUser;
+	}
 }

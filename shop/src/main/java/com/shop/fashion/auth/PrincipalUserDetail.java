@@ -58,7 +58,7 @@ public class PrincipalUserDetail implements UserDetails {
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		Collection<GrantedAuthority> collectors = new ArrayList<GrantedAuthority>();
 		collectors.add(() -> {return "ROLE_" + user.getRole();});
-		return null;
+		return collectors;
 	}
 
 }

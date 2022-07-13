@@ -15,7 +15,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="/security/join-user" method="post" onsubmit="return checkPassword()">
+<form>
+  <input type="hidden" value="${principal.user.id}" id="id">
   <label>
     <p class="label-txt">ID</p>
     <input type="text" class="input" name="username" id="username" value="${principal.user.username}" readonly="readonly">
@@ -43,14 +44,14 @@
   <br/><br/><br/>
   <label>
     <p class="label-txt">NAME</p>
-    <input type="text" class="input" name="name" value="${principal.user.name}" required>
+    <input type="text" class="input" id="name" value="${principal.user.name}" required>
     <div class="line-box">
       <div class="line"></div>
     </div>
   </label>
   <label>
     <p class="label-txt">EMAIL</p>
-    <input type="email" class="input" name="email" value="${principal.user.email}" required>
+    <input type="email" class="input" id="email" value="${principal.user.email}" required>
     <div class="line-box">
       <div class="line"></div>
     </div>
@@ -58,37 +59,25 @@
   <br/>
   <label>
     <p class="label-txt">ADDRESS</p>
-    <input type="text" class="input" name="address" value="${principal.user.address}" required>
+    <input type="text" class="input" id="address" value="${principal.user.address}" required>
     <div class="line-box">
       <div class="line"></div>
     </div>
   </label>
   <label>
     <p class="label-txt">PHONE</p>
-    <input type="number" class="input" name="phoneNumber" value="${principal.user.phoneNumber}" required>
+    <input type="number" class="input" id="phoneNumber" value="${principal.user.phoneNumber}" required>
     <div class="line-box">
       <div class="line"></div>
     </div>
   </label>
   <br/><br/><br/>
-  <button type="submit" id="btn-join">update</button>
+  <button type="button" id="btn-update">update</button>
 </form>
+
+<script src="/js/user.js"></script>
 <script>
 $(document).ready( function(){
-	$( ".input" ).focus( function(){
-	  $( this ).parent().find( ".label-txt" ).addClass( "label-active" );
-	});
-	
-	$( ".input" ).focusout( function(){
-	  if ( $( this ).val() == '' ) {
-	    $( this ).parent().find( ".label-txt" ).removeClass( "label-active" );
-	  };
-	});
-	
-	$( "#username" ).keyup( function() {
-		$( "#checkIdResult" ).text(null);
-	});
-	
 	$( "#password, #passwordCheck" ).keyup( function() {
 	      let password = $( "#password" ).val();
 	      let passwordCheck = $( "#passwordCheck" ).val();
@@ -98,7 +87,6 @@ $(document).ready( function(){
 	    	  $( "#checkPasswordResult" ).text( "불일치" );
 	      }
 	});
-	
 });
 
 function checkPassword(){
