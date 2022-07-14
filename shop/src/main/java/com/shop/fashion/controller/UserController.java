@@ -39,11 +39,5 @@ public class UserController {
 	public String updateUser() {
 		return "user/update_form";
 	}
-	
-	// 테스트 홈 
-	@GetMapping("/")
-	public String home() {
-		return "user/home";
-	}
 
 }
