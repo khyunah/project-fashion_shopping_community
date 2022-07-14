@@ -2,6 +2,8 @@ package com.shop.fashion.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,10 +28,12 @@ public class Item {
 	private String name;
 	@Column(nullable = false)
 	private int price;
-	@Column(nullable = false)
+	@Enumerated(value = EnumType.STRING)
 	private Category category;
-	@Column(nullable = false)
+	@Enumerated(value = EnumType.STRING)
 	private Gender gender;
 	@Column(nullable = false)
 	private String content;
+	@Column(nullable = false)
+	private String imageurl;
 }
