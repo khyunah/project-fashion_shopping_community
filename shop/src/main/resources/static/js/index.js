@@ -1,4 +1,4 @@
-	// Web API 교차 관찰자(Intersection Observer)
+// Web API 교차 관찰자(Intersection Observer)
 	/**
 		Skeleton UI란?
 		실제 데이터가 렌더링 되기 전에 보이게 될 화면의 윤곽을 먼저 그려주는
@@ -99,4 +99,4 @@
 	// 결정하는 값으로 default = 0%, 최대 1(100%)까지 지정가능하며, 0.7이므로 70%이상 보였을 때
 	// 콜백 함수를 호출한다.
 	const io = new IntersectionObserver(ioCallback, { threshold: 0.7 });
-	observeLastItem(io, items); 
+	observeLastItem(io, items);
