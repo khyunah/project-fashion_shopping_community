@@ -46,7 +46,7 @@ public class UserService {
 		User originUser = userRepository.findById(user.getId()).orElseThrow(() -> {
 			return new IllegalArgumentException("해당 사용자를 찾을 수 없습니다.");
 		});
-		
+		System.out.println("22222222222222");
 		originUser.setName(user.getName());
 		originUser.setEmail(user.getEmail());
 		originUser.setPhoneNumber(user.getPhoneNumber());

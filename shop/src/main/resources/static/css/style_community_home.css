@@ -1,4 +1,4 @@
-.container {
+.commu-container {
   margin: 20px;
 }
 
@@ -19,9 +19,7 @@
   overflow: hidden;
 }
 
-p,
-h3,
-span {
+.commu-text {
   font-family: "Gowun Batang", serif;
   line-height: 5px;
   letter-spacing: 0.8px;
@@ -48,13 +46,13 @@ span {
   border-top: 1px solid #eeeeee7f;
 }
 
-img {
+.commu-img {
   width: 300px;
   height: 300px;
   object-fit: contain;
 }
 
-input {
+.commu-input {
   display: inline;
   width: 270px;
   height: 32px;
@@ -70,7 +68,7 @@ input {
   font-size: 13px;
 }
 
-button {
+.btn-up, .btn-good {
   display: inline;
   border: 0;
   background-color: rgb(0, 0, 0);

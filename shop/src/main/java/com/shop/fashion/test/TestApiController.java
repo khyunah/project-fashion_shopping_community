@@ -17,11 +17,8 @@ public class TestApiController {
 	
 	@GetMapping("/test")
 	public String searchUserName() {
-			
 		User user = userRepository.mSearchUserName("teco");
 		System.out.println("user : " + user.toString());
-		
-		
 		return user.toString();
 	}
 	

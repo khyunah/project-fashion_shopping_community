@@ -24,9 +24,9 @@
   </head>
 
   <body>
-    <div class="container">
+    <div class="commu-container">
       <div>
-      	<img alt="" src="/image/model1.jpg">
+      	<img class="commu-img" alt="" src="/image/model1.jpg">
       </div>
 
       <div class="div-main-container">
@@ -35,7 +35,7 @@
         <i style="color: black;" class="fa-regular fa-heart fa-lg"></i>
         -->
           <button class="btn-good">Good Look</button>
-          <span class="span-goodlook-count">1,000K</span>
+          <span class="span-goodlook-count commu-text">1,000K</span>
         </div>
 
         <hr class="hr-goodlook-line" />
@@ -44,12 +44,12 @@
 
         <div>
           <div class="div-title-container">
-            <h3>
+            <h3 class="commu-text">
               오늘의 데일리룩오늘의 데일리룩오늘의 데일리룩오늘의 데일리룩
             </h3>
           </div>
           <div class="div-title-container">
-            <span class="p-username">_hh______</span>
+            <span class="p-username commu-text">_hh______</span>
           </div>
         </div>
 
@@ -57,7 +57,7 @@
 
         <div>
           <div class="div-content-container">
-            <span class="span-content">
+            <span class="span-content commu-text">
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi,
               eius cumque vitae temporibus architecto fuga ducimus dolor
               voluptatum repudiandae libero ariatur. Temporibus laborum illo
@@ -72,16 +72,16 @@
           <i class="fa-regular fa-pen-to-square"></i>
           <button class="btn-up">up</button>
           <div>
-            <input type="text" placeholder="한 마디" class="input-reply" />
+            <input type="text" placeholder="한 마디" class="input-reply commu-input" />
           </div>
         </div>
       </div>
       <div style="height: 70px"></div>
     </div>
 
-    <div class="container">
+    <div class="commu-container">
       <div>
-        <img alt="" src="/image/model1.jpg">
+        <img class="commu-img" alt="" src="/image/model1.jpg">
       </div>
 
       <div class="div-main-container">
@@ -90,7 +90,7 @@
           <i style="color: black;" class="fa-regular fa-heart fa-lg"></i>
           -->
           <button>Good Look</button>
-          <span class="span-goodlook-count">1,000K</span>
+          <span class="span-goodlook-count commu-text">1,000K</span>
         </div>
 
         <hr class="hr-goodlook-line" />
@@ -99,12 +99,12 @@
 
         <div>
           <div class="div-title-container">
-            <h3>
+            <h3 class="commu-text">
               오늘의 데일리룩오늘의 데일리룩오늘의 데일리룩오늘의 데일리룩
             </h3>
           </div>
           <div class="div-title-container">
-            <span class="p-username">_hh______</span>
+            <span class="p-username commu-text">_hh______</span>
           </div>
         </div>
 
@@ -112,7 +112,7 @@
 
         <div>
           <div class="div-content-container">
-            <span class="span-content">
+            <span class="span-content commu-text">
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi,
               eius cumque vitae temporibus architecto fuga ducimus dolor
               voluptatum repudiandae libero ariatur. Temporibus laborum illo
