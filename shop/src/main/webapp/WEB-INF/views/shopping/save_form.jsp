@@ -31,7 +31,7 @@
 			</div>
 			
 		</form>
-		<button type="button" id="btn-save" class="btn btn-primary">상품 등록</button>
+		<button type="button" id="btn-save" class="btn btn-dark text-white">상품 등록</button>
 	
 	</div>
 	<br/>
