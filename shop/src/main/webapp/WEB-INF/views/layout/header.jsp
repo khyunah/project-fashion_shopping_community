@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%> <%@ taglib prefix = "c" uri =
 "http://java.sun.com/jsp/jstl/core" %>
@@ -6,7 +5,6 @@ pageEncoding="UTF-8"%> <%@ taglib prefix = "c" uri =
 <sec:authorize access="isAuthenticated()">
   <sec:authentication property="principal" var="principal" />
 </sec:authorize>
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -14,6 +12,7 @@ pageEncoding="UTF-8"%> <%@ taglib prefix = "c" uri =
     <title>Nerdy</title>
     <!-- CSS 적용 경로 -->
     <link href="${path}/css/headerstyles.css" rel="stylesheet"/> 
+    <link href="${path}/css/communityBoard.css" rel="stylesheet"/>
     <!-- 부트스트랩 -->
     <link
       rel="stylesheet"
@@ -39,7 +38,8 @@ pageEncoding="UTF-8"%> <%@ taglib prefix = "c" uri =
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
   </head>
   
-  <body>
+  <header>
+  
     <nav class="navbar navbar-expand-md bg-white navbar-dark">
       <!-- Brand -->
       	<a class="navbar-brand" href="/">
@@ -130,6 +130,7 @@ pageEncoding="UTF-8"%> <%@ taglib prefix = "c" uri =
         </ul>
       </div>
     </nav>
+    </header>
     <br />
     <!-- 자바 스크립트 추가할 때는 그 페이지의 밑에 작성 -->
 

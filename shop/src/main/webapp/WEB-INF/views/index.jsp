@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="layout/header.jsp" %>
-  
+
   <div class="cardWrap">
-  <div class="leftCards">
-    <ul class="card-list" >
+  <div class="card-list">
+    <ul class="card-list leftCards" >
       <li class="card lCard">
         <img class="card__image" src="https://cdn.pixabay.com/photo/2022/06/29/10/58/fox-7291456__340.jpg"/>
         <p class="card__text">title1</p>
