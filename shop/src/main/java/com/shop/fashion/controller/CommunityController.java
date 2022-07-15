@@ -11,4 +11,9 @@ public class CommunityController {
 	public String index() {
 		return "index"; 
 	}
+	
+	@GetMapping("/board/write")
+	public String write() {
+		return "community/write_form";
+	}
 }

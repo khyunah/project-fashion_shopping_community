@@ -55,7 +55,7 @@
         <div class="cardWrap cardWrapRight">
             <div class="container">
                 <div class="card cardRight">
-                    <img class="card-img-top" src="https://cdn.pixabay.com/photo/2022/06/29/10/58/fox-7291456__340.jpg" alt="Card image">
+                    <img class="card-img-top" src="image/test.png">
                     <div class="card-body">
                         <h4 class="card-title">John Doe</h4>
                         <p class="card-text">Some example text.</p>
@@ -64,7 +64,7 @@
                 </div>
 
                 <div class="card cardRight">
-                    <img class="card-img-top" src="https://cdn.pixabay.com/photo/2022/06/29/10/58/fox-7291456__340.jpg" alt="Card image">
+                    <img class="card-img-top" src="image/test.png">
                     <div class="card-body">
                         <h4 class="card-title">John Doe</h4>
                         <p class="card-text">Some example text.</p>
@@ -73,7 +73,7 @@
                 </div>
 
                 <div class="card cardRight">
-                    <img class="card-img-top" src="https://cdn.pixabay.com/photo/2022/06/29/10/58/fox-7291456__340.jpg" alt="Card image">
+                    <img class="card-img-top" src="image/test.png">
                     <div class="card-body">
                         <h4 class="card-title">John Doe</h4>
                         <p class="card-text">Some example text.</p>
@@ -82,7 +82,7 @@
                 </div>
 
                 <div class="card cardRight">
-                    <img class="card-img-top" src="https://cdn.pixabay.com/photo/2022/06/29/10/58/fox-7291456__340.jpg" alt="Card image">
+                    <img class="card-img-top" src="image/test.png">
                     <div class="card-body">
                         <h4 class="card-title">John Doe</h4>
                         <p class="card-text">Some example text.</p>
