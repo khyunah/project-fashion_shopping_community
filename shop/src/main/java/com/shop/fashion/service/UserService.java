@@ -32,8 +32,8 @@ public class UserService {
 	
 	// 아이디 중복 체크
 	@Transactional()
-	public User checkUsername(String name) {
-		User userTemp =  userRepository.findByUsername(name).orElseGet(() -> {
+	public User checkUsername(String username) {
+		User userTemp =  userRepository.findByUsername(username).orElseGet(() -> {
 			return new User();
 		});
 		return userTemp;
@@ -55,4 +55,5 @@ public class UserService {
 
 		return originUser;
 	}
+
 }

@@ -28,7 +28,7 @@ public class TestApiController {
 	}
 	
 	// 테스트 홈 
-	@GetMapping("/test/home")
+	@GetMapping({"/test/home", "/"})
 	public String home() {
 		return "user/home";
 	}

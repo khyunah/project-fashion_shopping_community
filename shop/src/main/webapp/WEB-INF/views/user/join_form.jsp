@@ -2,69 +2,106 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp" %>
 
-<form action="/security/join-user" method="post" onsubmit="return checkPassword()">
-  <label>
-    <p class="label-txt">ENTER YOUR ID</p>
-    <input type="text" class="input" name="username" id="username" required>
-    <div class="line-box">
-      <div class="line"></div>
-    </div>
-  </label>
-  <br/>
-  <span id="checkIdResult"></span>
-  <div>
-  	<button type="button" id="btn-checkUsername">check id</button>
-  </div>
-  <br/>
-  <label>
-    <p class="label-txt">ENTER YOUR PASSWORD</p>
-    <input id="password" type="paaword" class="input" name="password" required>
-    <div class="line-box">
-      <div class="line"></div>
-    </div>
-  </label>
-  <label>
-    <p class="label-txt">PASSWORD CHECK</p>
-    <input id="passwordCheck" type="password" class="input" required>
-    <div class="line-box">
-      <div class="line"></div>
-    </div>
-  </label>
-  <br/>
-  <span id="checkPasswordResult"></span>
-  <br/><br/><br/>
-  <label>
-    <p class="label-txt">ENTER YOUR NAME</p>
-    <input type="text" class="input" name="name" required>
-    <div class="line-box">
-      <div class="line"></div>
-    </div>
-  </label>
-  <label>
-    <p class="label-txt">ENTER YOUR EMAIL</p>
-    <input type="email" class="input" name="email" required>
-    <div class="line-box">
-      <div class="line"></div>
-    </div>
-  </label>
-  <br/>
-  <label>
-    <p class="label-txt">ENTER YOUR ADDRESS</p>
-    <input type="text" class="input" name="address" required>
-    <div class="line-box">
-      <div class="line"></div>
-    </div>
-  </label>
-  <label>
-    <p class="label-txt">ENTER YOUR PHONE</p>
-    <input type="number" class="input" name="phoneNumber" required>
-    <div class="line-box">
-      <div class="line"></div>
-    </div>
-  </label>
-  <br/><br/><br/>
-  <button type="submit" id="btn-join">sign up</button>
+<form class="user-form" action="/security/join-user" method="post" onsubmit="return checkPassword()">
+
+	<div class="user-input-container">
+		<label class="user-input-label">
+			<span class="label-txt">ENTER YOUR ID</span>
+			<input type="text" class="input" name="username" id="username" required>
+			<div class="line-box">
+				<div class="line"></div>
+			</div>
+		</label>
+	</div>
+
+	<span class="user-check-span" id="checkIdResult"></span>
+	
+	<div class="user-empty-box"></div>
+	<div class="user-empty-box"></div>
+	<div class="user-empty-box"></div>
+	
+	<div>
+		<button type="button" id="btn-checkUsername">check id</button>
+	</div>
+	
+	<div class="user-empty-box"></div>
+  
+	<div class="user-input-container">
+		<div>
+			<label class="user-input-label">
+				<span class="label-txt">ENTER YOUR PASSWORD</span>
+				<input id="password" type="paaword" class="input" name="password" required>
+				<div class="line-box">
+					<div class="line"></div>
+				</div>
+			</label>
+			
+			<label class="user-input-label">
+				<span class="label-txt">PASSWORD CHECK</span>
+				<input id="passwordCheck" type="password" class="input" required>
+				<div class="line-box">
+					<div class="line"></div>
+				</div>
+			</label>
+		</div>
+	</div>
+
+	<div class="user-empty-box"></div>
+	<span class="user-check-span" id="checkPasswordResult"></span>
+	
+	<div class="user-empty-box"></div>
+	<div class="user-empty-box"></div>
+	<div class="user-empty-box"></div>
+  
+	<div class="user-input-container">
+		<div>
+			<label class="user-input-label">
+				<span class="label-txt">ENTER YOUR NAME</span>
+				<input type="text" class="input" name="name" required>
+				<div class="line-box">
+					<div class="line"></div>
+				</div>
+			</label>
+			
+			<label class="user-input-label">
+				<span class="label-txt">ENTER YOUR EMAIL</span>
+				<input type="email" class="input" name="email" required>
+				<div class="line-box">
+					<div class="line"></div>
+				</div>
+			</label>
+		</div>
+	</div>
+
+	<div class="user-empty-box"></div>
+
+	<div class="user-input-container">
+		<div>
+			<label class="user-input-label">
+				<span class="label-txt">ENTER YOUR ADDRESS</span>
+				<input type="text" class="input" name="address" required>
+				<div class="line-box">
+					<div class="line"></div>
+				</div>
+			</label>
+			
+			<label class="user-input-label">
+				<span class="label-txt">ENTER YOUR PHONE</span>
+				<input type="number" class="input" name="phoneNumber" required>
+				<div class="line-box">
+					<div class="line"></div>
+				</div>
+			</label>
+		</div>
+	</div>
+
+	<div class="user-empty-box"></div>
+	<div class="user-empty-box"></div>
+	<div class="user-empty-box"></div>
+	
+	<button type="submit" id="btn-join">sign up</button>
 </form>
+
 <script>
 $(document).ready( function(){
 	$( ".input" ).focus( function(){
