@@ -1,6 +1,9 @@
 package com.shop.fashion.controller;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -10,8 +13,9 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
-import com.shop.fashion.model.Category;
+import com.shop.fashion.model.Basket;
 import com.shop.fashion.model.Item;
 import com.shop.fashion.service.ShoppingService;
 
@@ -22,13 +26,18 @@ public class ShoppingController {
 	@Autowired
 	ShoppingService shoppingService;
 
-	@GetMapping({"shop/mans_form","shop/search"})
-	public String mansForm(Category c, Model model,
-			@PageableDefault(size=20, sort="id", direction = Direction.DESC) Pageable pageable) {
-	
-		Category categorys = c == null ? Category.SHIRTS : c;
+	@GetMapping({"shop/mans_form", "/shop/search"})
+	public String mansForm(@PathParam("gender") String gender, @PathParam("category") String category, Model model,
+			@PageableDefault(size=8, sort="id", direction = Direction.DESC) Pageable pageable) {
+
+		Page<Item> pageItems;
+		if(gender == null || category == null) {
+			pageItems = shoppingService.searchMans(pageable);
+		}else {
+			pageItems = shoppingService.searchItemCategory(category, gender, pageable);
+		}
+		//Page<Item> ca = shoppingService.searchMansShirts(categorys.toString(), c.toString() , pageable);
 		
-		Page<Item> pageItems = shoppingService.searchManShirts(pageable);
 		
 		int nowPage = pageItems.getPageable().getPageNumber() + 1; // 현재 페이지
 		int startPage = Math.max(nowPage - 2, 1); // 두 int 값 중에 큰 값 반환
@@ -45,12 +54,20 @@ public class ShoppingController {
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("pageNumbers", pageNumbers);
-		model.addAttribute("pageItems", pageItems);
+		//model.addAttribute("pageItems", ca);
 		return "shopping/mans_form";
 	}
 	
 	@GetMapping("/shop/save_form")
 	public String saveForm() {
 		return "shopping/save_form";
+	}
+	
+	@GetMapping("/shop/basket_form/{id}")
+	public String cartForm(@PathVariable int id, Model model) {
+		List<Basket> Baskets = shoppingService.getOnUserCart(id);
+		model.addAttribute("Baskets", Baskets);
+		
+		return "shopping/basket_form";
 	}
 }

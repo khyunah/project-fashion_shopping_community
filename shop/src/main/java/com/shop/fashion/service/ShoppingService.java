@@ -1,12 +1,14 @@
 package com.shop.fashion.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.shop.fashion.model.Category;
+import com.shop.fashion.model.Basket;
 import com.shop.fashion.model.Item;
 import com.shop.fashion.repository.ShoppingRepository;
 
@@ -22,13 +24,18 @@ public class ShoppingService {
 //		return shoppingRepository.CategoryItem(category, pageable);
 //	}
 	@Transactional(readOnly = true)
-	public Page<Item> searchManShirts(Pageable pageable) {
-		return shoppingRepository.CategoryItemManShirts(pageable);
+	public Page<Item> searchMans(Pageable pageable) {
+		return shoppingRepository.CategoryItemMans(pageable);
 	}
 	
 	@Transactional
 	public void saveItem(Item item) {
 		shoppingRepository.save(item);
+	}
+	
+	@Transactional(readOnly = true)
+	public Page<Item> searchItemCategory(String category,String gender, Pageable pageable) {
+		return shoppingRepository.CategoryItem(category,gender, pageable);
 	}
 	
 	@Transactional
@@ -45,5 +52,12 @@ public class ShoppingService {
 		itemEntity.setPrice(item.getPrice());
 		// 더티체킹 - @Transactional만 걸어주면 됨
 	}
+	
+	@Transactional(readOnly = true)
+	public List<Basket> getOnUserCart(int userid){
+		List<Basket> boards = shoppingRepository.findByUserId(userid);
+		return boards;
+	}
+
 
 }

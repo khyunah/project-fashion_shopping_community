@@ -15,8 +15,9 @@
 	<div class="container">	
 <div class="card" style="width:100%; ">
   <img class="card-img-top" src="/image/t.jpg" alt="Card image">
+  <h4 style="margin-left:20px; margin-top:250px; position: absolute; font-family: 'Black Han Sans', sans-serif;">2022 SUMMER EVENT</h4>
   <div class="card-img-overlay">
-   <h4 style="margin-top: 220px; font-family: 'Black Han Sans', sans-serif;">2022 SUMMER EVENT</h4>
+   
    
   </div>
 </div>
@@ -24,17 +25,20 @@
 <br/>
 	<div style="text-align: center;">
 	<span class="">
-			<button type="submit" name="showall" value="${searchMan}" class="btn btn-dark m-2" >Show ALL</button>
-			<button type="submit" name="manT" value="${searchTshirts} }" class="btn btn-dark m-2" >T-shirts</button>
-			<button type="submit" name="manP" value="${searchPants}" class="btn btn-dark m-2" >Pants</button>
-			<button type="submit" name="manS" value="${searchShoes}" class="btn btn-dark m-2" >Shoes</button>
+			<button onclick="location.href='/shop/mans_form'" id="showall" class="btn btn-dark m-2" >SHOW ALL</button>
+			<button onclick="location.href='/shop/mans_form/?gender=MAN&category=SHIRTS'"  id="mans_shirts"  class="btn btn-dark m-2" >SHIRTS</button>
+			<button onclick="location.href='/shop/mans_form/?gender=MAN&category=PANTS'"  class="btn btn-dark m-2" >PANTS</button>
+			<button onclick="location.href='/shop/mans_form/?gender=MAN&category=ACCESSORY'"  class="btn btn-dark m-2" >ACCESSORY</button>
+			<button onclick="location.href='/shop/mans_form/?gender=MAN&category=SHOES'"  class="btn btn-dark m-2" >SHOES</button>
+			<button onclick="location.href='/shop/mans_form/?gender=MAN&category=OUTER'"  class="btn btn-dark m-2" >OUTER</button>
+			
 	</span>
 	</div>
 	<section class="py-5">
-		<div class="container px-4 px-lg-5 mt-5	">
-			<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
+		<div class="container px-4 px-lg-5 mt-5	" id="mCard">
+			<div id="list-container" class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
  				<c:forEach var="item" items="${pageable.content}">
-                    	<div class="col mb-5">
+                   <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Product image-->
                             <a class="item" href="/board/${item.id}">
@@ -52,7 +56,7 @@
           	</div>
           </div>
       </section>
-
+		
 
 
 <br/>
@@ -82,3 +86,4 @@
   	</li>	
 </ul>
 <br/>
+<script src="../js/search.js"></script>
