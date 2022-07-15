@@ -1,5 +1,8 @@
 package com.shop.fashion.api;
 
-public class CommunityApiContoller {
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+public class CommunityApiContoller {
+	
+	
 }

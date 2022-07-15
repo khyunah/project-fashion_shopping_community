@@ -25,9 +25,12 @@ public class Image {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(nullable = false)
+	private User user;
+	@Column(nullable = false)
 	private String imageTitle;
 	@Column(nullable = false)
 	private String originImageTitle;
+	private String imageUrl;
 	@ManyToOne
 	@JsonIgnoreProperties({"replies", "images", "itemLink", "user"})
 	private Board board;

@@ -35,3 +35,7 @@ spring:
   jackson:
     serialization:
       fail-on-empty-beans: false
+      
+file:
+  path: C:\projectImageDir\shop\upload  
+      
