@@ -2,9 +2,19 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp" %>
 
+<c:choose>
+	<c:when test="${principal.user.oauth == 'ORIGIN'}">
+		<c:set var="isOauth" value="origin"></c:set>
+	</c:when>
+	<c:otherwise>
+		<c:set var="isOauth" value="kakao"></c:set>
+	</c:otherwise>
+</c:choose>
+
 <form class="user-form" >
-	<input type="hidden" value="${principal.user.id}" id="id">  
-  
+	<input type="hidden" value="${isOauth}" id="isOauth">
+	<input type="hidden" value="${principal.user.id}" id="id">
+
   	<div class="user-input-container">
 		<label class="user-input-label">
 			<span class="label-txt">ENTER YOUR ID</span>
@@ -20,32 +30,31 @@
 	<div class="user-empty-box"></div>
 	<div class="user-empty-box"></div>
 	<div class="user-empty-box"></div>
-	
-	<div>
-		<button type="button" id="btn-checkUsername">check id</button>
-	</div>
-	
-	<div class="user-empty-box"></div>
-  
-	<div class="user-input-container">
-		<div>
-			<label class="user-input-label">
-				<span class="label-txt">ENTER YOUR PASSWORD</span>
-				<input id="password" type="paaword" class="input" name="password" required>
-				<div class="line-box">
-					<div class="line"></div>
+
+	<c:choose>
+		<c:when test="${isOauth == 'kakao'}"></c:when>
+		<c:otherwise>
+			<div class="user-input-container">
+				<div>
+					<label class="user-input-label">
+						<span class="label-txt">ENTER YOUR PASSWORD</span>
+						<input id="password" type="paaword" class="input" name="password" required>
+						<div class="line-box">
+							<div class="line"></div>
+						</div>
+					</label>
+					
+					<label class="user-input-label">
+						<span class="label-txt">PASSWORD CHECK</span>
+						<input id="passwordCheck" type="password" class="input" name="passwordCheck" required>
+						<div class="line-box">
+							<div class="line"></div>
+						</div>
+					</label>
 				</div>
-			</label>
-			
-			<label class="user-input-label">
-				<span class="label-txt">PASSWORD CHECK</span>
-				<input id="passwordCheck" type="password" class="input" required>
-				<div class="line-box">
-					<div class="line"></div>
-				</div>
-			</label>
-		</div>
-	</div>
+			</div>
+		</c:otherwise>
+	</c:choose>
 
 	<div class="user-empty-box"></div>
 	<span class="user-check-span" id="checkPasswordResult"></span>
@@ -115,6 +124,11 @@ $(document).ready( function(){
 	    	  $( "#checkPasswordResult" ).text( "불일치" );
 	      }
 	});
+	
+	if($("#isOauth").val() == "kakao"){
+		$("input[name=name]").attr("readonly", true);
+		$("input[name=email]").attr("readonly", true);
+	}
 });
 
 function checkPassword(){
