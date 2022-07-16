@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> <%@ taglib prefix = "c" uri =
-"http://java.sun.com/jsp/jstl/core" %>
+pageEncoding="UTF-8"%> 
+<%@ taglib prefix= "c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <sec:authorize access="isAuthenticated()">
   <sec:authentication property="principal" var="principal" />
@@ -28,6 +28,9 @@ pageEncoding="UTF-8"%> <%@ taglib prefix = "c" uri =
     <link
       href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css"
       rel="stylesheet"/>
+    <link href="/css/style_user.css" rel="stylesheet" type="text/css"/>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     
     <!-- 폰트 설정 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,12 +48,8 @@ pageEncoding="UTF-8"%> <%@ taglib prefix = "c" uri =
     <nav class="navbar navbar-expand-md bg-white navbar-dark">
       <!-- Brand -->
       	<a class="navbar-brand" href="/">
-        	<img src="/image/logo.png" alt="Logo" style="width:40px;">
+        	<img src="/image/logo.png" alt="Logo" style="width: z60%; ">
       	</a>
-      <a class="navbar-brand text-dark" 
-          href="/" 
-          style="font-family: 'Black Han Sans', sans-serif;
-                 font-family: 'Hahmlet', serif; font-size: 30px; font-weight: bold;" >Nerdy</a>
 
       <!-- Toggler/collapsibe Button -->
       <button
@@ -67,10 +66,10 @@ pageEncoding="UTF-8"%> <%@ taglib prefix = "c" uri =
         id="collapsibleNavbar">
         	<ul class="navbar-nav mr-5">
         	 <c:choose>
-           	 	<c:when test="${principal.user.role eq 'USER'}">
+           	 	<c:when test="${principal.user eq null}">
               <li class="nav-item">
                 <a class="nav-link text-dark" 
-                   href="/auth/join_form" 
+                   href="/user/update_form" 
                    style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">SOSIAL</a>
               </li>
         <li class="nav-item">
@@ -87,15 +86,48 @@ pageEncoding="UTF-8"%> <%@ taglib prefix = "c" uri =
 			  </div> 
 			</li>
               <li class="nav-item">
-                <a class="nav-link text-dark" href="/auth/login_form" 
+                <a class="nav-link text-dark" href="/security/login_form" 
                 	style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">LOGIN</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-dark" href="/auth/join_form" 
+                <a class="nav-link text-dark" href="/security/join_form" 
                 	style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">JOIN</a>
               </li>
                </c:when>
-              <c:when test="${principal.user.role eq roleUser}">
+              <c:when test="${principal.user.role eq 'USER'}">
+              <!-- 로그인 성공하면(회원이면) 글 작성 가능 -->
+              <li class="nav-item">
+                <li class="nav-item">
+                  <a class="nav-link text-dark" href="#" style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">SOSIAL</a>
+                </li>
+               <li class="nav-item">
+  			<div class="dropdown">
+			    <button class="nav-link dropbtn bg-white text-dark" style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">STORE 
+			      <i class="fa fa-caret-down"></i>
+			    </button>
+    			<div class="dropdown-content bg-white">
+				      <a href="/shop/mans_form" style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">MAN's</a>
+				      <a href="/shop/save_form" style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">WOMAN's</a>
+				      <a href="/shop/basket_form" style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">ACCESSORIES</a>
+			    </div>
+			  </div> 
+			</li>
+                <a
+                  class="nav-link text-dark"
+                  href="/board/cart_form/${principal.user.id}"
+                  ><img src="/image/basket.png" class="basket"></a
+                >
+              <li class="nav-item">
+                <a class="nav-link text-dark" href="/user/update_form"
+                  ><img src="/image/myinfo.png" class="myinfo"></a
+                >
+              </li>
+              <li class="nav-item">
+                <!-- 시큐리티를 적용하면 자동 로그아웃 처리 된다. -->
+                <a class="nav-link text-dark" href="/logout" style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">LOGOUT</a>
+              </li>
+            </c:when>
+            <c:when test="${principal.user.role eq 'ADMIN'}">
               <!-- 로그인 성공하면(회원이면) 글 작성 가능 -->
               <li class="nav-item">
                 <li class="nav-item">
@@ -107,9 +139,9 @@ pageEncoding="UTF-8"%> <%@ taglib prefix = "c" uri =
 			      <i class="fa fa-caret-down"></i>
 			    </button>
     			<div class="dropdown-content bg-white">
-				      <a href="/board/mans_form" style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">MAN's</a>
-				      <a href="/board/save_form" style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">WOMAN's</a>
-				      <a href="#" style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">ACCESSORIES</a>
+				      <a href="/shop/mans_form" style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">MAN's</a>
+				      <a href="/shop/save_form" style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">WOMAN's</a>
+				      <a href="/shop/basket_form" style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">ACCESSORIES</a>
 			    </div>
 			  </div> 
 			</li>

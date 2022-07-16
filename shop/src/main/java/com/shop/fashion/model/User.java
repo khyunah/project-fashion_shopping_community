@@ -40,10 +40,10 @@ public class User {
 	@Column(nullable = false)
 	private String email;
 	
-	@Column(length = 11, nullable = false)
+	//@Column(length = 11, nullable = false)
 	private String phoneNumber;
 	
-	@Column(nullable = false)
+	//@Column(nullable = false)
 	private String address;
 	
 	@Enumerated(value = EnumType.STRING)

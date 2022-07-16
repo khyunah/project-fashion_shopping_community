@@ -22,13 +22,13 @@ public class ShoppingController {
 	@Autowired
 	ShoppingService shoppingService;
 
-	@GetMapping("shop/mans_form")
+	@GetMapping({"shop/mans_form","shop/search"})
 	public String mansForm(Category c, Model model,
 			@PageableDefault(size=20, sort="id", direction = Direction.DESC) Pageable pageable) {
 	
 		Category categorys = c == null ? Category.SHIRTS : c;
 		
-		Page<Item> pageItems = shoppingService.searchCategory(pageable, categorys);
+		Page<Item> pageItems = shoppingService.searchManShirts(pageable);
 		
 		int nowPage = pageItems.getPageable().getPageNumber() + 1; // 현재 페이지
 		int startPage = Math.max(nowPage - 2, 1); // 두 int 값 중에 큰 값 반환
