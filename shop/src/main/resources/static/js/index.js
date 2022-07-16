@@ -83,11 +83,10 @@
 	        addNewContent();
 	        loadingFinish();
 	        observeLastItem(io, document.querySelectorAll('.lCard'));
-	      }, 2000);
+	      }, 0);
 	    }
 	  });
 	};
-	
 	
 	const observeLastItem = (io, items) => {
 	  const lastItem = items[items.length - 1];

@@ -7,44 +7,14 @@
 
             <ul class="card-list leftCards">
                 <li class="card lCard">
-                    <img class="card__image"
-                        src="https://cdn.pixabay.com/photo/2022/06/29/10/58/fox-7291456__340.jpg" />
-                    <p class="card__text">title1</p>
+                    <%@ include file="community/community_home.jsp" %>
                 </li>
-                <li class="card lCard">
-                    <img class="card__image"
-                        src="https://cdn.pixabay.com/photo/2022/06/29/10/58/fox-7291456__340.jpg" />
-                    <p class="card__text">title2</p>
+                
+                                <li class="card lCard">
+                    <%@ include file="community/community_home.jsp" %>
                 </li>
-                <li class="card lCard">
-                    <img class="card__image"
-                        src="https://cdn.pixabay.com/photo/2022/06/29/10/58/fox-7291456__340.jpg" />
-                    <p class="card__text">title3</p>
-                </li>
-                <li class="card lCard">
-                    <img class="card__image"
-                        src="https://cdn.pixabay.com/photo/2022/06/29/10/58/fox-7291456__340.jpg" />
-                    <p class="card__text">title4</p>
-                </li>
-                <li class="card lCard">
-                    <img class="card__image"
-                        src="https://cdn.pixabay.com/photo/2022/06/29/10/58/fox-7291456__340.jpg" />
-                    <p class="card__text">title5</p>
-                </li>
-                <li class="card lCard">
-                    <img class="card__image"
-                        src="https://cdn.pixabay.com/photo/2022/06/29/10/58/fox-7291456__340.jpg" />
-                    <p class="card__text">title6</p>
-                </li>
-                <li class="card lCard">
-                    <img class="card__image"
-                        src="https://cdn.pixabay.com/photo/2022/06/29/10/58/fox-7291456__340.jpg" />
-                    <p class="card__text">title7</p>
-                </li>
-                <li class="card lCard">
-                    <img class="card__image"
-                        src="https://cdn.pixabay.com/photo/2022/06/29/10/58/fox-7291456__340.jpg" />
-                    <p class="card__text">title8</p>
+                                <li class="card lCard">
+                    <%@ include file="community/community_home.jsp" %>
                 </li>
             </ul>
 
@@ -96,5 +66,7 @@
     <!--mainWrap-->
 
 </body>
+<script src="/js/index.js">
 
+</script>
 </html>
