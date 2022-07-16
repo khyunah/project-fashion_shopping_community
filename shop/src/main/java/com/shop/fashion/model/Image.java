@@ -24,8 +24,7 @@ public class Image {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(nullable = false)
-	private User user;
+
 	@Column(nullable = false)
 	private String imageTitle;
 	@Column(nullable = false)

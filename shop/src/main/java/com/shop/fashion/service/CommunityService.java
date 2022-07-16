@@ -24,7 +24,6 @@ public class CommunityService {
 	@Autowired
 	private CommunityRepository communityRepository;
 	
-	@Autowired
 	public void upload(RequestFileDto fileDto) {
 		
 		UUID uuid = UUID.randomUUID();
