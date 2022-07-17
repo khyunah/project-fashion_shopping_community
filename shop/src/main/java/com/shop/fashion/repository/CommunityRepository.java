@@ -6,4 +6,5 @@ import com.shop.fashion.model.Image;
 
 public interface CommunityRepository extends JpaRepository<Image, Integer>{
 
+	
 }

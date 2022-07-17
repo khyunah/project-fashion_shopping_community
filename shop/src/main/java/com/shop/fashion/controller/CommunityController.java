@@ -27,8 +27,8 @@ public class CommunityController {
 	}
 	
 	@PostMapping("/board/upload")
-	public String storyUpload(RequestFileDto fileDto, @AuthenticationPrincipal PrincipalUserDetail detail) {
-//		communityService.upload(fileDto, detail.getUser());
+	public String storyUpload(RequestFileDto fileDto) {
+		communityService.upload(fileDto);
 		return "redirect:/";
 	}
 	

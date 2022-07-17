@@ -46,4 +46,3 @@
     $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
   });
 </script>
-<script src="/js/board.js"></script>
