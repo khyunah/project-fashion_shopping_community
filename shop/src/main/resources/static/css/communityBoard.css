@@ -73,13 +73,19 @@ ul {
 }
 
 .container {
-  width: 500px;
+  width: 600px;
   height: 650px;
 }
 
 .cardRight {
-  width: 48%;
+  width:280px;
   max-width: 250px;
+
+  margin-right:10px;
+  margin-top:10px;
+}
+.cardRight:nth-child(2n){
+	margin-left:0px;
 }
 .cardRightImgBox {
   width: 98%;
@@ -97,12 +103,12 @@ ul {
 .cardWrapRight {
   position: fixed;
   left: 50%;
-  width: 500px;
+  width: 600px;
   margin-top: 65px;
 }
 
 .mainWrap {
-  width: 1000px;
+  width: 1200px;
   display: flex;
   margin-left: auto;
   margin-right: auto;
