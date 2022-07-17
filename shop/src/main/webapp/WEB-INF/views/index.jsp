@@ -22,44 +22,50 @@
         </div>
         <!--cardWrap-->
 
-        <div class="cardWrap cardWrapRight">
+
+                <div class="cardWrap cardWrapRight">
             <div class="container">
                 <div class="card cardRight">
-                    <img class="card-img-top" src="image/test.png">
+                <div class="cardRightImgBox">
+                 </div><!-- mainImageBox -->
                     <div class="card-body">
                         <h4 class="card-title">John Doe</h4>
                         <p class="card-text">Some example text.</p>
-                        <a href="#" class="btn btn-dark">See Detail</a>
+                        <button class = "cardRightBtn">See Detail</button>
                     </div>
                 </div>
 
                 <div class="card cardRight">
-                    <img class="card-img-top" src="image/test.png">
+                <div class="cardRightImgBox">
+                 </div><!-- mainImageBox -->
                     <div class="card-body">
                         <h4 class="card-title">John Doe</h4>
                         <p class="card-text">Some example text.</p>
-                        <a href="#" class="btn btn-dark">See Detail</a>
+                        <button class = "cardRightBtn">See Detail</button>
                     </div>
                 </div>
 
                 <div class="card cardRight">
-                    <img class="card-img-top" src="image/test.png">
+                <div class="cardRightImgBox">
+                 </div><!-- mainImageBox -->
+
                     <div class="card-body">
                         <h4 class="card-title">John Doe</h4>
                         <p class="card-text">Some example text.</p>
-                        <a href="#" class="btn btn-dark">See Detail</a>
+                        <button class = "cardRightBtn">See Detail</button>
                     </div>
                 </div>
 
                 <div class="card cardRight">
-                    <img class="card-img-top" src="image/test.png">
+                <div class="cardRightImgBox">
+                 </div><!-- mainImageBox -->
                     <div class="card-body">
                         <h4 class="card-title">John Doe</h4>
                         <p class="card-text">Some example text.</p>
-                        <a href="#" class="btn btn-dark">See Detail</a>
+                        <button class = "cardRightBtn">See Detail</button>
                     </div>
                 </div>
-            </div>
+            </div><!-- container -->
         </div>
         <!--cardWrap-->
     </div>
