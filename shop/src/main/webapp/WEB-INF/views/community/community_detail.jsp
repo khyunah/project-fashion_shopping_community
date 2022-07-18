@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="../layout/header.jsp" %>
 
     <div class="commu-detail-center-container">
       <div class="commu-detail-container">
@@ -11,21 +12,11 @@
 
         <div class="commu-detail-div-main-container">
           <div>
-            <div
-              class="commu-detail-like-icon-box"
-              id="commu-detail-like-icon-box"
-            >
-              <i
-                style="color: black"
-                id="before-like"
-                class="fa-regular fa-heart fa-lg"
-              ></i>
+            <div class="commu-detail-like-icon-box" id="commu-detail-like-icon-box">
+              <i style="color: black" id="before-like" class="fa-regular fa-heart fa-lg"></i>
             </div>
-
             <!--<button class="btn-good commu-btn">Good Look</button>-->
-            <span class="commu-detail-span-goodlook-count commu-detail-text"
-              >1,000K</span
-            >
+            <span class="commu-detail-span-goodlook-count commu-detail-text">1,000K</span>
           </div>
 
           <hr class="hr-goodlook-line" />
@@ -80,17 +71,14 @@
               <input
                 type="text"
                 placeholder="한 마디"
-                class="input-reply commu-detail-input"
-              />
+                class="commu-input-reply commu-detail-input"/>
             </div>
           </div>
           <div style="height: 20px"></div>
 
           <div class="commu-detail-reply-container">
             <div class="commu-detail-reply-firstline-container">
-              <span class="commu-detail-reply-user commu-detail-reply-text"
-                >작성자</span
-              >
+              <span class="commu-detail-reply-user commu-detail-reply-text">작성자</span>
               <div>
                 <button class="commu-detail-btn-update commu-detail-btn-reply">
                   수정
@@ -103,9 +91,8 @@
 
             <textarea
               class="commu-detail-reply-content commu-detail-reply-text"
-              readonly
-            >
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur ea tempore nam veniam optio ut voluptatem dignissimos natus autem deleniti illum, cumque magnam porro unde corporis sint quaerat quo molestias!</textarea
+              readonly>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur ea tempore nam veniam optio ut voluptatem dignissimos natus autem deleniti illum, cumque magnam porro unde corporis sint quaerat quo molestias!
+            </textarea
             >
           </div>
         </div>
