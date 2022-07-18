@@ -39,6 +39,7 @@ pageEncoding="UTF-8"%>
 
 	<!-- summer note 설정 -->
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    
   </head>
   
   <body>
@@ -111,7 +112,7 @@ pageEncoding="UTF-8"%>
 			</li>
                 <a
                   class="nav-link text-dark"
-                  href="/board/cart_form/${principal.user.id}"
+                  href="/shop/basket_form/${principal.user.id}"
                   ><img src="/image/basket.png" class="basket"></a
                 >
               <li class="nav-item">
