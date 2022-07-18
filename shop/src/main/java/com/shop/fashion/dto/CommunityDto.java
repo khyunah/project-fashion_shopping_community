@@ -2,6 +2,7 @@ package com.shop.fashion.dto;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.shop.fashion.model.CommunityBoard;
 import com.shop.fashion.model.Image;
 import com.shop.fashion.model.User;
 
@@ -14,16 +15,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class RequestFileDto {
+public class CommunityDto {
 
 	
 	private MultipartFile file;
 	private String uuid; 
-	private String storyText; 
+	private String content; 
+	private String title;
 	
-	public Image toEntity(String storyImageUrl) {
-		return Image.builder()
+	public CommunityBoard toEntity(String storyImageUrl, User user) {
+		return CommunityBoard.builder()
 				.imageUrl(storyImageUrl)
+				.user(user)
+				.content(content)
+				.title(title)
+				.itemLink("")
 				.originImageTitle(file.getOriginalFilename())
 				.build();
 	}

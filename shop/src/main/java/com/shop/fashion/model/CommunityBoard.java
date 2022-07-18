@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Entity
-public class Board {
+public class CommunityBoard {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,19 +35,31 @@ public class Board {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "userId")
     private User user;
+    
     @Column(nullable = false)
     private String title;
+ 
     private int reaction;
-    @Column(nullable = false)
-    @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
-    private List<Image> images;
-    @Column(nullable = false)
+    
     private int replyCount;
+    
     @Column(nullable = false)
     private String itemLink;
+    
     @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
     private List<Reply> replies;
 
     @CreationTimestamp
     private Timestamp createDate;
+	
+    @Column(nullable = false)
+	private String content;
+	
+	@Column(nullable = false)
+	private String originImageTitle;
+	
+	@Column(nullable = false)	
+	private String imageUrl;
+    
+    
 }

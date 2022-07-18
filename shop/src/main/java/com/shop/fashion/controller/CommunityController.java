@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.shop.fashion.auth.PrincipalUserDetail;
-import com.shop.fashion.dto.RequestFileDto;
+import com.shop.fashion.dto.CommunityDto;
 import com.shop.fashion.service.CommunityService;
 
 @Controller
@@ -23,12 +23,14 @@ public class CommunityController {
 	
 	@GetMapping("/board/write")
 	public String write() {
+		System.out.println("wrtie form");
 		return "community/write_form";
 	}
 	
 	@PostMapping("/board/upload")
-	public String storyUpload(RequestFileDto fileDto, @AuthenticationPrincipal PrincipalUserDetail detail) {
-//		communityService.upload(fileDto, detail.getUser());
+	public String storyUpload(CommunityDto fileDto, @AuthenticationPrincipal PrincipalUserDetail detail) {
+		System.out.println("123123123");
+		communityService.upload(fileDto, detail.getUser());
 		return "redirect:/";
 	}
 	

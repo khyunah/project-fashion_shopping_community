@@ -37,5 +37,5 @@ spring:
       fail-on-empty-beans: false
       
 file:
-  path: C:\projectImageDir\shop\upload  
+  path: C:\projectImageDir\shop\upload\  
       

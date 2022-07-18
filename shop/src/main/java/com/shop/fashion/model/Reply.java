@@ -29,7 +29,7 @@ public class Reply {
 	private int id;
 	@ManyToOne
 	@JsonIgnoreProperties({"replies", "images", "itemLink", "user"})
-	private Board board;
+	private CommunityBoard board;
 	@ManyToOne
 	private User user;
 	@CreationTimestamp

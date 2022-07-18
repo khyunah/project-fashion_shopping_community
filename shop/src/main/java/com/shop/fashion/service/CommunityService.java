@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.shop.fashion.dto.RequestFileDto;
-import com.shop.fashion.model.Image;
+import com.shop.fashion.dto.CommunityDto;
+import com.shop.fashion.model.CommunityBoard;
 import com.shop.fashion.model.User;
 import com.shop.fashion.repository.CommunityRepository;
 
@@ -24,10 +24,10 @@ public class CommunityService {
 	@Autowired
 	private CommunityRepository communityRepository;
 	
-	public void upload(RequestFileDto fileDto) {
+	public void upload(CommunityDto fileDto, User user) {
 		
 		UUID uuid = UUID.randomUUID();
-		String imageFileName = uuid + "_" + "story";
+		String imageFileName = uuid + "_" + "community.png";
 		String newFileName = (imageFileName.trim()).replaceAll("\\s", "");
 		
 		Path imageFilePath = Paths.get(uploadFolder + newFileName);
@@ -35,8 +35,8 @@ public class CommunityService {
 		try {
 			Files.write(imageFilePath, fileDto.getFile().getBytes());
 			
-			Image imageEntity = fileDto.toEntity(newFileName);
-			communityRepository.save(imageEntity);
+			CommunityBoard communityBoardEntity = fileDto.toEntity(newFileName, user);
+			communityRepository.save(communityBoardEntity);
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

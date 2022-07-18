@@ -15,7 +15,7 @@
 
 <div class="container justify-content space-between">
  
-  <form action="/board/upload" enctype="multipart/form-data" method="post">
+   <form action="/board/upload" enctype="multipart/form-data" method="post">
     <div class="form-group">
       <label for="title">title</label>
       <input type="text" class="form-control" placeholder="Enter title" name="title" id="title" />
@@ -33,8 +33,10 @@
       <label for="content">content</label>
       <textarea class="form-control" rows="5" id="content" name="content" placeholder="내용을 입력하세요"></textarea>
     </div>
+    <div class="form-group mt-3">
+  <button type="submit" id="btn-save" class="btn btn-dark">글 쓰기 완료</button>
+	</div>
   </form>
-  <button type="button" id="btn-save" class="btn btn-dark">글 쓰기 완료</button>
 </div>
 
 <br />
@@ -46,4 +48,3 @@
     $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
   });
 </script>
-<script src="/js/board.js"></script>

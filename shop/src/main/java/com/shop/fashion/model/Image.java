@@ -1,6 +1,5 @@
 package com.shop.fashion.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,12 +24,10 @@ public class Image {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(nullable = false)
-	private String imageTitle;
-	@Column(nullable = false)
-	private String originImageTitle;
-	private String imageUrl;
 	@ManyToOne
 	@JsonIgnoreProperties({"replies", "images", "itemLink", "user"})
-	private Board board;
+	private CommunityBoard board;
 }
+
+
+
