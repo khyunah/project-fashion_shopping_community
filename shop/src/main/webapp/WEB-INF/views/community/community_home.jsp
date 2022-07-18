@@ -70,7 +70,7 @@ pageEncoding="UTF-8"%>
             class="input-reply commu-input"
           />
         </div>
-
+	</div>
     </div>
   </body>
-</html>
+

@@ -4,11 +4,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.shop.fashion.dto.CommunityDto;
 import com.shop.fashion.model.CommunityBoard;
@@ -24,6 +26,11 @@ public class CommunityService {
 	@Autowired
 	private CommunityRepository communityRepository;
 	
+	public List<CommunityBoard> getCommunityBoardList() {
+		return communityRepository.findAll();
+	}
+
+	@Transactional
 	public void upload(CommunityDto fileDto, User user) {
 		
 		UUID uuid = UUID.randomUUID();

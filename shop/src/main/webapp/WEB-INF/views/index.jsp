@@ -9,13 +9,7 @@
                 <li class="card lCard">
                     <%@ include file="community/community_home.jsp" %>
                 </li>
-                
-                                <li class="card lCard">
-                    <%@ include file="community/community_home.jsp" %>
-                </li>
-                                <li class="card lCard">
-                    <%@ include file="community/community_home.jsp" %>
-                </li>
+ 
             </ul>
 
             <!--card-list-->
