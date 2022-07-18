@@ -34,7 +34,8 @@ public class CommunityService {
 	public void upload(CommunityDto fileDto, User user) {
 		
 		UUID uuid = UUID.randomUUID();
-		String imageFileName = uuid + "_" + "community.png";
+		String imageFileName = uuid.toString() +"." + extracktExt(fileDto.getFile().getOriginalFilename());
+		
 		String newFileName = (imageFileName.trim()).replaceAll("\\s", "");
 		
 		Path imageFilePath = Paths.get(uploadFolder + newFileName);
@@ -50,5 +51,10 @@ public class CommunityService {
 			e.printStackTrace();
 		}
 		
+	}
+
+	private String extracktExt(String originalFileName) {
+		int pos = originalFileName.lastIndexOf(".");
+		return originalFileName.substring(pos + 1);
 	}
 }

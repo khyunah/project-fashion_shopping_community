@@ -24,9 +24,8 @@ public class CommunityController {
 	@GetMapping("/")
 	public String index(Model model) {
 		List<CommunityBoard> boardList = communityService.getCommunityBoardList();
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("boardList", boardList);
-		return "index"; 
+		model.addAttribute("boardList", boardList);
+		return "index";
 	}
 	
 	@GetMapping("/board/write")

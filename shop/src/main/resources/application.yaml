@@ -19,7 +19,7 @@ spring:
       maximumPoolSize: 10
       maxLifetime: 1800000
       poolName: HikariCP
-      readOnly: false
+      readOnly: false 
     
   jpa:
     open-in-view: true

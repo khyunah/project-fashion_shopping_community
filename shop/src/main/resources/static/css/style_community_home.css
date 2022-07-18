@@ -1,6 +1,5 @@
 .commu-container {
   margin: 20px;
-
   margin-left: auto;
   margin-right: auto;
 }
@@ -38,7 +37,7 @@
 	overflow: hidden; 
 	text-overflow: ellipsis; 
 	display: -webkit-box; 
-	-webkit-line-clamp: 2; /* 라인수 */ 
+	-webkit-line-clamp: 2; /* �씪�씤�닔 */ 
 	-webkit-box-orient: vertical; 
 	word-wrap:break-word; 
 	line-height: 1.2em; 
@@ -71,6 +70,7 @@
   height: 300px;
   object-fit: contain;
 }
+
 
 .commu-input {
   display: inline;
