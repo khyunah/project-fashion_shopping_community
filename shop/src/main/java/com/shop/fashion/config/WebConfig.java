@@ -9,20 +9,19 @@ import org.springframework.web.servlet.resource.PathResourceResolver;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
-//	@Value("${file.path}")
-//	private String uploadFolder;
-//	
-//	@Override
-//	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//
-//		WebMvcConfigurer.super.addResourceHandlers(registry);
-//		
-//		registry.addResourceHandler("/**")
-//		.addResourceLocations("file:///" + uploadFolder)
-//		.setCachePeriod(3600)
-//		.resourceChain(true)
-//		.addResolver(new PathResourceResolver());
-//		
-//	}
+	@Value("${file.path}")
+	private String uploadFolder;
+	
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		System.out.println(uploadFolder);
+		WebMvcConfigurer.super.addResourceHandlers(registry);
+		
+		registry.addResourceHandler("/upload/**")
+		.addResourceLocations("file:///" + uploadFolder)
+		.setCachePeriod(60 * 6 *  10)
+		.resourceChain(true)
+		.addResolver(new PathResourceResolver());		
+	}
 	
 }

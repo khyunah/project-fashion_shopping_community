@@ -10,7 +10,7 @@
           <li class="card lCard">
             <div class="commu-container">
               <div class = "leftImgBox">
-                <img class="commu-img" alt="" src="http://localhost:9090/${communityBoard.imageUrl}"/>
+                <img class="commu-img" alt="" src="http://localhost:9090/upload/${communityBoard.imageUrl}"/>
               </div>
 			
               <div class="div-main-container">
