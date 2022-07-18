@@ -29,6 +29,7 @@ pageEncoding="UTF-8"%>
       href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css"
       rel="stylesheet"/>
     <link href="/css/style_user.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/style_community_home.css" rel="stylesheet" />
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     
