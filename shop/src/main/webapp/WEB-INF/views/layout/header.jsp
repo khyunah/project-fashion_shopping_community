@@ -25,9 +25,16 @@ pageEncoding="UTF-8"%> <%@ taglib prefix = "c" uri =
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
     <!-- include summernote css/js -->
+<<<<<<< Updated upstream
     <link
       href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css"
       rel="stylesheet"/>
+=======
+    
+    <link href="/css/style_user.css" rel="stylesheet" type="text/css"/>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	
+>>>>>>> Stashed changes
     
     <!-- 폰트 설정 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,8 +42,9 @@ pageEncoding="UTF-8"%> <%@ taglib prefix = "c" uri =
 	<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Hahmlet:wght@100;300&display=swap" rel="stylesheet">
 
 	<!-- summer note 설정 -->
+
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
-    
   </head>
   
   <body>
