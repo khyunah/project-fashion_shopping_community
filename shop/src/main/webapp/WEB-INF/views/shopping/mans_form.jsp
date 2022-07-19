@@ -35,13 +35,13 @@
 	</span>
 	</div>
 	<section class="py-5">
-		<div class="container px-4 px-lg-5 mt-5	" id="mCard">
-			<div id="list-container" class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
+		<div class="container" id="mCard" >
+			<div id="list-container-md" class="row">
  				<c:forEach var="item" items="${pageable.content}">
-                   <div class="col mb-5">
+                   <div class="col-3 mb-5">
                         <div class="card h-100">
                             <!-- Product image-->
-                            <a class="item" href="/board/${item.id}">
+                            <a class="item" href="/shop/itemdetail_form/${item.id}">
                                 <img class="card-img-top" src="${item.imageurl}" alt="...">
                             </a>
                             <!-- Product details-->

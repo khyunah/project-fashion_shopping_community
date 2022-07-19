@@ -59,5 +59,11 @@ public class ShoppingService {
 		return boards;
 	}
 
+	@Transactional
+	public Item itemDetail(int itemId) {
+		return shoppingRepository.findById(itemId).orElseThrow(() -> {
+			return new IllegalArgumentException("해당 게시글은 찾을 수 없습니다.");
+		});
+	}	
 
 }

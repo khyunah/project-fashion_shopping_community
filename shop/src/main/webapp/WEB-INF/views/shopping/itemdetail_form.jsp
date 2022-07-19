@@ -4,29 +4,37 @@
 <%@ include file="../layout/header.jsp" %>
 
 <div class="container">
-	<input type="hidden" id="principal--id" value="${principal.user.id}">
+	<input type="hidden" id="principal--id" value="${item.id}">
 	<button class="btn bg-secondary" onclick="history.back();">돌아가기</button>
-	<c:if test="${board.userId.id == principal.user.id}">
-		<a href="/item/${Item.id}/update_form" class="btn btn-warning">수정</a>
+	<c:if test="${principal.user.role eq USER}">
+		<a href="/item/${item.id}/update_form" class="btn btn-warning">수정</a>
 		<button class="btn btn-danger" id="btn-delete">삭제</button>	
 	</c:if>
 	<br/><br/>
 	<div>
-		글 번호 : <span id="board-id"><i>${Item.id}</i></span><br/>
-		글 작성자 : <span id=""><i>${board.userId.username}</i></span>
+		itemcode : <span id="item-id"><i>${item.id}</i></span><br/>
+		itemcategory : <span id="item-id"><i>${item.category}</i></span><br/>
 	</div>
 	<br/><br/>
-	<hr/>
-	<div class="form-group m-2">
-		<h3>${board.title}</h3>
+
+	<div class="form-group m-2 inline row">
+		<div>
+			<img style="width: 460px; height: 580px;" src="${item.imageurl}" alt=""/>
+		</div>
+		<div style="margin-left: 150px;">
+			<h2 style="font-size: 38px;">${item.name}</h2>
+			<br/>
+			<h2 style="font-size: 38px;"><span style="font-size: 25px; font-weight: bold;">판매가</span>&nbsp;&nbsp;${item.price}원</h2>
+			<br/>
+			<h2 style="font-size: 28px;"><span style="font-size: 25px; font-weight: bold;">배송비</span>&nbsp;&nbsp;${(item.price/10)}원</h2>
+			<br/>
+			<h2>Color</h2>
+			<br/>
+			<h2>Size</h2>
+
+		</div>	
 	</div>
-	<hr/>
-	<div class="form-group m-2 inline">
-		 <img src="${board.imgUrl}" alt="" />
-	</div>
-	<div class="form-group m-2">
-		<h3>$${board.price}</h3>
-	</div>
+
 	<hr/>
 	<div class="form-group m-2">
 		<h3>${board.content}</h3>
@@ -67,5 +75,4 @@
 <br/><br/>
 </div>
 
-<script src="/js/board.js"></script>
-<%@ include file="../layout/footer.jsp" %>
+<script src="/js/item.js"></script>

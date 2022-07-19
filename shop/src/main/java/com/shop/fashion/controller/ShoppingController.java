@@ -70,4 +70,11 @@ public class ShoppingController {
 		
 		return "shopping/basket_form";
 	}
+	// /shopping/itemdetail_form/${item.id}
+	@GetMapping("/shop/itemdetail_form/{id}")
+	public String itemDetailform(@PathVariable int id, Model model) {
+		model.addAttribute("item", shoppingService.itemDetail(id));
+		return "shopping/itemdetail_form";
+	}
+	
 }
