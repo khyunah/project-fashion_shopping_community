@@ -84,21 +84,23 @@
           <div style="height: 20px"></div>
 
           <div class="commu-detail-reply-container">
-            <div class="commu-detail-reply-firstline-container">
+            <div class="commu-detail-reply-firstline-container" id="reply-${reply.id}">
               <span class="commu-detail-reply-user commu-detail-reply-text">작성자</span>
-              <div>
-                <button class="commu-detail-btn-update commu-detail-btn-reply">
+              <div id="commu-detail-reply-btn-box">
+                <button class="commu-detail-btn-reply-update commu-detail-btn-reply">
                   수정
                 </button>
-                <button class="commu-detail-btn-delete commu-detail-btn-reply">
+                <button class="commu-detail-btn-reply-delete commu-detail-btn-reply">
                   삭제
                 </button>
               </div>
             </div>
-            <textarea
-              class="commu-detail-reply-content commu-detail-reply-text"
-              readonly>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur ea tempore nam veniam optio ut voluptatem dignissimos natus autem deleniti illum, cumque magnam porro unde corporis sint quaerat quo molestias!
-            </textarea>
+            <div id="commu-detail-reply-content-box">
+            	<textarea
+	              class="commu-detail-reply-content commu-detail-reply-text"
+	              readonly>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur ea tempore nam veniam optio ut voluptatem dignissimos natus autem deleniti illum, cumque magnam porro unde corporis sint quaerat quo molestias!
+	            </textarea>
+            </div>
           </div>
         </div>
         <div style="height: 70px"></div>
