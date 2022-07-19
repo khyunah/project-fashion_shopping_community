@@ -3,7 +3,7 @@
 <%@ include file="../layout/header.jsp" %>
 
 	<input id="communityBoardId" type="hidden" value="${communityBoard.id}"/>
-	<input id="communityReplyUser" type="hidden" value="${principal.user}"/>
+	<input id="userId" type="hidden" value="${principal.user}"/>
 
     <div class="commu-detail-center-container">
       <div class="commu-detail-container">
@@ -74,20 +74,25 @@
 
           <div class="commu-detail-reply-container">
           	<c:forEach var="reply" items="${communityBoard.replies}">
-          		<div class="commu-detail-reply-firstline-container" id="reply-${reply.id}">
-	              <span class="commu-detail-reply-user commu-detail-reply-text">${reply.user.username}</span>
-	              <div id="commu-detail-reply-btn-box">
-	                <button class="commu-detail-btn-reply-update commu-detail-btn-reply">
-	                  수정
-	                </button>
-	                <button class="commu-detail-btn-reply-delete commu-detail-btn-reply">
-	                  삭제
-	                </button>
-	              </div>
-	            </div>
-	            <div id="commu-detail-reply-content-box">
-	            	<textarea class="commu-detail-reply-content commu-detail-reply-text" readonly>${reply.content}</textarea>
-	            </div>
+          		<div id="commu-reply-${reply.id}">
+          			<input id="replyId" type="hidden" value="${reply.id}"/>
+	          		<div class="commu-detail-reply-firstline-container">
+		              <span class="commu-detail-reply-user commu-detail-reply-text">${reply.user.username}</span>
+		              <div id="commu-detail-reply-btn-box">
+		              	<c:if test="${reply.user.id == principal.user.id}">
+		              		<button onclick="commu_detail.updateBtnReply()" class="commu-detail-btn-reply-update commu-detail-btn-reply">
+			                  수정
+			                </button>
+			                <button onclick="commu_detail.deleteReply()" class="commu-detail-btn-reply-delete commu-detail-btn-reply">
+			                  삭제
+			                </button>
+		              	</c:if>
+		              </div>
+		            </div>
+		            <div id="commu-detail-reply-content-box">
+		            	<textarea class="commu-detail-reply-content commu-detail-reply-text" readonly>${reply.content}</textarea>
+		            </div>
+          		</div>
           	</c:forEach>
             
           </div>
