@@ -30,6 +30,7 @@ public class Reply {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@ManyToOne
+	@JoinColumn(name = "boardId")
 	@JsonIgnoreProperties({"replies", "images", "itemLink", "user"})
 	private Board board;
 	@ManyToOne

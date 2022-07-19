@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp" %>
 
-	<input id="communityBoardId" type="hidden" value="${communityBoard.id}"/>
+	<input id="communityBoardId" type="hidden" value="${communityBoard}"/>
+	<input id="communityReplyUser" type="hidden" value="${principal.user}"/>
 
     <div class="commu-detail-center-container">
       <div class="commu-detail-container">
@@ -75,6 +76,7 @@
               <input
                 type="text"
                 placeholder="한 마디"
+                id="commu-input-reply"
                 class="commu-input-reply commu-detail-input"/>
             </div>
           </div>
@@ -93,7 +95,6 @@
                 </button>
               </div>
             </div>
-
             <textarea
               class="commu-detail-reply-content commu-detail-reply-text"
               readonly>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur ea tempore nam veniam optio ut voluptatem dignissimos natus autem deleniti illum, cumque magnam porro unde corporis sint quaerat quo molestias!
@@ -109,11 +110,6 @@
 <script>
 	$(document).ready(function () {
 	  fixTextAreaHeight();
-	
-	  $("#before-like").bind("click", () => {
-	    document.getElementById("commu-detail-like-icon-box").innerHTML =
-	      '<i class="fa-solid fa-heart fa-lg" style="color: rgb(240, 81, 115)"></i>';
-	  });
 	});
 	
 	// 댓글 불러온것 뿌릴때 태그의 높이 지정해줌

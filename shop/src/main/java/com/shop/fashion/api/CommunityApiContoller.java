@@ -22,13 +22,19 @@ public class CommunityApiContoller {
 	
 	@Autowired
 	private CommunityService communityService;
-//
-//	@PostMapping("/community/reply-insert")
-//	public ResponseDto<Reply> replyInsert(@AuthenticationPrincipal PrincipalUserDetail principalUserDetail,@PathVariable int boardId, @RequestBody String content){
-//		
-//		return new ResponseDto<>(HttpStatus.OK.value(), );
-//	}
+
+	// 댓글 쓰기
+	@PostMapping("/community/reply-insert/{boardId}")
+	public ResponseDto<Reply> replyInsert(@PathVariable int boardId, @RequestBody Reply reply, @AuthenticationPrincipal PrincipalUserDetail userDetail){
+		System.out.println("서버에 도착");
+		System.out.println(boardId);
+		System.out.println(reply);
+		System.out.println(userDetail);
+		Reply replyEntity = communityService.insertReply(boardId, reply, userDetail.getUser());
+		return new ResponseDto<>(HttpStatus.OK.value(), replyEntity);
+	}
 	
+	// 좋아요
 	@GetMapping("/community/check-like/{communityBoardId}")
 	public ResponseDto<CommunityLike> checkLike(@PathVariable int communityBoardId, @AuthenticationPrincipal PrincipalUserDetail principalUserDetail){
 		CommunityLike like = communityService.checkLike(communityBoardId, principalUserDetail.getUser().getId());
