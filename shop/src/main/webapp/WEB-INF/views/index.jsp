@@ -5,12 +5,11 @@
       <div class="cardWrap cardWrapLeft">
 
         <ul class="card-list leftCards">
-          
+
 		<c:forEach items="${boardList}" var="communityBoard" varStatus="status">
-          
           <%@ include file="index_list.jsp" %>
-          
 		</c:forEach>
+
         </ul>
 
       </div>
