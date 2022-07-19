@@ -25,7 +25,6 @@ public class CommunityController {
 	public String index(Model model) {
 		List<CommunityBoard> boardList = communityService.getCommunityBoardList();
 		Collections.reverse(boardList);
-		System.out.println(boardList.toString());
 		model.addAttribute("boardList", boardList);
 		return "index";
 	}

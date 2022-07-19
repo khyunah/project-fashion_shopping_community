@@ -6,7 +6,7 @@
 
         <ul class="card-list leftCards">
 
-		<c:forEach items="${boardList}" var="communityBoard" varStatus="status">
+		<c:forEach items="${boardList}" var="communityBoard" begin="0" end="3">
           <%@ include file="index_list.jsp" %>
 		</c:forEach>
 
