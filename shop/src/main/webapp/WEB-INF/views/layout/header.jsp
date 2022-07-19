@@ -130,6 +130,7 @@ pageEncoding="UTF-8"%>
 				      <a href="/shop/mans_form" style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">MAN's</a>
 				      <a href="/shop/save_form" style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">WOMAN's</a>
 				      <a href="/shop/basket_form" style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">ACCESSORIES</a>
+				      <a href="/board/write" style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">글 쓰기</a>
 			    </div>
 			  </div> 
 			</li>

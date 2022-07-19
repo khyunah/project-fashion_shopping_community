@@ -83,7 +83,7 @@
 	        addNewContent();
 	        loadingFinish();
 	        observeLastItem(io, document.querySelectorAll('.lCard'));
-	      }, 0);
+	      }, 3000);
 	    }
 	  });
 	};

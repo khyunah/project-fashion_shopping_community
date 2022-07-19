@@ -57,15 +57,12 @@
 }
 
 .commu-bottom-wrap {
-  margin-top: 20px;
   margin-bottom: 10px;
 }
 .p-username {
   color: gray;
-  font-size: 11px;
-
+  font-size: 10px;
   display: block;
-
   margin-top: 30px;
 }
 

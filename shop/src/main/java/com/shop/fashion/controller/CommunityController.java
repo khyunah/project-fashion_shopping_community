@@ -1,5 +1,6 @@
 package com.shop.fashion.controller;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,21 +24,22 @@ public class CommunityController {
 	@GetMapping("/")
 	public String index(Model model) {
 		List<CommunityBoard> boardList = communityService.getCommunityBoardList();
+		Collections.reverse(boardList);
+		System.out.println(boardList.toString());
 		model.addAttribute("boardList", boardList);
 		return "index";
 	}
 	
 	@GetMapping("/board/write")
 	public String write() {
-		System.out.println("wrtie form");
 		return "community/write_form";
 	}
 	
 	@PostMapping("/board/upload")
 	public String storyUpload(CommunityDto fileDto, @AuthenticationPrincipal PrincipalUserDetail detail) {
-		System.out.println("123123123");
 		communityService.upload(fileDto, detail.getUser());
 		return "redirect:/";
 	}
 	
+
 }
