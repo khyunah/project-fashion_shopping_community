@@ -8,6 +8,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.shop.fashion.auth.PrincipalUserDetail;
@@ -40,5 +41,12 @@ public class CommunityController {
 		return "redirect:/";
 	}
 	
-
+	@GetMapping("/board/{id}/update_form")
+	public String updateForm(@PathVariable int id, Model model) {
+		model.addAttribute("communityBoard", communityService.boardDetail(id));
+		return "/community/update_form";
+	}
+	
+	
+	
 }
