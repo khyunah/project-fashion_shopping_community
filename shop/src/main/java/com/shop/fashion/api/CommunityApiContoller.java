@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.shop.fashion.auth.PrincipalUserDetail;
 import com.shop.fashion.dto.ResponseDto;
-import com.shop.fashion.model.Board;
+import com.shop.fashion.model.CommunityBoard;
 import com.shop.fashion.model.CommunityLike;
 import com.shop.fashion.model.Reply;
 import com.shop.fashion.model.User;
@@ -51,7 +51,7 @@ public class CommunityApiContoller {
 	// 좋아요
 	@GetMapping("/community/check-like/{communityBoardId}")
 	public ResponseDto<CommunityLike> checkLike(@PathVariable int communityBoardId, @AuthenticationPrincipal PrincipalUserDetail principalUserDetail){
-		CommunityLike like = communityService.checkLike(communityBoardId, principalUserDetail.getUser().getId());
+		CommunityLike like = communityService.checkLike(communityBoardId, principalUserDetail.getUser());
 		return new ResponseDto<CommunityLike>(HttpStatus.OK.value(), like);
 	}
 	

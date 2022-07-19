@@ -99,7 +99,7 @@ let commu_detail = {
 		
 		$.ajax({
 			type: "GET",
-			url: `/community/check-like/1`, // 화면에 랜더링 작업하고나서 보드 번호  변수로 주소 변경 해주기 
+			url: `/community/check-like/${communityBoardId}`,
 			dataType: "json"
 		}).done(function(response){
 			changeLikeIcon(response, likeCount);

@@ -21,7 +21,7 @@
 	<div class="user-empty-box"></div>
 	
 	<div>
-		<button type="button" id="btn-checkUsername">check id</button>
+		<button type="button" id="btn-checkUsername" class="user-btn">check id</button>
 	</div>
 	
 	<div class="user-empty-box"></div>

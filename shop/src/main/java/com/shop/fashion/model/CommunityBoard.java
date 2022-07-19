@@ -13,20 +13,26 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
-public class Board {
+public class CommunityBoard {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,19 +41,40 @@ public class Board {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "userId")
     private User user;
+    
     @Column(nullable = false)
     private String title;
+ 
+    // 지울 예정
     private int reaction;
-    @Column(nullable = false)
-    @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
-    private List<Image> images;
-    @Column(nullable = false)
+    
+    @ColumnDefault(value = "0")
     private int replyCount;
+    
+    @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
+    @JsonIgnoreProperties({"board", "user"})
+    @OrderBy("id desc")
+    private List<CommunityLike> communityLikes;
+    
     @Column(nullable = false)
     private String itemLink;
+    
     @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
+    @JsonIgnoreProperties({"board", "content", "user"})
+    @OrderBy("id desc")
     private List<Reply> replies;
 
     @CreationTimestamp
     private Timestamp createDate;
+	
+    @Column(nullable = false)
+	private String content;
+	
+	@Column(nullable = false)
+	private String originImageTitle;
+	
+	@Column(nullable = false)	
+	private String imageUrl;
+    
+    
 }

@@ -31,8 +31,8 @@ public class Reply {
 	private int id;
 	@ManyToOne
 	@JoinColumn(name = "boardId")
-	@JsonIgnoreProperties({"replies", "images", "itemLink", "user"})
-	private Board board;
+	@JsonIgnoreProperties({"replies", "itemLink", "user", "content"})
+	private CommunityBoard board;
 	@ManyToOne
 	@JoinColumn(name = "userId")
 	@JsonIgnoreProperties({"password", "role", "email", "oauth"})
