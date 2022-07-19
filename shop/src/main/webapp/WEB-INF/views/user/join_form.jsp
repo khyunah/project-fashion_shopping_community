@@ -99,7 +99,7 @@
 	<div class="user-empty-box"></div>
 	<div class="user-empty-box"></div>
 	
-	<button type="submit" id="btn-join">sign up</button>
+	<button type="submit" id="btn-join" class="user-btn">sign up</button>
 </form>
 
 <script>

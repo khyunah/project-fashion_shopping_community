@@ -67,7 +67,11 @@
 	width: 100%;
 }
 
-button {
+.user-kakao-login {
+	margin-left: 20px;
+}
+
+.user-btn {
 	display: inline-block;
 	padding: 12px 24px;
 	background: rgb(0, 0, 0);
@@ -80,11 +84,7 @@ button {
 	transition: ease .3s;
 }
 
-button:hover {
+.user-btn:hover {
 	background: #8BC34A;
 	color: #ffffff;
-}
-
-a {
-	margin-left: 20px;
 }

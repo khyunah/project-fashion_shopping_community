@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp" %>
 
+	<input id="communityBoardId" type="hidden" value="${communityBoard.id}"/>
+
     <div class="commu-detail-center-container">
       <div class="commu-detail-container">
         <div class="commu-detail-img-container">
@@ -16,7 +18,7 @@
               <i style="color: black" id="before-like" class="fa-regular fa-heart fa-lg"></i>
             </div>
             <!--<button class="btn-good commu-btn">Good Look</button>-->
-            <span class="commu-detail-span-goodlook-count commu-detail-text">1,000K</span>
+            <span id="likeCount" class="commu-detail-span-goodlook-count commu-detail-text">0</span>
           </div>
 
           <hr class="hr-goodlook-line" />
@@ -25,9 +27,9 @@
 
           <div>
             <div class="commu-detail-div-title-container">
-              <h3 class="commu-detail-text">
+              <p class="commu-detail-text commu-detail-title">
                 오늘의 데일리룩오늘의 데일리룩오늘의 데일리룩오늘의 데일리룩
-              </h3>
+              </p>
             </div>
             <div class="commu-detail-div-title-container">
               <span class="p-username commu-detail-text">_hh______</span>
@@ -65,8 +67,10 @@
           <div style="height: 20px"></div>
 
           <div>
-            <i class="fa-regular fa-pen-to-square"></i>
-            <button class="commu-detail-btn-up commu-detail-btn">up</button>
+          	<div class="commu-detail-reply-first-line-box">
+          		<i class="fa-regular fa-pen-to-square"></i>
+            	<button id="commu-detail-btn-up" class="commu-detail-btn-up commu-detail-btn">up</button>
+          	</div>
             <div>
               <input
                 type="text"
@@ -74,6 +78,7 @@
                 class="commu-input-reply commu-detail-input"/>
             </div>
           </div>
+          
           <div style="height: 20px"></div>
 
           <div class="commu-detail-reply-container">
@@ -92,13 +97,15 @@
             <textarea
               class="commu-detail-reply-content commu-detail-reply-text"
               readonly>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur ea tempore nam veniam optio ut voluptatem dignissimos natus autem deleniti illum, cumque magnam porro unde corporis sint quaerat quo molestias!
-            </textarea
-            >
+            </textarea>
           </div>
         </div>
         <div style="height: 70px"></div>
       </div>
     </div>
+<script src="/js/commu-detail.js">
+
+</script>
 <script>
 	$(document).ready(function () {
 	  fixTextAreaHeight();
@@ -109,12 +116,14 @@
 	  });
 	});
 	
+	// 댓글 불러온것 뿌릴때 태그의 높이 지정해줌
 	function fixTextAreaHeight() {
 	  var textEle = $(".commu-detail-reply-content");
 	  textEle[0].style.height = "auto";
 	  var textEleHeight = textEle.prop("scrollHeight");
 	  textEle.css("height", textEleHeight);
 	}
+
 </script>
   </body>
 </html>

@@ -50,9 +50,14 @@
   width: 95%;
 }
 
+.commu-detail-title {
+	font-size: 18px;
+	font-weight: bold;
+}
+
 .commu-detail-text {
   font-family: "Gowun Batang", serif;
-  line-height: 5px;
+  line-height: 10px;
   letter-spacing: 0.8px;
   display: inline;
 }
@@ -94,7 +99,7 @@
   background-color: rgb(255, 255, 255);
 }
 
-.input-reply {
+.commu-input-reply {
   font-size: 13px;
 }
 
@@ -110,8 +115,9 @@
   background-color: rgb(255, 128, 128);
 }
 
-.commu-detail-btn-up {
-  margin-left: 162px;
+.commu-detail-reply-first-line-box {
+	display: flex;
+	justify-content: space-between;
 }
 
 .commu-detail-btn-up:active {

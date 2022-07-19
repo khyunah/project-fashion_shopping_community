@@ -109,7 +109,7 @@
 	<div class="user-empty-box"></div>
 	<div class="user-empty-box"></div>
 
-	<button type="button" id="btn-update">update</button>
+	<button type="button" id="btn-update" class="user-btn">update</button>
 </form>
 
 <script src="/js/user.js"></script>
