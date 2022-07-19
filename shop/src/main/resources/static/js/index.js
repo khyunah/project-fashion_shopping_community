@@ -1,5 +1,5 @@
+
 $(function(){
-	let index = 0;
 	$(window).scroll(function() {
 		let $window = $(this);
 		let scrollTop = $window.scrollTop();
@@ -7,7 +7,6 @@ $(function(){
 		let documentHeight = $(document).height();
 		
 		if(scrollTop + windowHeight + 1 >= documentHeight) {
-			index++;
 			console.log("들어옴")
 			request();
 		}		
@@ -23,12 +22,11 @@ function request(){
 				
 		success : function(boardList){						
 			console.log("통신 성공");
-			console.log(boardList[0]);
-			addElement(boardList[0]);
-			
+			console.log(boardList);
+			addElement(boardList);
 			},
 		error :function(){
-			alert("request error!");
+			alert("request error!");               
 			}
 		
 		}); 
@@ -37,7 +35,8 @@ function request(){
 	
 
 function addElement(communityBoard) {
-	let childElement = `<li class="card lCard">
+	console.log(communityBoard);
+	let childElement = `<li id="card-list" class="card lCard">
             <div class="commu-container">
               <div class = "leftImgBox">
                 <img class="commu-img" alt="" src="http://localhost:9090/upload/${communityBoard.imageUrl}"/>
@@ -52,16 +51,16 @@ function addElement(communityBoard) {
                 <hr class="hr-goodlook-line" />
 
                 <div class="div-title-container">
-                  <h3 class="commu-text today_daily">${communityBoard[8]}</h3>
+                  <h3 class="commu-text today_daily">${communityBoard.title}</h3>
                 </div>
                 <div class="div-title-container">
-                  <span class="p-username commu-text">${communityBoard[2][1]}</span>
+                  <span class="p-username commu-text">${communityBoard.reaction}</span>
                 </div>
 
                 <div>
                   <div class="div-content-container">
                     <div class="span-content">
-                      ${communityBoard[2]}
+                      ${communityBoard.content}
                     </div>
                   </div>
                 </div>
@@ -72,16 +71,12 @@ function addElement(communityBoard) {
 
                   <input type="text" placeholder="한 마디" class="input-reply commu-input" />
                 </div>
-                
-                
-                
+
               </div>
             </div>
           </li>`;
-      
-      console.log(childElement);
-          
-      $("#card lCard").append(childElement);
+        
+      $("#card-list").append(childElement);
           
          
           
