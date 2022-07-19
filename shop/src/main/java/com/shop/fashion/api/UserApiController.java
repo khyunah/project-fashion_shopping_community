@@ -52,7 +52,7 @@ public class UserApiController {
 		System.out.println(userDetail);
 		
 		User updateUserEntity = userService.updateUser(user);
-		
+		System.out.println("돌아옴");
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
 		SecurityContextHolder.getContext().setAuthentication(authentication);

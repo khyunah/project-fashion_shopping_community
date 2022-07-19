@@ -38,7 +38,5 @@
   
 </form>
 
-<script src="/js/user.js"></script>
-
 </body>
 </html>

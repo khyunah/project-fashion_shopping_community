@@ -1,9 +1,4 @@
 let user = {
-	init: function(){
-		$("#btn-update").bind("click", () => {
-			this.update();
-		});
-	},
 	
 	update: function(){
 		let data = {
@@ -36,4 +31,29 @@ let user = {
 	}
 }
 
-user.init();
+function checkPassword(){
+	if($("#checkPasswordResult").text() == "불일치" || $("#checkPasswordResult") == ""){
+		alert("비밀번호가 일치하지 않습니다.");
+		return false;
+	} else {
+		user.update();
+		return true;
+	}
+} 
+
+$(document).ready( function(){
+	$( "#password, #passwordCheck" ).keyup( function() {
+	      let password = $( "#password" ).val();
+	      let passwordCheck = $( "#passwordCheck" ).val();
+	      if( password == passwordCheck ) {
+	    	  $( "#checkPasswordResult" ).text( "일치" );
+	      } else {
+	    	  $( "#checkPasswordResult" ).text( "불일치" );
+	      }
+	});
+	
+	if($("#isOauth").val() == "kakao"){
+		$("input[name=name]").attr("readonly", true);
+		$("input[name=email]").attr("readonly", true);
+	}
+});
