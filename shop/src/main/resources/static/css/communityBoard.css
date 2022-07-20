@@ -3,12 +3,15 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 a {
   text-decoration: line-through;
 }
+
 ul {
   list-style: none;
 }
+
 .leftCards {
   width: 500px;
 

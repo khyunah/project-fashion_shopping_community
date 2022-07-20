@@ -1,6 +1,7 @@
 
 
-		<li id="card-list" class="card lCard">
+		<li id="card-list" class="card lCard" onclick="location.href='/community/${communityBoard.id}'">
+			
             <div class="commu-container">
               <div class = "leftImgBox">
                 <img class="commu-img" alt="" src="http://localhost:9090/upload/${communityBoard.imageUrl}"/>
@@ -37,4 +38,5 @@
                 </div>
               </div>
             </div>
+
           </li>

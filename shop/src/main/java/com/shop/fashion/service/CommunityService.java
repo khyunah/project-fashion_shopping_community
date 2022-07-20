@@ -15,7 +15,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.shop.fashion.dto.CommunityDto;
 import com.shop.fashion.model.CommunityBoard;
+import com.shop.fashion.model.CommunityLike;
+import com.shop.fashion.model.Reply;
 import com.shop.fashion.model.User;
+import com.shop.fashion.repository.CommunityLikeRepository;
+import com.shop.fashion.repository.CommunityReplyRepository;
 import com.shop.fashion.repository.CommunityRepository;
 
 @Service
@@ -26,6 +30,13 @@ public class CommunityService {
 	
 	@Autowired
 	private CommunityRepository communityRepository;
+
+	@Autowired
+	private CommunityReplyRepository communityReplyRepository;
+
+	@Autowired
+	private CommunityLikeRepository communityLikeRepository;
+	
 	
 	public List<CommunityBoard> getCommunityBoardList() {
 		return communityRepository.findAll();
@@ -88,12 +99,6 @@ public class CommunityService {
 	}
 	
 
-	@Autowired
-	private CommunityReplyRepository communityReplyRepository;
-	@Autowired
-	private CommunityRepository communityRepository;
-	@Autowired
-	private CommunityLikeRepository communityLikeRepository;
 	
 	// 상세보기 화면 게시물
 	@Transactional

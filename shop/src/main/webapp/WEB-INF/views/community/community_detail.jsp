@@ -12,7 +12,7 @@
 	        TODO 
 	        이미지 주소 사용자가 올린 주소로 고치기  
         ---------------------------------- -->
-          <img class="commu-detail-img" alt="" src="/image/model1.jpg" />
+          <img class="commu-detail-img" alt="" src="http://localhost:9090/upload/${communityBoard.imageUrl}" />
         </div>
 
         <div class="commu-detail-trim"></div>

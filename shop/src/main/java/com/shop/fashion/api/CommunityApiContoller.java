@@ -57,8 +57,8 @@ public class CommunityApiContoller {
 	public ResponseDto<Integer> deleteById(@PathVariable int id) {
 		communityService.deleteById(id);
 		return new ResponseDto<>(HttpStatus.OK.value(), 1);
-	private CommunityService communityService;
-
+	}
+	
 	// 댓글 쓰기
 	@PostMapping("/community/reply-insert/{boardId}")
 	public ResponseDto<Reply> insertReply(@PathVariable int boardId, @RequestBody Reply reply, @AuthenticationPrincipal PrincipalUserDetail userDetail){
