@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%> 
 <%@ taglib prefix= "c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <sec:authorize access="isAuthenticated()">
   <sec:authentication property="principal" var="principal" />
@@ -9,6 +10,7 @@ pageEncoding="UTF-8"%>
 <html>
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <title>Nerdy</title>
     <!-- CSS 적용 경로 -->
     <link href="${path}/css/headerstyles.css" rel="stylesheet"/> 
@@ -60,7 +62,8 @@ pageEncoding="UTF-8"%>
       src="https://kit.fontawesome.com/decc5cea51.js"
       crossorigin="anonymous"
     ></script>
-
+    
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/detail.css'/>" />
 
   </head>
   

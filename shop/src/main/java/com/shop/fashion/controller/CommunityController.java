@@ -48,5 +48,9 @@ public class CommunityController {
 	}
 	
 	
+	@GetMapping("/board/detail")
+	public String detail() {
+		return "/community/detail";
+	}
 	
 }
