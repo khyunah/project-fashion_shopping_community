@@ -30,7 +30,7 @@
 		        </c:choose>
             </div>
 
-            <span id="likeCount" class="commu-detail-span-goodlook-count commu-detail-text">${communityBoard.replyCount}</span>
+            <span id="likeCount" class="commu-detail-span-goodlook-count commu-detail-text">${communityBoard.likeCount}</span>
           </div>
 
           <hr class="hr-goodlook-line" />
