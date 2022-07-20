@@ -14,14 +14,13 @@ public class WebConfig implements WebMvcConfigurer {
 	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		System.out.println(uploadFolder);
+		// TODO Auto-generated method stub
 		WebMvcConfigurer.super.addResourceHandlers(registry);
-		
 		registry.addResourceHandler("/upload/**")
 		.addResourceLocations("file:///" + uploadFolder)
-		.setCachePeriod(60 * 6 *  10)
+		.setCachePeriod(3600)
 		.resourceChain(true)
-		.addResolver(new PathResourceResolver());		
-	}
+		.addResolver(new PathResourceResolver());
+		}
 	
 }
