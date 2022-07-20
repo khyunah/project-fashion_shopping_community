@@ -1,30 +1,21 @@
 let commu = {
 	
 	init: function(){
-		$("#commu-btn-insert").bind('click', () => {
-			this.insertReply();
-		});
 		
 		$(".commu-detail-btn-reply-update").bind('click', () => {
 			this.updateBtnReply();
 		});
-		
-		$("#commu-like-icon-box").bind('click', () => {
-			this.communityLike();
-		});
-		
+
 		$(document).on('click', ".commu-detail-btn-reply-update-finish", function(){
 			commu.finishUpdateReply();
 		});
 	},
 	
 	// 댓글쓰기
-	insertReply: function() {
-		let communityBoardId = $("#communityBoardId").val();
-		let userId = $("#userId").val();
-		
+	insertReply: function(communityBoardId, userId) {
+
 		let data = {
-			content: $("#commu-input-reply").val(),
+			content: $(`#commu-input-reply-${communityBoardId}`).val(),
 		}
 
 		$.ajax({
@@ -36,7 +27,7 @@ let commu = {
 		}).done(function(response){
 			console.log("성공");
 			console.log(response);
-			addReply(response.data, userId);
+			addReply(response.data, userId, communityBoardId);
 		}).fail(function(error){
 			console.log("실패");
 		});
@@ -89,16 +80,14 @@ let commu = {
 	},
 	
 	// 좋아요
-	communityLike: function(){
-		let communityBoardId = $("#communityBoardId").val();
-		let likeCount = $("#likeCount").text();
-		
+	communityLike: function(communityBoardId, likeCount){
+
 		$.ajax({
 			type: "GET",
 			url: `/community/check-like/${communityBoardId}`,
 			dataType: "json"
 		}).done(function(response){
-			changeLikeIcon(response, likeCount);
+			changeLikeIcon(response, communityBoardId, likeCount);
 		}).fail(function(error){
 			alert('서버오류 ! 다시 실행해주세요.');
 		});
@@ -107,7 +96,7 @@ let commu = {
 }
 
 // 댓글 추가 
-function addReply(reply, userId){
+function addReply(reply, userId, communityBoardId){
 	let childReply = `
 		<div id="commu-reply-${reply.id}">
 			<input id="replyId" type="hidden" value="${reply.id}"/>
@@ -131,7 +120,7 @@ function addReply(reply, userId){
 	`;
 	
 	$(".commu-detail-reply-container").prepend(childReply);
-	$("#commu-input-reply").val("");
+	$(`#commu-input-reply-${communityBoardId}`).val("");
 }
 
 function removeReply(replyId){
@@ -153,17 +142,30 @@ function changeReply(){
 }
 
 // 좋아요 아이콘 변경 함수
-function changeLikeIcon(response, likeCount){
+function changeLikeIcon(response, communityBoardId,  likeCount){
 	if(response.data == null){
-		document.getElementById("commu-like-icon-box").innerHTML =
-			'<i style="color: black" id="before-like" class="fa-regular fa-heart fa-lg"></i>';
 		likeCount--;
-		$("#likeCount").text(likeCount);
+		document.getElementById(`commu-icon-box-${communityBoardId}`).innerHTML =
+			`
+				<div onclick="commu.communityLike(${communityBoardId}, ${likeCount})">
+
+	        		<i style="color: black" id="before-like" class="fa-regular fa-heart fa-lg"></i>
+	
+					<span id="likeCount-${communityBoardId}" class="span-goodlook-count commu-text">${likeCount}</span>
+	            </div>
+			`;
+
 	} else {
-		document.getElementById("commu-like-icon-box").innerHTML =
-			'<i class="fa-solid fa-heart fa-lg" style="color: rgb(240, 81, 115)"></i>';
 		likeCount++;
-		$("#likeCount").text(likeCount);
+		document.getElementById(`commu-icon-box-${communityBoardId}`).innerHTML =
+			`
+				<div onclick="commu.communityLike(${communityBoardId}, ${likeCount})">
+	
+	        		<i class="fa-solid fa-heart fa-lg" style="color: rgb(240, 81, 115)"></i>
+
+					<span id="likeCount-${communityBoardId}" class="span-goodlook-count commu-text">${likeCount}</span>
+	            </div>
+			`;
 	}
 }
 

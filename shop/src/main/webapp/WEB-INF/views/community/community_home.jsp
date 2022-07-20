@@ -12,8 +12,8 @@
         </div>
 
         <div class="div-main-container">
-            <div>
-            	<div id="commu-like-icon-box">
+            <div id="commu-icon-box-${communityBoard.id}">
+            	<div onclick="commu.communityLike(${communityBoard.id}, ${communityBoard.likeCount})">
             		<c:set var="myLike" value="0"></c:set>
 	            	<c:forEach var="like" items="${likeList}">
 	            		<c:if test="${like.board.id == communityBoard.id}">
@@ -29,8 +29,9 @@
 			        		<i style="color: black" id="before-like" class="fa-regular fa-heart fa-lg"></i>
 			        	</c:otherwise>
 			        </c:choose>
+			        <span id="likeCount-${communityBoard.id}" class="span-goodlook-count commu-text">${communityBoard.likeCount}</span>
             	</div>
-            	<span id="likeCount" class="span-goodlook-count commu-text">${communityBoard.likeCount}</span>
+            	
             </div>
 
             <hr class="hr-goodlook-line" />
@@ -59,11 +60,11 @@
             <div>
                 <div class="commu-reply-firstline">
                     <i class="fa-regular fa-pen-to-square"></i>
-                    <button type="button" class="btn-up commu-btn" id="commu-btn-insert">up</button>
+                    <button type="button" class="btn-up commu-btn" id="commu-btn-insert" onclick="commu.insertReply(${communityBoard.id}, ${principal.user.id})">up</button>
                 </div>
 
                 <div>
-                    <input type="text" placeholder="한 마디" class="input-reply commu-input" id="commu-input-reply"/>
+                    <input type="text" placeholder="한 마디" class="input-reply commu-input" id="commu-input-reply-${communityBoard.id}"/>
                 </div>
             </div>
         </div>

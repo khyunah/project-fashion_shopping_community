@@ -1,16 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../layout/header.jsp" %>
-
-<div class="king-container">
-
-
-	<div class="q-container">
-
-
-    <c:forEach var="communityBoard" items="${communityBoardList.content}">
-    <input id="pageSize" type="hidden" value="${communityBoardList.size}">
+<%@ taglib prefix= "c" uri="http://java.sun.com/jsp/jstl/core" %>
     
+<c:forEach var="communityBoard" items="${communityBoardList.content}">
+    <input id="pageLast" type="hidden" value="${communityBoardList.last}">
         <div class="commu-social-container">
 
             <input id="userId" type="hidden" value="${principal.user}" />
@@ -23,7 +16,7 @@
 
                 <div class="commu-social-main-container">
                     <div id="commu-icon-box-${communityBoard.id}">
-                        <div class="commu-like-icon-box" onclick="commu.communityLike(${communityBoard.id}, ${communityBoard.likeCount})">
+                        <div onclick="commu.communityLike(${communityBoard.id}, ${communityBoard.likeCount})">
                             <c:set var="myLike" value="0"></c:set>
                             <c:forEach var="like" items="${likeList}">
                                 <c:if test="${like.board.id == communityBoard.id}">
@@ -42,6 +35,7 @@
                             <span id="likeCount-${communityBoard.id}"
                             class="commu-social-span-goodlook-count commu-text">${communityBoard.likeCount}</span>
                         </div>
+                        
                         
                     </div>
 
@@ -72,7 +66,7 @@
                     <div>
                         <div class="commu-reply-firstline">
                             <i class="fa-regular fa-pen-to-square"></i>
-                            <button type="button" class="btn-up commu-btn" id="commu-btn-insert-${communityBoard.id}" onclick="commu.insertReply(${communityBoard.id}, ${principal.user.id})">up</button>
+                            <button type="button" class="btn-up commu-btn" id="commu-btn-insert" onclick="commu.insertReply(${communityBoard.id}, ${principal.user.id})">up</button>
                         </div>
 
                         <div>
@@ -86,17 +80,3 @@
         </div>
     </c:forEach>
     
-    	</div>
-    </div>
-		<p id="result"></p>
-    <div class="pagination">
-        <a href="http://localhost:9090/community/social-main?page=${communityBoardList.number - 1}" class="prevPage" id="">이전</a>
-        <span id="pageNumber">${communityBoardList.number}</span>
-        <a href="http://localhost:9090/community/social-main?page=${communityBoardList.number + 1}" class="nextPage" id="">다음</a>
-    </div>
-    <script src="/js/commu.js"></script>
-    <script src="/js/index.js"></script>
-    
-</body>
-
-</html>

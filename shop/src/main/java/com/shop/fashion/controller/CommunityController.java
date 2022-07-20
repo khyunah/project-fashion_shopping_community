@@ -34,6 +34,7 @@ public class CommunityController {
 		return "community/community_detail";
 	}
 	
+	// 소셜 메인 처음 랜더링 주소
 	@GetMapping("/community/social-main")
 	public String communityHome(@PageableDefault(size = 2) Pageable pageable, Model model, @AuthenticationPrincipal PrincipalUserDetail userDetail) {
 		Page<CommunityBoard> communityBoardList = communityService.getCommunityBoardList(pageable);
@@ -42,6 +43,17 @@ public class CommunityController {
 		List<CommunityLike> likeList = communityService.myLike(userDetail.getUser().getId());
 		model.addAttribute("likeList", likeList);
 		return "community/community_social";
+	}
+	
+	// 소셜 메인 스크롤시 랜더링 주소
+	@GetMapping("/community/social-add")
+	public String addCommunityBoard(@PageableDefault(size = 2) Pageable pageable, Model model, @AuthenticationPrincipal PrincipalUserDetail userDetail) {
+		Page<CommunityBoard> communityBoardList = communityService.getCommunityBoardList(pageable);
+		model.addAttribute("communityBoardList", communityBoardList);
+		
+		List<CommunityLike> likeList = communityService.myLike(userDetail.getUser().getId());
+		model.addAttribute("likeList", likeList);
+		return "community/add_community_board";
 	}
 
 }

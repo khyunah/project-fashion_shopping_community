@@ -11,10 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.shop.fashion.auth.PrincipalUserDetail;
 import com.shop.fashion.dto.ResponseDto;
-import com.shop.fashion.model.CommunityBoard;
 import com.shop.fashion.model.CommunityLike;
 import com.shop.fashion.model.Reply;
-import com.shop.fashion.model.User;
 import com.shop.fashion.service.CommunityService;
 
 @RestController
