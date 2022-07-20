@@ -30,15 +30,13 @@
 	<div class="user-empty-box"></div>
   
 	<div>
-		<button type="submit" id="btn-login">login</button>
-		<a href="https://kauth.kakao.com/oauth/authorize?client_id=0d6bcf296d67c35ad944b2a3d38df9be&redirect_uri=http://localhost:9090/security/kakao/callback&response_type=code">
+		<button type="submit" id="btn-login" class="user-btn">login</button>
+		<a class="user-kakao-login" href="https://kauth.kakao.com/oauth/authorize?client_id=0d6bcf296d67c35ad944b2a3d38df9be&redirect_uri=http://localhost:9090/security/kakao/callback&response_type=code">
 			<img src="/image/kakao_login.png" width="86" height="50">
 		</a>
 	</div>
   
 </form>
-
-<script src="/js/user.js"></script>
 
 </body>
 </html>

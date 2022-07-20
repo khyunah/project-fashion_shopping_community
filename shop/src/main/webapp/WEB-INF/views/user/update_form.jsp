@@ -67,7 +67,7 @@
 		<div>
 			<label class="user-input-label">
 				<span class="label-txt">ENTER YOUR NAME</span>
-				<input type="text" class="input" name="name" value="${principal.user.name}" required>
+				<input id="name" type="text" class="input" name="name" value="${principal.user.name}" required>
 				<div class="line-box">
 					<div class="line"></div>
 				</div>
@@ -75,7 +75,7 @@
 			
 			<label class="user-input-label">
 				<span class="label-txt">ENTER YOUR EMAIL</span>
-				<input type="email" class="input" name="email" value="${principal.user.email}" required>
+				<input id="email" type="email" class="input" name="email" value="${principal.user.email}" required>
 				<div class="line-box">
 					<div class="line"></div>
 				</div>
@@ -89,7 +89,7 @@
 		<div>
 			<label class="user-input-label">
 				<span class="label-txt">ENTER YOUR ADDRESS</span>
-				<input type="text" class="input" name="address" value="${principal.user.address}" required>
+				<input id="address" type="text" class="input" name="address" value="${principal.user.address}" required>
 				<div class="line-box">
 					<div class="line"></div>
 				</div>
@@ -97,7 +97,7 @@
 			
 			<label class="user-input-label">
 				<span class="label-txt">ENTER YOUR PHONE</span>
-				<input type="number" class="input" name="phoneNumber" value="${principal.user.phoneNumber}" required>
+				<input id="phoneNumber" type="number" class="input" name="phoneNumber" value="${principal.user.phoneNumber}" required>
 				<div class="line-box">
 					<div class="line"></div>
 				</div>
@@ -109,35 +109,9 @@
 	<div class="user-empty-box"></div>
 	<div class="user-empty-box"></div>
 
-	<button type="button" id="btn-update">update</button>
+	<button type="button" id="btn-update" class="user-btn" onclick="return checkPassword()">update</button>
 </form>
 
 <script src="/js/user.js"></script>
-<script>
-$(document).ready( function(){
-	$( "#password, #passwordCheck" ).keyup( function() {
-	      let password = $( "#password" ).val();
-	      let passwordCheck = $( "#passwordCheck" ).val();
-	      if( password == passwordCheck ) {
-	    	  $( "#checkPasswordResult" ).text( "일치" );
-	      } else {
-	    	  $( "#checkPasswordResult" ).text( "불일치" );
-	      }
-	});
-	
-	if($("#isOauth").val() == "kakao"){
-		$("input[name=name]").attr("readonly", true);
-		$("input[name=email]").attr("readonly", true);
-	}
-});
-
-function checkPassword(){
-	if($("#checkPasswordResult").text() == "불일치" || $("#checkPasswordResult") == ""){
-		alert("비밀번호가 일치하지 않습니다.");
-		return false;
-	}
-} 
-
-</script>
 </body>
 </html>

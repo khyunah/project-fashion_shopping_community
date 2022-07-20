@@ -13,15 +13,21 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -39,14 +45,23 @@ public class CommunityBoard {
     @Column(nullable = false)
     private String title;
  
+    // 지울 예정
     private int reaction;
     
-    private int replyCount;
+    @ColumnDefault(value = "0")
+    private int likeCount;
+    
+    @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
+    @JsonIgnoreProperties({"board", "user"})
+    @OrderBy("id desc")
+    private List<CommunityLike> communityLikes;
     
     @Column(nullable = false)
     private String itemLink;
     
     @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
+    @JsonIgnoreProperties({"board", "content", "user"})
+    @OrderBy("id desc")
     private List<Reply> replies;
 
     @CreationTimestamp
