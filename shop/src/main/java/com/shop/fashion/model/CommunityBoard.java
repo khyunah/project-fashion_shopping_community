@@ -49,7 +49,7 @@ public class CommunityBoard {
     private int reaction;
     
     @ColumnDefault(value = "0")
-    private int replyCount;
+    private int likeCount;
     
     @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
     @JsonIgnoreProperties({"board", "user"})

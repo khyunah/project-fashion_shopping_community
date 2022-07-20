@@ -88,12 +88,12 @@ public class CommunityService {
 		
 		// 좋아요를 취소하는 상황
 		if(like.getIsLike() == 1) {
-			board.setReplyCount(board.getReplyCount() - 1);
+			board.setLikeCount(board.getLikeCount() - 1);
 			deleteLike(like.getId());
 			return null;
 		// 좋아요를 누르는 상황
 		} else {
-			board.setReplyCount(board.getReplyCount() + 1);
+			board.setLikeCount(board.getLikeCount() + 1);
 			like.setBoard(board);
 			like.setUser(user);
 			like.setIsLike(1);
