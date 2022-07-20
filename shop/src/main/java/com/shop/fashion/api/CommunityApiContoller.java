@@ -48,6 +48,7 @@ public class CommunityApiContoller {
 	
 	@PutMapping("/api/board/{id}")
 	public ResponseDto<Integer> update(@PathVariable int id, @RequestBody CommunityBoard board) {
+		System.out.println("수정폼");
 		communityService.modifyBoard(id, board);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}

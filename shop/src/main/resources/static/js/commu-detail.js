@@ -16,6 +16,15 @@ let commu_detail = {
 		$(document).on('click', ".commu-detail-btn-reply-update-finish", function(){
 			commu_detail.finishUpdateReply();
 		});
+		
+		$("#commu-detail-btn-update").bind('click', () => {
+			this.boardUpdate();
+		});
+		
+		$("#commu-detail-btn-delete").bind('click', () => {
+			this.boardDelete();
+		});
+		
 	},
 	
 	// 댓글쓰기
@@ -103,6 +112,54 @@ let commu_detail = {
 			alert('서버오류 ! 다시 실행해주세요.');
 		});
 	}, 
+	
+	
+	
+	
+	boardUpdate: function() {
+		let boardId = $("#communityBoardId").val();
+		let data = {
+			title: $("#title").val(),
+			content: $("#content").val()
+		}
+			
+		
+		$.ajax({
+			type: "PUT",
+			url: `/api/board/${boardId}`,
+			data: JSON.stringify(data),
+			contentType: "application/json; charset=utf-8",
+			dataType: "json"
+		})
+		.done(function(data) {
+			if(data.status) {
+				alert("글 수정이 완료 되었습니다");
+				location.href="/";
+			}
+		})
+		.fail(function(error){
+			alert("글 쓰기에 실패하였습니다");			
+		});
+	},
+	
+	
+	boardDelete: function() {
+		let boardId = $("#communityBoardId").val();
+		$.ajax({			
+			type:"DELETE",
+			url:`/api/board/${boardId}`
+		})
+		.done(function(data){
+			if(data.status) {
+				alert("삭제가 완료되었습니다.");
+				location.href = "/";
+			}
+		})
+		.fail(function(){
+			alert("삭제에 실패했습니다.");
+		});
+	},
+	
 
 }
 

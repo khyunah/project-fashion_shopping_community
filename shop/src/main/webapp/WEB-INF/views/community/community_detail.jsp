@@ -13,6 +13,8 @@
 	        이미지 주소 사용자가 올린 주소로 고치기  
         ---------------------------------- -->
           <img class="commu-detail-img" alt="" src="http://localhost:9090/upload/${communityBoard.imageUrl}" />
+        <button id="commu-detail-btn-update" class="commu-detail-btn-up commu-detail-btn">수정</button>
+		 <button id="commu-detail-btn-delete" class="commu-detail-btn-up commu-detail-btn">삭제</button>
         </div>
 
         <div class="commu-detail-trim"></div>
@@ -20,6 +22,7 @@
         <div class="commu-detail-div-main-container">
           <div>
             <div class="commu-detail-like-icon-box" id="commu-detail-like-icon-box">
+		        
 		        <c:choose>
 		        	<c:when test="${like.user.username != null}">
 		        		<i class="fa-solid fa-heart fa-lg" style="color: rgb(240, 81, 115)"></i>
@@ -28,9 +31,10 @@
 		        		<i style="color: black" id="before-like" class="fa-regular fa-heart fa-lg"></i>
 		        	</c:otherwise>
 		        </c:choose>
+		        
             </div>
-
             <span id="likeCount" class="commu-detail-span-goodlook-count commu-detail-text">${communityBoard.likeCount}</span>
+        	 
           </div>
 
           <hr class="hr-goodlook-line" />
@@ -39,7 +43,7 @@
 
           <div>
             <div class="commu-detail-div-title-container">
-              <p class="commu-detail-text commu-detail-title">${communityBoard.title}</p>
+              <p id="communityTitle" class="commu-detail-text commu-detail-title">${communityBoard.title}</p>
             </div>
             <div class="commu-detail-div-title-container">
               <span class="p-username commu-detail-text">${communityBoard.user.username}</span>
@@ -50,7 +54,7 @@
 
           <div>
             <div class="commu-detail-div-content-container">
-              <span class="commu-detail-span-content commu-detail-text">${communityBoard.content}</span>
+              <span id="communityContent" class="commu-detail-span-content commu-detail-text">${communityBoard.content}</span>
             </div>
           </div>
 
