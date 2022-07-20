@@ -13,6 +13,14 @@
   overflow: hidden;
 }
 
+#commu-like-icon-box {
+  display: inline;
+}
+
+.commu-title {
+  font-weight: bold;
+}
+
 .div-content-container {
   width: 290px;
   max-height: 46px;
@@ -62,6 +70,11 @@
   outline: none;
   padding-left: 10px;
   background-color: rgb(255, 255, 255);
+}
+
+.commu-reply-firstline {
+  display: flex;
+  justify-content: space-between;
 }
 
 .input-reply {

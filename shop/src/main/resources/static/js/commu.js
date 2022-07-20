@@ -1,7 +1,7 @@
-let commu_detail = {
+let commu = {
 	
 	init: function(){
-		$("#commu-detail-btn-up").bind('click', () => {
+		$("#commu-btn-insert").bind('click', () => {
 			this.insertReply();
 		});
 		
@@ -9,12 +9,12 @@ let commu_detail = {
 			this.updateBtnReply();
 		});
 		
-		$("#commu-detail-like-icon-box").bind('click', () => {
+		$("#commu-like-icon-box").bind('click', () => {
 			this.communityLike();
 		});
 		
 		$(document).on('click', ".commu-detail-btn-reply-update-finish", function(){
-			commu_detail.finishUpdateReply();
+			commu.finishUpdateReply();
 		});
 	},
 	
@@ -115,10 +115,10 @@ function addReply(reply, userId){
 		      <span class="commu-detail-reply-user commu-detail-reply-text">${reply.user.username}</span>
 		      <div id="commu-detail-reply-btn-box">
               	<c:if test="${reply.user.id == userId}">
-              		<button onclick="commu_detail.updateBtnReply()" class="commu-detail-btn-reply-update commu-detail-btn-reply">
+              		<button onclick="commu.updateBtnReply()" class="commu-detail-btn-reply-update commu-detail-btn-reply">
 	                  수정
 	                </button>
-	                <button onclick="commu_detail.deleteReply()" class="commu-detail-btn-reply-delete commu-detail-btn-reply">
+	                <button onclick="commu.deleteReply()" class="commu-detail-btn-reply-delete commu-detail-btn-reply">
 	                  삭제
 	                </button>
               	</c:if>
@@ -155,16 +155,16 @@ function changeReply(){
 // 좋아요 아이콘 변경 함수
 function changeLikeIcon(response, likeCount){
 	if(response.data == null){
-		document.getElementById("commu-detail-like-icon-box").innerHTML =
+		document.getElementById("commu-like-icon-box").innerHTML =
 			'<i style="color: black" id="before-like" class="fa-regular fa-heart fa-lg"></i>';
 		likeCount--;
 		$("#likeCount").text(likeCount);
 	} else {
-		document.getElementById("commu-detail-like-icon-box").innerHTML =
+		document.getElementById("commu-like-icon-box").innerHTML =
 			'<i class="fa-solid fa-heart fa-lg" style="color: rgb(240, 81, 115)"></i>';
 		likeCount++;
 		$("#likeCount").text(likeCount);
 	}
 }
 
-commu_detail.init();
+commu.init();

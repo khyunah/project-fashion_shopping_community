@@ -1,12 +1,13 @@
 package com.shop.fashion.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import com.shop.fashion.auth.PrincipalUserDetail;
 import com.shop.fashion.model.CommunityBoard;
 import com.shop.fashion.model.CommunityLike;
 import com.shop.fashion.model.Reply;
@@ -25,6 +26,12 @@ public class CommunityService {
 	@Autowired
 	private CommunityLikeRepository communityLikeRepository;
 	
+	// 메인 화면 페이저블
+	@Transactional
+	public Page<CommunityBoard> getCommunityBoardList(Pageable pageable){
+		return communityRepository.findAll(pageable);
+	}
+	
 	// 상세보기 화면 게시물
 	@Transactional
 	public CommunityBoard detailCommunityBoard(int id) {
@@ -39,6 +46,12 @@ public class CommunityService {
 		return communityLikeRepository.findByBoardIdAndUserId(boardId, userId).orElseGet(() -> {
 			return new CommunityLike();
 		});
+	}
+	
+	// 소셜에 좋아요 랜더링 
+	@Transactional
+	public List<CommunityLike> myLike(int userId){
+		return communityLikeRepository.findByUserId(userId);
 	}
 
 	// 댓글 처리하기 전에 보드가 있나 확인

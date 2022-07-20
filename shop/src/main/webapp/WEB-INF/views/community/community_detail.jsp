@@ -19,7 +19,7 @@
 
         <div class="commu-detail-div-main-container">
           <div>
-            <div class="commu-detail-like-icon-box" id="commu-detail-like-icon-box">
+            <div class="commu-detail-like-icon-box" id="commu-like-icon-box">
 		        <c:choose>
 		        	<c:when test="${like.user.username != null}">
 		        		<i class="fa-solid fa-heart fa-lg" style="color: rgb(240, 81, 115)"></i>
@@ -59,7 +59,7 @@
           <div>
           	<div class="commu-detail-reply-first-line-box">
           		<i class="fa-regular fa-pen-to-square"></i>
-            	<button id="commu-detail-btn-up" class="commu-detail-btn-up commu-detail-btn">up</button>
+            	<button id="commu-btn-insert" class="commu-detail-btn-up commu-detail-btn">up</button>
           	</div>
             <div>
               <input
@@ -80,17 +80,17 @@
 		              <span class="commu-detail-reply-user commu-detail-reply-text">${reply.user.username}</span>
 		              <div id="commu-detail-reply-btn-box">
 		              	<c:if test="${reply.user.id == principal.user.id}">
-		              		<button onclick="commu_detail.updateBtnReply()" class="commu-detail-btn-reply-update commu-detail-btn-reply">
+		              		<button onclick="commu.updateBtnReply()" class="commu-detail-btn-reply-update commu-detail-btn-reply">
 			                  수정
 			                </button>
-			                <button onclick="commu_detail.deleteReply()" class="commu-detail-btn-reply-delete commu-detail-btn-reply">
+			                <button onclick="commu.deleteReply()" class="commu-detail-btn-reply-delete commu-detail-btn-reply">
 			                  삭제
 			                </button>
 		              	</c:if>
 		              </div>
 		            </div>
 		            <div id="commu-detail-reply-content-box">
-		            	<textarea class="commu-detail-reply-content commu-detail-reply-text" readonly>${reply.content}</textarea>
+		            	<textarea id="commu-detail-reply-origin-content" class="commu-detail-reply-content commu-detail-reply-text" readonly>${reply.content}</textarea>
 		            </div>
           		</div>
           	</c:forEach>
@@ -100,12 +100,14 @@
         <div style="height: 70px"></div>
       </div>
     </div>
-<script src="/js/commu-detail.js">
+<script src="/js/commu.js">
 
 </script>
 <script>
 	$(document).ready(function () {
-	  fixTextAreaHeight();
+		if($("#commu-detail-reply-origin-content").val() != null){
+			fixTextAreaHeight();
+		}
 	});
 	
 	// 댓글 불러온것 뿌릴때 태그의 높이 지정해줌
