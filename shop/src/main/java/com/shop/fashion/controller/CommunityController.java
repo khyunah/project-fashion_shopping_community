@@ -56,8 +56,9 @@ public class CommunityController {
 	
 	@GetMapping("/board/{id}/update_form")
 	public String updateForm(@PathVariable int id, Model model) {
-		model.addAttribute("communityBoard", communityService.boardDetail(id));
-		return "/community/update_form";
+		System.out.println("emfdjafefiae");
+		model.addAttribute("boardList", communityService.boardDetail(id));
+		return "community/update_form";
 	}
 	
 	

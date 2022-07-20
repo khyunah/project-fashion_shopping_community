@@ -1,8 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> <%@ include file="../layout/header.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
+<%@ include file="../layout/header.jsp"%>
 
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
-
 
 <style>
   .container {
@@ -15,46 +15,47 @@
 </style>
 
 <input type="hidden" value="${pricipal.user.id}" id="pricipal--id">
+	<input type="hidden" value="${boardList.id}" id="boardId">
   <button class="btn bg-secondary" onclick="history.back();">돌아가기</button>
-  <c:if test="${communityBoard.userId.id == principal.user.id}">
-    <a href="/board/${communityBoard.id}/update_form" class="btn btn-warning">수정</a>
+    
+    <a href="/board/${boardList.id}/update_form" class="btn btn-warning">수정</a>
     <button class="btn btn-danger" id="btn-delete">삭제</button>
-  </c:if>
+
 
 <div class="container justify-content space-between">
  
-   <form action="/board/upload" enctype="multipart/form-data" method="post">
+   <form>
     <div class="form-group">
       <label for="title" id=title>title</label>
-      <input value="${communityBoard.title}" type="text" class="form-control" placeholder="Enter title" name="title" id="title" />
+      <input id="communityBoardTitle" value="${boardList.title}" type="text" class="form-control" placeholder="Enter title" name="title" id="title" />
     </div>
 
     <div class="form-group">
-      <label for="image" id=image>image</label>
+      <label for="image">image</label>
       <div class="input-group">
-        <input value="${communityBoard.imageUrl}" type="file" name="file" class="custom-file-input" id="image" required="required" />
+        <input id="communityimageUrl" value="${boardList.originImageTitle}"  type="file" name="file" class="custom-file-input" id="image" required="required" />
         <label class="custom-file-label" for="customFile"></label>
       </div>
     </div>
 
     <div class="form-group mt-3">
       <label for="content">content</label>
-      <textarea class="form-control" rows="5" id="content" name="content" placeholder="내용을 입력하세요">
-      ${communityBoard.content}
-      </textarea>
+      <textarea id="communityBoardContent" class="form-control" rows="5" name="content" placeholder="내용을 입력하세요">${boardList.content}</textarea>
     </div>
     <div class="form-group mt-3">
-  <button type="submit" id="btn-save" class="btn btn-dark">글 쓰기 완료</button>
 	</div>
   </form>
+  <button type="button" id="commu-detail-btn-update"  class="btn btn-dark">글 수정 완료</button>
 </div>
 
 <br />
 <br />
 <script>
   $(".custom-file-input").bind("change", function () {
-    console.log($(this).val());
+    console.log($(this).val()); 
     let fileName = $(this).val().split("\\").pop();
     $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
   });
 </script>
+<script type="text/javascript" src="/js/commu-detail.js"></script>
+

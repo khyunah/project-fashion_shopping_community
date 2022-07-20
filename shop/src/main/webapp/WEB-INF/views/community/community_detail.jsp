@@ -13,8 +13,10 @@
 	        이미지 주소 사용자가 올린 주소로 고치기  
         ---------------------------------- -->
           <img class="commu-detail-img" alt="" src="http://localhost:9090/upload/${communityBoard.imageUrl}" />
-        <button id="commu-detail-btn-update" class="commu-detail-btn-up commu-detail-btn">수정</button>
+          <c:if test="${communityBoard.user.id == principal.user.id}">
+        <button onclick="location.href='/board/${communityBoard.id}/update_form'" class="commu-detail-btn-up commu-detail-btn">수정</button>
 		 <button id="commu-detail-btn-delete" class="commu-detail-btn-up commu-detail-btn">삭제</button>
+		 </c:if>
         </div>
 
         <div class="commu-detail-trim"></div>

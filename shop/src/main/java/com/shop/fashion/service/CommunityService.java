@@ -86,10 +86,15 @@ public class CommunityService {
 			return new IllegalArgumentException("해당 글은 찾을 수 없습니다");
 		});
 		
+		System.out.println("=====================");
+		System.out.println(boardEntity.toString());
+		System.out.println("-------------------------------------");
 		boardEntity.setTitle(board.getTitle());
+		System.out.println(board.getTitle());
 		boardEntity.setContent(board.getContent());
-		boardEntity.setUser(board.getUser());
+		System.out.println(board.getContent());
 		boardEntity.setImageUrl(board.getImageUrl());
+		System.out.println("url:" + board.getImageUrl());
 	}
 	
 	

@@ -114,19 +114,18 @@ let commu_detail = {
 	}, 
 	
 	
-	
-	
 	boardUpdate: function() {
-		let boardId = $("#communityBoardId").val();
+		let id = $("#boardId").val();
 		let data = {
-			title: $("#title").val(),
-			content: $("#content").val()
+			title: $("#communityBoardTitle").val(),
+			content: $("#communityBoardContent").val(),
+			imageUrl: $("#communityimageUrl").val()
 		}
-			
+
 		
 		$.ajax({
 			type: "PUT",
-			url: `/api/board/${boardId}`,
+			url: `/api/board/${id}`,
 			data: JSON.stringify(data),
 			contentType: "application/json; charset=utf-8",
 			dataType: "json"
@@ -141,6 +140,7 @@ let commu_detail = {
 			alert("글 쓰기에 실패하였습니다");			
 		});
 	},
+	 
 	
 	
 	boardDelete: function() {
