@@ -25,12 +25,14 @@
 <br/>
 	<div style="text-align: center;">
 	<span class="">
-			<button onclick="location.href='/shop/mans_form'" id="showall" class="btn btn-dark m-2" >SHOW ALL</button>
-			<button onclick="location.href='/shop/mans_form/?gender=MAN&category=SHIRTS'"  id="mans_shirts"  class="btn btn-dark m-2" >SHIRTS</button>
-			<button onclick="location.href='/shop/mans_form/?gender=MAN&category=PANTS'"  class="btn btn-dark m-2" >PANTS</button>
-			<button onclick="location.href='/shop/mans_form/?gender=MAN&category=ACCESSORY'"  class="btn btn-dark m-2" >ACCESSORY</button>
-			<button onclick="location.href='/shop/mans_form/?gender=MAN&category=SHOES'"  class="btn btn-dark m-2" >SHOES</button>
-			<button onclick="location.href='/shop/mans_form/?gender=MAN&category=OUTER'"  class="btn btn-dark m-2" >OUTER</button>
+			<button onclick="location.href='/shop/womans_form/'" id="showall" class="btn btn-dark m-2" >SHOW ALL</button>
+			<button onclick="location.href='/shop/womans_form/?gender=WOMAN&category=SHIRTS'"  id="mans_shirts"  class="btn btn-dark m-2" >SHIRTS</button>
+			<button onclick="location.href='/shop/womans_form/?gender=WOMAN&category=PANTS'"  class="btn btn-dark m-2" >PANTS</button>
+			<button onclick="location.href='/shop/womans_form/?gender=WOMAN&category=ACCESSORY'"  class="btn btn-dark m-2" >ACCESSORY</button>
+			<button onclick="location.href='/shop/womans_form/?gender=WOMAN&category=SHOES'"  class="btn btn-dark m-2" >SHOES</button>
+			<button onclick="location.href='/shop/womans_form/?gender=WOMAN&category=OUTER'"  class="btn btn-dark m-2" >OUTER</button>
+			<button onclick="location.href='/shop/womans_form/?gender=WOMAN&category=SKIRT'"  class="btn btn-dark m-2" >SKIRT</button>
+			<button onclick="location.href='/shop/womans_form/?gender=WOMAN&category=ONEPIECE'"  class="btn btn-dark m-2" >ONEPIECE</button>
 			
 	</span>
 	</div>

@@ -1,32 +1,51 @@
 package com.shop.fashion.api;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.shop.fashion.auth.PrincipalUserDetail;
 import com.shop.fashion.dto.RequestItemDto;
 import com.shop.fashion.dto.ResponseDto;
-import com.shop.fashion.model.Category;
-import com.shop.fashion.model.Gender;
+import com.shop.fashion.model.Domain;
 import com.shop.fashion.model.Item;
+import com.shop.fashion.model.User;
+import com.shop.fashion.service.BasketService;
 import com.shop.fashion.service.ShoppingService;
+import com.shop.fashion.service.UserService;
 
 @RestController
 public class ShoppingApiController {
 
+	@Autowired
+	BasketService basketService;
 	
 	@Autowired
 	ShoppingService shoppingService;
 	
+	@Autowired
+	UserService userService;
+	
 	@PostMapping("/api/item")
 	public ResponseDto<Integer> save(@RequestBody Item item) {
+		shoppingService.saveItem(item);
+		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+	}
+	
+	@PostMapping("/api/category")
+	public ResponseDto<Integer> category(@RequestBody Item item) {
 		shoppingService.saveItem(item);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
@@ -38,5 +57,28 @@ public class ShoppingApiController {
 		return new ResponseDto<Page<Item>>(HttpStatus.OK.value(), page);
 	}
 	
-}
+	
+	@GetMapping("/test/api/getDomain")
+	public Domain searchGenderCategory() {
+		Domain domain = new Domain();
+		return domain;
+	}
+	
+	
+	@PostMapping("/test/api/cart")
+	public ResponseDto<Integer> cart(@RequestParam int itemId, @AuthenticationPrincipal PrincipalUserDetail detail) { 
+
+		System.out.println(itemId);
+		// 정보 
+		User user = userService.getUser(detail.getUser().getId());
 		
+		Item item = shoppingService.itemDetail(itemId);
+		
+		basketService.putCart(item, user);
+		
+		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+	}
+	
+	
+}
+		    

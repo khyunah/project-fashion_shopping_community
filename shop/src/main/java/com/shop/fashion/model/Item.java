@@ -36,4 +36,8 @@ public class Item {
 	private String content;
 	@Column(nullable = false)
 	private String imageurl;
+	@Column(nullable = false)
+	private String color;
+	@Column(nullable = false)
+	private String size;
 }

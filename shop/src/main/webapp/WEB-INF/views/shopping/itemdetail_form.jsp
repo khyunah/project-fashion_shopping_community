@@ -4,36 +4,45 @@
 <%@ include file="../layout/header.jsp" %>
 
 <div class="container">
-	<input type="hidden" id="principal--id" value="${principal.user.id}">
+	<input type="hidden" id="principal--id" value="${item.id}">
 	<button class="btn bg-secondary" onclick="history.back();">돌아가기</button>
-	<c:if test="${board.userId.id == principal.user.id}">
-		<a href="/item/${Item.id}/update_form" class="btn btn-warning">수정</a>
+	<c:if test="${principal.user.role eq USER}">
+		<a href="/item/${item.id}/update_form" class="btn btn-warning">수정</a>
 		<button class="btn btn-danger" id="btn-delete">삭제</button>	
 	</c:if>
 	<br/><br/>
 	<div>
-		글 번호 : <span id="board-id"><i>${Item.id}</i></span><br/>
-		글 작성자 : <span id=""><i>${board.userId.username}</i></span>
+		itemcode : <span id="item-id"><i>${item.id}</i></span><br/>
+		itemcategory : <span><i>${item.category}</i></span><br/>
 	</div>
 	<br/><br/>
+
+	<div class="form-group m-2 inline row">
+		<div>
+			<img style="width: 460px; height: 580px;" src="${item.imageurl}" alt=""/>
+		</div>
+		<div style="margin-left: 150px;">
+			<hr/>
+			<h2 style="font-size: 38px;">${item.name}</h2>
+			<hr/>
+			<h2 style="font-size: 38px;"><span style="font-size: 25px; font-weight: bold;">판매가</span>&nbsp;&nbsp;${item.price}원</h2>
+			<br/>
+			<h2 style="font-size: 28px;"><span style="font-size: 25px; font-weight: bold;">배송비</span>&nbsp;&nbsp;2500원</h2>
+			<hr/>
+			<h2 style="font-size: 38px;"><span style="font-size: 25px; font-weight: bold;">Color</span>&nbsp;&nbsp;${item.color}</h2>
+			<br/>
+			<h2 style="font-size: 38px;"><span style="font-size: 25px; font-weight: bold;">Size</span>&nbsp;&nbsp;${item.size}<span style="font-size: 19px; font-weight: bold;">&nbsp;</span></h2>
+			<hr/>
+			<input type="hidden" id=userid value="${principal.user.id}"></input>
+			<button type="button" id="inputCart" value="${item.id}" class="btn btn-dark text-white">장바구니에 넣기</button>
+		</div>	
+	</div>
 	<hr/>
 	<div class="form-group m-2">
-		<h3>${board.title}</h3>
+	<button type="button" class="btn btn-dark text-white">상품상세</button>
 	</div>
-	<hr/>
-	<div class="form-group m-2 inline">
-		 <img src="${board.imgUrl}" alt="" />
-	</div>
-	<div class="form-group m-2">
-		<h3>$${board.price}</h3>
-	</div>
-	<hr/>
-	<div class="form-group m-2">
-		<h3>${board.content}</h3>
-	</div>
-	<hr/>
-	<button type="button" class="btn btn-dark text-white" onclick="index.putItemCart(${board.id}, ${principal.user.id })">장바구니에 넣기</button>
-		
+	<br/>
+	<h4>${item.content}</h4>
 	<br/><br/>
 	<hr/>
 	<br/>
@@ -67,5 +76,5 @@
 <br/><br/>
 </div>
 
-<script src="/js/board.js"></script>
-<%@ include file="../layout/footer.jsp" %>
+<script src="/js/item.js"></script>
+<script src="/js/basket.js"></script>
