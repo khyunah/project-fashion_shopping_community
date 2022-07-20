@@ -1,13 +1,10 @@
+let loading = false;
 
 $(function(){
 	$(window).scroll(function() {
 		let $window = $(this);
-		let scrollTop = $window.scrollTop();
-		let windowHeight = $window.height();
-		let documentHeight = $(document).height();
 		
-		if(scrollTop + windowHeight + 1 >= documentHeight) {
-			console.log("들어옴")
+		if($window.scrollTop() + $window.height() + 1 >= $(document).height()) {
 			request();
 		}		
 		
@@ -15,31 +12,31 @@ $(function(){
 })
 
 function request(){
+   if(!loading){
+	loading = true;
+
    
 	$.ajax({
 		url: "/api/boardList",
 		type: "GET", 
-				
-		success : function(boardList){						
-			console.log("통신 성공");
-			console.log(boardList);
+		})
+		.done(function(boardList){
 			addElement(boardList);
-			},
-		error :function(){
-			alert("request error!");               
-			}
-		
-		}); 
-			
-	}   
+			loading = false;
+		}) 
+
+	}
+
+}   
 	
 
+		
 function addElement(communityBoard) {
 	console.log(communityBoard);
 	let childElement = `<li id="card-list" class="card lCard">
             <div class="commu-container">
               <div class = "leftImgBox">
-                <img class="commu-img" alt="" src="http://localhost:9090/upload/${communityBoard.imageUrl}"/>
+                <img class="commu-img" alt="" src="http://localhost:9090/upload/${communityBoard[0].imageUrl}"/>
               </div>
 			
               <div class="div-main-container">
@@ -51,16 +48,16 @@ function addElement(communityBoard) {
                 <hr class="hr-goodlook-line" />
 
                 <div class="div-title-container">
-                  <h3 class="commu-text today_daily">${communityBoard.title}</h3>
+                  <h3 class="commu-text today_daily">${communityBoard[0].title}</h3>
                 </div>
                 <div class="div-title-container">
-                  <span class="p-username commu-text">${communityBoard.reaction}</span>
+                  <span class="p-username commu-text">${communityBoard[0].userId}</span>
                 </div>
 
                 <div>
                   <div class="div-content-container">
                     <div class="span-content">
-                      ${communityBoard.content}
+                      ${communityBoard[0].content}
                     </div>
                   </div>
                 </div>

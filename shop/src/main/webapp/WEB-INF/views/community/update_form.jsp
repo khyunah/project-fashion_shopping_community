@@ -25,21 +25,23 @@
  
    <form action="/board/upload" enctype="multipart/form-data" method="post">
     <div class="form-group">
-      <label for="title">${communityBoard.id}</label>
-      <input type="text" class="form-control" placeholder="Enter title" name="title" id="title" />
+      <label for="title" id=title>title</label>
+      <input value="${communityBoard.title}" type="text" class="form-control" placeholder="Enter title" name="title" id="title" />
     </div>
 
     <div class="form-group">
-      <label for="image">${communityBoard.imageUrl}</label>
+      <label for="image" id=image>image</label>
       <div class="input-group">
-        <input type="file" name="file" class="custom-file-input" id="image" required="required" />
+        <input value="${communityBoard.imageUrl}" type="file" name="file" class="custom-file-input" id="image" required="required" />
         <label class="custom-file-label" for="customFile"></label>
       </div>
     </div>
 
     <div class="form-group mt-3">
-      <label for="content">${communityBoard.content}</label>
-      <textarea class="form-control" rows="5" id="content" name="content" placeholder="내용을 입력하세요"></textarea>
+      <label for="content">content</label>
+      <textarea class="form-control" rows="5" id="content" name="content" placeholder="내용을 입력하세요">
+      ${communityBoard.content}
+      </textarea>
     </div>
     <div class="form-group mt-3">
   <button type="submit" id="btn-save" class="btn btn-dark">글 쓰기 완료</button>

@@ -67,5 +67,6 @@
     </body>
     
   <script src="/js/index.js"></script>
+  <script>history.scrollRestoration = "manual"</script>
 
     </html>

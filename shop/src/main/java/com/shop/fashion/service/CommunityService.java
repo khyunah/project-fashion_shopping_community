@@ -58,17 +58,15 @@ public class CommunityService {
 		return originalFileName.substring(pos + 1);
 	}
 	
+		
 	
-	
-	
-	
-	
-	
+	@Transactional
 	public CommunityBoard boardDetail(int id) {
 		return communityRepository.findById(id).orElseThrow(() -> {
 			return new IllegalArgumentException("해당 글은 찾을 수 없습니다");
 		});
 	}
+	
 	
 	@Transactional
 	public void modifyBoard(int id, CommunityBoard board) { // title, content
@@ -81,6 +79,7 @@ public class CommunityService {
 		boardEntity.setUser(board.getUser());
 		boardEntity.setImageUrl(board.getImageUrl());
 	}
+	
 	
 	@Transactional
 	public void deleteById(int id) {

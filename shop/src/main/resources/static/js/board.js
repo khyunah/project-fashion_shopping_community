@@ -18,7 +18,7 @@ let index = {
 		
 		$.ajax({			
 			type:"DELETE",
-			url:`/api/communityBoard/${id}`
+			url:`/api/board/${id}`
 		})
 		.done(function(data){
 			if(data.status) {
@@ -44,7 +44,7 @@ let index = {
 		
 		$.ajax({
 			type: "PUT",
-			url: `/api/communityBoard/${boardId}`,
+			url: `/api/board/${boardId}`,
 			data: JSON.stringify(data),
 			contentType: "application/json; charset=utf-8",
 			dataType: "json",
