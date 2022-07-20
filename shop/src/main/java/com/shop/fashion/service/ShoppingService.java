@@ -8,8 +8,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import com.shop.fashion.model.Basket;
 import com.shop.fashion.model.Item;
+import com.shop.fashion.model.User;
+import com.shop.fashion.repository.BasketRepository;
 import com.shop.fashion.repository.ShoppingRepository;
 
 @Service
@@ -17,6 +20,9 @@ public class ShoppingService {
 	
 	@Autowired
 	ShoppingRepository shoppingRepository;
+	
+	@Autowired
+	BasketRepository basketRepository;
 	
 //	@Transactional(readOnly = true)
 //	public Page<Item> searchCategory(Pageable pageable, Category category) {
@@ -26,6 +32,11 @@ public class ShoppingService {
 	@Transactional(readOnly = true)
 	public Page<Item> searchMans(Pageable pageable) {
 		return shoppingRepository.CategoryItemMans(pageable);
+	}
+	
+	@Transactional(readOnly = true)
+	public Page<Item> searchWomans(Pageable pageable) {
+		return shoppingRepository.CategoryItemWomans(pageable);
 	}
 	
 	@Transactional
@@ -55,8 +66,8 @@ public class ShoppingService {
 	
 	@Transactional(readOnly = true)
 	public List<Basket> getOnUserCart(int userid){
-		List<Basket> boards = shoppingRepository.findByUserId(userid);
-		return boards;
+		List<Basket> basket = basketRepository.findByUserId(userid);
+		return basket;
 	}
 
 	@Transactional
@@ -65,5 +76,11 @@ public class ShoppingService {
 			return new IllegalArgumentException("해당 게시글은 찾을 수 없습니다.");
 		});
 	}	
+	
+	@Transactional
+	public void putCart(int itemid, User user, int basketid) {
+		Basket basket = basketRepository.findById(basketid).get();
+		basket.setUser(user);
+	}
 
 }

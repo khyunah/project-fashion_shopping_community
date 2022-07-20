@@ -25,16 +25,11 @@ pageEncoding="UTF-8"%> <%@ taglib prefix = "c" uri =
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
     <!-- include summernote css/js -->
-<<<<<<< Updated upstream
     <link
       href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css"
       rel="stylesheet"/>
-=======
-    
-    <link href="/css/style_user.css" rel="stylesheet" type="text/css"/>
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	
->>>>>>> Stashed changes
     
     <!-- 폰트 설정 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -110,8 +105,8 @@ pageEncoding="UTF-8"%> <%@ taglib prefix = "c" uri =
 			    </button>
     			<div class="dropdown-content bg-white">
 				      <a href="/shop/mans_form" style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">MAN's</a>
-				      <a href="/shop/save_form" style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">WOMAN's</a>
-				      <a href="/shop/basket_form" style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">ACCESSORIES</a>
+				      <a href="/shop/womans_form/?gender=WOMAN" style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">WOMAN's</a>
+				      <a href="/shop/save_form" style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">ADD ITEM</a>
 			    </div>
 			  </div> 
 			</li>
@@ -143,8 +138,8 @@ pageEncoding="UTF-8"%> <%@ taglib prefix = "c" uri =
 			    </button>
     			<div class="dropdown-content bg-white">
 				      <a href="/shop/mans_form" style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">MAN's</a>
-				      <a href="/shop/save_form" style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">WOMAN's</a>
-				      <a href="/shop/basket_form" style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">ACCESSORIES</a>
+				      <a href="/shop/womans_form" style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">WOMAN's</a>
+				      <a href="/shop/save_form" style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">ADD ITEM</a>
 			    </div>
 			  </div> 
 			</li>

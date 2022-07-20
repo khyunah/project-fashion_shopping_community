@@ -13,7 +13,7 @@
 	<br/><br/>
 	<div>
 		itemcode : <span id="item-id"><i>${item.id}</i></span><br/>
-		itemcategory : <span id="item-id"><i>${item.category}</i></span><br/>
+		itemcategory : <span><i>${item.category}</i></span><br/>
 	</div>
 	<br/><br/>
 
@@ -22,26 +22,27 @@
 			<img style="width: 460px; height: 580px;" src="${item.imageurl}" alt=""/>
 		</div>
 		<div style="margin-left: 150px;">
+			<hr/>
 			<h2 style="font-size: 38px;">${item.name}</h2>
-			<br/>
+			<hr/>
 			<h2 style="font-size: 38px;"><span style="font-size: 25px; font-weight: bold;">판매가</span>&nbsp;&nbsp;${item.price}원</h2>
 			<br/>
-			<h2 style="font-size: 28px;"><span style="font-size: 25px; font-weight: bold;">배송비</span>&nbsp;&nbsp;${(item.price/10)}원</h2>
+			<h2 style="font-size: 28px;"><span style="font-size: 25px; font-weight: bold;">배송비</span>&nbsp;&nbsp;2500원</h2>
+			<hr/>
+			<h2 style="font-size: 38px;"><span style="font-size: 25px; font-weight: bold;">Color</span>&nbsp;&nbsp;${item.color}</h2>
 			<br/>
-			<h2>Color</h2>
-			<br/>
-			<h2>Size</h2>
-
+			<h2 style="font-size: 38px;"><span style="font-size: 25px; font-weight: bold;">Size</span>&nbsp;&nbsp;${item.size}<span style="font-size: 19px; font-weight: bold;">&nbsp;</span></h2>
+			<hr/>
+			<input type="hidden" id=userid value="${principal.user.id}"></input>
+			<button type="button" id="inputCart" value="${item.id}" class="btn btn-dark text-white">장바구니에 넣기</button>
 		</div>	
 	</div>
-
 	<hr/>
 	<div class="form-group m-2">
-		<h3>${board.content}</h3>
+	<button type="button" class="btn btn-dark text-white">상품상세</button>
 	</div>
-	<hr/>
-	<button type="button" class="btn btn-dark text-white" onclick="index.putItemCart(${board.id}, ${principal.user.id })">장바구니에 넣기</button>
-		
+	<br/>
+	<h4>${item.content}</h4>
 	<br/><br/>
 	<hr/>
 	<br/>
@@ -76,3 +77,4 @@
 </div>
 
 <script src="/js/item.js"></script>
+<script src="/js/basket.js"></script>

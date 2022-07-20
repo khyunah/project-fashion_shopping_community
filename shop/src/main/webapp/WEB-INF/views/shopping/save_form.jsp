@@ -9,25 +9,35 @@
 			value="${_csrf.token}">
 
 		<div class="form-group">
-			<label for="gender">gender :</label> <select id="gender">
+			<label for="gender">gender :</label> 
+			<select id="gender">
 				<option value="MAN">MAN</option>
 				<option value="WOMAN">WOMAN</option>
 			</select>
 		</div>
-		<div id="category">
-			<div class="form-group" id="category">
+			<div class="form-group">
 					<label for="category">category :</label> 
-					<select  id="category-select" name="category">
+					<select  id="category" name="category">
 					</select>
 			</div>
-		</div>
-		<div id="size">
-			<div class="form-group" id="size">
-				<label for="size">category :</label> 
-					<select  id="size-select" name="size">
+			<div class="form-group">
+				<label for="size">size :</label> 
+					<select id="size" name="size">
 					</select>
 			</div>
-		</div>
+			<div class="form-group">
+				<label for="color">color :</label>
+					<select id=color name="color">
+						<option value="BLACK">BLACK</option>
+						<option value="WHITE">WHITE</option>
+						<option value="GREY">GREY</option>
+						<option value="BLUE">BLUE</option>
+						<option value="RED">RED</option>
+						<option value="GREEN">GREEN</option>
+						<option value="PURPLE">PURPLE</option>
+						<option value="ORANGE">ORANGE</option>
+					</select>
+			</div>
 
 
 		<div class="form-group">
@@ -43,15 +53,6 @@
 			<label for="imageurl">imgUrl</label> <input type="text"
 				class="form-control" placeholder="Enter imageurl" name="imageurl"
 				id="imageurl">
-		</div>
-		<div class="form-group">
-			<label for="size">size</label> <input type="text"
-				class="form-control" placeholder="Enter size" name="size" id="size">
-		</div>
-		<div class="form-group">
-			<label for="color">color</label> <input type="text"
-				class="form-control" placeholder="Enter color" name="color"
-				id="color">
 		</div>
 		<div class="form-group">
 			<label for="content">content</label>

@@ -4,14 +4,15 @@ let index = {
 	getDomain: function(){
 		$.ajax({
 			type: "get",
-			url: "/test/api/getDomain"
-		}).done(function(res){
-			index.insertDomain(res);
-			domain = res;
-			
-			
+			url: "/test/api/getDomain",
+			dateType:"json",
+			success: function(res){
+				domain = res
+				index.genderCategory();
+				index.init();
+			}
 		}).fail(function() {
-			
+			index.getDomain();
 		});
 	},
 
@@ -20,42 +21,29 @@ let index = {
 			this.save();
 		});
 		$("#gender").change("change", () => {
-			console.log("sdfsdfsdf"+domain);
 			this.genderCategory();
 		});
-		
-		
+		$("#btn-reply-save").bind("click", () => {
+			this.replySave();
+		});
 	},
 	
 	genderCategory : function() {
 		if($("#gender").val() == 'MAN') {	
-			manCategory();
-			console.log($("#gender").val());
+			loadCategory('MAN');
+			$("#category").change("change", () => {
+			categorySize();
+		});
 			
 		}else if($("#gender").val() == 'WOMAN'){
-			womanCategory();
-			console.log($("#gender").val());
-			
-		}
-	},
-	
-	categorySize : function() {
-		var cell = document.getElementById("size");
-
-		while ( cell.hasChildNodes() )
-		{
-		     cell.removeChild( cell.firstChild );       
+			loadCategory('WOMAN');
+			$("#category").change("change", () => {
+			categorySize();
+		});	
 		}
 		
-		console.log($("#gender").val())
-		console.log($("#category-select").val())
-		if($("#gender").val() == 'MAN' && $("#category-select").val() == 'SHIRTS') {
-			mansShirtsSize();
-		}else{
-
-		}
 	},
-	
+		
 	save: function() {
 
 		// 데이터 가져오기
@@ -91,51 +79,34 @@ let index = {
 			});
 	},
 	
-	insertDomain: function(res){
-		domain = res;
-	}
 }
 index.getDomain();
-index.genderCategory();
-index.init();
 
-
-function womanCategory(){
-	var cell = document.getElementById("category-select");
-
-		while ( cell.hasChildNodes() )
-		{
-		     cell.removeChild( cell.firstChild );       
-		}
-	console.log(domain.manCategory);
-	domain.womanCategory.forEach((item)=>{
-		console.log(item)
-		let option =`<option value="${item}">${item}</option>`;
-		$("#category-select").append(option);
-	});
-}
-
-function manCategory(){
-	var cell = document.getElementById("category-select");
-
-		while ( cell.hasChildNodes() )
-		{
-		     cell.removeChild( cell.firstChild );       
-		}
-	domain.manCategory.forEach((item)=>{
-		let option =`<option value="${item}">${item}</option>`;
-		$("#category-select").append(option);
-	});
-
-}
-
-function mansShirtsSize(){
-	manCategory = domain.manCategory;
-	console.log(manCategory)
-	for(var i = 0; i <manCategory.length; i++){
-		let item = manCategory[i]
-		let option =`<option value="SHIRTS">${item}element</option>`;
-		$("#size").append(option);
+function loadCategory(gender){
+	var cell = document.getElementById("category");
+	while ( cell.hasChildNodes()){
+		cell.removeChild( cell.firstChild );
 	}
+	let category = domain.genderCategory[gender];	
+	
+	category.forEach((item)=>{
+		let option =`<option value="${item}">${item}</option>`;
+		$("#category").append(option);
+	}); 
 }
 
+
+function categorySize(){
+	
+	var cell = document.getElementById("size");
+	while (cell.hasChildNodes()){
+		cell.removeChild( cell.firstChild );       
+	}
+	let size = domain.categorySize[$("#category").val()];
+	
+	size.forEach((item)=>{
+		let option =`<option value="${item}">${item}</option>`;
+		$("#size").append(option);
+	})
+}
+	

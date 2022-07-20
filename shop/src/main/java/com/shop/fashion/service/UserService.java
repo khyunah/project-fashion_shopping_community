@@ -55,4 +55,8 @@ public class UserService {
 
 		return originUser;
 	}
+	
+	public User getUser(int id) {
+		return userRepository.findById(id).get();
+		}
 }
