@@ -20,14 +20,14 @@
 
 .commu-social-div-title-container {
     width: 100%;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .commu-like-icon-box {
     display: inline;
 }
 
-.commu-title {
+.commu-social-title {
     font-weight: bold;
 }
 

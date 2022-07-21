@@ -71,7 +71,7 @@
         <div style="height: 70px"></div>
     </div>
 </c:forEach>
-
+<script>history.scrollRestoration = "manual"</script>
 <script src="/js/commu.js"></script>
 </body>
 

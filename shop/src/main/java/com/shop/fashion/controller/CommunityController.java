@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -36,9 +37,11 @@ public class CommunityController {
 	
 	// 소셜 메인 처음 랜더링 주소
 	@GetMapping("/community/social-main")
-	public String communityHome(@PageableDefault(size = 2) Pageable pageable, Model model, @AuthenticationPrincipal PrincipalUserDetail userDetail) {
+	public String communityHome(@PageableDefault(size = 3, direction = Direction.DESC, sort = "id") Pageable pageable, Model model, @AuthenticationPrincipal PrincipalUserDetail userDetail) {
 		Page<CommunityBoard> communityBoardList = communityService.getCommunityBoardList(pageable);
 		model.addAttribute("communityBoardList", communityBoardList);
+		
+		System.out.println("페이지 갯수 : " + communityBoardList.getPageable().getPageSize());
 		
 		List<CommunityLike> likeList = communityService.myLike(userDetail.getUser().getId());
 		model.addAttribute("likeList", likeList);
@@ -47,7 +50,7 @@ public class CommunityController {
 	
 	// 소셜 메인 스크롤시 랜더링 주소
 	@GetMapping("/community/social-add")
-	public String addCommunityBoard(@PageableDefault(size = 2) Pageable pageable, Model model, @AuthenticationPrincipal PrincipalUserDetail userDetail) {
+	public String addCommunityBoard(@PageableDefault(size = 3, direction = Direction.DESC, sort = "id") Pageable pageable, Model model, @AuthenticationPrincipal PrincipalUserDetail userDetail) {
 		Page<CommunityBoard> communityBoardList = communityService.getCommunityBoardList(pageable);
 		model.addAttribute("communityBoardList", communityBoardList);
 		

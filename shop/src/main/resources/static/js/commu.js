@@ -151,7 +151,7 @@ function changeLikeIcon(response, communityBoardId,  likeCount){
 
 	        		<i style="color: black" id="before-like" class="fa-regular fa-heart fa-lg"></i>
 	
-					<span id="likeCount-${communityBoardId}" class="span-goodlook-count commu-text">${likeCount}</span>
+					<span id="likeCount-${communityBoardId}" class="commu-social-span-goodlook-count commu-social-text">${likeCount}</span>
 	            </div>
 			`;
 
@@ -163,7 +163,7 @@ function changeLikeIcon(response, communityBoardId,  likeCount){
 	
 	        		<i class="fa-solid fa-heart fa-lg" style="color: rgb(240, 81, 115)"></i>
 
-					<span id="likeCount-${communityBoardId}" class="span-goodlook-count commu-text">${likeCount}</span>
+					<span id="likeCount-${communityBoardId}" class="commu-social-span-goodlook-count commu-social-text">${likeCount}</span>
 	            </div>
 			`;
 	}
