@@ -13,6 +13,7 @@
 	            <input id="communityBoardId" type="hidden" value="${communityBoard.id}" />
 	            
 	            <div class="commu-container">
+	            	<div style="height: 20px"></div>
 	                <div class="commu-social-img-box">
 	                    <img class="commu-social-img" alt="" src="/image/model1.jpg">
 	                </div>
