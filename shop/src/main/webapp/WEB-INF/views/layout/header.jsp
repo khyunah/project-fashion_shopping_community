@@ -67,7 +67,6 @@ pageEncoding="UTF-8"%>
       crossorigin="anonymous"
     ></script>
     
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/detail.css'/>" />
 
     
   </head>

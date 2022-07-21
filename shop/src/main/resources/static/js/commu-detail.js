@@ -17,9 +17,7 @@ let commu_detail = {
 			commu_detail.finishUpdateReply();
 		});
 		
-		$("#commu-detail-btn-update").bind('click', () => {
-			this.boardUpdate();
-		});
+
 		
 		$("#commu-detail-btn-delete").bind('click', () => {
 			this.boardDelete();
@@ -77,11 +75,11 @@ let commu_detail = {
 	finishUpdateReply: function(){
 		console.log("완료버튼 누름");
 		let data = {
-			//id: $("#replyId").val(),
-			id: 4,
+			id: $("#replyId").val(),
 			content: $(".commu-detail-reply-content").text(),
 		}
-		console.log(data.content);
+		console.log(data.content); 
+		
 		$.ajax({
 			type: "POST",
 			url: `/community/reply-update`,
@@ -118,10 +116,8 @@ let commu_detail = {
 		let id = $("#boardId").val();
 		let data = {
 			title: $("#communityBoardTitle").val(),
-			content: $("#communityBoardContent").val(),
-			imageUrl: $("#communityimageUrl").val()
+			content: $("#communityBoardContent").val()
 		}
-
 		
 		$.ajax({
 			type: "PUT",
@@ -140,7 +136,7 @@ let commu_detail = {
 			alert("글 쓰기에 실패하였습니다");			
 		});
 	},
-	 
+	
 	
 	
 	boardDelete: function() {
@@ -198,6 +194,7 @@ function removeReply(replyId){
 
 // 댓글 수정버튼 클릭시 
 function changeReply(){
+	
 	let finishBtn = `
 		<button class="commu-detail-btn-reply-update-finish commu-detail-btn-reply">
           완료
@@ -206,7 +203,7 @@ function changeReply(){
 	
 	$("#commu-detail-reply-btn-box").prepend(finishBtn);
 	document.getElementById("commu-detail-reply-content-box").innerHTML =
-		'<textarea id="commu-detail-reply-content" class="commu-detail-reply-content commu-detail-reply-text">댓글 원문 옮겨주기</textarea>';
+		`<textarea id="commu-detail-reply-content" class="commu-detail-reply-content commu-detail-reply-text">${reply.count}</textarea>`;
 }
 
 // 좋아요 아이콘 변경 함수

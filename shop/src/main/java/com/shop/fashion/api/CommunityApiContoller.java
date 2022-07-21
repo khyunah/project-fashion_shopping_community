@@ -39,11 +39,13 @@ public class CommunityApiContoller {
 	@Autowired
 	CommunityService communityService;
 	
+	
 	@GetMapping("/api/boardList")
 	public List<CommunityBoard> boardList() {
 		List<CommunityBoard> bordList = communityService.getCommunityBoardList();
 		return bordList;
 	}
+	
 	
 	@PutMapping("/api/board/{id}")
 	public ResponseDto<Integer> update(@PathVariable int id, @RequestBody CommunityBoard board) {

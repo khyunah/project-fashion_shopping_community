@@ -16,6 +16,7 @@
           <c:if test="${communityBoard.user.id == principal.user.id}">
         <button onclick="location.href='/board/${communityBoard.id}/update_form'" class="commu-detail-btn-up commu-detail-btn">수정</button>
 		 <button id="commu-detail-btn-delete" class="commu-detail-btn-up commu-detail-btn">삭제</button>
+		 <button onclick="history.back();" class="commu-detail-btn-back commu-detail-btn">뒤로가기</button>
 		 </c:if>
         </div>
 
@@ -86,7 +87,7 @@
 		              <span class="commu-detail-reply-user commu-detail-reply-text">${reply.user.username}</span>
 		              <div id="commu-detail-reply-btn-box">
 		              	<c:if test="${reply.user.id == principal.user.id}">
-		              		<button onclick="commu_detail.updateBtnReply()" class="commu-detail-btn-reply-update commu-detail-btn-reply">
+		              		<button class="commu-detail-btn-reply-update commu-detail-btn-reply">
 			                  수정
 			                </button>
 			                <button onclick="commu_detail.deleteReply()" class="commu-detail-btn-reply-delete commu-detail-btn-reply">

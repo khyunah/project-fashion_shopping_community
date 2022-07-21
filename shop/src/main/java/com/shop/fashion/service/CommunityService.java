@@ -45,6 +45,16 @@ public class CommunityService {
 	@Transactional
 	public void upload(CommunityDto fileDto, User user) {
 		
+		String newFileName = fileNameSet(fileDto);
+		CommunityBoard communityBoardEntity = fileDto.toEntity(newFileName, user);
+		System.out.println("-------------");
+		//System.out.println(communityBoardEntity.get);
+		communityRepository.save(communityBoardEntity);
+		
+	}
+	
+	private String fileNameSet(CommunityDto fileDto) {
+		
 		UUID uuid = UUID.randomUUID();
 		String imageFileName = uuid.toString() +"." + extracktExt(fileDto.getFile().getOriginalFilename());
 		
@@ -55,15 +65,15 @@ public class CommunityService {
 		try {
 			Files.write(imageFilePath, fileDto.getFile().getBytes());
 			
-			CommunityBoard communityBoardEntity = fileDto.toEntity(newFileName, user);
-			communityRepository.save(communityBoardEntity);
-			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
+		return newFileName;
 	}
+	
+	
 
 	private String extracktExt(String originalFileName) {
 		int pos = originalFileName.lastIndexOf(".");
@@ -78,6 +88,18 @@ public class CommunityService {
 			return new IllegalArgumentException("해당 글은 찾을 수 없습니다");
 		});
 	}
+	
+	@Transactional
+	public CommunityBoard boardUpdate(int id, CommunityDto dto) {
+		CommunityBoard board = boardDetail(id);
+		String updateFileName = fileNameSet(dto);
+		
+		board.setContent(dto.getContent());
+		board.setImageUrl(updateFileName);
+		board.setTitle(dto.getTitle());
+		return board;
+	}
+
 	
 	
 	@Transactional
@@ -153,7 +175,9 @@ public class CommunityService {
 		Reply replyEntity = communityReplyRepository.findById(reply.getId()).orElseThrow(() -> {
 			return new IllegalArgumentException("게시물이 존재하지 않아 댓글수정에 실패하였습니다.");
 		});
+
 		replyEntity.setContent(reply.getContent());
+
 		return replyEntity;
 	}
 	
