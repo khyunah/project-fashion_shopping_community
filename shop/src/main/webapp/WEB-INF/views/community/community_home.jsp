@@ -2,10 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp" %>
 
- 	<input id="userId" type="hidden" value="${principal.user}"/>
-
+<div class="community-home-body">
+<div class="community-home-container">
 <c:forEach var="communityBoard" items="${communityBoardList.content}">
 	<input id="communityBoardId" type="hidden" value="${communityBoard.id}"/>
+	
+	<div class="commu-home-box">
+	
 	<div class="commu-container">
         <div>
             <img class="commu-img" alt="" src="/image/model1.jpg">
@@ -40,10 +43,10 @@
 
             <div>
                 <div class="div-title-container">
-                    <p class="commu-text commu-title">${communityBoard.title}</p>
+                    <p class="commu-text commu-title commu-home-title">${communityBoard.title}</p>
                 </div>
                 <div class="div-title-container">
-                    <span class="p-username commu-text">${communityBoard.user.username}</span>
+                    <span class="p-username commu-text commu-home-username">${communityBoard.user.username}</span>
                 </div>
             </div>
 
@@ -70,7 +73,10 @@
         </div>
         <div style="height: 70px"></div>
     </div>
+    </div>
 </c:forEach>
+</div>
+</div>
 <script>history.scrollRestoration = "manual"</script>
 <script src="/js/commu.js"></script>
 </body>

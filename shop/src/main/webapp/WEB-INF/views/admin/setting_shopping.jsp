@@ -31,16 +31,16 @@
 
       <hr/>
       
-       <div class="setting-header-container">
+       <div class="setting-user-header-container">
 
         <div class="d-flex">
         
           <div class="form-group mr-2">
   			<select class="form-control" id="sel1">
 			  <option>ID</option>
-			  <option>USERNAME</option>
-			  <option>NAME</option>
-			  <option>OAUTH</option>
+			  <option>ITEMNAME</option>
+			  <option>CATEGORY</option>
+			  <option>PRICE</option>
 			</select>
 		   </div>
 		   
@@ -67,36 +67,19 @@
       </div>
       
       <div style="height: 70px;"></div>
-
-      <table class="table table-dark table-hover">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>USERNAME</th>
-            <th>NAME</th>
-            <th>EMAIL</th>
-            <th>PHONENUMBER</th>
-            <th>ADDRESS</th>
-            <th>OAUTH</th>
-            <th>CREATEDATE</th>
-          </tr>
-        </thead>
-        <tbody>
-	        <c:forEach var="user" items="${userPage.content}">
-	        	<tr onclick="aa(this)">
-		            <td>${user.id}</td>
-		            <td>${user.username}</td>
-		            <td>${user.name}</td>
-		            <td>${user.email}</td>
-		            <td>${user.phoneNumber}</td>
-		            <td>${user.address}</td>
-		            <td>${user.oauth}</td>
-		            <td>${user.createDate}</td>
-		        </tr>
-	        </c:forEach>
-        </tbody>
-      </table>
       
+		<c:forEach var="item" items="${itemPage.content}">
+		  <div class="card" style="width:400px">
+		    <img class="card-img-top" src="${item.imageUrl}" alt="Card image" style="width:100%">
+		    <div class="card-body">
+		      <h6 class="card-title">${item.name}</h6>
+		      <p class="card-text">${item.price} 원</p>
+		      <p class="card-text">${item.category}</p>
+		      <p class="card-text">${item.gender}</p>
+		    </div>
+		  </div>
+		</c:forEach>
+
     </div>
     <div style="height: 100px"></div>
     <div class="admin-pagenation-container">

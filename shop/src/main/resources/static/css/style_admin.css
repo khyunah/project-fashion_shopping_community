@@ -1,31 +1,46 @@
-.admin-menu-no1-container {
+.admin-menu-super-container {
   font-family: "IBM Plex Sans KR", sans-serif;
   padding-top: 20px;
   background-color: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
   height: 100vh;
   position: fixed;
-  width: 250px;
+  width: 180px;
   box-shadow: 0px 0px 5px #000;
 }
 
-.admin-menu-title {
-  text-align: center;
-  font-weight: bold;
+.admin-menu-list-box {
+	display: flex;
+	justify-content: center;
+}
+.admin-menu-list-item{
+	margin-bottom: 30px;
+	display: flex;
+	justify-content: center;
 }
 
-.admin-menu {
-  margin-left: 30px;
-  margin-top: 40px;
-  list-style: none;
+.admin-menu-title-box {
+	display: flex;
+	justify-content: center;
+	padding-top: 20px;
+	padding-bottom: 20px;
 }
 
-.admin-menu li a {
-  color: black;
-  font-size: 20px;
+.admin-menu-nav-img {
+	width: 50px;
+	height: 50px;
 }
 
-.admin-menu li {
-  margin-top: 5px;
-  margin-bottom: 5px;
+.admin-menu-text {
+	margin-top: 20px;
+}
+
+.setting-header-container {
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn {
+  margin-right: 10px;
 }

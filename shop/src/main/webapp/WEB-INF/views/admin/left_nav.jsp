@@ -6,24 +6,6 @@
     <meta charset="UTF-8" />
     <title>Nerdy</title>
 
-    <!-- CSS 적용 경로 -->
-    <link href="${path}/css/headerstyles.css" rel="stylesheet" />
-    <link href="/css/style_user.css" rel="stylesheet" type="text/css" />
-    <link
-      href="/css/style_community_home.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link
-      href="/css/style_community_detail.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link
-      href="/css/style_community_social.css"
-      rel="stylesheet"
-      type="text/css"
-    />
     <link href="/css/style_admin.css" rel="stylesheet" type="text/css" />
     <!-- 부트스트랩 -->
     <link
@@ -70,19 +52,47 @@
       crossorigin="anonymous"
     ></script>
 
-    <!-- summer note 설정 -->
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
-  </head>
+ </head>
 
   <body>
-    <div class="admin-menu-no1-container">
-      <h3 class="admin-menu-title">관리자 메뉴</h3>
-      <ul class="admin-menu">
-        <li><a href="#">회원관리</a></li>
-        <li><a href="#">상품관리</a></li>
-        <li><a href="#">커뮤니티관리</a></li>
-        <li><a href="#">공지사항</a></li>
-      </ul>
+    <div class="admin-menu-super-container">
+    
+    <div class="admin-menu-title-box">
+    	<h3 class="admin-menu-title">관리자 메뉴</h3>
+    </div>
+
+     <div class="admin-menu-list-box">
+       <div>
+	      	<div class="admin-menu-list-item">
+	        	<a href="#" class="btn">
+	        		<img alt="" src="/image/users_icon.png" class="admin-menu-nav-img">
+	        		<div class="admin-menu-text">회원관리</div>
+	        	</a>
+	        </div>
+	        
+	        <div class="admin-menu-list-item">
+	        	<a href="#" class="btn">
+	        		<img alt="" src="/image/product_icon.png" class="admin-menu-nav-img">
+	        		<div class="admin-menu-text">상품관리</div>
+	        	</a>
+	        </div>
+	        
+	        <div class="admin-menu-list-item">
+	        	<a href="#" class="btn">
+	        		<img alt="" src="/image/social_icon.png" class="admin-menu-nav-img">
+	        		<div class="admin-menu-text">커뮤니티관리</div>
+	        	</a>
+	        </div>
+	        
+	        <div class="admin-menu-list-item">
+	        	<a href="#" class="btn">
+	        		<img alt="" src="/image/setting_icon.png" class="admin-menu-nav-img">
+	        		<div class="admin-menu-text">설정</div>
+	        	</a>
+	        </div>
+       </div>
+     </div>
+	
     </div>
   </body>
 </html>

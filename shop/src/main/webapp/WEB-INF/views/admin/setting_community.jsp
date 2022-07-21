@@ -26,7 +26,7 @@
     <div class="container">
     
     <div style="height: 50px;"></div>
-      <h2>회원정보 관리</h2>
+      <h2>커뮤니티 관리</h2>
       <div style="height: 20px;"></div>
 
       <hr/>
@@ -39,8 +39,7 @@
   			<select class="form-control" id="sel1">
 			  <option>ID</option>
 			  <option>USERNAME</option>
-			  <option>NAME</option>
-			  <option>OAUTH</option>
+			  <option>TITLE</option>
 			</select>
 		   </div>
 		   
@@ -59,7 +58,7 @@
           
         </div>
 
-        <div class="setting-user-btn-box">
+        <div class="setting-btn-box">
           <a href="#userid포함시켜서" class="btn btn-success">수정</a>
           <a href="#userid포함시켜서" class="btn btn-warning">삭제</a>
         </div>
@@ -72,26 +71,20 @@
         <thead>
           <tr>
             <th>ID</th>
+            <th>TITLE</th>
             <th>USERNAME</th>
-            <th>NAME</th>
-            <th>EMAIL</th>
-            <th>PHONENUMBER</th>
-            <th>ADDRESS</th>
-            <th>OAUTH</th>
+            <th>LIKECOUNT</th>
             <th>CREATEDATE</th>
           </tr>
         </thead>
         <tbody>
-	        <c:forEach var="user" items="${userPage.content}">
+	        <c:forEach var="communityBoard" items="${communityBoardPage.content}">
 	        	<tr onclick="aa(this)">
-		            <td>${user.id}</td>
-		            <td>${user.username}</td>
-		            <td>${user.name}</td>
-		            <td>${user.email}</td>
-		            <td>${user.phoneNumber}</td>
-		            <td>${user.address}</td>
-		            <td>${user.oauth}</td>
-		            <td>${user.createDate}</td>
+		            <td>${communityBoard.id}</td>
+		            <td>${communityBoard.title}</td>
+		            <td>${communityBoard.user.username}</td>
+		            <td>${communityBoard.likeCount}</td>
+		            <td>${communityBoard.createDate}</td>
 		        </tr>
 	        </c:forEach>
         </tbody>
@@ -105,23 +98,17 @@
         <c:set var="isNotDisabled" value=""></c:set>
         <c:set var="isNowPage" value="active"></c:set>
 
-        <li class="page-item ${userPage.first ? isDisabled : isNotDisabled}">
-          <a
-            class="page-link"
-            href="/admin/user/select-all?page=${userPage.number - 1}"
-            >이전</a
-          >
+        <li class="page-item ${communityBoardPage.first ? isDisabled : isNotDisabled}">
+          <a class="page-link"
+            href="/admin/user/select-all?page=${communityBoardPage.number - 1}">이전</a>
         </li>
 
         <c:forEach var="num" items="${pageNumbers}">
           <c:choose>
-            <c:when test="${userPage.number + 1 eq num}">
+            <c:when test="${communityBoardPage.number + 1 eq num}">
               <li class="page-item active">
-                <a
-                  class="page-link"
-                  href="/admin/user/select-all?page=${num - 1}"
-                  >${num}</a
-                >
+                <a class="page-link"
+                  href="/admin/user/select-all?page=${num - 1}">${num}</a>
               </li>
             </c:when>
             <c:otherwise>
@@ -132,8 +119,8 @@
           </c:choose>
         </c:forEach>
 
-        <li class="page-item ${userPage.last ? isDisabled : isNotDisabled}">
-          <a class="page-link" href="/admin/user/select-all?page=${userPage.number + 1}" >다음</a>
+        <li class="page-item ${communityBoardPage.last ? isDisabled : isNotDisabled}">
+          <a class="page-link" href="/admin/user/select-all?page=${communityBoardPage.number + 1}" >다음</a>
         </li>
       </ul>
     </div>

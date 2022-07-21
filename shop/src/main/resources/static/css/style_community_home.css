@@ -1,5 +1,20 @@
+.community-home-body {
+	width: 50%;
+	display: flex;
+	justify-content: center;
+}
+
+.community-home-container {
+	width: 100%;
+}
+
 .commu-container {
   margin: 20px;
+}
+
+.commu-home-box {
+	display: flex;
+	justify-content: center;
 }
 
 .div-main-container {
@@ -9,8 +24,13 @@
 
 .div-title-container {
   width: 190px;
-  max-height: 20px;
   overflow: hidden;
+}
+
+.commu-home-title,
+.commu-home-username {
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 #commu-like-icon-box {
@@ -32,6 +52,7 @@
   line-height: 5px;
   letter-spacing: 0.8px;
   display: inline;
+  text-overflow: ellipsis;
 }
 
 .span-goodlook-count {
