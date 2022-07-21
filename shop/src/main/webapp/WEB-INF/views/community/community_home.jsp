@@ -34,7 +34,7 @@
           <!--
         <i style="color: black;" class="fa-regular fa-heart fa-lg"></i>
         -->
-          <button class="btn-good">Good Look</button>
+          <button class="btn-good commu-btn">Good Look</button>
           <span class="span-goodlook-count commu-text">1,000K</span>
         </div>
 
@@ -70,7 +70,7 @@
 
         <div>
           <i class="fa-regular fa-pen-to-square"></i>
-          <button class="btn-up">up</button>
+          <button class="btn-up commu-btn">up</button>
           <div>
             <input type="text" placeholder="한 마디" class="input-reply commu-input" />
           </div>

@@ -19,7 +19,7 @@ spring:
       maximumPoolSize: 10
       maxLifetime: 1800000
       poolName: HikariCP
-      readOnly: false
+      readOnly: false 
     
   jpa:
     open-in-view: true
@@ -34,4 +34,18 @@ spring:
 
   jackson:
     serialization:
-      fail-on-empty-beans: false
+      fail-on-empty-beans: false  
+
+  security:
+    user:
+      name: test
+      password: 1234              
+        
+  servlet:
+    multipart:
+      max-file-size: 20MB # 파일 하나의 최대 용량
+      max-request-size: 200MB
+      
+file:
+  path: C:/projectImageDir/shop/upload/  
+      

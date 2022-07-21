@@ -2,10 +2,12 @@ package com.shop.fashion.model;
 
 import java.sql.Timestamp;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -28,10 +30,15 @@ public class Reply {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@ManyToOne
-	@JsonIgnoreProperties({"replies", "images", "itemLink", "user"})
-	private Board board;
+	@JoinColumn(name = "boardId")
+	@JsonIgnoreProperties({"replies", "itemLink", "user", "content"})
+	private CommunityBoard board;
 	@ManyToOne
+	@JoinColumn(name = "userId")
+	@JsonIgnoreProperties({"password", "role", "email", "oauth"})
 	private User user;
+	@Column(nullable = false, length = 200)
+	private String content;
 	@CreationTimestamp
 	private Timestamp createDate;
 }
