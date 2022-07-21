@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp" %>
 
+<div class="user-header-line"><h2 class="user-header-text">U p d a t e</h2></div>
+<div style="height: 40px;"></div>
+
 <c:choose>
 	<c:when test="${principal.user.oauth == 'ORIGIN'}">
 		<c:set var="isOauth" value="origin"></c:set>
@@ -38,7 +41,7 @@
 				<div>
 					<label class="user-input-label">
 						<span class="label-txt">ENTER YOUR PASSWORD</span>
-						<input id="password" type="paaword" class="input" name="password" required>
+						<input id="password" type="password" class="input" name="password" required>
 						<div class="line-box">
 							<div class="line"></div>
 						</div>

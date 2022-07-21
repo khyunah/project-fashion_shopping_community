@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp" %>
 
+<div class="user-header-line"><h2 class="user-header-text">J o i n</h2></div>
+<div style="height: 40px;"></div>
+
 <form class="user-form" action="/security/join-user" method="post" onsubmit="return checkPassword()">
 
     <div class="user-input-container">
@@ -12,9 +15,10 @@
                 <div class="line"></div>
             </div>
         </label>
-
-        <span class="user-check-span" id="checkIdResult"></span>
-
+		
+		<div>
+        	<span class="user-check-span" id="checkIdResult"></span>
+		</div>
         <div class="user-empty-box"></div>
         <div class="user-empty-box"></div>
         <div class="user-empty-box"></div>
@@ -29,7 +33,7 @@
             <div>
                 <label class="user-input-label">
                     <span class="label-txt">ENTER YOUR PASSWORD</span>
-                    <input value="aa" id="password" type="paaword" class="input" name="password" required>
+                    <input value="aa" id="password" type="password" class="input" name="password" required>
                     <div class="line-box">
                         <div class="line"></div>
                     </div>
@@ -121,9 +125,11 @@
        $("#password, #passwordCheck").keyup(function () {
            let password = $("#password").val();
            let passwordCheck = $("#passwordCheck").val();
-           if (password == passwordCheck) {
+           if(password == "" && passwordCheck == "") {
+               $("#checkPasswordResult").text("");
+           } else if (password == passwordCheck) {
                $("#checkPasswordResult").text("일치");
-           } else {
+           } else if (password != passwordCheck) {
                $("#checkPasswordResult").text("불일치");
            }
        });
