@@ -15,49 +15,20 @@
       <div class="cardWrap cardWrapRight">
         <div class="container index-container">
           
+          <c:forEach var="item" items="${itemList}" begin="0" end="3" varStatus="status">
+              
           <div class="card cardRight">
             <div>
-            <img class="cardRightImgBox" src="${itemList[0].imageurl}">
+            <img class="cardRightImgBox" src="${status.current.imageurl}">
             </div>
             <div class="card-body index-card-body">
-              <h4 class="card-title">${itemList[0].name}</h4>
-              <p class="card-text">${itemList[0].price}</p>
-              <button class="cardRightBtn">See Detail</button>
+              <h4 class="card-title">상품명 : ${status.current.name}</h4>
+              <p class="card-text">가격 : ${status.current.price}</p>
+              <button class="cardRightBtn" onclick="location.href='shop/itemdetail_form/${status.current.id}'">See Detail</button>
             </div>
           </div>
 
-          <div class="card cardRight">
-            <div>
-            <img class="cardRightImgBox" src="${itemList[1].imageurl}">
-            </div>
-            <div class="card-body index-card-body">
-              <h4 class="card-title">${itemList[1].name}</h4>
-              <p class="card-text">${itemList[1].price}</p>
-              <button class="cardRightBtn">See Detail</button>
-            </div>
-          </div>
-
-          <div class="card cardRight">
-            <div>
-            	<img class="cardRightImgBox" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ6yI5v-1UCyMx8CdTpABg9QzItPHcPLZh7_1ZnzOpTg&s">
-            </div>
-            <div class="card-body index-card-body">
-              <h4 class="card-title">3</h4>
-              <p class="card-text">Some example text3.</p>
-              <button class="cardRightBtn">See Detail</button>
-            </div>
-          </div>
-
-          <div class="card cardRight">
-            <div>
-            <img class="cardRightImgBox" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ6yI5v-1UCyMx8CdTpABg9QzItPHcPLZh7_1ZnzOpTg&s">
-            </div>
-            <div class="card-body index-card-body">
-              <h4 class="card-title">4</h4>
-              <p class="card-text">Some example text4.</p>
-              <button class="cardRightBtn">See Detail</button>
-            </div>
-          </div>
+          </c:forEach>
         </div><!-- container -->
       </div>
  
