@@ -83,7 +83,7 @@
         <div class="commu-profile-box">
             <img class="card-img-top commu-profile-img" src="/image/profile.jpg" alt="Card image">
             <div class="card-body commu-profile-text-box">
-              <h5 class="card-title" id="commu-profile-username">John Doe</h5>
+              ﻿<h5 class="card-title" id="commu-profile-username">${principal.user.username}</h5>
               <p class="card-text">Some example text.</p>
               <a href="#" class="commu-profile-btn commu-profile-btn-my">나의 소셜</a>
               <a href="#" class="commu-profile-btn commu-profile-btn-update-profile">프로필 수정</a>

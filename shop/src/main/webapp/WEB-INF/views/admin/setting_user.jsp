@@ -1,27 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix= "c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<sec:authorize access="isAuthenticated()">
-  <sec:authentication property="principal" var="principal" />
-</sec:authorize>
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Nerdy</title>
-
-	<link href="/css/style_admin.css" rel="stylesheet" type="text/css" />
-	<link href="/css/style_admin_user.css" rel="stylesheet" type="text/css" />
-
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-	<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-  </head>
-
-  <body>
-  <%@ include file="left_nav.jsp" %>
+<%@ include file="left_nav.jsp" %>
 
     <div class="container">
     
@@ -60,8 +39,8 @@
         </div>
 
         <div class="setting-user-btn-box">
-          <a href="#userid포함시켜서" class="btn btn-success">수정</a>
-          <a href="#userid포함시켜서" class="btn btn-warning">삭제</a>
+          <a href="#userid포함시켜서" class="btn btn-success">권한설정</a>
+          <a href="#userid포함시켜서" class="btn btn-danger">삭제</a>
         </div>
         
       </div>

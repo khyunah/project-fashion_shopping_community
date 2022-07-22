@@ -1,32 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix= "c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<sec:authorize access="isAuthenticated()">
-  <sec:authentication property="principal" var="principal" />
-</sec:authorize>
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Nerdy</title>
-
-	<link href="/css/style_admin.css" rel="stylesheet" type="text/css" />
-	<link href="/css/style_admin_user.css" rel="stylesheet" type="text/css" />
-
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-	<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-  </head>
-
-  <body>
-  <%@ include file="left_nav.jsp" %>
+<%@ include file="left_nav.jsp" %>
 
     <div class="container">
     
     <div style="height: 50px;"></div>
-      <h2>회원정보 관리</h2>
+      <h2>상품정보 관리</h2>
       <div style="height: 20px;"></div>
 
       <hr/>
@@ -59,28 +38,30 @@
           
         </div>
 
-        <div class="setting-user-btn-box">
-          <a href="#userid포함시켜서" class="btn btn-success">수정</a>
-          <a href="#userid포함시켜서" class="btn btn-warning">삭제</a>
-        </div>
+	        <div class="setting-btn-box">
+	          <a href="/admin/shopping/save_form" class="btn btn-warning">등록</a>
+	          <a href="#userid포함시켜서" class="btn btn-success">수정</a>
+	          <a href="#userid포함시켜서" class="btn btn-danger">삭제</a>
+	        </div>
         
       </div>
       
-      <div style="height: 70px;"></div>
-      
-		<c:forEach var="item" items="${itemPage.content}">
-		  <div class="card" style="width:400px">
-		    <img class="card-img-top" src="${item.imageUrl}" alt="Card image" style="width:100%">
-		    <div class="card-body">
-		      <h6 class="card-title">${item.name}</h6>
-		      <p class="card-text">${item.price} 원</p>
-		      <p class="card-text">${item.category}</p>
-		      <p class="card-text">${item.gender}</p>
-		    </div>
-		  </div>
-		</c:forEach>
-
-    </div>
+		<div style="height: 70px;"></div>
+		
+		<div class="admin-item-container">
+			<c:forEach var="item" items="${itemPage.content}">
+				<div class="card admin-item-box">
+				<img class="card-img-top" src="${item.imageurl}" alt="Card image" style="width:100%">
+				<div class="card-body admin-item-list">
+					<h5 class="card-title">상품명 _ ${item.name}</h5>
+					<p class="card-text">가격 _ ${item.price} 원</p>
+					<p class="card-text">카테고리 _ ${item.category}</p>
+					<p class="card-text">젠더 _ ${item.gender}</p>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+		
     <div style="height: 100px"></div>
     <div class="admin-pagenation-container">
       <ul class="pagination justify-content-center">

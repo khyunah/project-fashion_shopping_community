@@ -44,3 +44,23 @@
 .btn {
   margin-right: 10px;
 }
+
+.admin-item-container {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.admin-item-box {
+	width: 250px;
+	height: 440px;
+	padding: 8px;
+	margin: 30px 10px;
+}
+
+.admin-item-list {
+	padding: 0px;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
