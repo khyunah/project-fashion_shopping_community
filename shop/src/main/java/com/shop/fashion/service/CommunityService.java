@@ -28,16 +28,13 @@ public class CommunityService {
 	
 	@Value("${file.path}")
 	private String uploadFolder;
-	
 	@Autowired
 	private CommunityRepository communityRepository;
-
 	@Autowired
 	private CommunityReplyRepository communityReplyRepository;
-
 	@Autowired
 	private CommunityLikeRepository communityLikeRepository;
-
+	
 	@Transactional
 	public Page<CommunityBoard> getCommunityBoardList(Pageable pageable) {
 		return communityRepository.findAll(pageable);

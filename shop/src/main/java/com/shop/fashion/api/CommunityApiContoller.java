@@ -1,8 +1,9 @@
 package com.shop.fashion.api;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,12 +26,6 @@ public class CommunityApiContoller {
 
 	@Autowired
 	CommunityService communityService;
-
-	@GetMapping("/api/boardList")
-	public List<CommunityBoard> boardList() {
-		List<CommunityBoard> bordList = communityService.getCommunityBoardList();
-		return bordList;
-	}
 
 	@PutMapping("/api/board/{id}")
 	public ResponseDto<Integer> update(@PathVariable int id, @RequestBody CommunityBoard board) {
