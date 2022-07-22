@@ -83,7 +83,7 @@
         </thead>
         <tbody>
 	        <c:forEach var="user" items="${userPage.content}">
-	        	<tr onclick="aa(this)">
+	        	<tr onclick="clickList(this)">
 		            <td>${user.id}</td>
 		            <td>${user.username}</td>
 		            <td>${user.name}</td>

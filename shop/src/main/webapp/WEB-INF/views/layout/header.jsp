@@ -72,7 +72,7 @@ pageEncoding="UTF-8"%>
            	 	<c:when test="${principal.user eq null}">
               <li class="nav-item">
                 <a class="nav-link text-dark" 
-                   href="/user/update_form" 
+                   href="/community/social-main" 
                    style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">SOSIAL</a>
               </li>
         <li class="nav-item">
@@ -101,7 +101,7 @@ pageEncoding="UTF-8"%>
               <!-- 로그인 성공하면(회원이면) 글 작성 가능 -->
               <li class="nav-item">
                 <li class="nav-item">
-                  <a class="nav-link text-dark" href="#" style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">SOSIAL</a>
+                  <a class="nav-link text-dark" href="/community/social-main" style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">SOSIAL</a>
                 </li>
                <li class="nav-item">
   			<div class="dropdown">
@@ -112,6 +112,7 @@ pageEncoding="UTF-8"%>
 				      <a href="/shop/mans_form" style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">MAN's</a>
 				      <a href="/shop/save_form" style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">WOMAN's</a>
 				      <a href="/shop/basket_form" style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">ACCESSORIES</a>
+				      <a href="/board/write" style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">write</a>
 			    </div>
 			  </div> 
 			</li>
@@ -134,7 +135,7 @@ pageEncoding="UTF-8"%>
               <!-- 로그인 성공하면(회원이면) 글 작성 가능 -->
               <li class="nav-item">
                 <li class="nav-item">
-                  <a class="nav-link text-dark" href="/auth/join_form" style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">SOSIAL</a>
+                  <a class="nav-link text-dark" href="/community/social-main" style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">SOSIAL</a>
                 </li>
                <li class="nav-item">
   			<div class="dropdown">
@@ -148,15 +149,12 @@ pageEncoding="UTF-8"%>
 			    </div>
 			  </div> 
 			</li>
-                <a
-                  class="nav-link text-dark"
+                <a class="nav-link text-dark"
                   href="/board/cart_form/${principal.user.id}"
-                  ><img src="/image/basket.png" class="basket"></a
-                >
+                  ><img src="/image/basket.png" class="basket"></a>
               <li class="nav-item">
                 <a class="nav-link text-dark" href="/user/update_form"
-                  ><img src="/image/myinfo.png" class="myinfo"></a
-                >
+                  ><img src="/image/myinfo.png" class="myinfo"></a>
               </li>
               <li class="nav-item">
                 <!-- 시큐리티를 적용하면 자동 로그아웃 처리 된다. -->

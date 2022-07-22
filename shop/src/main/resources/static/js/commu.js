@@ -1,11 +1,6 @@
 let commu = {
 	
 	init: function(){
-		
-		$(".commu-detail-btn-reply-update").bind('click', () => {
-			this.updateBtnReply();
-		});
-
 		$(document).on('click', ".commu-detail-btn-reply-update-finish", function(){
 			commu.finishUpdateReply();
 		});
