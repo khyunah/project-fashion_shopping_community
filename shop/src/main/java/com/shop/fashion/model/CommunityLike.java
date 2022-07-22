@@ -30,9 +30,9 @@ public class CommunityLike {
 	private int isLike;
 	@ManyToOne
 	@JoinColumn(name = "boardId")
-	@JsonIgnoreProperties({"replies", "itemLink", "user", "content"})
+	@JsonIgnoreProperties({ "replies", "itemLink", "user", "content" })
 	private CommunityBoard board;
 	@ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "userId")
-    private User user;
+	@JoinColumn(name = "userId")
+	private User user;
 }

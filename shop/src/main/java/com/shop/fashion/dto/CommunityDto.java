@@ -3,7 +3,6 @@ package com.shop.fashion.dto;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.shop.fashion.model.CommunityBoard;
-import com.shop.fashion.model.Image;
 import com.shop.fashion.model.User;
 
 import lombok.AllArgsConstructor;
@@ -29,7 +28,6 @@ public class CommunityDto {
 				.user(user)
 				.content(content)
 				.title(title)
-				.itemLink("")
 				.originImageTitle(file.getOriginalFilename())
 				.build();
 	}

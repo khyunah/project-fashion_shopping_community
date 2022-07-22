@@ -32,19 +32,18 @@ public class UserApiController {
 		User checkUser = userService.checkUsername(dto.getUsername());
 		return new ResponseDto<>(HttpStatus.OK.value(), checkUser);
 	}
-	
-	// 회원정보 수정 
+
+	// 회원정보 수정
 	@PutMapping("/user/update")
-	public ResponseDto<User> updateUser(@RequestBody User user, @AuthenticationPrincipal PrincipalUserDetail userDetail) {
-		System.out.println("1111111111111");
-		System.out.println(userDetail);
-		
+	public ResponseDto<User> updateUser(@RequestBody User user,
+			@AuthenticationPrincipal PrincipalUserDetail userDetail) {
+
 		User updateUserEntity = userService.updateUser(user);
-		System.out.println("돌아옴");
-		Authentication authentication = authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
+
+		Authentication authentication = authenticationManager
+				.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
-		
+
 		return new ResponseDto<User>(HttpStatus.OK.value(), updateUserEntity);
 	}
 

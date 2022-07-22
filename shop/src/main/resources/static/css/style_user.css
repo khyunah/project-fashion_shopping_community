@@ -1,3 +1,15 @@
+.user-header-line {
+	padding-top: 30px;
+	padding-bottom: 40px;
+	display: flex;
+	justify-content: center;
+	background-color: black;
+}
+
+.user-header-text {
+	color: white;
+}
+
 .user-form {
     width: 70%;
     min-width: 600px;

@@ -2,11 +2,11 @@
 	
 		
 		<li id="card-list" class="card lCard" onclick="location.href='/community/${communityBoard.id}'">
-            <div class="commu-container">
+            <div class="commu-container" >
               <div class = "leftImgBox">
                 <img class="commu-img" alt="" src="http://localhost:9090/upload/${communityBoard.imageUrl}"/>
               </div>
-			
+
               <div class="div-main-container">
                 <div>
                   <button class="btn-good">Good Look</button>

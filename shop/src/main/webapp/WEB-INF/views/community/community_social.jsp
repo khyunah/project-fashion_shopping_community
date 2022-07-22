@@ -2,115 +2,103 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp" %>
 
-	<input id="communityBoardId" type="hidden" value="${communityBoard.id}"/>
-	<input id="communityReplyUser" type="hidden" value="${principal.user}"/>
+    <div class="community-container">
+        <c:forEach var="communityBoard" items="${communityBoardList.content}">
+            <input id="pageSize" type="hidden" value="${communityBoardList.pageable.pageSize}">
 
-    <div class="commu-detail-center-container">
-      <div class="commu-detail-container">
-        <div class="commu-detail-img-container">
-        <!-- ---------------------------------
-	        TODO 
-	        이미지 주소 사용자가 올린 주소로 고치기  
-        ---------------------------------- -->
-          <img class="commu-detail-img" alt="" src="/image/model1.jpg" />
-        </div>
-
-        <div class="commu-detail-trim"></div>
-
-        <div class="commu-detail-div-main-container">
-          <div>
-            <div class="commu-detail-like-icon-box" id="commu-detail-like-icon-box">
-		        <c:choose>
-		        	<c:when test="${like.user.username != null}">
-		        		<i class="fa-solid fa-heart fa-lg" style="color: rgb(240, 81, 115)"></i>
-		        	</c:when>
-		        	<c:otherwise>
-		        		<i style="color: black" id="before-like" class="fa-regular fa-heart fa-lg"></i>
-		        	</c:otherwise>
-		        </c:choose>
-            </div>
-
-            <span id="likeCount" class="commu-detail-span-goodlook-count commu-detail-text">${communityBoard.replyCount}</span>
-          </div>
-
-          <hr class="hr-goodlook-line" />
-
-          <div style="height: 10px"></div>
-
-          <div>
-            <div class="commu-detail-div-title-container">
-              <p class="commu-detail-text commu-detail-title">${communityBoard.title}</p>
-            </div>
-            <div class="commu-detail-div-title-container">
-              <span class="p-username commu-detail-text">${communityBoard.user.username}</span>
-            </div>
-          </div>
-
-          <div style="height: 20px"></div>
-
-          <div>
-            <div class="commu-detail-div-content-container">
-              <span class="commu-detail-span-content commu-detail-text">${communityBoard.content}</span>
-            </div>
-          </div>
-
-          <div style="height: 20px"></div>
-
-          <div>
-          	<div class="commu-detail-reply-first-line-box">
-          		<i class="fa-regular fa-pen-to-square"></i>
-            	<button id="commu-detail-btn-up" class="commu-detail-btn-up commu-detail-btn">up</button>
-          	</div>
-            <div>
-              <input
-                type="text"
-                placeholder="한 마디"
-                id="commu-input-reply"
-                class="commu-input-reply commu-detail-input"/>
-            </div>
-          </div>
-          
-          <div style="height: 20px"></div>
-
-          <div class="commu-detail-reply-container">
-          	<c:forEach var="reply" items="${communityBoard.replies}">
-          		<div class="commu-detail-reply-firstline-container" id="reply-${reply.id}">
-	              <span class="commu-detail-reply-user commu-detail-reply-text">${reply.user.username}</span>
-	              <div id="commu-detail-reply-btn-box">
-	                <button class="commu-detail-btn-reply-update commu-detail-btn-reply">
-	                  수정
-	                </button>
-	                <button class="commu-detail-btn-reply-delete commu-detail-btn-reply">
-	                  삭제
-	                </button>
-	              </div>
-	            </div>
-	            <div id="commu-detail-reply-content-box">
-	            	<textarea class="commu-detail-reply-content commu-detail-reply-text" readonly>${reply.content}</textarea>
-	            </div>
-          	</c:forEach>
+            <div class="commu-social-container">
             
-          </div>
+                <input id="userId" type="hidden" value="${principal.user}" />
+                <input id="communityBoardId" type="hidden" value="${communityBoard.id}" />
+                
+                <div class="commu-container">
+                    <div style="height: 20px"></div>
+                    <div class="commu-social-img-box">
+                        <img class="commu-social-img" alt="" src="/image/model1.jpg">
+                    </div>
+
+                    <div class="commu-social-main-container">
+                        <div id="commu-icon-box-${communityBoard.id}">
+                            <div class="commu-like-icon-box" onclick="commu.communityLike(${communityBoard.id}, ${communityBoard.likeCount})">
+                                <c:set var="myLike" value="0"></c:set>
+                                <c:forEach var="like" items="${likeList}">
+                                    <c:if test="${like.board.id == communityBoard.id}">
+                                        <c:set var="myLike" value="ok"></c:set>
+                                    </c:if>
+                                </c:forEach>
+
+                                <c:choose>
+                                    <c:when test="${myLike == 'ok'}">
+                                        <i class="fa-solid fa-heart fa-lg" style="color: rgb(240, 81, 115)"></i>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <i style="color: black" id="before-like" class="fa-regular fa-heart fa-lg"></i>
+                                    </c:otherwise>
+                                </c:choose>
+                                <span id="likeCount-${communityBoard.id}"
+                                class="commu-social-span-goodlook-count commu-text">${communityBoard.likeCount}</span>
+                            </div>
+                            
+                        </div>
+
+                        <hr class="commu-social-hr-goodlook-line" />
+
+                        <div style="height: 10px"></div>
+
+                        <div>
+                            <div class="commu-social-div-title-container">
+                                <h4 class="commu-text commu-social-title">${communityBoard.title}</h4>
+                            </div>
+                            <div style="height: 10px"></div>
+                            <div class="commu-social-div-title-container">
+                                <span class="commu-social-p-username commu-text">${communityBoard.user.username}</span>
+                            </div>
+                        </div>
+
+                        <div style="height: 40px"></div>
+
+                        <div>
+                            <div class="div-content-container">
+                                <span class="commu-social-span-content commu-text">${communityBoard.content}</span>
+                            </div>
+                        </div>
+
+                        <div style="height: 50px"></div>
+
+                        <div>
+                            <div class="commu-reply-firstline">
+                                <button type="button" class="btn-up commu-btn" id="commu-btn-insert-${communityBoard.id}" onclick="commu.insertReply(${communityBoard.id}, ${principal.user.id})">up</button>
+                            </div>
+
+                            <div>
+                                <input type="text" placeholder="한 마디" class="commu-social-input-reply commu-social-input"
+                                    id="commu-input-reply-${communityBoard.id}" />
+                            </div>
+                        </div>
+                    </div>
+                    <div style="height: 150px"></div>
+                </div>
+            </div>
+	    </c:forEach>
+        <div class="commu-profile-box">
+            <img class="card-img-top commu-profile-img" src="/image/profile.jpg" alt="Card image">
+            <div class="card-body commu-profile-text-box">
+              <h5 class="card-title" id="commu-profile-username">John Doe</h5>
+              <p class="card-text">Some example text.</p>
+              <a href="#" class="commu-profile-btn commu-profile-btn-my">나의 소셜</a>
+              <a href="#" class="commu-profile-btn commu-profile-btn-update-profile">프로필 수정</a>
+              <a href="#" class="commu-profile-btn commu-profile-btn-write-community-board">글쓰기</a>
+            </div>
         </div>
-        <div style="height: 70px"></div>
-      </div>
     </div>
-<script src="/js/commu-detail.js">
 
-</script>
-<script>
-	$(document).ready(function () {
-	  fixTextAreaHeight();
-	});
-	
-	// 댓글 불러온것 뿌릴때 태그의 높이 지정해줌
-	function fixTextAreaHeight() {
-	  var textEle = $(".commu-detail-reply-content");
-	  textEle[0].style.height = "auto";
-	  var textEleHeight = textEle.prop("scrollHeight");
-	  textEle.css("height", textEleHeight);
-	}
+	<p id="result"></p>
+	<input id="pageNumber" type="hidden" value="${communityBoardList.number}">
 
-</script>
-  </body>
+    <script>history.scrollRestoration = "manual"</script>
+    <script src="/js/commu.js"></script>
+    <script src="/js/index.js"></script>
+    
+</body>
+
 </html>

@@ -21,7 +21,7 @@ public class UserService {
 	// 회원가입
 	@Transactional
 	public User joinUser(User user) {
-		if(user.getOauth() == null) {
+		if (user.getOauth() == null) {
 			user.setOauth(OAuthType.ORIGIN);
 		}
 		user.setRole(RollType.USER);
@@ -29,16 +29,16 @@ public class UserService {
 		System.out.println(user.getPassword());
 		return userRepository.save(user);
 	}
-	
+
 	// 아이디 중복 체크
 	@Transactional()
 	public User checkUsername(String username) {
-		User userTemp =  userRepository.findByUsername(username).orElseGet(() -> {
+		User userTemp = userRepository.findByUsername(username).orElseGet(() -> {
 			return new User();
 		});
 		return userTemp;
 	}
-	
+
 	// 회원정보 수정
 	@Transactional
 	public User updateUser(User user) {
@@ -56,9 +56,8 @@ public class UserService {
 		return originUser;
 	}
 
-	
 	public User getUser(int id) {
 		return userRepository.findById(id).get();
-		}
+	}
 
 }

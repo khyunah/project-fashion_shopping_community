@@ -11,7 +11,7 @@ import com.shop.fashion.repository.UserRepository;
 
 @Service
 public class PrincipalUserDetailService implements UserDetailsService {
-	
+
 	@Autowired
 	private UserRepository userRepository;
 

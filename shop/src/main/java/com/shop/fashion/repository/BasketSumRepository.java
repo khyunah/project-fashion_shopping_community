@@ -34,14 +34,11 @@ public class BasketSumRepository {
 	
 		Query nativeQuery = em.createNativeQuery(quertyStr);
 		
-		
 		// QLRM  
 		JpaResultMapper jpaResultMapper = new JpaResultMapper();
 		// list 
 		dto = jpaResultMapper.list(nativeQuery, BasketSumDto.class);
 		
-
-		// object있을까? 
 		return dto;
 	}
 }

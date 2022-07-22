@@ -1,20 +1,8 @@
-let commu_detail = {
+let commu = {
 	
 	init: function(){
-		$("#commu-detail-btn-up").bind('click', () => {
-			this.insertReply();
-		});
-		
-		$(".commu-detail-btn-reply-update").bind('click', () => {
-			this.updateBtnReply();
-		});
-		
-		$("#commu-detail-like-icon-box").bind('click', () => {
-			this.communityLike();
-		});
-		
 		$(document).on('click', ".commu-detail-btn-reply-update-finish", function(){
-			commu_detail.finishUpdateReply();
+			commu.finishUpdateReply();
 		});
 		
 
@@ -26,12 +14,10 @@ let commu_detail = {
 	},
 	
 	// 댓글쓰기
-	insertReply: function() {
-		let communityBoardId = $("#communityBoardId").val();
-		let userId = $("#userId").val();
-		
+	insertReply: function(communityBoardId, userId) {
+
 		let data = {
-			content: $("#commu-input-reply").val(),
+			content: $(`#commu-input-reply-${communityBoardId}`).val(),
 		}
 
 		$.ajax({
@@ -41,11 +27,9 @@ let commu_detail = {
 			contentType: "application/json; charset=utf-8",
 			dataType: "json"
 		}).done(function(response){
-			console.log("성공");
-			console.log(response);
-			addReply(response.data, userId);
+			addReply(response.data, userId, communityBoardId);
 		}).fail(function(error){
-			console.log("실패");
+
 		});
 	},
 	
@@ -72,11 +56,11 @@ let commu_detail = {
 	},
 	
 	// 댓글 수정 완료시 
-	finishUpdateReply: function(){
+	finishUpdateReply: function(replyId){
 		console.log("완료버튼 누름");
 		let data = {
-			id: $("#replyId").val(),
-			content: $(".commu-detail-reply-content").text(),
+			id: replyId,
+			content: $(`.commu-detail-reply-origin-content-${replyId}`).text(),
 		}
 		console.log(data.content); 
 		
@@ -96,21 +80,18 @@ let commu_detail = {
 	},
 	
 	// 좋아요
-	communityLike: function(){
-		let communityBoardId = $("#communityBoardId").val();
-		let likeCount = $("#likeCount").text();
-		
+	communityLike: function(communityBoardId, likeCount){
+
 		$.ajax({
 			type: "GET",
 			url: `/community/check-like/${communityBoardId}`,
 			dataType: "json"
 		}).done(function(response){
-			changeLikeIcon(response, likeCount);
+			changeLikeIcon(response, communityBoardId, likeCount);
 		}).fail(function(error){
 			alert('서버오류 ! 다시 실행해주세요.');
 		});
 	}, 
-	
 	
 	boardUpdate: function() {
 		let id = $("#boardId").val();
@@ -160,7 +141,7 @@ let commu_detail = {
 }
 
 // 댓글 추가 
-function addReply(reply, userId){
+function addReply(reply, userId, communityBoardId){
 	let childReply = `
 		<div id="commu-reply-${reply.id}">
 			<input id="replyId" type="hidden" value="${reply.id}"/>
@@ -168,23 +149,23 @@ function addReply(reply, userId){
 		      <span class="commu-detail-reply-user commu-detail-reply-text">${reply.user.username}</span>
 		      <div id="commu-detail-reply-btn-box">
               	<c:if test="${reply.user.id == userId}">
-              		<button onclick="commu_detail.updateBtnReply()" class="commu-detail-btn-reply-update commu-detail-btn-reply">
+              		<button onclick="commu.updateBtnReply()" class="commu-detail-btn-reply-update commu-detail-btn-reply">
 	                  수정
 	                </button>
-	                <button onclick="commu_detail.deleteReply()" class="commu-detail-btn-reply-delete commu-detail-btn-reply">
+	                <button onclick="commu.deleteReply()" class="commu-detail-btn-reply-delete commu-detail-btn-reply">
 	                  삭제
 	                </button>
               	</c:if>
 		      </div>
 		    </div>
-		    <div id="commu-detail-reply-content-box">
-		    	<textarea class="commu-detail-reply-content commu-detail-reply-text" readonly>${reply.content}</textarea>
+		    <div id="commu-detail-reply-content-box-${reply.id}">
+		    	<textarea id="commu-detail-reply-origin-content-${reply.id}" class="commu-detail-reply-content commu-detail-reply-text">${reply.content}</textarea>
 		    </div>
 		</div>
 	`;
 	
 	$(".commu-detail-reply-container").prepend(childReply);
-	$("#commu-input-reply").val("");
+	$(`#commu-input-reply-${communityBoardId}`).val("");
 }
 
 function removeReply(replyId){
@@ -207,18 +188,31 @@ function changeReply(){
 }
 
 // 좋아요 아이콘 변경 함수
-function changeLikeIcon(response, likeCount){
+function changeLikeIcon(response, communityBoardId,  likeCount){
 	if(response.data == null){
-		document.getElementById("commu-detail-like-icon-box").innerHTML =
-			'<i style="color: black" id="before-like" class="fa-regular fa-heart fa-lg"></i>';
 		likeCount--;
-		$("#likeCount").text(likeCount);
+		document.getElementById(`commu-icon-box-${communityBoardId}`).innerHTML =
+			`
+				<div onclick="commu.communityLike(${communityBoardId}, ${likeCount})">
+
+	        		<i style="color: black" id="before-like" class="fa-regular fa-heart fa-lg"></i>
+	
+					<span id="likeCount-${communityBoardId}" class="commu-social-span-goodlook-count commu-social-text">${likeCount}</span>
+	            </div>
+			`;
+
 	} else {
-		document.getElementById("commu-detail-like-icon-box").innerHTML =
-			'<i class="fa-solid fa-heart fa-lg" style="color: rgb(240, 81, 115)"></i>';
 		likeCount++;
-		$("#likeCount").text(likeCount);
+		document.getElementById(`commu-icon-box-${communityBoardId}`).innerHTML =
+			`
+				<div onclick="commu.communityLike(${communityBoardId}, ${likeCount})">
+	
+	        		<i class="fa-solid fa-heart fa-lg" style="color: rgb(240, 81, 115)"></i>
+
+					<span id="likeCount-${communityBoardId}" class="commu-social-span-goodlook-count commu-social-text">${likeCount}</span>
+	            </div>
+			`;
 	}
 }
 
-commu_detail.init();
+commu.init();

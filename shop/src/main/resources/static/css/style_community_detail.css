@@ -1,3 +1,18 @@
+.commu-detail-btn-container {
+	width: 120px;
+	height: 150px;
+	margin-left: 30px;
+	background-color: rgba(0, 0, 0, 0.904);
+	padding-top: 30px;
+}
+
+.commu-detail-btn-box {
+	margin-bottom: 8px;
+	display: flex;
+	justify-content: center;
+
+}
+
 .commu-detail-center-container {
   width: 100%;
   height: 100%;
@@ -7,11 +22,13 @@
 
 .commu-detail-container {
   display: flex;
-  width: 80vh;
   height: 80vh;
   position: absolute;
-  margin: auto;
-  top: 10%;
+  margin-left: 13%;
+  margin-right: 13%;
+  padding-left: 8%;
+  padding-right: 8%;
+  box-shadow: 1px 2px 2px 1px;
 }
 
 .commu-detail-img-container {
@@ -117,7 +134,7 @@
 
 .commu-detail-reply-first-line-box {
 	display: flex;
-	justify-content: space-between;
+	justify-content: end;
 }
 
 .commu-detail-btn-up:active {
@@ -127,6 +144,12 @@
 
 .commu-detail-reply-container {
   width: 93%;
+}
+
+.hr-goodlook-line-detail {
+  width: 100%;
+  margin-left: 0;
+  border-top: 1px solid #dcdcdc;
 }
 
 .commu-detail-reply-firstline-container {
@@ -152,6 +175,18 @@
   color: black;
   width: 38px;
   font-size: 11px;
+}
+
+.commu-detail-input-reply {
+  display: inline;
+  width: 100%;
+  height: 32px;
+  font-size: 14px;
+  border: 0;
+  border-bottom: 1px solid black;
+  outline: none;
+  padding-left: 10px;
+  background-color: rgb(255, 255, 255);
 }
 
 .commu-detail-reply-content {

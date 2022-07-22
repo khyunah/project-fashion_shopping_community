@@ -33,48 +33,41 @@ import lombok.Setter;
 @Builder
 @Entity
 public class CommunityBoard {
-	
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "userId")
-    private User user;
-    
-    @Column(nullable = false)
-    private String title;
- 
-    // 지울 예정
-    private int reaction;
-    
-    @ColumnDefault(value = "0")
-    private int likeCount;
-    
-    @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
-    @JsonIgnoreProperties({"board", "user"})
-    @OrderBy("id desc")
-    private List<CommunityLike> communityLikes;
-    
-    @Column(nullable = false)
-    private String itemLink;
-    
-    @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
-    @JsonIgnoreProperties({"board", "content", "user"})
-    @OrderBy("id desc")
-    private List<Reply> replies;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "userId")
+	private User user;
 
-    @CreationTimestamp
-    private Timestamp createDate;
-	
-    @Column(nullable = false)
+	@Column(nullable = false)
+	private String title;
+
+	@ColumnDefault(value = "0")
+	private int likeCount;
+
+	@OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties({ "board", "user" })
+	@OrderBy("id desc")
+	private List<CommunityLike> communityLikes;
+
+	@OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties({ "board", "content", "user" })
+	@OrderBy("id desc")
+	private List<Reply> replies;
+
+	@CreationTimestamp
+	private Timestamp createDate;
+
+	@Column(nullable = false)
 	private String content;
-	
+
 	@Column(nullable = false)
 	private String originImageTitle;
-	
-	@Column(nullable = false)	
+
+	@Column(nullable = false)
 	private String imageUrl;
-    
-    
+
 }

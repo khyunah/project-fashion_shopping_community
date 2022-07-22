@@ -1,6 +1,5 @@
 package com.shop.fashion.service;
 
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -10,6 +9,8 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,10 +37,10 @@ public class CommunityService {
 
 	@Autowired
 	private CommunityLikeRepository communityLikeRepository;
-	
-	
-	public List<CommunityBoard> getCommunityBoardList() {
-		return communityRepository.findAll();
+
+	@Transactional
+	public Page<CommunityBoard> getCommunityBoardList(Pageable pageable) {
+		return communityRepository.findAll(pageable);
 	}
 
 	@Transactional
@@ -53,6 +54,7 @@ public class CommunityService {
 		
 	}
 	
+	@Transactional
 	private String fileNameSet(CommunityDto fileDto) {
 		
 		UUID uuid = UUID.randomUUID();
@@ -73,14 +75,11 @@ public class CommunityService {
 		return newFileName;
 	}
 	
-	
-
+	@Transactional
 	private String extracktExt(String originalFileName) {
 		int pos = originalFileName.lastIndexOf(".");
 		return originalFileName.substring(pos + 1);
 	}
-	
-		
 	
 	@Transactional
 	public CommunityBoard boardDetail(int id) {
@@ -100,8 +99,6 @@ public class CommunityService {
 		return board;
 	}
 
-	
-	
 	@Transactional
 	public void modifyBoard(int id, CommunityBoard board) { // title, content
 		CommunityBoard boardEntity = communityRepository.findById(id).orElseThrow(()->{
@@ -118,15 +115,12 @@ public class CommunityService {
 		boardEntity.setImageUrl(board.getImageUrl());
 		System.out.println("url:" + board.getImageUrl());
 	}
-	
-	
+
 	@Transactional
 	public void deleteById(int id) {
 		communityRepository.deleteById(id);
 	}
-	
 
-	
 	// 상세보기 화면 게시물
 	@Transactional
 	public CommunityBoard detailCommunityBoard(int id) {
@@ -141,6 +135,12 @@ public class CommunityService {
 		return communityLikeRepository.findByBoardIdAndUserId(boardId, userId).orElseGet(() -> {
 			return new CommunityLike();
 		});
+	}
+	
+	// 소셜에 좋아요 랜더링 
+	@Transactional
+	public List<CommunityLike> myLike(int userId){
+		return communityLikeRepository.findByUserId(userId);
 	}
 
 	// 댓글 처리하기 전에 보드가 있나 확인

@@ -27,28 +27,27 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@Column(unique = true)
 	private String username;
-	
+
 	@Column(nullable = false)
 	private String password;
 
 	@Column(nullable = false)
 	private String name;
-	
+
 	@Column(nullable = false)
 	private String email;
-	
-	//@Column(length = 11, nullable = false)
+
+	@Column(length = 11)
 	private String phoneNumber;
-	
-	//@Column(nullable = false)
+
 	private String address;
-	
+
 	@Enumerated(value = EnumType.STRING)
 	private RollType role;
-	
+
 	@Enumerated(value = EnumType.STRING)
 	private OAuthType oauth;
 

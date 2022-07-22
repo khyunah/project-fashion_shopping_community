@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp" %>
 
+<div class="user-header-line"><h2 class="user-header-text">L o g i n</h2></div>
+<div style="height: 40px;"></div>
 <form class="user-form" action="/security/login-user" method="post">
 
 	<div class="user-input-container">

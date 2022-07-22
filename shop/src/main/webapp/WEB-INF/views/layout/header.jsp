@@ -5,78 +5,63 @@
         <sec:authorize access="isAuthenticated()">
           <sec:authentication property="principal" var="principal" />
         </sec:authorize>
-        <!DOCTYPE html>
-        <html>
 
-        <head>
-          <meta charset="UTF-8" />
-          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-          <title>Nerdy</title>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Nerdy</title>
 
-          <!-- CSS 적용 경로 -->
-          <link href="${path}/css/headerstyles.css" rel="stylesheet" />
-          <link href="${path}/css/communityBoard.css" rel="stylesheet" />
-          <link href="/css/style_user.css" rel="stylesheet" type="text/css" />
-          <link href="/css/style_community_home.css" rel="stylesheet" type="text/css" />
-          <link href="/css/style_community_detail.css" rel="stylesheet" type="text/css" />
+    <!-- CSS 적용 경로 -->
+    <link href="${path}/css/headerstyles.css" rel="stylesheet" />
+    <link href="${path}/css/communityBoard.css" rel="stylesheet" />
+    <link href="/css/style_user.css" rel="stylesheet" type="text/css" />
+    <link href="/css/style_community_home.css" rel="stylesheet" type="text/css" />
+    <link href="/css/style_community_detail.css" rel="stylesheet" type="text/css" />
+    <link href="/css/style_community_social.css" rel="stylesheet" type="text/css" />
 
-          <!-- 부트스트랩 -->
-          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
-          <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
-            id="bootstrap-css">
-          <!-- jQuery library -->
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-          <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-          <!-- Popper JS -->
-          <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-          <!-- Latest compiled JavaScript -->
-          <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-          <!-- include summernote css/js -->
-          <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet" />
-          <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
-            id="bootstrap-css">
+    <!-- 부트스트랩 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
+      id="bootstrap-css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- include summernote css/js -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet" />
 
 
-          <!-- 폰트 설정 -->
-          <link rel="preconnect" href="https://fonts.googleapis.com">
-          <link rel="preconnect" href="https://fonts.gstatic.com">
-          <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Hahmlet:wght@100;300&display=swap"
-            rel="stylesheet">
-          <link
-            href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Song+Myung&display=swap"
-            rel="stylesheet" />
+    <!-- 폰트 설정 -->
+	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Hahmlet:wght@100;300&display=swap"
+      rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Song+Myung&display=swap"
+      rel="stylesheet" />
 
-          <!-- 아이콘 폰트어썸 -->
-          <script src="https://kit.fontawesome.com/decc5cea51.js" crossorigin="anonymous"></script>
+    <!-- 아이콘 폰트어썸 -->
+    <script src="https://kit.fontawesome.com/decc5cea51.js" crossorigin="anonymous"></script>
 
-          <!-- summer note 설정 -->
+    <!-- summer note 설정 -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 
-          <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
-          <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
-          <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet" />
-
-          <meta charset="utf-8" />
-          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-          <title>Page Title</title>
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link href="/css/style_community_home.css" rel="stylesheet" type="text/css" />
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Song+Myung&display=swap"
-            rel="stylesheet" />
-          <script src="https://kit.fontawesome.com/decc5cea51.js" crossorigin="anonymous"></script>
-
-
-
-        </head>
+    </head>
+    
+    <body>
 
         <header>
 
           <nav class="navbar navbar-expand-md bg-white navbar-dark">
             <!-- Brand -->
             <a class="navbar-brand" href="/">
-              <img src="/image/logo.png" alt="Logo" style="width: z60%; ">
+              <h1 style="color: black; font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; ">YOU SINSA</h1>
             </a>
 
             <!-- Toggler/collapsibe Button -->
@@ -90,8 +75,8 @@
                 <c:choose>
                   <c:when test="${principal.user eq null}">
                     <li class="nav-item">
-                      <a class="nav-link text-dark" href="/user/update_form"
-                        style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">SOSIAL</a>
+                      <a class="nav-link text-dark" href="/community/social-main"
+                        style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">SOCIAL</a>
                     </li>
                     <li class="nav-item">
                       <div class="dropdown">
@@ -121,9 +106,18 @@
                   <c:when test="${principal.user.role eq 'USER'}">
                     <!-- 로그인 성공하면(회원이면) 글 작성 가능 -->
                     <li class="nav-item">
-                    <li class="nav-item">
-                      <a class="nav-link text-dark" href="#"
-                        style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">SOSIAL</a>
+                      <div class="dropdown">
+                        <button class="nav-link dropbtn bg-white text-dark" 
+                        style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">SOCIAL
+                        	<i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-content bg-white">
+                          <a href="/community/social-main"
+                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">SOCIAL MAIN</a>
+                          <a href="/board/write"
+                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">WRITE</a>
+                        </div>
+                      </div>
                     </li>
                     <li class="nav-item">
                       <div class="dropdown">
@@ -158,10 +152,20 @@
                   </c:when>
                   <c:when test="${principal.user.role eq 'ADMIN'}">
                     <!-- 로그인 성공하면(회원이면) 글 작성 가능 -->
+
                     <li class="nav-item">
-                    <li class="nav-item">
-                      <a class="nav-link text-dark" href="/auth/join_form"
-                        style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">SOSIAL</a>
+                      <div class="dropdown">
+                        <button class="nav-link dropbtn bg-white text-dark" 
+                        style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">SOCIAL
+                        	<i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-content bg-white">
+                          <a href="/community/social-main"
+                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">SOCIAL MAIN</a>
+                          <a href="/board/write"
+                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">WRITE</a>
+                        </div>
+                      </div>
                     </li>
                     <li class="nav-item">
                       <div class="dropdown">

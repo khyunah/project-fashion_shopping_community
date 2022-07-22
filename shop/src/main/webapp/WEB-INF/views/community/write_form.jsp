@@ -24,7 +24,7 @@
     <div class="form-group">
       <label for="image">image</label>
       <div class="input-group">
-        <input type="file" name="file" class="custom-file-input" id="image" required="required" />
+        <input type="file" name="file" class="custom-file-input" id="image" required="required" accept=".jpg, .jpeg, .png, .gif"/>
         <label class="custom-file-label" for="customFile"></label>
       </div>
     </div>

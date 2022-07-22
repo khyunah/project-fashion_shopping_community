@@ -2,19 +2,23 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp" %>
 
+<div class="user-header-line"><h2 class="user-header-text">J o i n</h2></div>
+<div style="height: 40px;"></div>
+
 <form class="user-form" action="/security/join-user" method="post" onsubmit="return checkPassword()">
 
     <div class="user-input-container">
         <label class="user-input-label">
             <span class="label-txt">ENTER YOUR ID</span>
-            <input type="text" class="input" name="username" id="username" required>
+            <input value="asd1" type="text" class="input" name="username" id="username" required>
             <div class="line-box">
                 <div class="line"></div>
             </div>
         </label>
-
-        <span class="user-check-span" id="checkIdResult"></span>
-
+		
+		<div>
+        	<span class="user-check-span" id="checkIdResult"></span>
+		</div>
         <div class="user-empty-box"></div>
         <div class="user-empty-box"></div>
         <div class="user-empty-box"></div>
@@ -29,7 +33,7 @@
             <div>
                 <label class="user-input-label">
                     <span class="label-txt">ENTER YOUR PASSWORD</span>
-                    <input id="password" type="paaword" class="input" name="password" required>
+                    <input value="aa" id="password" type="password" class="input" name="password" required>
                     <div class="line-box">
                         <div class="line"></div>
                     </div>
@@ -37,7 +41,7 @@
 
                 <label class="user-input-label">
                     <span class="label-txt">PASSWORD CHECK</span>
-                    <input id="passwordCheck" type="password" class="input" required>
+                    <input value="aa" id="passwordCheck" type="password" class="input" required>
                     <div class="line-box">
                         <div class="line"></div>
                     </div>
@@ -56,7 +60,7 @@
             <div>
                 <label class="user-input-label">
                     <span class="label-txt">ENTER YOUR NAME</span>
-                    <input type="text" class="input" name="name" required>
+                    <input value="홍길동" type="text" class="input" name="name" required>
                     <div class="line-box">
                         <div class="line"></div>
                     </div>
@@ -64,7 +68,7 @@
 
                 <label class="user-input-label">
                     <span class="label-txt">ENTER YOUR EMAIL</span>
-                    <input type="email" class="input" name="email" required>
+                    <input value="hyunah@google.com" type="email" class="input" name="email" required>
                     <div class="line-box">
                         <div class="line"></div>
                     </div>
@@ -78,7 +82,7 @@
             <div>
                 <label class="user-input-label">
                     <span class="label-txt">ENTER YOUR ADDRESS</span>
-                    <input type="text" class="input" name="address" required>
+                    <input value="부산시 진구" type="text" class="input" name="address" required>
                     <div class="line-box">
                         <div class="line"></div>
                     </div>
@@ -86,7 +90,7 @@
 
                 <label class="user-input-label">
                     <span class="label-txt">ENTER YOUR PHONE</span>
-                    <input type="number" class="input" name="phoneNumber" required>
+                    <input value="01012345432" type="number" class="input" name="phoneNumber" required>
                     <div class="line-box">
                         <div class="line"></div>
                     </div>
@@ -121,9 +125,11 @@
        $("#password, #passwordCheck").keyup(function () {
            let password = $("#password").val();
            let passwordCheck = $("#passwordCheck").val();
-           if (password == passwordCheck) {
+           if(password == "" && passwordCheck == "") {
+               $("#checkPasswordResult").text("");
+           } else if (password == passwordCheck) {
                $("#checkPasswordResult").text("일치");
-           } else {
+           } else if (password != passwordCheck) {
                $("#checkPasswordResult").text("불일치");
            }
        });

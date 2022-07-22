@@ -40,4 +40,6 @@ public class Item {
 	private String color;
 	@Column(nullable = false)
 	private String size;
+	@Column(nullable = false)
+	private int amount;
 }

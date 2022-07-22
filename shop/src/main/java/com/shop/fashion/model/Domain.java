@@ -16,8 +16,6 @@ public class Domain {
 				"MAN", List.of("SHIRTS","PANTS", "SHOES", "OUTER", "ACCESSORY"),
 				"WOMAN", List.of("SHIRTS","PANTS","SHOES","SKIRT","ONEPIECE", "OUTER", "ACCESSORY")
 			);
-			
-	
 	
 	private Map<String, List<String>> categorySize = Map.of(
 				"SHIRTS", List.of("S","M","L","XL", "XXL"),
@@ -28,6 +26,5 @@ public class Domain {
 				"SKIRT", List.of("XS","S","M","L","XL", "XXL"),
 				"ONEPIECE", List.of("XS","S","M","L","XL", "XXL")
 			);
-			
-		
+
 }

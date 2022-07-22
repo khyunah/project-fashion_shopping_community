@@ -17,9 +17,9 @@ public class PrincipalUserDetail implements UserDetails {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private User user;
-	
+
 	public PrincipalUserDetail(User user) {
 		this.user = user;
 	}
@@ -57,7 +57,9 @@ public class PrincipalUserDetail implements UserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		Collection<GrantedAuthority> collectors = new ArrayList<GrantedAuthority>();
-		collectors.add(() -> {return "ROLE_" + user.getRole();});
+		collectors.add(() -> {
+			return "ROLE_" + user.getRole();
+		});
 		return collectors;
 	}
 

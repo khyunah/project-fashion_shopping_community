@@ -32,7 +32,7 @@ let user = {
 }
 
 function checkPassword(){
-	if($("#checkPasswordResult").text() == "불일치" || $("#checkPasswordResult") == ""){
+	if($("#checkPasswordResult").text() == "불일치" || $("#checkPasswordResult").text() == ""){
 		alert("비밀번호가 일치하지 않습니다.");
 		return false;
 	} else {
@@ -45,11 +45,13 @@ $(document).ready( function(){
 	$( "#password, #passwordCheck" ).keyup( function() {
 	      let password = $( "#password" ).val();
 	      let passwordCheck = $( "#passwordCheck" ).val();
-	      if( password == passwordCheck ) {
-	    	  $( "#checkPasswordResult" ).text( "일치" );
-	      } else {
-	    	  $( "#checkPasswordResult" ).text( "불일치" );
-	      }
+	      if(password == "" && passwordCheck == "") {
+               $("#checkPasswordResult").text("");
+           } else if (password == passwordCheck) {
+               $("#checkPasswordResult").text("일치");
+           } else if (password != passwordCheck) {
+               $("#checkPasswordResult").text("불일치");
+           }
 	});
 	
 	if($("#isOauth").val() == "kakao"){

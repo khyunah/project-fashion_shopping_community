@@ -1,7 +1,5 @@
 package com.shop.fashion.api;
 
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -32,71 +30,69 @@ public class ShoppingApiController {
 
 	@Autowired
 	BasketService basketService;
-	
+
 	@Autowired
 	ShoppingService shoppingService;
-	
+
 	@Autowired
 	UserService userService;
-	
+
 	@PostMapping("/api/item")
 	public ResponseDto<Integer> save(@RequestBody Item item) {
 		shoppingService.saveItem(item);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
-	
+
 	@PostMapping("/api/category")
 	public ResponseDto<Integer> category(@RequestBody Item item) {
 		shoppingService.saveItem(item);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
-	
+
 	@PostMapping("/test/api/search/{gender}/{category}")
-	public ResponseDto<Page<Item>> searchMansShirts(
-			@RequestBody RequestItemDto itemDto, @PageableDefault(page = 0, direction = Direction.DESC, size = 5) Pageable pageable) {
+	public ResponseDto<Page<Item>> searchMansShirts(@RequestBody RequestItemDto itemDto,
+			@PageableDefault(page = 0, direction = Direction.DESC, size = 5) Pageable pageable) {
 		Page<Item> page = shoppingService.searchItemCategory(itemDto.getCategory(), itemDto.getGender(), pageable);
 		return new ResponseDto<Page<Item>>(HttpStatus.OK.value(), page);
 	}
-	
-	
+
 	@GetMapping("/test/api/getDomain")
 	public Domain searchGenderCategory() {
 		Domain domain = new Domain();
 		return domain;
 	}
-	
-	
+
 	@PostMapping("/test/api/cart")
-	public ResponseDto<Integer> cart(@RequestParam int itemId, @AuthenticationPrincipal PrincipalUserDetail detail) { 
+	public ResponseDto<Integer> cart(@RequestParam int itemId, @AuthenticationPrincipal PrincipalUserDetail detail) {
 
 		System.out.println(itemId);
-		// 정보 
+		// 정보
 		User user = userService.getUser(detail.getUser().getId());
-		
+
 		Item item = shoppingService.itemDetail(itemId);
-		
+
 		basketService.putCart(item, user);
-		
+
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
+
 	@GetMapping("/test/api/sum")
-	public int sum(@AuthenticationPrincipal PrincipalUserDetail detail) { 
-		
+	public int sum(@AuthenticationPrincipal PrincipalUserDetail detail) {
+
 		int user = detail.getUser().getId();
-		
-		int basket = basketService.sum(user);          
-		
+
+		int basket = basketService.sum(user);
+
 		return basket;
 	}
-	
+
 	@DeleteMapping("/test/api/basket/{basketId}")
-	public ResponseDto<Integer> deleteBasketItem(@PathVariable int basketId , @AuthenticationPrincipal PrincipalUserDetail detail) {
-		
+	public ResponseDto<Integer> deleteBasketItem(@PathVariable int basketId,
+			@AuthenticationPrincipal PrincipalUserDetail detail) {
+
 		basketService.deleteBasketItemById(basketId);
-		
+
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), detail.getUser().getId());
 	}
-	
-	
+
 }
-		    
