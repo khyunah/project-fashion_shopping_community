@@ -20,7 +20,11 @@
 	<dependencies>
 
 		<!-- 디펜던시 추가 -->
-
+		<dependency>
+		    <groupId>org.qlrm</groupId>
+		    <artifactId>qlrm</artifactId>
+		    <version>3.0.1</version>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper -->
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>

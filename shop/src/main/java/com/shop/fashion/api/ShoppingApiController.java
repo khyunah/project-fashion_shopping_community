@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -77,6 +78,23 @@ public class ShoppingApiController {
 		basketService.putCart(item, user);
 		
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+	}
+	@GetMapping("/test/api/sum")
+	public int sum(@AuthenticationPrincipal PrincipalUserDetail detail) { 
+		
+		int user = detail.getUser().getId();
+		
+		int basket = basketService.sum(user);          
+		
+		return basket;
+	}
+	
+	@DeleteMapping("/test/api/basket/{basketId}")
+	public ResponseDto<Integer> deleteBasketItem(@PathVariable int basketId , @AuthenticationPrincipal PrincipalUserDetail detail) {
+		
+		basketService.deleteBasketItemById(basketId);
+		
+		return new ResponseDto<Integer>(HttpStatus.OK.value(), detail.getUser().getId());
 	}
 	
 	

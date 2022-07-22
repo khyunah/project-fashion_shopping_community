@@ -2,42 +2,49 @@
 <%@ include file="../layout/header.jsp" %>
 
 
-<span class="left">
+<div class="left">
 <br/>
-<c:forEach var="board" items="${Items}">
- <div class="card mb-3" style="max-width: 700px;"> 
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="${Item.imageurl}" class="img-fluid rounded-start" alt="...">
-    </div>
-    <div class="col-md-8">
-    <button type="submit" class="topright btn btn-dark" onclick="index.topright(${Item.id}, ${principal.user.id}">
-    취소
-    </button>
-      <div class="card-body mt-3">
-        <h5 class="card-title"> ${Item.name}</h5>
-        <p class="card-text">${Item.content}</p>
-        <p class="card-text" style="margin-top: 50px;">${Item.price}원</p>
-      </div>
-    </div>
+   <input type="hidden" id="item1" value="${hasItem}">
+  <table style="table-layout: fixed; width: 100%"> 
+     <tr>
+  	  <th></th>		
+      <th>NAME</th>
+      <th>SIZE</th>
+      <th>Color</th>
+      <th>Count</th>
+      <th>Price</th>
+      <th></th>
+     </tr>
+   <c:forEach var="Basket" items="${Baskets}"> 
+  	 <tr id="tr">
+      <td><img src="${Basket.item.imageurl}" class="img-fluid rounded-start" alt="..."></td>
+      <td>${Basket.item.name}</td>
+      <td>${Basket.item.size}</td>
+      <td>${Basket.item.color}</td>
+      <td>${Basket.count}</td>
+      <td>${Basket.item.price}원</td>
+      <td><button id="btn-basket-delete" type="button" onclick="basketItemDelete(${Basket.id},${principal.user.id})" style="border-radius: 15px;"></button></td>
+     </tr>
+   </c:forEach>
+  </table>
   </div>
- </div>
-</c:forEach>
-</span>
-<span class="right">
+ <div class="right" >
+<button type="submit" style="width: 250px; border-radius: 20px;"> 결제<div id='sum'>${sumPrince}</div></button>
+ <c:forEach var="Basket" items="${Baskets}"> 
+ <hr/>
+ <div>name: ${Basket.item.name}</div>
+ <div>size: ${Basket.item.size}</div>
+ <div>color: ${Basket.item.color}</div>
+ <div>count: ${Basket.count}</div>
+ <div>price: ${Basket.item.price}원</div>
+ </c:forEach>
+ <hr/>
+</div>
 <br/>	
 <c:choose>
-<c:when test="${principal.user.role eq USER}">
- <div class="pay card mb-3" style="width: 600px; height: 300px;  padding: 10px; left: 50%;">
- 	<br/>
- 	<h1 class="col-md" style="text-align: center;font-family: fantasy;">결제목록</h1>
- 	<p style="position:absolute; bottom: 50%; margin-left: 15px; font-family: fantasy;">상품 개수 ${basket.count} 10개</p>
- 	<p style="position:absolute; bottom: 30%; margin-left: 15px; font-family: 'Black Han Sans', sans-serif; font-size: 35px;"><span style="font-family: fantasy; font-size: 25px;">총 결제 금액</span>${item.price.sum} 30,000
- 	<span style="font-family: fantasy; font-size: 25px;">원</span></p>
+<c:when test="${principal.user.role eq 'USER'}">
 
- 	<button type="button" class="btn btn-dark" style="position: relative; bottom: 0%; width: 100%;">결제하기</button>
- </div>
 </c:when>
 </c:choose>
-</span>
 <hr/>
+<script src="/js/basket.js"></script>

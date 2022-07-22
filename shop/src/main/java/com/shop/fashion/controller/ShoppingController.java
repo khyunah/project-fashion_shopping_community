@@ -17,11 +17,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.shop.fashion.model.Basket;
 import com.shop.fashion.model.Item;
+import com.shop.fashion.service.BasketService;
 import com.shop.fashion.service.ShoppingService;
 
 
 @Controller
 public class ShoppingController {
+	
+	@Autowired 
+	BasketService basketService;  
 	
 	@Autowired
 	ShoppingService shoppingService;
@@ -98,9 +102,20 @@ public class ShoppingController {
 	@GetMapping("/shop/basket_form/{id}")
 	public String cartForm(@PathVariable int id, Model model) {
 		List<Basket> Baskets = shoppingService.getOnUserCart(id);
+		
+		
+		int sum = basketService.sum(id);
+				
 		model.addAttribute("Baskets", Baskets);
 		
-		return "shopping/basket_form";
+		model.addAttribute("sumPrince", sum);
+		if(sum != 0) {
+			model.addAttribute("hasItem", true);
+		} else {
+			model.addAttribute("hasItem", false);
+		}
+		
+		return "/shopping/basket_form";
 	}
 	// /shopping/itemdetail_form/${item.id}
 	@GetMapping("/shop/itemdetail_form/{id}")

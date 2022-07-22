@@ -11,7 +11,10 @@ import com.shop.fashion.model.Basket;
 
 public interface BasketRepository extends JpaRepository<Basket, Integer> {
 
-	@Query(value = "SELECT * FROM board WHERE userid = ?1", nativeQuery = true)
+	@Query(value = "SELECT * FROM basket WHERE userid = ?1 order by id desc", nativeQuery = true)
 	List<Basket> findByUserId(@Param(value = "id")int id);
+	
+	@Query(value = "select * from basket where item_id = ?1 And userid = ?2", nativeQuery = true)
+	List<Basket> findByItemIdAndUserId(@Param(value = "itemid" ) int itemid,@Param(value = "userid" ) int userid);
 	
 }
