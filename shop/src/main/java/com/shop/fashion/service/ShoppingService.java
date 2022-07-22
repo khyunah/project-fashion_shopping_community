@@ -35,6 +35,7 @@ public class ShoppingService {
 
 	@Transactional
 	public void saveItem(Item item) {
+		item.setName(item.getName().replaceAll(" ", ""));
 		shoppingRepository.save(item);
 	}
 
@@ -70,7 +71,13 @@ public class ShoppingService {
 			return new IllegalArgumentException("해당 게시글은 찾을 수 없습니다.");
 		});
 	}
-
+	
+	@Transactional
+	public List<Item> itemDetails(String name, String gender) {
+		System.out.println(shoppingRepository.detailItemSizeColor(name, gender));
+		return shoppingRepository.detailItemSizeColor(name, gender);
+	}
+	
 	@Transactional
 	public void putCart(int itemid, User user, int basketid) {
 		Basket basket = basketRepository.findById(basketid).get();

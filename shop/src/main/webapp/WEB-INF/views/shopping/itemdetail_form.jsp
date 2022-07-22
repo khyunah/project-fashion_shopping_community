@@ -5,6 +5,7 @@
 
 <div class="container">
 	<input type="hidden" id="principal--id" value="${item.id}">
+
 	<button class="btn bg-secondary" onclick="history.back();">돌아가기</button>
 	<c:if test="${principal.user.role eq USER}">
 		<a href="/item/${item.id}/update_form" class="btn btn-warning">수정</a>
@@ -16,7 +17,8 @@
 		itemcategory : <span><i>${item.category}</i></span><br/>
 	</div>
 	<br/><br/>
-
+	<input type="hidden" id="itemname" value="${item.name}">
+	<input type="hidden" id="itemgender" value="${item.gender}">
 	<div class="form-group m-2 inline row">
 		<div>
 			<img style="width: 460px; height: 580px;" src="${item.imageurl}" alt=""/>
@@ -29,9 +31,20 @@
 			<br/>
 			<h2 style="font-size: 28px;"><span style="font-size: 25px; font-weight: bold;">배송비</span>&nbsp;&nbsp;2500원</h2>
 			<hr/>
-			<h2 style="font-size: 38px;"><span style="font-size: 25px; font-weight: bold;">Color</span>&nbsp;&nbsp;${item.color}</h2>
+			<h2 style="font-size: 38px;"></h2>
+			<div class="form-group">
+				<label for="colors">color :</label>
+					<select id=colors name="colors">
+					
+					</select>
+			</div>
 			<br/>
-			<h2 style="font-size: 38px;"><span style="font-size: 25px; font-weight: bold;">Size</span>&nbsp;&nbsp;${item.size}<span style="font-size: 19px; font-weight: bold;">&nbsp;</span></h2>
+			<div class="form-group">
+				<label for=sizes>color :</label>
+					<select id=sizes name="sizes">
+					
+					</select>
+			</div>
 			<hr/>
 			<input type="hidden" id=userid value="${principal.user.id}"></input>
 			<button type="button" id="inputCart" value="${item.id}" class="btn btn-dark text-white">장바구니에 넣기</button>

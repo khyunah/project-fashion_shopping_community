@@ -109,4 +109,40 @@ function categorySize(){
 		$("#size").append(option);
 	})
 }
+
+window.onload = function () {
+  itemDetailSizeandColor();
+};
+
+function itemDetailSizeandColor(){
+		
+		let data = {
+			name :$("#itemname").val(),
+			gender: $("#itemgender").val()
+		}
+
+		$.ajax({
+			type: "POST",
+			url: `/test/api/itemdetail`,
+			contentType: "application/json; charset=utf-8",
+			data: JSON.stringify(data),
+			dataType: "json"
+		}).done(function(data) {
+			var colors = [];
+			for(var i = 0; i < data.length; i++){
+				if(colors.indexOf(data[i].color) == -1){
+					colors.push(data[i].color);
+					let option =`<option value='${data[i].color}'>${data[i].color}</option>`;
+					$("#colors").append(option);
+				}
+			}
+			console.log(colors)
+			
+			
+					
+		})
+		.fail(function(error) {
+		});
+}
+
 	

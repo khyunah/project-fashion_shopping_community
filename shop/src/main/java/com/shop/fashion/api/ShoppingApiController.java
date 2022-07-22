@@ -1,5 +1,8 @@
 package com.shop.fashion.api;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shop.fashion.auth.PrincipalUserDetail;
+import com.shop.fashion.dto.ItemDetailDto;
 import com.shop.fashion.dto.RequestItemDto;
 import com.shop.fashion.dto.ResponseDto;
 import com.shop.fashion.model.Domain;
@@ -93,6 +97,13 @@ public class ShoppingApiController {
 		basketService.deleteBasketItemById(basketId);
 
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), detail.getUser().getId());
+	}
+	
+	@PostMapping("/test/api/itemdetail")
+	public List<Item> itemSizeColor (@RequestBody ItemDetailDto nameGender) {
+		List<Item> itemSizeColor = shoppingService.itemDetails(nameGender.getName(),nameGender.getGender());
+		
+		return itemSizeColor;	
 	}
 
 }
