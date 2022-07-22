@@ -1,5 +1,6 @@
 package com.shop.fashion.controller;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import com.shop.fashion.auth.PrincipalUserDetail;
 import com.shop.fashion.dto.CommunityDto;
 import com.shop.fashion.model.CommunityBoard;
 import com.shop.fashion.model.CommunityLike;
+import com.shop.fashion.model.Item;
 import com.shop.fashion.service.CommunityService;
 
 @Controller
@@ -30,6 +32,11 @@ public class CommunityController {
 	public String index(Model model, @PageableDefault(size = 2, sort = "id", direction = Direction.DESC) Pageable pageable) {
 		Page<CommunityBoard> communityBoardList = communityService.getCommunityBoardList(pageable);
 		model.addAttribute("communityBoardList", communityBoardList);
+		
+		List<Item> itemList = communityService.getItemList();
+		Collections.shuffle(itemList);
+		
+		model.addAttribute("itemList" , itemList);
 		return "index";
 	}
 	

@@ -6,7 +6,7 @@ window.addEventListener('scroll',function(){
 	if($(window).scrollTop() + $(window).height() == $(document).height()) {
        xhr_();
    }
-});
+});s
 
 let xhr_ = function(){
 	const xhr = new XMLHttpRequest();
@@ -38,5 +38,8 @@ let xhr_ = function(){
 
 // 서버에 요청을 보냅니다.
 xhr.send();
-
+	
 }
+
+let cardList = $("#cardList").val();
+console.log(cardList);
