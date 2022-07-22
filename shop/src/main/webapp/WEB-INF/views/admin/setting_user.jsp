@@ -116,6 +116,7 @@
         </li>
       </ul>
     </div>
+    <input id="admin-object-id" value="" type="hidden">
 
     <script>
       function clickList(target) {
@@ -144,6 +145,9 @@
             }
           }
         }
+        
+        var id = th_value[0];
+        $("#admin-object-id").val(id);
       }
     </script>
   </body>
