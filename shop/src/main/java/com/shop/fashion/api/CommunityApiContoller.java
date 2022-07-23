@@ -43,10 +43,6 @@ public class CommunityApiContoller {
 	@PostMapping("/community/reply-insert/{boardId}")
 	public ResponseDto<Reply> insertReply(@PathVariable int boardId, @RequestBody Reply reply,
 			@AuthenticationPrincipal PrincipalUserDetail userDetail) {
-		System.out.println("서버에 도착");
-		System.out.println(boardId);
-		System.out.println(reply);
-		System.out.println(userDetail);
 		Reply replyEntity = communityService.insertReply(boardId, reply, userDetail.getUser());
 		return new ResponseDto<>(HttpStatus.OK.value(), replyEntity);
 	}

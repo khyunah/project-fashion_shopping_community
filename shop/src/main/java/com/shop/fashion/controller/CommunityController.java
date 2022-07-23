@@ -81,9 +81,7 @@ public class CommunityController {
 	public String communityHome(@PageableDefault(size = 3, direction = Direction.DESC, sort = "id") Pageable pageable, Model model, @AuthenticationPrincipal PrincipalUserDetail userDetail) {
 		Page<CommunityBoard> communityBoardList = communityService.getCommunityBoardList(pageable);
 		model.addAttribute("communityBoardList", communityBoardList);
-		
-		System.out.println("페이지 갯수 : " + communityBoardList.getPageable().getPageSize());
-		
+
 		List<CommunityLike> likeList = communityService.myLike(userDetail.getUser().getId());
 		model.addAttribute("likeList", likeList);
 		return "community/community_social";
