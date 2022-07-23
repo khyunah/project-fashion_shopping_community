@@ -7,6 +7,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
@@ -32,6 +33,7 @@ public class Item {
 	private Category category;
 	@Enumerated(value = EnumType.STRING)
 	private Gender gender;
+	@Lob
 	@Column(nullable = false)
 	private String content;
 	@Column(nullable = false)

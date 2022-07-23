@@ -40,7 +40,7 @@ public class AdminService {
 	@Transactional
 	public void changeUserRole(int id, boolean result) {
 		User user = userRepository.findById(id).orElseThrow(() -> {
-			return new IllegalArgumentException("유저가 존재하지 않습니다.");
+			return new IllegalArgumentException("회원이 존재하지 않습니다.");
 		});
 		if(result) {
 			user.setRole(RollType.ADMIN);
@@ -53,6 +53,39 @@ public class AdminService {
 	@Transactional
 	public Page<Item> getItemAll(Pageable pageable){
 		return shoppingRepository.findAll(pageable);
+	}
+	
+	// 상품 삭제
+	@Transactional
+	public void deleteItem(int id) {
+		shoppingRepository.deleteById(id);
+	}
+	
+	// 상품 조회
+	@Transactional
+	public Item getItem(int id) {
+		return shoppingRepository.findById(id).orElseThrow(() -> {
+			return new IllegalArgumentException("상품이 존재하지 않습니다.");
+		});
+	}
+	
+	// 상품 수정
+	@Transactional
+	public Item updateItem(Item item) {
+		Item itemEntity = shoppingRepository.findById(item.getId()).orElseThrow(() -> {
+			return new IllegalArgumentException("상품이 존재하지 않습니다.");
+		});
+		itemEntity.setName(item.getName());
+		itemEntity.setContent(item.getContent());
+		itemEntity.setAmount(item.getAmount());
+		itemEntity.setCategory(item.getCategory());
+		itemEntity.setColor(item.getColor());
+		itemEntity.setGender(item.getGender());
+		itemEntity.setImageurl(item.getImageurl());
+		itemEntity.setPrice(item.getPrice());
+		itemEntity.setSize(item.getSize());
+		
+		return itemEntity;
 	}
 
 	// 커뮤니티 전체 조회

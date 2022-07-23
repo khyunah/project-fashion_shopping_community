@@ -13,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.shop.fashion.model.CommunityBoard;
 import com.shop.fashion.model.Item;
@@ -87,13 +89,46 @@ public class AdminController {
 		model.addAttribute("pageNumbers", pageNumbers);
 		return "admin/setting_shopping";
 	}
-		
+	
+	// 상품 상세보기 
+	@GetMapping("/admin/shopping/item-detail/{id}")
+	public String detailItemDetail(@PathVariable int id, Model model) {
+		Item item = adminService.getItem(id);
+		model.addAttribute("item", item);
+		return "admin/admin_shopping_detail";
+	}
+
 	// 상품 등록 페이지 
 	@GetMapping("/admin/shopping/save_form")
 	public String shoppingSaveForm() {
 		return "admin/admin_shopping_save_form";
 	}
 	
+	// 상품 삭제
+	@GetMapping("/admin/shopping-item/delete/{id}")
+	public String deleteItem(@PathVariable int id, HttpServletRequest request) {
+		adminService.deleteItem(id);
+		if(request.getHeader("Referer") != null) {
+			return "redirect:" + request.getHeader("Referer");
+		}
+		return "/admin/shopping/select-all";
+	}
+	
+	// 상품 수정 페이지
+	@GetMapping("/admin/shopping-item/update_form/{id}")
+	public String updateFormItem(@PathVariable int id, Model model) {
+		Item item = adminService.getItem(id);
+		model.addAttribute("item", item);
+		return "admin/admin_shopping_update_form";
+	}
+	
+	// 상품 수정 
+	@PostMapping("/admin/shopping-item/update/{id}")
+	public String updateItem(@RequestBody Item item, Model model) {
+		Item itemEntity = adminService.updateItem(item);
+		model.addAttribute("item", itemEntity);
+		return "admin/admin_shopping_detail";
+	}
 	
 	// 커뮤니티 관리 페이지에 기본화면 전체 조회
 	@GetMapping("/admin/community/select-all")

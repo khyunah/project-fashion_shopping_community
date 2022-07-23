@@ -70,7 +70,6 @@
 <br />
 <br />
 
-
 <script type="text/javascript">
 	$('.summernote').summernote({
 		placeholder : '내용을 입력해주세요',
