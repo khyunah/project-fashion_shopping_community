@@ -38,12 +38,13 @@
 
 .commu-social-div-content-container {
 	width: 100%;
-	height: 50px;
+	height: 75px;
+	overflow: hidden;
 }
 
 .commu-social-span-content {
   font-size: 17px;
-  white-space: pre-wrap;
+	white-space: pre-wrap;
 	text-overflow: ellipsis;
 }
 
@@ -51,7 +52,6 @@
   font-family: "Gowun Batang", serif;
   line-height: 5px;
   letter-spacing: 0.8px;
-  display: inline;
 }
 
 .commu-social-span-goodlook-count {

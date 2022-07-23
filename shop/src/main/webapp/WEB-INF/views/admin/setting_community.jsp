@@ -49,25 +49,35 @@
         <thead>
           <tr>
             <th>ID</th>
-            <th>TITLE</th>
             <th>USERNAME</th>
             <th>LIKECOUNT</th>
             <th>CREATEDATE</th>
+            <th>IMAGE</th>
+          </tr>
+          <tr>
+          	<th>TITLE</th>
+          	<th>CONTENT</th>
           </tr>
         </thead>
         <tbody>
 	        <c:forEach var="communityBoard" items="${communityBoardPage.content}">
 	        	<tr onclick="clickList(this)">
 		            <td>${communityBoard.id}</td>
-		            <td>${communityBoard.title}</td>
 		            <td>${communityBoard.user.username}</td>
 		            <td>${communityBoard.likeCount}</td>
 		            <td>${communityBoard.createDate}</td>
+		            <td><div class="admin-img-box">
+							<img class="card-img-top" src="/upload/${communityBoard.imageUrl}" alt="Card image"
+								style="width: 100%">
+						</div></td>
+		        </tr>
+		        <tr>
+		        	<td>${communityBoard.title}</td>
+		        	<td>${communityBoard.content}</td>
 		        </tr>
 	        </c:forEach>
         </tbody>
       </table>
-      
    
     <div style="height: 100px"></div>
     <div class="admin-pagenation-container">

@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,7 +50,7 @@ public class AdminController {
 	}
 	
 	// 회원 삭제 
-	@GetMapping("/admin/user/delete/{id}")
+	@DeleteMapping("/admin/user/delete/{id}")
 	public String deleteUser(@PathVariable int id, HttpServletRequest request) {
 		adminService.deleteUser(id);
 		// 바로 이전페이지로 이동 
@@ -161,5 +162,5 @@ public class AdminController {
 		}
 		return "/admin/community/select-all";
 	}
-
+	
 }

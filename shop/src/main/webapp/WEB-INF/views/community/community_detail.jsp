@@ -24,7 +24,7 @@
     
       <div class="commu-detail-container">
         <div class="commu-detail-img-container">
-          <img class="commu-detail-img" alt="" src="http://localhost:9090/upload/${communityBoard.imageUrl}" />
+          <img class="commu-detail-img" alt="" src="/upload/${communityBoard.imageUrl}" />
         </div>
 
         <div class="commu-detail-trim"></div>

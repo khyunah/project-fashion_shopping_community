@@ -9,6 +9,9 @@ let commu = {
 			this.boardDelete();
 		});
 		
+		$(".commu-profile-btn-top").bind('click', () => {
+			this.goTop();
+		});
 	},
 	
 	// 댓글쓰기
@@ -91,6 +94,7 @@ let commu = {
 		});
 	}, 
 	
+	// 글 수정하기
 	boardUpdate: function() {
 		let id = $("#boardId").val();
 		let data = {
@@ -115,9 +119,8 @@ let commu = {
 			alert("글 쓰기에 실패하였습니다");			
 		});
 	},
-	
-	
-	
+
+	// 글 삭제하기
 	boardDelete: function() {
 		let boardId = $("#communityBoardId").val();
 		$.ajax({			
@@ -135,6 +138,9 @@ let commu = {
 		});
 	},
 	
+	goTop: function(){
+		$('html').scrollTop(0);
+	}
 
 }
 

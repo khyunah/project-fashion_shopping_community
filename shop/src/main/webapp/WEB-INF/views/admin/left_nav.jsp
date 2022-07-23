@@ -73,6 +73,13 @@
 				</div>
 
 				<div class="admin-menu-list-item">
+					<a href="/" class="btn"> <img alt=""
+						src="/image/ex_icon.png" class="admin-menu-nav-img">
+						<div class="admin-menu-text">사이트확인</div>
+					</a>
+				</div>
+
+				<div class="admin-menu-list-item">
 					<a href="#" class="btn"> <img alt=""
 						src="/image/setting_icon.png" class="admin-menu-nav-img">
 						<div class="admin-menu-text">설정</div>

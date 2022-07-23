@@ -52,6 +52,8 @@
 				<th>NAME</th>
 				<th>PRICE</th>
 				<th>CATEGORY</th>
+				<th>COLOR</th>
+				<th>SIZE</th>
 				<th>GENDER</th>
 				<th>AMOUNT</th>
 			</tr>
@@ -60,13 +62,15 @@
 			<c:forEach var="item" items="${itemPage.content}">
 				<tr onclick="clickList(this)">
 					<td>${item.id}</td>
-					<td><div class="admin-shopping-img-box">
+					<td><div class="admin-img-box">
 							<img class="card-img-top" src="${item.imageurl}" alt="Card image"
 								style="width: 100%">
 						</div></td>
 					<td>${item.name}</td>
 					<td>${item.price}</td>
 					<td>${item.category}</td>
+					<td>${item.color}</td>
+					<td>${item.size}</td>
 					<td>${item.gender}</td>
 					<td>${item.amount}</td>
 				</tr>

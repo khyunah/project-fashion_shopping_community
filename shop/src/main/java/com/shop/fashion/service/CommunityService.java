@@ -190,7 +190,7 @@ public class CommunityService {
 		// 좋아요를 취소하는 상황
 		if(like.getIsLike() == 1) {
 			board.setLikeCount(board.getLikeCount() - 1);
-			deleteLike(like.getId());
+			communityLikeRepository.deleteById(like.getId());
 			return null;
 		// 좋아요를 누르는 상황
 		} else {
@@ -203,9 +203,10 @@ public class CommunityService {
 		}
 	}
 	
+	// 나의 소셜 
 	@Transactional
-	public void deleteLike(int likeId) {
-		communityLikeRepository.deleteById(likeId);
+	public Page<CommunityBoard> myCommunity(int userId, Pageable pageable){
+		return communityRepository.findByUserId(userId, pageable);
 	}
-
+	
 }
