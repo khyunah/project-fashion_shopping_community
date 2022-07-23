@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.shop.fashion.model.CommunityBoard;
 import com.shop.fashion.model.Item;
+import com.shop.fashion.model.RollType;
 import com.shop.fashion.model.User;
 import com.shop.fashion.repository.CommunityRepository;
 import com.shop.fashion.repository.ShoppingRepository;
@@ -27,6 +28,25 @@ public class AdminService {
 	@Transactional
 	public Page<User> getUserAll(Pageable pageable){
 		return userRepository.findAll(pageable);
+	}
+	
+	// 회원 삭제
+	@Transactional
+	public void deleteUser(int id) {
+		userRepository.deleteById(id);
+	}
+	
+	// 회원에게 관리자 권한 부여
+	@Transactional
+	public void changeUserRole(int id, boolean result) {
+		User user = userRepository.findById(id).orElseThrow(() -> {
+			return new IllegalArgumentException("유저가 존재하지 않습니다.");
+		});
+		if(result) {
+			user.setRole(RollType.ADMIN);
+		} else {
+			user.setRole(RollType.USER);
+		}
 	}
 	
 	// 상품정보 전체 조회

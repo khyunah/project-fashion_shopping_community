@@ -2,6 +2,8 @@ package com.shop.fashion.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,6 +12,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.shop.fashion.model.CommunityBoard;
 import com.shop.fashion.model.Item;
@@ -43,6 +46,27 @@ public class AdminController {
 		return "admin/setting_user";
 	}
 	
+	// 회원 삭제 
+	@GetMapping("/admin/user/delete/{id}")
+	public String deleteUser(@PathVariable int id, HttpServletRequest request) {
+		adminService.deleteUser(id);
+		// 바로 이전페이지로 이동 
+		if(request.getHeader("Referer") != null) {
+			return "redirect:" + request.getHeader("Referer");
+		}
+		return "redirect:/admin/user/select-all";
+	}
+	
+	// 권한 설정
+	@GetMapping("/admin/user/change-role/{id}/{result}")
+	public String changeUserRole(@PathVariable int id, @PathVariable boolean result, HttpServletRequest request) {
+		adminService.changeUserRole(id, result);
+		if(request.getHeader("Referer") != null) {
+			return "redirect:" + request.getHeader("Referer");
+		}
+		return "redirect:/admin/user/select-all";
+	}
+	
 	// 상품관리 페이지에 기본화면 전체 조회 
 	@GetMapping("/admin/shopping/select-all")
 	public String selectAllShopping(@PageableDefault(size = 16, sort = "id", direction = Direction.DESC) Pageable pageable,
@@ -62,6 +86,12 @@ public class AdminController {
 		model.addAttribute("itemPage", itemPage);
 		model.addAttribute("pageNumbers", pageNumbers);
 		return "admin/setting_shopping";
+	}
+		
+	// 상품 등록 페이지 
+	@GetMapping("/admin/shopping/save_form")
+	public String shoppingSaveForm() {
+		return "admin/admin_shopping_save_form";
 	}
 	
 	// 커뮤니티 관리 페이지에 기본화면 전체 조회
@@ -84,11 +114,6 @@ public class AdminController {
 		model.addAttribute("pageNumbers", pageNumbers);
 		return "admin/setting_community";
 	}
-	
-	// 상품 등록 페이지 
-	@GetMapping("/admin/shopping/save_form")
-	public String shoppingSaveForm() {
-		return "";
-	}
+
 
 }

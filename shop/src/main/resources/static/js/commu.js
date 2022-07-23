@@ -4,9 +4,7 @@ let commu = {
 		$(document).on('click', ".commu-detail-btn-reply-update-finish", function(){
 			commu.finishUpdateReply();
 		});
-		
 
-		
 		$("#commu-detail-btn-delete").bind('click', () => {
 			this.boardDelete();
 		});
@@ -169,7 +167,6 @@ function addReply(reply, userId, communityBoardId){
 }
 
 function removeReply(replyId){
-	
 	$(`#commu-reply-`+ replyId).remove();
 }
 

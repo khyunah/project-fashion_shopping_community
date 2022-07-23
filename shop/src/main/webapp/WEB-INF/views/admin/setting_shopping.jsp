@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="left_nav.jsp" %>
 
-    <div class="container">
+    <div class="container admin-container">
     
     <div style="height: 50px;"></div>
       <h2>상품정보 관리</h2>
@@ -10,7 +10,7 @@
 
       <hr/>
       
-       <div class="setting-user-header-container">
+       <div class="setting-header-container">
 
         <div class="d-flex">
         
@@ -101,14 +101,14 @@
         </li>
       </ul>
     </div>
-
+	</div>
     <script>
       function clickList(target) {
         let bb = target.parentNode;
         let trs = bb.getElementsByTagName("tr");
 
         // 선택안된 
-        var backColor = "#32383e";
+        var backColor = "#212529";
         var textColor = "#ffffff";
         // 선택 된
         var orgBColor = "black";

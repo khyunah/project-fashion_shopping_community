@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="left_nav.jsp" %>
 
+<div style="height: 50px;"></div>
+
 <div class="container">
 
 	<form action="">
