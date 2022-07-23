@@ -14,9 +14,10 @@
 	</c:otherwise>
 </c:choose>
 
-<form class="user-form" >
 	<input type="hidden" value="${isOauth}" id="isOauth">
 	<input type="hidden" value="${principal.user.id}" id="id">
+
+<form class="user-form" >
 
   	<div class="user-input-container">
 		<label class="user-input-label">
@@ -28,8 +29,6 @@
 		</label>
 	</div>
 
-	<span class="user-check-span" id="checkIdResult"></span>
-	
 	<div class="user-empty-box"></div>
 	<div class="user-empty-box"></div>
 	<div class="user-empty-box"></div>

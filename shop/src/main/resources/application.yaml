@@ -49,3 +49,5 @@ spring:
 file:
   path: C:/projectImageDir/shop/upload/  
       
+kakao:
+  key: d0799a91ef29823c93b2b218cb0c46070cf38e559ff42538d02c412f916430133c95338d1e64a0beb90b6184c3a35e24b2a64266915c134c8e47ec4a0933f92d

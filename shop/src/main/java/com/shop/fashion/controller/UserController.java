@@ -1,6 +1,7 @@
 package com.shop.fashion.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -29,6 +30,8 @@ public class UserController {
 	private UserService userService;
 	@Autowired
 	private AuthenticationManager authenticationManager;
+	@Value("${kakao.key}")
+	private String kakaoKey;
 
 	// 회원가입 화면
 	@GetMapping("/security/join_form")
@@ -96,20 +99,24 @@ public class UserController {
 		String email = kakaoUserInfo.getKakaoAccount().getEmail();
 		boolean hasEmail = kakaoUserInfo.getKakaoAccount().getHasEmail();
 
-		User kakaoLoginUser = User.builder().username(email + "_" + kakaoUserInfo.getId())
-				.password(String.valueOf(kakaoUserInfo.getId())).email(email).oauth(OAuthType.KAKAO).name(name).build();
+		User kakaoLoginUser = User.builder()
+				.username(email + "_" + kakaoUserInfo.getId())
+				.password(kakaoKey)
+				.email(email)
+				.oauth(OAuthType.KAKAO)
+				.name(name)
+				.build();
 
 		if (hasEmail) {
 			User originUser = userService.checkUsername(kakaoLoginUser.getUsername());
 
 			if (originUser.getUsername() == null) {
 				userService.joinUser(kakaoLoginUser);
-				System.out.println("가입됨");
 			}
 		}
 
 		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-				kakaoLoginUser.getUsername(), String.valueOf(kakaoUserInfo.getId())));
+				kakaoLoginUser.getUsername(), kakaoLoginUser.getPassword()));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
 		return "redirect:/";

@@ -26,7 +26,7 @@ public class UserService {
 		}
 		user.setRole(RollType.USER);
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
-		System.out.println(user.getPassword());
+
 		return userRepository.save(user);
 	}
 
@@ -46,13 +46,16 @@ public class UserService {
 		User originUser = userRepository.findById(user.getId()).orElseThrow(() -> {
 			return new IllegalArgumentException("해당 사용자를 찾을 수 없습니다.");
 		});
-		System.out.println("22222222222222");
+
 		originUser.setName(user.getName());
 		originUser.setEmail(user.getEmail());
 		originUser.setPhoneNumber(user.getPhoneNumber());
 		originUser.setAddress(user.getAddress());
-		originUser.setPassword(passwordEncoder.encode(user.getPassword()));
-
+		
+		if(user.getOauth() == OAuthType.ORIGIN) {
+			originUser.setPassword(passwordEncoder.encode(user.getPassword()));
+		}
+		
 		return originUser;
 	}
 
