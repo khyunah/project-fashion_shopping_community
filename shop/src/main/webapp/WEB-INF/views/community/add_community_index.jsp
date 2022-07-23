@@ -10,7 +10,7 @@
 	<div class="commu-container">
         <div>
 	        <a href="/community/${communityBoard.id}">
-	        	<img class="commu-img" alt="" src="http://localhost:9090/upload/${communityBoard.imageUrl}"/>
+	        	<img class="commu-img" alt="" src="http://localhost:9090/upload/${communityBoard.imageUrl}" onerror="this.src='/image/noImage.png'"/>
 	        </a>
         </div>
 

@@ -88,10 +88,13 @@ public class CommunityService {
 	@Transactional
 	public CommunityBoard boardUpdate(int id, CommunityDto dto) {
 		CommunityBoard board = boardDetail(id);
-		String updateFileName = fileNameSet(dto);
 		
+		if(!dto.getFile().getOriginalFilename().isEmpty()) {
+			String updateFileName = fileNameSet(dto);
+			board.setImageUrl(updateFileName);
+		}
+
 		board.setContent(dto.getContent());
-		board.setImageUrl(updateFileName);
 		board.setTitle(dto.getTitle());
 		return board;
 	}

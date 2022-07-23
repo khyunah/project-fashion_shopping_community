@@ -16,7 +16,6 @@
         </div>
     </div>
 
-	<p id="result"></p>
 	<input id="pageNumber" type="hidden" value="${communityBoardList.number}">
 
     <script>history.scrollRestoration = "manual"</script>

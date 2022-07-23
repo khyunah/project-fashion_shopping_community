@@ -106,6 +106,23 @@
 			</label>
 		</div>
 	</div>
+	
+	<div class="user-input-container">
+		<label class="user-input-label">
+			<span class="label-txt">PROFILE IMAGE</span>
+			<input type="text" class="input" name="username" id="username" value="${principal.user.username}" readonly="readonly">
+			<div class="line-box">
+				<div class="line"></div>
+			</div>
+		</label>
+	</div>
+	<div class="form-group">
+      <label for="image">image</label>
+      <div class="input-group">
+        <input type="file" name="file" class="custom-file-input" id="image" required="required" accept=".jpg, .jpeg, .png, .gif"/>
+        <label class="custom-file-label" for="customFile"></label>
+      </div>
+    </div>
 
 	<div class="user-empty-box"></div>
 	<div class="user-empty-box"></div>

@@ -62,7 +62,7 @@ public class CommunityController {
 	@PostMapping("/board/{id}/update")
 	public String updateForm(@PathVariable int id, CommunityDto dto) {
 		communityService.boardUpdate(id, dto);
-		return "redirect:/";
+		return "redirect:/community/" + id;
 	}
 	
 	// 커뮤니티 상세보기 

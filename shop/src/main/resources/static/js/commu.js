@@ -121,9 +121,9 @@ let commu = {
 	},
 
 	// 글 삭제하기
-	boardDelete: function() {
-		let boardId = $("#communityBoardId").val();
-		$.ajax({			
+	boardDelete: function(boardId) {
+		//let boardId = $("#communityBoardId").val();
+		$.ajax({
 			type:"DELETE",
 			url:`/api/board/${boardId}`
 		})

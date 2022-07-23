@@ -27,7 +27,7 @@
                         <div class="card h-100">
                             <!-- Product image-->
                             <a class="item" href="/shop/itemdetail_form/${item.id}">
-                                <img class="card-img-top" src="${item.imageurl}" alt="..." style="width:200px; height: 253px; ">
+                                <img class="card-img-top" src="${item.imageurl}" alt="..." style="width:200px; height: 253px; " onerror="this.src='/image/noImage.png'">
                             </a>
                             <!-- Product details-->
                             <div class="card-body p-4">
