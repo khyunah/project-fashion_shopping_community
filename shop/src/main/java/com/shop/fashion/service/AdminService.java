@@ -60,4 +60,10 @@ public class AdminService {
 	public Page<CommunityBoard> getBoardAll(Pageable pageable){
 		return communityRepository.findAll(pageable);
 	}
+	
+	// 커뮤니티 보드 삭제
+	@Transactional
+	public void deleteCommunityBoard(int id) {
+		communityRepository.deleteById(id);
+	}
 }

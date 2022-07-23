@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="left_nav.jsp" %>
 
-    <div class="container">
+<div class="container">
     
     <div style="height: 50px;"></div>
       <h2>커뮤니티 관리</h2>
@@ -38,7 +38,7 @@
         </div>
 
         <div class="setting-btn-box">
-          <a href="#userid포함시켜서" class="btn btn-warning">삭제</a>
+          <button type="button" class="btn btn-danger" onclick="admin.communityDelete()">삭제</button>
         </div>
         
       </div>
@@ -57,7 +57,7 @@
         </thead>
         <tbody>
 	        <c:forEach var="communityBoard" items="${communityBoardPage.content}">
-	        	<tr onclick="aa(this)">
+	        	<tr onclick="clickList(this)">
 		            <td>${communityBoard.id}</td>
 		            <td>${communityBoard.title}</td>
 		            <td>${communityBoard.user.username}</td>
@@ -68,7 +68,7 @@
         </tbody>
       </table>
       
-   </div>
+   
     <div style="height: 100px"></div>
     <div class="admin-pagenation-container">
       <ul class="pagination justify-content-center">
@@ -102,35 +102,11 @@
         </li>
       </ul>
     </div>
+	<div class="admin-id-box">
+		<span id="admin-object-id" style="display: none;"></span>
+	</div>
+</div>	
 
-    <script>
-      function clickList(target) {
-        let bb = target.parentNode;
-        let trs = bb.getElementsByTagName("tr");
-
-        // 선택안된 
-        var backColor = "#32383e";
-        var textColor = "#ffffff";
-        // 선택 된
-        var orgBColor = "black";
-        var orgTColor = "#ffffff";
-
-        let th_value = [];
-
-        for (var i = 0; i < trs.length; i++) {
-          if (trs[i] != target) {
-            trs[i].style.backgroundColor = backColor;
-            trs[i].style.color = textColor;
-          } else {
-            trs[i].style.backgroundColor = orgBColor;
-            trs[i].style.color = orgTColor;
-            var td = trs[i].getElementsByTagName("td");
-            for (let j = 0; j < td.length; j++) {
-              th_value[j] = td[0].innerText;
-            }
-          }
-        }
-      }
-    </script>
+<script src="/js/admin.js"></script>
   </body>
 </html>

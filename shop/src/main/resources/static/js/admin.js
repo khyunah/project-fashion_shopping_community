@@ -32,7 +32,6 @@ let admin = {
 	userDelete: function(){
 		let result = confirm('유저를 삭제할까요?');
 		let id = $("#admin-object-id").text();
-		console.log(id);
     	if(result){
 			location.href = `/admin/user/delete/${id}`;
     	}
@@ -41,7 +40,15 @@ let admin = {
 	userChangeRole: function(){
 		let result = confirm('유저에게 권한을 부여할까요?\n[ 확인 - 관리자     취소 - 회원 ]');
 		let id = $("#admin-object-id").text();
-		console.log(result);
 		location.href = `/admin/user/change-role/${id}/${result}`;
+	},
+	
+	communityDelete: function(){
+		let result = confirm('해당 글을 삭제할까요?');
+		let id = $("#admin-object-id").text();
+		console.log(id);
+		if(result){
+			location.href = `/admin/community/delete/${id}`;
+		}
 	}
 }

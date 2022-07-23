@@ -94,6 +94,7 @@ public class AdminController {
 		return "admin/admin_shopping_save_form";
 	}
 	
+	
 	// 커뮤니티 관리 페이지에 기본화면 전체 조회
 	@GetMapping("/admin/community/select-all")
 	public String selectAllCommunity(@PageableDefault(size = 20, sort = "id", direction = Direction.DESC) Pageable pageable,
@@ -114,6 +115,16 @@ public class AdminController {
 		model.addAttribute("pageNumbers", pageNumbers);
 		return "admin/setting_community";
 	}
-
+	
+	// 커뮤니티 삭제 
+	@GetMapping("/admin/community/delete/{id}")
+	public String deleteCommunityBoard(@PathVariable int id, HttpServletRequest request) {
+		adminService.deleteCommunityBoard(id);
+		
+		if(request.getHeader("Referer") != null) {
+			return "redirect:" + request.getHeader("Referer");
+		}
+		return "/admin/community/select-all";
+	}
 
 }
