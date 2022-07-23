@@ -26,18 +26,15 @@
 
 .div-title-container {
   width: 190px;
-
   height: 20px;
-
-  overflow: hidden;
-
 }
 
 .commu-home-title,
-.commu-home-username {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
+.commu-home-username ,
+.commu-home-text {
+	white-space: pre-wrap;
+	text-overflow: ellipsis;
+} 
 
 #commu-like-icon-box {
   display: inline;
@@ -56,12 +53,6 @@
   font-family: "Gowun Batang", serif;
   line-height: 5px;
   letter-spacing: 0.8px;
-  
-  
-  display: inline;
-  text-overflow: ellipsis;
-  
-  
 }
 
 .span-goodlook-count {

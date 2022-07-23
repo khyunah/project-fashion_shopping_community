@@ -54,7 +54,7 @@
 
             <div>
                 <div class="div-content-container">
-                    <span class="span-content commu-text">${communityBoard.content}</span>
+                    <span class="span-content commu-home-text">${communityBoard.content}</span>
                 </div>
             </div>
 

@@ -11,7 +11,7 @@
             
             <div class="commu-container">
                 <div class="commu-social-img-box">
-                    <img class="commu-social-img" alt="" src="/image/model1.jpg">
+                    <img class="commu-social-img" alt="" src="/upload/${communityBoard.imageUrl}" />
                 </div>
 
                 <div class="commu-social-main-container">
@@ -56,7 +56,7 @@
                     <div style="height: 40px"></div>
 
                     <div>
-                        <div class="div-content-container">
+                        <div class="commu-social-div-content-container">
                             <span class="commu-social-span-content commu-text">${communityBoard.content}</span>
                         </div>
                     </div>
