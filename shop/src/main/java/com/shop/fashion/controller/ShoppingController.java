@@ -14,10 +14,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.shop.fashion.dto.KakaoPayApprovalDto;
+import com.shop.fashion.dto.KakaoPayDto;
 import com.shop.fashion.model.Basket;
 import com.shop.fashion.model.Item;
 import com.shop.fashion.service.BasketService;
+import com.shop.fashion.service.KakaoPayService;
 import com.shop.fashion.service.ShoppingService;
 
 @Controller
@@ -28,7 +32,11 @@ public class ShoppingController {
 
 	@Autowired
 	ShoppingService shoppingService;
+	
+	@Autowired
+	KakaoPayService kakaoPayService;
 
+	
 	@GetMapping({ "shop/mans_form", "/shop/search/" })
 	public String mansForm(@PathParam("gender") String gender, @PathParam("category") String category, Model model,
 			@PageableDefault(size = 8, sort = "id", direction = Direction.DESC) Pageable pageable) {
@@ -61,6 +69,7 @@ public class ShoppingController {
 		return "shopping/mans_form";
 	}
 
+	
 	@GetMapping({ "shop/womans_form", "/shop/search" })
 	public String womansForm(@PathParam("gender") String gender, @PathParam("category") String category, Model model,
 			@PageableDefault(size = 8, sort = "id", direction = Direction.DESC) Pageable pageable) {
@@ -92,12 +101,14 @@ public class ShoppingController {
 		// model.addAttribute("pageItems", ca);
 		return "shopping/womans_form";
 	}
+	
 
 	@GetMapping("/shop/save_form")
 	public String saveForm() {
 		return "shopping/save_form";
 	}
 
+	
 	@GetMapping("/shop/basket_form/{id}")
 	public String cartForm(@PathVariable int id, Model model) {
 		List<Basket> Baskets = shoppingService.getOnUserCart(id);
@@ -105,8 +116,8 @@ public class ShoppingController {
 		int sum = basketService.sum(id);
 
 		model.addAttribute("Baskets", Baskets);
-
 		model.addAttribute("sumPrince", sum);
+		
 		if (sum != 0) {
 			model.addAttribute("hasItem", true);
 		} else {
@@ -116,11 +127,39 @@ public class ShoppingController {
 		return "/shopping/basket_form";
 	}
 
+	
 	// /shopping/itemdetail_form/${item.id}
 	@GetMapping("/shop/itemdetail_form/{id}")
 	public String itemDetailform(@PathVariable int id, Model model) {
 		model.addAttribute("item", shoppingService.itemDetail(id));
 		return "shopping/itemdetail_form";
 	}
-
+	
+	
+	@GetMapping("/security/kakaoPay/callback")
+	public String kakaoPayReady() {
+	        KakaoPayDto dto = kakaoPayService.kakaoPayReady();
+	        return "redirect:" + dto.getNextRedirectPcUrl();
+	}
+	
+	
+	@GetMapping("/kakaoPaySuccess")
+	public String kakaoPaySuccess(@RequestParam("pg_token") String pg_token, Model model) {
+	       KakaoPayApprovalDto dto = kakaoPayService.kakaoPaySuccess(pg_token);
+	       model.addAttribute("pageTokenInfo", dto);
+	        return "shopping/payment_success";
+	}	    
+	
+	@GetMapping("/kakaoPayCancel")
+	public String kakaoPayCancel() {
+			return "shopping/payment_cancel";
+	}
+	
+	@GetMapping("/kakaoPayFail")
+	public String kakaoPayFail() {
+			return "shopping/payment_fail";
+	}
+	
+	
 }
+
