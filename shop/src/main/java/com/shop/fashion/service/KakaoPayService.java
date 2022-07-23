@@ -46,8 +46,6 @@ public class KakaoPayService {
          
         KakaoPayDto dto = response.getBody();
 
-//        dto.setTid(response.getBody().getTid());
-        System.out.println(dto.getTid());
         pageToken = dto.getTid();
         
         return dto;
