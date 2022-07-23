@@ -43,7 +43,7 @@ public class UserController {
 	@PostMapping("/security/join-user")
 	public String joinUser(User user) {
 		userService.joinUser(user);
-		return "user/login_form";
+		return "user/join_success";
 	}
 
 	// 로그인 화면
@@ -51,7 +51,7 @@ public class UserController {
 	public String loginForm() {
 		return "user/login_form";
 	}
-
+	
 	// 회원 정보 수정 화면
 	@GetMapping("/user/update_form")
 	public String updateUser() {
@@ -99,13 +99,8 @@ public class UserController {
 		String email = kakaoUserInfo.getKakaoAccount().getEmail();
 		boolean hasEmail = kakaoUserInfo.getKakaoAccount().getHasEmail();
 
-		User kakaoLoginUser = User.builder()
-				.username(email + "_" + kakaoUserInfo.getId())
-				.password(kakaoKey)
-				.email(email)
-				.oauth(OAuthType.KAKAO)
-				.name(name)
-				.build();
+		User kakaoLoginUser = User.builder().username(email + "_" + kakaoUserInfo.getId()).password(kakaoKey)
+				.email(email).oauth(OAuthType.KAKAO).name(name).build();
 
 		if (hasEmail) {
 			User originUser = userService.checkUsername(kakaoLoginUser.getUsername());
@@ -115,8 +110,8 @@ public class UserController {
 			}
 		}
 
-		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-				kakaoLoginUser.getUsername(), kakaoLoginUser.getPassword()));
+		Authentication authentication = authenticationManager.authenticate(
+				new UsernamePasswordAuthenticationToken(kakaoLoginUser.getUsername(), kakaoLoginUser.getPassword()));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
 		return "redirect:/";

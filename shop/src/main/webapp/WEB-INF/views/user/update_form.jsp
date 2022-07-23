@@ -21,7 +21,7 @@
 
   	<div class="user-input-container">
 		<label class="user-input-label">
-			<span class="label-txt">ENTER YOUR ID</span>
+			<span class="label-txt">YOUR ID</span>
 			<input type="text" class="input" name="username" id="username" value="${principal.user.username}" readonly="readonly">
 			<div class="line-box">
 				<div class="line"></div>
@@ -68,7 +68,7 @@
 	<div class="user-input-container">
 		<div>
 			<label class="user-input-label">
-				<span class="label-txt">ENTER YOUR NAME</span>
+				<span class="label-txt">YOUR NAME</span>
 				<input id="name" type="text" class="input" name="name" value="${principal.user.name}" required>
 				<div class="line-box">
 					<div class="line"></div>
@@ -76,7 +76,7 @@
 			</label>
 			
 			<label class="user-input-label">
-				<span class="label-txt">ENTER YOUR EMAIL</span>
+				<span class="label-txt">YOUR EMAIL</span>
 				<input id="email" type="email" class="input" name="email" value="${principal.user.email}" required>
 				<div class="line-box">
 					<div class="line"></div>
@@ -90,7 +90,7 @@
 	<div class="user-input-container">
 		<div>
 			<label class="user-input-label">
-				<span class="label-txt">ENTER YOUR ADDRESS</span>
+				<span class="label-txt">YOUR ADDRESS</span>
 				<input id="address" type="text" class="input" name="address" value="${principal.user.address}" required>
 				<div class="line-box">
 					<div class="line"></div>
@@ -98,7 +98,7 @@
 			</label>
 			
 			<label class="user-input-label">
-				<span class="label-txt">ENTER YOUR PHONE</span>
+				<span class="label-txt">YOUR PHONE</span>
 				<input id="phoneNumber" type="number" class="input" name="phoneNumber" value="${principal.user.phoneNumber}" required>
 				<div class="line-box">
 					<div class="line"></div>

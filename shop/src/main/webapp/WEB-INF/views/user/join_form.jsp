@@ -108,15 +108,6 @@
 
 <script>
    $(document).ready(function () {
-       $(".input").focus(function () {
-           $(this).parent().find(".label-txt").addClass("label-active");
-       });
-
-       $(".input").focusout(function () {
-           if ($(this).val() == '') {
-               $(this).parent().find(".label-txt").removeClass("label-active");
-           };
-       });
 
        $("#username").keyup(function () {
            $("#checkIdResult").text(null);
@@ -157,7 +148,7 @@
 
            });
        });
-
+       
    });
 
    function checkPassword() {
@@ -167,6 +158,8 @@
        } else if ($("#checkPasswordResult").text() == "불일치" || $("#checkPasswordResult") == "") {
            alert("비밀번호가 일치하지 않습니다.");
            return false;
+       } else {
+    	   return true;
        }
    }
 

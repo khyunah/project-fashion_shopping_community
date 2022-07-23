@@ -9,6 +9,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -41,7 +43,7 @@ public class User {
 	private String email;
 
 	@Column(length = 11)
-	private String phoneNumber;
+	private int phoneNumber;
 
 	private String address;
 
