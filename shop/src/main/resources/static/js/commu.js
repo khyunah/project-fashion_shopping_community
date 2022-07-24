@@ -165,10 +165,12 @@ let commu = {
 			});
 	},
 
+	// 맨위로
 	goTop: function() {
 		$('html').scrollTop(0);
 	},
 
+	// 메인에서 로그인 안하고 카드 선택시 로그인페이지로
 	guestCheck: function() {
 		location.href = "/security/login_form";
 	}

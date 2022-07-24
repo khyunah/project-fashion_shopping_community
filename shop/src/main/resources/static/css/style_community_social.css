@@ -139,6 +139,11 @@
 	object-fit: contain;
 }
 
+.commu-profile-username {
+	white-space: pre-wrap;
+	text-overflow: ellipsis;
+}
+
 .commu-profile-text-box {
 	color: white;
 }

@@ -53,7 +53,7 @@ let index = {
 	save: function() {
 		let token = $("meta[name='_csrf']").attr("content");
 		let header = $("meta[name='_csrf_header']").attr("content");
-		
+
 		// 데이터 가져오기
 		let data = {
 			category: $("#category").val(),
@@ -70,8 +70,8 @@ let index = {
 		console.log(data);
 
 		$.ajax({
-			beforeSend : function(xhr) {
-				xhr.setRequestHeader(header, token)				
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader(header, token)
 			},
 			type: "POST",
 			url: "/api/item",
@@ -79,11 +79,11 @@ let index = {
 			contentType: "application/json; charset=utf-8",
 			dataType: "json"
 		})
-			.done(function(data, textStatus, xhr) {
-				if (data.status) {
-					alert("새로운 제품을 추가했습니다.");
-					location.href = "/shop/save_form";
-				}
+			.done(function(response) {
+
+				alert("새로운 제품을 추가했습니다.");
+				location.href = response.data;
+
 			})
 			.fail(function(error) {
 				alert("제품 추가를 실패했습니다.");
@@ -93,7 +93,7 @@ let index = {
 	updateItem: function() {
 		let token = $("meta[name='_csrf']").attr("content");
 		let header = $("meta[name='_csrf_header']").attr("content");
-		
+
 		let id = $("#itemId").val();
 		let data = {
 			id: id,
@@ -108,8 +108,8 @@ let index = {
 		}
 
 		$.ajax({
-			beforeSend : function(xhr) {
-				xhr.setRequestHeader(header, token)				
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader(header, token)
 			},
 			type: "POST",
 			url: "/api/item",

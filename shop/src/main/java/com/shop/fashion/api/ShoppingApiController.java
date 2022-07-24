@@ -1,5 +1,7 @@
 package com.shop.fashion.api;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -38,9 +40,13 @@ public class ShoppingApiController {
 	UserService userService;
 
 	@PostMapping("/api/item")
-	public ResponseDto<Integer> save(@RequestBody Item item) {
+	public ResponseDto<String> save(@RequestBody Item item, HttpServletRequest request) {
 		shoppingService.saveItem(item);
-		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+		String responceResult = "0";
+		if (request.getHeader("Referer") != null) {
+			responceResult = String.valueOf(request.getHeader("Referer"));
+		}
+		return new ResponseDto<>(HttpStatus.OK.value(), responceResult);
 	}
 
 	@PostMapping("/api/category")

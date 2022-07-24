@@ -51,13 +51,10 @@
           <tr>
             <th>ID</th>
             <th>USERNAME</th>
+            <th>IMAGE</th>
+            <th>TITLE</th>
             <th>LIKECOUNT</th>
             <th>CREATEDATE</th>
-            <th>IMAGE</th>
-          </tr>
-          <tr>
-          	<th>TITLE</th>
-          	<th>CONTENT</th>
           </tr>
         </thead>
         <tbody>
@@ -65,16 +62,15 @@
 	        	<tr onclick="clickList(this)">
 		            <td>${communityBoard.id}</td>
 		            <td>${communityBoard.user.username}</td>
-		            <td>${communityBoard.likeCount}</td>
-		            <td>${communityBoard.createDate}</td>
-		            <td><div class="admin-img-box">
+		            <td>
+		            	<div class="admin-img-box">
 							<img class="card-img-top" src="/upload/${communityBoard.imageUrl}" alt="Card image"
 								style="width: 100%">
-						</div></td>
-		        </tr>
-		        <tr>
-		        	<td>${communityBoard.title}</td>
-		        	<td>${communityBoard.content}</td>
+						</div>
+					</td>
+		            <td>${communityBoard.title}</td>
+		            <td>${communityBoard.likeCount}</td>
+		            <td>${communityBoard.createDate}</td>
 		        </tr>
 	        </c:forEach>
         </tbody>

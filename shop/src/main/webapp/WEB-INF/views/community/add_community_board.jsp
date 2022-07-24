@@ -23,8 +23,8 @@
 		<div class="commu-container commu-container-social">
 
 			<div class="commu-social-img-box">
-				<img class="commu-social-img" alt="" onerror="this.src='/image/noImage.png'"
-					src="/upload/${communityBoard.imageUrl}" />
+				<a href="/community/${communityBoard.id}"><img class="commu-social-img" alt="" onerror="this.src='/image/noImage.png'"
+					src="/upload/${communityBoard.imageUrl}" /></a>
 			</div>
 
 			<div class="commu-social-main-container">
