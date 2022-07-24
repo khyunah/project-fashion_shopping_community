@@ -35,8 +35,8 @@ let admin = {
 
 		let result = confirm('해당 회원을 삭제할까요?');
 		let id = $("#admin-object-id").text();
-		
-		if(id != null){
+
+		if (id != null) {
 			if (result) {
 				$.ajax({
 					beforeSend: function(xhr) {
@@ -60,11 +60,11 @@ let admin = {
 	userChangeRole: function() {
 		let token = $("meta[name='_csrf']").attr("content");
 		let header = $("meta[name='_csrf_header']").attr("content");
-		
+
 		let result = confirm('유저에게 권한을 부여할까요?\n[ 확인 - 관리자     취소 - 회원 ]');
 		let id = $("#admin-object-id").text();
-		
-		if(id != null){
+
+		if (id != null) {
 			if (result != null) {
 				$.ajax({
 					beforeSend: function(xhr) {
@@ -84,17 +84,17 @@ let admin = {
 			alert("회원을 선택해주세요");
 		}
 
-		
+
 	},
 
 	communityDelete: function() {
 		let token = $("meta[name='_csrf']").attr("content");
 		let header = $("meta[name='_csrf_header']").attr("content");
-		
+
 		let result = confirm('해당 글을 삭제할까요?');
 		let id = $("#admin-object-id").text();
-		
-		if(id != null){
+
+		if (id != null) {
 			if (result) {
 				$.ajax({
 					beforeSend: function(xhr) {
@@ -113,17 +113,17 @@ let admin = {
 			alert("게시글을 선택해주세요");
 		}
 
-		
+
 	},
 
 	shoppingDelete: function() {
 		let token = $("meta[name='_csrf']").attr("content");
 		let header = $("meta[name='_csrf_header']").attr("content");
-		
+
 		let result = confirm('해당 아이템을 삭제할까요?');
 		let id = $("#admin-object-id").text();
-		
-		if(id != null){
+
+		if (id != null) {
 			if (result) {
 				$.ajax({
 					beforeSend: function(xhr) {
@@ -150,11 +150,10 @@ let admin = {
 
 	shoppingDetail: function() {
 		let id = $("#admin-object-id").text();
-		if(id != null){
+		if (id != null) {
 			location.href = `/admin/shopping/item-detail/${id}`;
 		} else {
 			alert("아이템을 선택해주세요");
 		}
-		
 	}
 }

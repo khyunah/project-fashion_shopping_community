@@ -59,23 +59,23 @@ public class UserController {
 	public String loginForm() {
 		return "user/login_form";
 	}
-	
-	// 로그아웃 
+
+	// 로그아웃
 	@GetMapping("/logout")
 	public String logout(HttpServletRequest request, HttpServletResponse response) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if(authentication != null) {
+		if (authentication != null) {
 			new SecurityContextLogoutHandler().logout(request, response, authentication);
 		}
 		return "redirect:/";
 	}
-	
+
 	// 회원 정보 수정 화면
 	@GetMapping("/user/update_form")
 	public String updateUser() {
 		return "user/update_form";
 	}
-	
+
 	// 프로필 회원정보 수정
 	@PostMapping("/user/profile-update/{id}")
 	public String updateProfile(@PathVariable int id, UserUpdateDto dto) {
@@ -87,8 +87,12 @@ public class UserController {
 	// 카카오 로그인
 	@GetMapping("/security/kakao/callback")
 	public String kakaoLogin(String code) {
+		return joinKakaoUser(getKakaoUserInfo(getKakaoToken(code)));
+	}
 
-		// 토큰 정보 받기
+	// 토큰 정보 받기
+	private ResponseEntity<KakaoTokenDto> getKakaoToken(String code) {
+		
 		HttpHeaders tokenHeaders = new HttpHeaders();
 		tokenHeaders.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 
@@ -105,20 +109,26 @@ public class UserController {
 		RestTemplate tokenRest = new RestTemplate();
 		ResponseEntity<KakaoTokenDto> tokenResponse = tokenRest.exchange("https://kauth.kakao.com/oauth/token",
 				HttpMethod.POST, tokenRequest, KakaoTokenDto.class);
+		return tokenResponse;
+	}
 
-		// 사용자 정보 받기
+	// 사용자 정보 받기
+	private KakaoUserInfoDto getKakaoUserInfo(ResponseEntity<KakaoTokenDto> kakaoToken) {
+		
 		HttpHeaders kakaoUserInfoHeader = new HttpHeaders();
-		kakaoUserInfoHeader.add("Authorization", "Bearer " + tokenResponse.getBody().getAccessToken());
+		kakaoUserInfoHeader.add("Authorization", "Bearer " + kakaoToken.getBody().getAccessToken());
 		kakaoUserInfoHeader.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 
 		HttpEntity<MultiValueMap<String, String>> kakaoUserInfoRequest = new HttpEntity<>(kakaoUserInfoHeader);
 		RestTemplate kakaoUserInfoRest = new RestTemplate();
 		ResponseEntity<KakaoUserInfoDto> kakaoUserInfoResponse = kakaoUserInfoRest.exchange(
 				"https://kapi.kakao.com/v2/user/me", HttpMethod.POST, kakaoUserInfoRequest, KakaoUserInfoDto.class);
-
-		KakaoUserInfoDto kakaoUserInfo = kakaoUserInfoResponse.getBody();
-
-		// 사용자 가입시켜주기
+		return kakaoUserInfoResponse.getBody();
+	}
+	
+	// 사용자 가입시켜주기
+	private String joinKakaoUser(KakaoUserInfoDto kakaoUserInfo) {
+		
 
 		// 사용자가 이미 가입되어 있는지 확인
 		String name = kakaoUserInfo.getProperties().getNickname();
@@ -135,7 +145,7 @@ public class UserController {
 				userService.joinUser(kakaoLoginUser);
 			}
 		}
-
+		
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(kakaoLoginUser.getUsername(), kakaoLoginUser.getPassword()));
 		SecurityContextHolder.getContext().setAuthentication(authentication);

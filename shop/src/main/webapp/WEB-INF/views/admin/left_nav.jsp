@@ -75,8 +75,8 @@
 				</div>
 
 				<div class="admin-menu-list-item">
-					<a href="/" class="btn"> <img alt=""
-						src="/image/ex_icon.png" class="admin-menu-nav-img">
+					<a href="/" class="btn"> <img alt="" src="/image/ex_icon.png"
+						class="admin-menu-nav-img">
 						<div class="admin-menu-text">사이트확인</div>
 					</a>
 				</div>
@@ -90,5 +90,6 @@
 			</div>
 		</div>
 	</div>
+<script src="/js/admin.js"></script>
 </body>
 </html>
