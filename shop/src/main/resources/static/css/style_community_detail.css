@@ -52,26 +52,27 @@
 
 .commu-detail-div-title-container {
 	width: 95%;
-	height: auto;
-	overflow: hidden;
-	white-space: pre-wrap;
-	text-overflow: ellipsis;
+}
+
+.cdtb-container {
+	width: 100%;
+	max-width: 400px;
+}
+
+.commu-detail-text-box {
+	font-family: "Gowun Batang", serif;
+	width: 90%;
 }
 
 .commu-detail-title {
-	font-size: 18px;
-	font-weight: bold;
-}
-
-.commu-detail-text {
-	font-family: "Gowun Batang", serif;
-	line-height: 10px;
-	letter-spacing: 0.8px;
-	display: inline;
+	font-size: 20px;
+	font-weight: 900;
+	margin-bottom: 10px
 }
 
 .commu-detail-div-content-container {
 	width: 95%;
+	margin-top: 20px;
 }
 
 .commu-detail-span-goodlook-count {

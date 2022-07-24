@@ -27,16 +27,29 @@ public class CommunityController {
 	private CommunityService communityService;
 	
 	@GetMapping("/")
-	public String index(Model model, @PageableDefault(size = 2, sort = "id", direction = Direction.DESC) Pageable pageable) {
+	public String index(Model model, @PageableDefault(size = 2, sort = "id", direction = Direction.DESC) Pageable pageable, 
+			@AuthenticationPrincipal PrincipalUserDetail userDetail) {
 		Page<CommunityBoard> communityBoardList = communityService.getCommunityBoardList(pageable);
 		model.addAttribute("communityBoardList", communityBoardList);
+		
+		if(userDetail != null) {
+			List<CommunityLike> likeList = communityService.myLike(userDetail.getUser().getId());
+			model.addAttribute("likeList", likeList);
+		}
+
 		return "index";
 	}
 	
 	@GetMapping("/index-add")
-	public String addIndex(Model model, @PageableDefault(size = 2, sort = "id", direction = Direction.DESC) Pageable pageable) {
+	public String addIndex(Model model, @PageableDefault(size = 2, sort = "id", direction = Direction.DESC) Pageable pageable,
+			@AuthenticationPrincipal PrincipalUserDetail userDetail) {
 		Page<CommunityBoard> communityBoardList = communityService.getCommunityBoardList(pageable);
 		model.addAttribute("communityBoardList", communityBoardList);
+		
+		if(userDetail != null) {
+			List<CommunityLike> likeList = communityService.myLike(userDetail.getUser().getId());
+			model.addAttribute("likeList", likeList);
+		}
 		return "community/add_community_index";
 	}
 	

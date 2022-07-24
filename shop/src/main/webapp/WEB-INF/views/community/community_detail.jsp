@@ -19,7 +19,6 @@
 </div>
 <div class="commu-detail-center-container">
 
-
 	<div class="commu-detail-container">
 
 		<div class="commu-detail-img-container">
@@ -56,12 +55,12 @@
 
 			<div style="height: 10px"></div>
 
-			<div>
-				<div class="commu-detail-div-title-container">
-					<p id="communityTitle" class="commu-detail-text commu-detail-title">${communityBoard.title}</p>
+			<div class="cdtb-container">
+				<div class="commu-detail-text-box commu-detail-title">
+					${communityBoard.title}
 				</div>
-				<div class="commu-detail-div-title-container">
-					<span class="p-username commu-detail-text">${communityBoard.user.username}</span>
+				<div class="commu-detail-text-box">
+					${communityBoard.user.username}
 				</div>
 			</div>
 

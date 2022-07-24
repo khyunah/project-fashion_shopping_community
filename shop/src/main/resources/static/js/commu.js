@@ -140,6 +140,10 @@ let commu = {
 	
 	goTop: function(){
 		$('html').scrollTop(0);
+	},
+	
+	guestCheck: function() {
+		location.href = "/security/login_form";
 	}
 
 }
