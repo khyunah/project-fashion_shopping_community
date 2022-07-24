@@ -21,7 +21,7 @@ import com.shop.fashion.repository.UserRepository;
 @Service
 public class UserService {
 
-	@Value("${file.profile}")
+	@Value("${file.path}")
 	private String profileFolder;
 	@Autowired
 	private UserRepository userRepository;
@@ -75,18 +75,20 @@ public class UserService {
 		User user = userRepository.findById(id).orElseThrow(() -> {
 			return new IllegalArgumentException("해당 사용자를 찾을 수 없습니다.");
 		});
-		
+		System.out.println(dto.getFile().getOriginalFilename());
+		System.out.println(dto.getFile().getName());
 		if(!dto.getFile().getOriginalFilename().isEmpty()) {
 			user.setImageUrl(saveImageFile(dto));
 			user.setOriginImageTitle(dto.getFile().getOriginalFilename());
+			System.out.println(user.getImageUrl());
 		}
 		
 		user.setName(dto.getName());
 		if(user.getOauth() == OAuthType.ORIGIN) {
-			user.setPassword(passwordEncoder.encode(user.getPassword()));
+			user.setPassword(passwordEncoder.encode(dto.getPassword()));
 		}
 		user.setEmail(dto.getEmail());
-		user.setPhoneNumber(dto.getPhomeNumber());
+		user.setPhoneNumber(dto.getPhoneNumber());
 		user.setAddress(dto.getAddress());
 		
 		return user;

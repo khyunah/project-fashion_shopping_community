@@ -16,7 +16,7 @@
     <div class="user-input-container">
         <label class="user-input-label">
             <span class="label-txt">YOUR ID</span>
-            <input value="asd1" type="text" class="input" name="username" id="username" readonly>
+            <input value="${user.username}" type="text" class="input" name="username" id="username" readonly>
             <div class="line-box">
                 <div class="line"></div>
             </div>
@@ -30,7 +30,7 @@
             <div>
                 <label class="user-input-label">
                     <span class="label-txt">YOUR NAME</span>
-                    <input value="홍길동" type="text" class="input" name="name" readonly>
+                    <input value="${user.name}" type="text" class="input" name="name" readonly>
                     <div class="line-box">
                         <div class="line"></div>
                     </div>
@@ -42,7 +42,7 @@
             <div>
                 <label class="user-input-label">
                     <span class="label-txt">YOUR EMAIL</span>
-                    <input value="hyunah@google.com" type="email" class="input" name="email" readonly>
+                    <input value="${user.email }" type="email" class="input" name="email" readonly>
                     <div class="line-box">
                         <div class="line"></div>
                     </div>
@@ -56,7 +56,7 @@
             <div>
                 <label class="user-input-label">
                     <span class="label-txt">YOUR ADDRESS</span>
-                    <input value="부산시 진구" type="text" class="input" name="address" readonly>
+                    <input value="${user.address}" type="text" class="input" name="address" readonly>
                     <div class="line-box">
                         <div class="line"></div>
                     </div>
@@ -68,7 +68,7 @@
             <div>		
                 <label class="user-input-label">
                     <span class="label-txt">YOUR PHONE</span>
-                    <input value="01012345432" type="number" class="input" name="phoneNumber" readonly>
+                    <input value="${user.phoneNumber}" type="number" class="input" name="phoneNumber" readonly>
                     <div class="line-box">
                         <div class="line"></div>
                     </div>

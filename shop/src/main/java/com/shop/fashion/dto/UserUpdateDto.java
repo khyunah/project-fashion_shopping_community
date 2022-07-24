@@ -16,10 +16,10 @@ public class UserUpdateDto {
 	private MultipartFile file;
 	private String uuid;
 	private String username;
-	private String passowrd;
+	private String password;
 	private String name;
 	private String email;
 	private String address;
-	private int phomeNumber;
+	private int phoneNumber;
 
 }

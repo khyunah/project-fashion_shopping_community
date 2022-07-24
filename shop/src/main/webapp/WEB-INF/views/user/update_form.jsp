@@ -19,7 +19,7 @@
 <input type="hidden" value="${isOauth}" id="isOauth">
 <input type="hidden" value="${principal.user.id}" id="id">
 
-<form class="user-form" action="/user/profile-update"
+<form class="user-form" action="/user/profile-update/${principal.user.id}"
 	enctype="multipart/form-data" method="post">
 
 	<div class="user-input-container">
@@ -52,7 +52,7 @@
 						</div>
 					</label> <label class="user-input-label"> <span class="label-txt">PASSWORD
 							CHECK</span> <input id="passwordCheck" type="password" class="input"
-						name="passwordCheck" required>
+						required>
 						<div class="line-box">
 							<div class="line"></div>
 						</div>
@@ -114,7 +114,7 @@
 		</label>
 		<div class="form-group">
 			<div class="input-group">
-				<input type="file" name="file" class="custom-file-input" id="image" width="200" height="230"/>
+				<input type="file" name="file" class="custom-file-input" id="image" required="required" width="200" height="230"/>
 				<label class="custom-file-label" for="customFile"></label>
 			</div>
 		</div>
@@ -134,8 +134,7 @@
 			function() {
 				console.log($(this).val());
 				let fileName = $(this).val().split("\\").pop();
-				$(this).siblings(".custom-file-label").addClass("selected")
-						.html(fileName);
+				$(this).siblings(".custom-file-label").html(fileName);
 			});
 </script>
 <script src="/js/user.js"></script>

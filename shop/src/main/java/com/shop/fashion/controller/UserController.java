@@ -12,9 +12,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
 
@@ -44,8 +46,9 @@ public class UserController {
 
 	// 회원가입
 	@PostMapping("/security/join-user")
-	public String joinUser(User user) {
-		userService.joinUser(user);
+	public String joinUser(User user, Model model) {
+		User userEntity = userService.joinUser(user);
+		model.addAttribute("user", userEntity);
 		return "user/join_success";
 	}
 
@@ -62,9 +65,10 @@ public class UserController {
 	}
 	
 	// 프로필 회원정보 수정
-	@PostMapping("/user/profile-update")
-	public String updateProfile(@AuthenticationPrincipal PrincipalUserDetail userDetail, UserUpdateDto dto) {
-		userService.updateUserProfile(userDetail.getUser().getId(), dto);
+	@PostMapping("/user/profile-update/{id}")
+	public String updateProfile(@PathVariable int id, UserUpdateDto dto) {
+		User user = userService.updateUserProfile(id, dto);
+		System.out.println(user.getImageUrl());
 		return "redirect:/user/update_form";
 	}
 
