@@ -48,7 +48,7 @@ public class CommunityApiContoller {
 	}
 
 	// 댓글 삭제
-	@GetMapping("/community/reply-delete/{id}")
+	@DeleteMapping("/community/reply-delete/{id}")
 	public ResponseDto<Integer> deleteReply(@PathVariable int id) {
 		communityService.deleteReply(id);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);

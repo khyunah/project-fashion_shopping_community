@@ -10,6 +10,8 @@
 <html>
 <head>
 <meta charset="UTF-8" />
+<meta name="${_csrf.parameterName}" content="${_csrf.token}">
+<meta name="_csrf_header" content="${_csrf.headerName}">
 <title>Nerdy</title>
 
 <link href="/css/style_admin.css" rel="stylesheet" type="text/css" />

@@ -53,8 +53,6 @@ public class UserApiController {
 					.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), kakaoKey));
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 		}
-		
-		
 
 		return new ResponseDto<User>(HttpStatus.OK.value(), updateUserEntity);
 	}

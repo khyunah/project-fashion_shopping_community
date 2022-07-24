@@ -1,4 +1,6 @@
 function changeBoard() {
+	let token = $("meta[name='_csrf']").attr("content");
+	let header = $("meta[name='_csrf_header']").attr("content");
 	
 	let item = $("#mans_shirts").text();
 	console.log(item);
@@ -7,6 +9,9 @@ function changeBoard() {
 		category: item
 	}
 	$.ajax({
+		beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token)				
+		},
 		type: "POST",
 		url: "/test/api/search/${data.gender}/${data.category}",
 		contentType: "application/json; charset=utf-8",
@@ -17,7 +22,7 @@ function changeBoard() {
 		location.reload();
 	}).fail(function(res){
 		
-	})
+	});
 }
 
 function addItem(res){

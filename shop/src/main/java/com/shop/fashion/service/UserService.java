@@ -75,12 +75,11 @@ public class UserService {
 		User user = userRepository.findById(id).orElseThrow(() -> {
 			return new IllegalArgumentException("해당 사용자를 찾을 수 없습니다.");
 		});
-		System.out.println(dto.getFile().getOriginalFilename());
-		System.out.println(dto.getFile().getName());
+		System.out.println(user.getId());
+
 		if(!dto.getFile().getOriginalFilename().isEmpty()) {
 			user.setImageUrl(saveImageFile(dto));
 			user.setOriginImageTitle(dto.getFile().getOriginalFilename());
-			System.out.println(user.getImageUrl());
 		}
 		
 		user.setName(dto.getName());

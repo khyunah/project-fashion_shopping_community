@@ -22,6 +22,7 @@
 <div class="container justify-content space-between">
  
 	<form action="/board/${boardList.id}/update" enctype="multipart/form-data" onsubmit="" method="post">
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
     <div class="form-group">
       <label for="title" id=title>title</label>
       <input id="communityBoardTitle" value="${boardList.title}" type="text" class="form-control" placeholder="Enter title" name="title" id="title" />

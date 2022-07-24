@@ -1,6 +1,9 @@
 let user = {
 	
 	update: function(){
+		let token = $("meta[name='_csrf']").attr("content");
+		let header = $("meta[name='_csrf_header']").attr("content");
+		
 		let data = {
 			id: $("#id").val(),
 			username: $("#username").val(),
@@ -12,6 +15,9 @@ let user = {
 		}
 
 		$.ajax({
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader(header, token)				
+			},
 			type: "PUT",
 			url: "/user/update",
 			data: JSON.stringify(data),
@@ -29,6 +35,9 @@ let user = {
 	},
 	
 	kakaoUserUpdate: function(){
+		let token = $("meta[name='_csrf']").attr("content");
+		let header = $("meta[name='_csrf_header']").attr("content");
+		
 		let data = {
 			id: $("#id").val(),
 			username: $("#username").val(),
@@ -40,6 +49,9 @@ let user = {
 		}
 
 		$.ajax({
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader(header, token)				
+			},
 			type: "PUT",
 			url: "/user/update",
 			data: JSON.stringify(data),

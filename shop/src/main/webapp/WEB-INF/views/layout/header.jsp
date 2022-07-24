@@ -10,6 +10,8 @@
 <html>
   <head>
     <meta charset="UTF-8" />
+    <meta name="${_csrf.parameterName}" content="${_csrf.token}">
+    <meta name="_csrf_header" content="${_csrf.headerName}">
     <title>Nerdy</title>
 
     <!-- CSS 적용 경로 -->
@@ -131,10 +133,6 @@
                           <a href="/shop/womans_form/?gender=WOMAN"
                             style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">
                             WOMAN's</a>
-                          <a href="/shop/save_form"
-                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">ADD
-                            ITEM</a>
-
                         </div>
                       </div>
                     </li>

@@ -7,9 +7,6 @@
 <div class="container">
 	<input type="hidden" id="itemId" value="${item.id}">
 	<form action="">
-		<input type="hidden" name="${_csrf.parameterName}"
-			value="${_csrf.token}">
-
 		<div class="form-group">
 			<label for="gender">gender :</label> <select id="gender">
 				<c:choose>

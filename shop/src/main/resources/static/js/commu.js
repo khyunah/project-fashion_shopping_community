@@ -1,155 +1,181 @@
 let commu = {
-	
-	init: function(){
-		$(document).on('click', ".commu-detail-btn-reply-update-finish", function(){
+
+	init: function() {
+		$(document).on('click', ".commu-detail-btn-reply-update-finish", function() {
 			commu.finishUpdateReply();
 		});
 
 		$("#commu-detail-btn-delete").bind('click', () => {
 			this.boardDelete();
 		});
-		
+
 		$(".commu-profile-btn-top").bind('click', () => {
 			this.goTop();
 		});
 	},
-	
+
 	// 댓글쓰기
 	insertReply: function(communityBoardId, userId) {
+		let token = $("meta[name='_csrf']").attr("content");
+		let header = $("meta[name='_csrf_header']").attr("content");
 
 		let data = {
 			content: $(`#commu-input-reply-${communityBoardId}`).val(),
 		}
 
 		$.ajax({
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader(header, token)
+			},
 			type: "POST",
 			url: `/community/reply-insert/${communityBoardId}`,
 			data: JSON.stringify(data),
 			contentType: "application/json; charset=utf-8",
 			dataType: "json"
-		}).done(function(response){
+		}).done(function(response) {
+			alert("댓글 작성 완료 !");
 			addReply(response.data, userId, communityBoardId);
-		}).fail(function(error){
-
+		}).fail(function(error) {
+			alert("댓글 작성 실패 !");
 		});
 	},
-	
+
 	// 댓글 삭제
-	deleteReply: function(){
-		let id = $("#replyId").val();
+	deleteReply: function() {
+		let token = $("meta[name='_csrf']").attr("content");
+		let header = $("meta[name='_csrf_header']").attr("content");
 		
+		let id = $("#replyId").val();
+
 		$.ajax({
-			type: "GET",
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader(header, token)				
+			},
+			type: "DELETE",
 			url: `/community/reply-delete/${id}`,
 			dataType: "json"
-		}).done(function(response){
+		}).done(function(response) {
 			console.log("성공");
 			// 삭제 성공하면 해당 html 삭제해주기 비동기방식으로 해보기 
 			removeReply(id);
-		}).fail(function(error){
+		}).fail(function(error) {
 			console.log("실패");
 		})
 	},
-	
+
 	// 댓글 수정버튼 클릭시 
-	updateBtnReply: function(){
+	updateBtnReply: function() {
 		changeReply();
 	},
-	
+
 	// 댓글 수정 완료시 
-	finishUpdateReply: function(replyId){
-		console.log("완료버튼 누름");
+	finishUpdateReply: function(replyId) {
+		let token = $("meta[name='_csrf']").attr("content");
+		let header = $("meta[name='_csrf_header']").attr("content");
+		
 		let data = {
 			id: replyId,
 			content: $(`.commu-detail-reply-origin-content-${replyId}`).text(),
 		}
-		console.log(data.content); 
-		
+
 		$.ajax({
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader(header, token)				
+			},
 			type: "POST",
 			url: `/community/reply-update`,
 			data: JSON.stringify(data),
 			contentType: "application/json; charset=utf-8",
 			dataType: "json"
-		}).done(function(response){
+		}).done(function(response) {
 			console.log("성공");
 			console.log(response);
 
-		}).fail(function(error){
+		}).fail(function(error) {
 			console.log("실패");
 		});
 	},
-	
+
 	// 좋아요
-	communityLike: function(communityBoardId, likeCount){
+	communityLike: function(communityBoardId, likeCount) {
 
 		$.ajax({
 			type: "GET",
 			url: `/community/check-like/${communityBoardId}`,
 			dataType: "json"
-		}).done(function(response){
+		}).done(function(response) {
 			changeLikeIcon(response, communityBoardId, likeCount);
-		}).fail(function(error){
+		}).fail(function(error) {
 			alert('서버오류 ! 다시 실행해주세요.');
 		});
-	}, 
-	
+	},
+
 	// 글 수정하기
 	boardUpdate: function() {
+		let token = $("meta[name='_csrf']").attr("content");
+		let header = $("meta[name='_csrf_header']").attr("content");
+		
 		let id = $("#boardId").val();
 		let data = {
 			title: $("#communityBoardTitle").val(),
 			content: $("#communityBoardContent").val()
 		}
-		
+
 		$.ajax({
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader(header, token)				
+			},
 			type: "PUT",
 			url: `/api/board/${id}`,
 			data: JSON.stringify(data),
 			contentType: "application/json; charset=utf-8",
 			dataType: "json"
 		})
-		.done(function(data) {
-			if(data.status) {
-				alert("글 수정이 완료 되었습니다");
-				location.href="/";
-			}
-		})
-		.fail(function(error){
-			alert("글 쓰기에 실패하였습니다");			
-		});
+			.done(function(data) {
+				if (data.status) {
+					alert("글 수정이 완료 되었습니다");
+					location.href = "/";
+				}
+			})
+			.fail(function(error) {
+				alert("글 쓰기에 실패하였습니다");
+			});
 	},
 
 	// 글 삭제하기
 	boardDelete: function(boardId) {
-		//let boardId = $("#communityBoardId").val();
+		let token = $("meta[name='_csrf']").attr("content");
+		let header = $("meta[name='_csrf_header']").attr("content");
+		
 		$.ajax({
-			type:"DELETE",
-			url:`/api/board/${boardId}`
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader(header, token)				
+			},
+			type: "DELETE",
+			url: `/api/board/${boardId}`
 		})
-		.done(function(data){
-			if(data.status) {
-				alert("삭제가 완료되었습니다.");
-				location.href = "/";
-			}
-		})
-		.fail(function(){
-			alert("삭제에 실패했습니다.");
-		});
+			.done(function(data) {
+				if (data.status) {
+					alert("삭제가 완료되었습니다.");
+					location.href = "/";
+				}
+			})
+			.fail(function() {
+				alert("삭제에 실패했습니다.");
+			});
 	},
-	
-	goTop: function(){
+
+	goTop: function() {
 		$('html').scrollTop(0);
 	},
-	
+
 	guestCheck: function() {
 		location.href = "/security/login_form";
 	}
-
 }
 
 // 댓글 추가 
-function addReply(reply, userId, communityBoardId){
+function addReply(reply, userId, communityBoardId) {
 	let childReply = `
 		<div id="commu-reply-${reply.id}">
 			<input id="replyId" type="hidden" value="${reply.id}"/>
@@ -171,32 +197,32 @@ function addReply(reply, userId, communityBoardId){
 		    </div>
 		</div>
 	`;
-	
+
 	$(".commu-detail-reply-container").prepend(childReply);
 	$(`#commu-input-reply-${communityBoardId}`).val("");
 }
 
-function removeReply(replyId){
-	$(`#commu-reply-`+ replyId).remove();
+function removeReply(replyId) {
+	$(`#commu-reply-` + replyId).remove();
 }
 
 // 댓글 수정버튼 클릭시 
-function changeReply(){
-	
+function changeReply() {
+
 	let finishBtn = `
 		<button class="commu-detail-btn-reply-update-finish commu-detail-btn-reply">
           완료
         </button>
 	`;
-	
+
 	$("#commu-detail-reply-btn-box").prepend(finishBtn);
 	document.getElementById("commu-detail-reply-content-box").innerHTML =
 		`<textarea id="commu-detail-reply-content" class="commu-detail-reply-content commu-detail-reply-text">${reply.count}</textarea>`;
 }
 
 // 좋아요 아이콘 변경 함수
-function changeLikeIcon(response, communityBoardId,  likeCount){
-	if(response.data == null){
+function changeLikeIcon(response, communityBoardId, likeCount) {
+	if (response.data == null) {
 		likeCount--;
 		document.getElementById(`commu-icon-box-${communityBoardId}`).innerHTML =
 			`

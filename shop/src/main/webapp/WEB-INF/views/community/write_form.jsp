@@ -16,6 +16,7 @@
 <div class="container justify-content space-between">
  
    <form action="/board/upload" enctype="multipart/form-data" method="post">
+   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
     <div class="form-group">
       <label for="title">title</label>
       <input type="text" class="form-control" placeholder="Enter title" name="title" id="title" />

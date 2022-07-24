@@ -25,6 +25,7 @@
 
 			<div>
 				<form class="form-inline" action="#" method="get">
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 					<input type="text" class="form-control" name="keyword"
 						value="${keyword}" placeholder="검색어를 입력해주세요." id="keyword" />
 					<button type="submit" class="btn btn-dark ml-2">검색</button>

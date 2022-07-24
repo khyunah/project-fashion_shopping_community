@@ -7,6 +7,8 @@
 
 <form class="user-form" action="/security/join-user" method="post" onsubmit="return checkPassword()">
 
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+	
     <div class="user-input-container">
         <label class="user-input-label">
             <span class="label-txt">ENTER YOUR ID</span>

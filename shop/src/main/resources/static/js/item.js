@@ -51,7 +51,9 @@ let index = {
 	},
 
 	save: function() {
-
+		let token = $("meta[name='_csrf']").attr("content");
+		let header = $("meta[name='_csrf_header']").attr("content");
+		
 		// 데이터 가져오기
 		let data = {
 			category: $("#category").val(),
@@ -68,6 +70,9 @@ let index = {
 		console.log(data);
 
 		$.ajax({
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader(header, token)				
+			},
 			type: "POST",
 			url: "/api/item",
 			data: JSON.stringify(data),
@@ -86,6 +91,9 @@ let index = {
 	},
 
 	updateItem: function() {
+		let token = $("meta[name='_csrf']").attr("content");
+		let header = $("meta[name='_csrf_header']").attr("content");
+		
 		let id = $("#itemId").val();
 		let data = {
 			id: id,
@@ -100,6 +108,9 @@ let index = {
 		}
 
 		$.ajax({
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader(header, token)				
+			},
 			type: "POST",
 			url: "/api/item",
 			data: JSON.stringify(data),

@@ -24,6 +24,7 @@
 		   
           <div>
           	<form class="form-inline" action="#" method="get">
+          		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 	            <input
 	              type="text"
 	              class="form-control"

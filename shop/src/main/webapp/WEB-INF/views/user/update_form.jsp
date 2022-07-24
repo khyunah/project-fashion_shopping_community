@@ -21,6 +21,7 @@
 
 <form class="user-form" action="/user/profile-update/${principal.user.id}"
 	enctype="multipart/form-data" method="post">
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 
 	<div class="user-input-container">
 		<label class="user-input-label"> <span class="label-txt">YOUR

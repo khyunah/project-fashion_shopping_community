@@ -8,7 +8,8 @@
 <div style="height: 40px;"></div>
 <form class="user-form" action="/security/login-user" method="post"
 	onsubmit="">
-
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+	
 	<div class="user-input-container">
 		<label class="user-input-label"> <span class="label-txt">ENTER
 				YOUR ID</span> <input type="text" class="input" name="username"

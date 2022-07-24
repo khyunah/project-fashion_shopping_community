@@ -1,5 +1,8 @@
 package com.shop.fashion.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -9,8 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
@@ -20,7 +23,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
 
-import com.shop.fashion.auth.PrincipalUserDetail;
 import com.shop.fashion.dto.KakaoTokenDto;
 import com.shop.fashion.dto.KakaoUserInfoDto;
 import com.shop.fashion.dto.UserUpdateDto;
@@ -56,6 +58,16 @@ public class UserController {
 	@GetMapping("/security/login_form")
 	public String loginForm() {
 		return "user/login_form";
+	}
+	
+	// 로그아웃 
+	@GetMapping("/logout")
+	public String logout(HttpServletRequest request, HttpServletResponse response) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if(authentication != null) {
+			new SecurityContextLogoutHandler().logout(request, response, authentication);
+		}
+		return "redirect:/";
 	}
 	
 	// 회원 정보 수정 화면
