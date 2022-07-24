@@ -6,7 +6,7 @@
     	<%@ include file="add_community_board.jsp" %>
         
         <div class="commu-profile-box">
-            <img class="card-img-top commu-profile-img" src="/image/profile.jpg" alt="Card image">
+            <img class="card-img-top commu-profile-img" src="/profile/${principal.user.imageUrl}" alt="Card image">
             <div class="card-body commu-profile-text-box">
               ﻿<h5 class="card-title" id="commu-profile-username">${principal.user.username}</h5>
               <a href="/community/my-page" class="commu-profile-btn commu-profile-btn-my">MY SOCIAL</a>

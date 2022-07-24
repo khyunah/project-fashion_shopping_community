@@ -50,6 +50,10 @@ public class User {
 
 	@Enumerated(value = EnumType.STRING)
 	private OAuthType oauth;
+	
+	private String originImageTitle;
+
+	private String imageUrl;
 
 	@CreationTimestamp
 	private Timestamp createDate;

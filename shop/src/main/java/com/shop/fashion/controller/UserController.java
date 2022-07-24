@@ -1,8 +1,5 @@
 package com.shop.fashion.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -12,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.LinkedMultiValueMap;
@@ -20,8 +18,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
 
+import com.shop.fashion.auth.PrincipalUserDetail;
 import com.shop.fashion.dto.KakaoTokenDto;
 import com.shop.fashion.dto.KakaoUserInfoDto;
+import com.shop.fashion.dto.UserUpdateDto;
 import com.shop.fashion.model.OAuthType;
 import com.shop.fashion.model.User;
 import com.shop.fashion.service.UserService;
@@ -59,6 +59,13 @@ public class UserController {
 	@GetMapping("/user/update_form")
 	public String updateUser() {
 		return "user/update_form";
+	}
+	
+	// 프로필 회원정보 수정
+	@PostMapping("/user/profile-update")
+	public String updateProfile(@AuthenticationPrincipal PrincipalUserDetail userDetail, UserUpdateDto dto) {
+		userService.updateUserProfile(userDetail.getUser().getId(), dto);
+		return "redirect:/user/update_form";
 	}
 
 	// 카카오 로그인
