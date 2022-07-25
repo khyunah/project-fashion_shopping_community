@@ -1,5 +1,6 @@
 package com.shop.fashion.service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,25 +29,23 @@ public class KakaoPayService {
 	@Autowired
 	BasketRepository basketRepository;
 	
-	public KakaoPayDto kakaoPayReady(int basketid) {
-		Basket basket = basketRepository.findById(basketid).orElseThrow(() ->{
-			return new NoSuchElementException("없음");
-		});
-		
+	public KakaoPayDto kakaoPayReady(int basketId) {
+		List<Basket> basket = basketRepository.mfindByUserId(basketId);
 		
 		HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization", "KakaoAK " + "0cc011820dd3ab78c54a4882959dd0ae");
+        headers.add("Authorization", "KakaoAK " + "49288c0f3e836b32f8d5beeb7e2bde16");
         headers.add("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE + ";charset=UTF-8");
+        
         
         // 서버로 요청할 Body
         MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
         params.add("cid", "TC0ONETIME");
-        params.add("partner_order_id", basket.getUser().getName());
+        params.add("partner_order_id", basket.get(0).getUser().getName());
         params.add("partner_user_id", sellerName);
-        params.add("item_name", basket.getItem().getName());
-        params.add("quantity", String.valueOf(basket.getCount()));
-        params.add("total_amount", String.valueOf((basket.getCount() * basket.getItem().getPrice())));
-        params.add("tax_free_amount", "100");
+        params.add("item_name", basket.get(0).getItem().getName() + " 외" + (basket.size()-1) + "건");
+        params.add("quantity", String.valueOf(basket.size()));
+        params.add("total_amount", String.valueOf(getTotalAmount(basket)));
+        params.add("tax_free_amount", String.valueOf(getTotalAmount(basket)));
         params.add("approval_url", "http://localhost:9090/kakaoPaySuccess");
         params.add("cancel_url", "http://localhost:9090/kakaoPayCancel");
         params.add("fail_url", "http://localhost:9090/kakaoPayFail");
@@ -57,32 +56,33 @@ public class KakaoPayService {
         ResponseEntity<KakaoPayDto> response = restTemplate.exchange(
         		"https://kapi.kakao.com/v1/payment/ready", HttpMethod.POST, request, KakaoPayDto.class);
          
-        KakaoPayDto dto = response.getBody();   
-        dto.setBasketid(basketid);
+        KakaoPayDto dto = response.getBody();
+        dto.setTid(dto.getTid());
+        dto.setBasketid(basketId);
         return dto;
 	}
 	
 	
-	public KakaoPayApprovalDto kakaoPaySuccess(String pg_token, int basketId) {
+	public KakaoPayApprovalDto kakaoPaySuccess(String pg_token, int basketId, String tid) {
 		Basket basket = basketRepository.findById(basketId).orElseThrow(() -> {
-			return new NoSuchElementException("없음");
+			return new NoSuchElementException("약오르징");
 		});
-		
+		List<Basket> baskets = basketRepository.findByUserId(basket.getUser().getId());
 		
 		// 서버로 요청할 Header
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("Authorization", "KakaoAK " + "0cc011820dd3ab78c54a4882959dd0ae");
+		headers.add("Authorization", "KakaoAK " + "49288c0f3e836b32f8d5beeb7e2bde16");
 		headers.add("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE + ";charset=UTF-8");
 		
 		// 서버로 요청할 Body
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
 
 		params.add("cid", "TC0ONETIME");
-		params.add("tid", pg_token);
+		params.add("tid", tid);
 		params.add("partner_order_id", basket.getUser().getName());
 		params.add("partner_user_id", sellerName);
 		params.add("pg_token", pg_token);
-		params.add("total_amount", String.valueOf((basket.getCount() * basket.getItem().getPrice())));
+		params.add("total_amount", String.valueOf(getTotalAmount(baskets)));
 		
 		HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(params, headers);
 		
@@ -95,6 +95,19 @@ public class KakaoPayService {
 		 
 		 
 		 return dto;
-	
 	}
+	
+	
+	private int getTotalAmount(List<Basket> basket) {
+		int result = 0;
+		for(int i = 0; i < basket.size(); i++) {
+	        int count =	basket.get(i).getCount();
+	        int price =	basket.get(i).getItem().getPrice();
+	        int sum = count * price;
+	        result += sum;
+		}
+		return result;
+		
+	}
+	
 }

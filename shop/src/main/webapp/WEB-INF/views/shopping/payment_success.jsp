@@ -36,12 +36,7 @@
 
 	<div class="order-complete-container alert alert-info" style="text-align: center">
 		<div style="text-align: center" >
-		<p>결제일시: ${pageTokenInfo.approvedAt}</p>
-		<p>주문번호: ${pageTokenInfo.partnerOrderId}</p>
-		<p>상품명: ${pageTokenInfo.itemName}</p>
-		<p>상품수량: ${pageTokenInfo.quantity}</p>
-		<p>결제 금액: ${pageTokenInfo.amount.total}</p>
-		<p>결제 방법 : ${pageTokenInfo.paymentMethodType}</p>	
+
 		</div>
 	</div>	
 	

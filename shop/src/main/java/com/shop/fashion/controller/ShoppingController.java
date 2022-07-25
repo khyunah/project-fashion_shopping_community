@@ -152,7 +152,7 @@ public class ShoppingController {
 	@GetMapping("/kakaoPaySuccess")
 	public String kakaoPaySuccess(@RequestParam("pg_token") String pg_token, Model model) {
 	    KakaoPayDto kakaopayDto = (KakaoPayDto)httpSession.getAttribute("kakao");   
-		KakaoPayApprovalDto dto = kakaoPayService.kakaoPaySuccess(pg_token, kakaopayDto.getBasketid());
+		KakaoPayApprovalDto dto = kakaoPayService.kakaoPaySuccess(pg_token, kakaopayDto.getBasketid(), kakaopayDto.getTid());
 	    model.addAttribute("pageTokenInfo", dto);
 	    httpSession.removeAttribute("kakao");
 	    return "shopping/payment_success";
