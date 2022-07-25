@@ -93,29 +93,26 @@
 			<div class="commu-detail-reply-container">
 				<c:forEach var="reply" items="${communityBoard.replies}">
 					<div id="commu-reply-${reply.id}">
-						<input id="replyId" type="hidden" value="${reply.id}" />
 						<div class="commu-detail-reply-firstline-container">
 							<span class="commu-detail-reply-user commu-detail-reply-text">${reply.user.username}</span>
 							<div id="commu-detail-reply-btn-box">
 								<c:if test="${reply.user.id == principal.user.id}">
 
-									<button onclick="commu.updateBtnReply()"
-										class="commu-detail-btn-reply-update commu-detail-btn-reply">
-										수정</button>
-									<button onclick="commu.deleteReply()"
-										class="commu-detail-btn-reply-delete commu-detail-btn-reply">
+									<button onclick="commu.updateBtnReply(${reply.id})"
+										class="commu-detail-btn-reply-update-${reply.id} commu-detail-btn-reply">수정</button>
+									<button onclick="commu.deleteReply(${reply.id})"
+										class="commu-detail-btn-reply-delete-${reply.id} commu-detail-btn-reply">
 										삭제</button>
 								</c:if>
 							</div>
 						</div>
-						<div id="commu-detail-reply-content-box-${reply.user.id}">
-							<textarea id="commu-detail-reply-origin-content-${reply.user.id}"
+						<div id="commu-detail-reply-content-box-${reply.id}">
+							<textarea id="commu-detail-reply-content-${reply.id}"
 								class="commu-detail-reply-content commu-detail-reply-text"
 								readonly>${reply.content}</textarea>
 						</div>
 					</div>
 				</c:forEach>
-
 			</div>
 		</div>
 		<div style="height: 70px"></div>

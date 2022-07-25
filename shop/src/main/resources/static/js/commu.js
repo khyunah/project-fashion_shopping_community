@@ -23,33 +23,35 @@ let commu = {
 			content: $(`#commu-input-reply-${communityBoardId}`).val(),
 		}
 
-		$.ajax({
-			beforeSend: function(xhr) {
-				xhr.setRequestHeader(header, token)
-			},
-			type: "POST",
-			url: `/community/reply-insert/${communityBoardId}`,
-			data: JSON.stringify(data),
-			contentType: "application/json; charset=utf-8",
-			dataType: "json"
-		}).done(function(response) {
-			alert("댓글 작성 완료 !");
-			addReply(response.data, userId, communityBoardId);
-		}).fail(function(error) {
-			alert("댓글 작성 실패 !");
-		});
+		if (data.content != '') {
+			$.ajax({
+				beforeSend: function(xhr) {
+					xhr.setRequestHeader(header, token)
+				},
+				type: "POST",
+				url: `/community/reply-insert/${communityBoardId}`,
+				data: JSON.stringify(data),
+				contentType: "application/json; charset=utf-8",
+				dataType: "json"
+			}).done(function(response) {
+				alert("댓글 작성 완료 !");
+				addReply(response.data, userId, communityBoardId);
+			}).fail(function(error) {
+				alert("댓글 작성 실패 !");
+			});
+		} else {
+			alert('내용을 입력해주세요');
+		}
 	},
 
 	// 댓글 삭제
-	deleteReply: function() {
+	deleteReply: function(id) {
 		let token = $("meta[name='_csrf']").attr("content");
 		let header = $("meta[name='_csrf_header']").attr("content");
-		
-		let id = $("#replyId").val();
 
 		$.ajax({
-			beforeSend : function(xhr) {
-				xhr.setRequestHeader(header, token)				
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader(header, token)
 			},
 			type: "DELETE",
 			url: `/community/reply-delete/${id}`,
@@ -64,33 +66,39 @@ let commu = {
 	},
 
 	// 댓글 수정버튼 클릭시 
-	updateBtnReply: function() {
-		changeReply();
+	updateBtnReply: function(id) {
+		let btn = $(`.commu-detail-btn-reply-update-${id}`).text();
+		console.log(btn);
+		if (btn == '수정') {
+			changeReply(id);
+		} else {
+			console.log("ㅋㅋㅋㅋㅋㅋㅋㅋㅋ");
+			this.finishUpdateReply(id);
+		}
 	},
 
 	// 댓글 수정 완료시 
 	finishUpdateReply: function(replyId) {
 		let token = $("meta[name='_csrf']").attr("content");
 		let header = $("meta[name='_csrf_header']").attr("content");
-		
+
 		let data = {
 			id: replyId,
-			content: $(`.commu-detail-reply-origin-content-${replyId}`).text(),
+			content: $(`#commu-detail-reply-content-${replyId}`).val()
 		}
-
+		console.log(data.content);
 		$.ajax({
-			beforeSend : function(xhr) {
-				xhr.setRequestHeader(header, token)				
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader(header, token)
 			},
-			type: "POST",
+			type: "PUT",
 			url: `/community/reply-update`,
 			data: JSON.stringify(data),
 			contentType: "application/json; charset=utf-8",
 			dataType: "json"
 		}).done(function(response) {
 			console.log("성공");
-			console.log(response);
-
+			changVieweReply(response.data.id);
 		}).fail(function(error) {
 			console.log("실패");
 		});
@@ -114,7 +122,7 @@ let commu = {
 	boardUpdate: function() {
 		let token = $("meta[name='_csrf']").attr("content");
 		let header = $("meta[name='_csrf_header']").attr("content");
-		
+
 		let id = $("#boardId").val();
 		let data = {
 			title: $("#communityBoardTitle").val(),
@@ -122,8 +130,8 @@ let commu = {
 		}
 
 		$.ajax({
-			beforeSend : function(xhr) {
-				xhr.setRequestHeader(header, token)				
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader(header, token)
 			},
 			type: "PUT",
 			url: `/api/board/${id}`,
@@ -146,10 +154,10 @@ let commu = {
 	boardDelete: function(boardId) {
 		let token = $("meta[name='_csrf']").attr("content");
 		let header = $("meta[name='_csrf_header']").attr("content");
-		
+
 		$.ajax({
-			beforeSend : function(xhr) {
-				xhr.setRequestHeader(header, token)				
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader(header, token)
 			},
 			type: "DELETE",
 			url: `/api/board/${boardId}`
@@ -180,23 +188,23 @@ let commu = {
 function addReply(reply, userId, communityBoardId) {
 	let childReply = `
 		<div id="commu-reply-${reply.id}">
-			<input id="replyId" type="hidden" value="${reply.id}"/>
 			<div class="commu-detail-reply-firstline-container">
-		      <span class="commu-detail-reply-user commu-detail-reply-text">${reply.user.username}</span>
-		      <div id="commu-detail-reply-btn-box">
-              	<c:if test="${reply.user.id == userId}">
-              		<button onclick="commu.updateBtnReply()" class="commu-detail-btn-reply-update commu-detail-btn-reply">
-	                  수정
-	                </button>
-	                <button onclick="commu.deleteReply()" class="commu-detail-btn-reply-delete commu-detail-btn-reply">
-	                  삭제
-	                </button>
-              	</c:if>
-		      </div>
-		    </div>
-		    <div id="commu-detail-reply-content-box-${reply.id}">
-		    	<textarea id="commu-detail-reply-origin-content-${reply.id}" class="commu-detail-reply-content commu-detail-reply-text">${reply.content}</textarea>
-		    </div>
+				<span class="commu-detail-reply-user commu-detail-reply-text">${reply.user.username}</span>
+				<div id="commu-detail-reply-btn-box">
+					<c:if test="${reply.user.id == userId}">
+
+						<button onclick="commu.updateBtnReply(${reply.id})"
+							class="commu-detail-btn-reply-update-${reply.id} commu-detail-btn-reply">수정</button>
+						<button onclick="commu.deleteReply(${reply.id})"
+							class="commu-detail-btn-reply-delete-${reply.id} commu-detail-btn-reply">삭제</button>
+					</c:if>
+				</div>
+			</div>
+			<div id="commu-detail-reply-content-box-${reply.id}">
+				<textarea id="commu-detail-reply-content-${reply.id}"
+					class="commu-detail-reply-content commu-detail-reply-text"
+					readonly>${reply.content}</textarea>
+			</div>
 		</div>
 	`;
 
@@ -204,22 +212,24 @@ function addReply(reply, userId, communityBoardId) {
 	$(`#commu-input-reply-${communityBoardId}`).val("");
 }
 
+// 수정 완료시 화면 랜더링
+function changVieweReply(id) {
+	console.log(id);
+	$(`#commu-detail-reply-content-${id}`).attr("readonly", true);
+	$(`.commu-detail-btn-reply-update-${id}`).text('수정');
+}
+
+// 댓글 화면에서 삭제처리 
 function removeReply(replyId) {
 	$(`#commu-reply-` + replyId).remove();
 }
 
 // 댓글 수정버튼 클릭시 
-function changeReply() {
-
-	let finishBtn = `
-		<button class="commu-detail-btn-reply-update-finish commu-detail-btn-reply">
-          완료
-        </button>
-	`;
-
-	$("#commu-detail-reply-btn-box").prepend(finishBtn);
-	document.getElementById("commu-detail-reply-content-box").innerHTML =
-		`<textarea id="commu-detail-reply-content" class="commu-detail-reply-content commu-detail-reply-text">${reply.count}</textarea>`;
+function changeReply(id) {
+	let content = $(`#commu-detail-reply-content-${id}`).val();
+	$(`.commu-detail-btn-reply-update-${id}`).text('완료');
+	document.getElementById(`commu-detail-reply-content-box-${id}`).innerHTML =
+		`<textarea id="commu-detail-reply-content-${id}" class="commu-detail-reply-content commu-detail-reply-text">${content}</textarea>`;
 }
 
 // 좋아요 아이콘 변경 함수

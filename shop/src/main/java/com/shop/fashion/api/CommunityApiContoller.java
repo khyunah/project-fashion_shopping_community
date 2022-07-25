@@ -55,7 +55,7 @@ public class CommunityApiContoller {
 	}
 
 	// 댓글 수정
-	@PostMapping("/community/reply-update")
+	@PutMapping("/community/reply-update")
 	public ResponseDto<Reply> updateReply(@RequestBody Reply reply) {
 		Reply replyEntity = communityService.updateReply(reply);
 		return new ResponseDto<Reply>(HttpStatus.OK.value(), replyEntity);
