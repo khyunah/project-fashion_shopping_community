@@ -35,7 +35,6 @@ public class ShoppingService {
 
 	@Transactional
 	public void saveItem(Item item) {
-		item.setName(item.getName().replaceAll(" ", ""));
 		shoppingRepository.save(item);
 	}
 

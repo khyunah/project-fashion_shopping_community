@@ -34,7 +34,7 @@
       <textarea class="form-control" rows="5" id="content" name="content" placeholder="내용을 입력하세요"></textarea>
     </div>
     <div class="form-group mt-3">
-  <button type="submit" id="btn-save" class="btn btn-dark">글 쓰기 완료</button>
+  <button type="submit" id="btn-save" class="btn btn-dark" style="background-color: #453675;">글 쓰기 완료</button>
 	</div>
   </form>
 </div>

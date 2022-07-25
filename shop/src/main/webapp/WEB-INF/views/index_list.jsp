@@ -1,6 +1,4 @@
 
-	
-		
 		<li id="card-list" class="card lCard" onclick="location.href='/community/${communityBoard.id}'">
             <div class="commu-container" >
               <div class = "leftImgBox">

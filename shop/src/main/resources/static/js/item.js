@@ -55,7 +55,7 @@ let index = {
 			name: $("#name").val(),
 			price: $("#price").val(),
 			size: $("#size").val(),
-			color: $("#color").val()
+			amount: $("#amount").val()
 		}
 
 		console.log("데이터 확인");
@@ -128,12 +128,12 @@ function itemDetailSizeandColor(){
 			data: JSON.stringify(data),
 			dataType: "json"
 		}).done(function(data) {
-			var colors = [];
+			var sizes = [];
 			for(var i = 0; i < data.length; i++){
-				if(colors.indexOf(data[i].color) == -1){
-					colors.push(data[i].color);
-					let option =`<option value='${data[i].color}'>${data[i].color}</option>`;
-					$("#colors").append(option);
+				if(sizes.indexOf(data[i].size) == -1){
+					sizes.push(data[i].size);
+					let option =`<option value='${data[i].size}'>${data[i].size}</option>`;
+					$("#sizes").append(option);
 				}
 			}
 			console.log(colors)

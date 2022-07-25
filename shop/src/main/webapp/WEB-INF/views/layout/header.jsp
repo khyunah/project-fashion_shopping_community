@@ -10,7 +10,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Nerdy</title>
+    <title>Milano</title>
 
     <!-- CSS 적용 경로 -->
     <link href="${path}/css/headerstyles.css" rel="stylesheet" />
@@ -21,19 +21,17 @@
     <link href="/css/style_community_social.css" rel="stylesheet" type="text/css" />
 
     <!-- 부트스트랩 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
-      id="bootstrap-css">
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- Popper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <!-- Latest compiled JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- include summernote css/js -->
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+    
+       <!-- include summernote css/js -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
+    <!-- include plugin -->
+    <script src="[folder where script is located]/[plugin script].js"></script>
 
     <!-- 폰트 설정 -->
 	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
@@ -47,10 +45,12 @@
 
     <!-- 아이콘 폰트어썸 -->
     <script src="https://kit.fontawesome.com/decc5cea51.js" crossorigin="anonymous"></script>
-
-    <!-- summer note 설정 -->
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 
     </head>
     
@@ -58,10 +58,11 @@
 
         <header>
 
-          <nav class="navbar navbar-expand-md bg-white navbar-dark">
+          <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #453675;">
             <!-- Brand -->
+            <img alt="" src="/image/wanggawn-removebg-preview.png" style="width: 75px; height: 50px; margin-left: 15px; margin-bottom: 10px;">
             <a class="navbar-brand" href="/">
-              <h1 style="color: black; font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; ">YOU SINSA</h1>
+              <h1 style="color: white; font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; margin-left: 20px;">Milano</h1>
             </a>
 
             <!-- Toggler/collapsibe Button -->
@@ -75,79 +76,92 @@
                 <c:choose>
                   <c:when test="${principal.user eq null}">
                     <li class="nav-item">
-                      <a class="nav-link text-dark" href="/community/social-main"
-                        style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">SOCIAL</a>
+                      <a class="nav-link" href="/community/social-main"
+                        style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">SOCIAL</a>
                     </li>
                     <li class="nav-item">
                       <div class="dropdown">
-                        <button class="nav-link dropbtn bg-white text-dark"
-                          style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">STORE
+                        <button class="nav-link dropbtn"
+                          style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">STORE
                           <i class="fa fa-caret-down"></i>
                         </button>
-                        <div class="dropdown-content bg-white">
+                        <div class="dropdown-content">
                           <a href="/shop/mans_form"
-                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">MAN's</a>
+                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">MAN's</a>
                           <a href="/shop/save_form"
-                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">WOMAN's</a>
-                          <a href="/shop/basket_form"
-                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">ACCESSORIES</a>
+                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">WOMAN's</a>
                         </div>
                       </div>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link text-dark" href="/security/login_form"
-                        style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">LOGIN</a>
+                      <a class="nav-link" href="/security/login_form"
+                        style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">LOGIN</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link text-dark" href="/security/join_form"
-                        style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">JOIN</a>
+                      <a class="nav-link" href="/security/join_form"
+                        style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white; margin-right: 20px;">JOIN</a>
                     </li>
                   </c:when>
                   <c:when test="${principal.user.role eq 'USER'}">
                     <!-- 로그인 성공하면(회원이면) 글 작성 가능 -->
                     <li class="nav-item">
                       <div class="dropdown">
-                        <button class="nav-link dropbtn bg-white text-dark" 
-                        style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">SOCIAL
+                        <button class="nav-link dropbtn text-white" 
+                        style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675;">SOCIAL
                         	<i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-content bg-white">
                           <a href="/community/social-main"
-                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">SOCIAL MAIN</a>
+                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">SOCIAL MAIN</a>
                           <a href="/board/write"
-                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">WRITE</a>
+                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">WRITE</a>
                         </div>
                       </div>
                     </li>
                     <li class="nav-item">
                       <div class="dropdown">
-                        <button class="nav-link dropbtn bg-white text-dark"
-                          style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">STORE
+                        <button class="nav-link dropbtn text-white"
+                          style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675;">STORE
                           <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-content bg-white">
                           <a href="/shop/mans_form"
-                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">MAN's</a>
+                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">MAN's</a>
                           <a href="/shop/womans_form/?gender=WOMAN"
-                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">
+                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">
                             WOMAN's</a>
                           <a href="/shop/save_form"
-                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">ADD
+                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">ADD
                             ITEM</a>
 
                         </div>
                       </div>
                     </li>
-                    <a class="nav-link text-dark" href="/shop/basket_form/${principal.user.id}"><img
-                        src="/image/basket.png" class="basket"></a>
                     <li class="nav-item">
-                      <a class="nav-link text-dark" href="/user/update_form"><img src="/image/myinfo.png"
-                          class="myinfo"></a>
+                      <div class="dropdown">
+                      <a href="/shop/basket_form/${principal.user.id}">
+                        <button class="nav-link dropbtn text-white"
+                          style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675;">BASKET
+                          
+                        </button>
+                        </a>
+                      </div>
+                    </li>
+                   
+                  <li class="nav-item">
+                      <div class="dropdown">
+                      <a href="/user/update_form">
+                        <button class="nav-link dropbtn text-white"
+                          style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675;">MYPAGE
+
+                        </button>
+                        </a>
+                      </div>
                     </li>
                     <li class="nav-item">
                       <!-- 시큐리티를 적용하면 자동 로그아웃 처리 된다. -->
-                      <a class="nav-link text-dark" href="/logout"
-                        style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">LOGOUT</a>
+                      <a class="nav-link text-white" href="/logout"
+                        style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; margin-right: 20px;">LOGOUT</a>
                     </li>
                   </c:when>
                   <c:when test="${principal.user.role eq 'ADMIN'}">
@@ -175,7 +189,7 @@
                         </button>
                         <div class="dropdown-content bg-white">
                           <a href="/shop/mans_form"
-                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">MAN's</a>
+                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675;">MAN's</a>
                           <a href="/shop/womans_form"
                             style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">WOMAN's</a>
                           <a href="/shop/save_form"
@@ -193,7 +207,7 @@
                     <li class="nav-item">
                       <!-- 시큐리티를 적용하면 자동 로그아웃 처리 된다. -->
                       <a class="nav-link text-dark" href="/logout"
-                        style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">LOGOUT</a>
+                        style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; margin-right: 20px;">LOGOUT</a>
                     </li>
                   </c:when>
                 </c:choose>

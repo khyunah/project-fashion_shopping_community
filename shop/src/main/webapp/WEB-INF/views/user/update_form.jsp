@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp" %>
 
-<div class="user-header-line"><h2 class="user-header-text">U p d a t e</h2></div>
+<div class="user-header-line" style="background-color: #453675;"><h2 class="user-header-text" >U p d a t e</h2></div>
 <div style="height: 40px;"></div>
 
 <c:choose>
@@ -112,7 +112,7 @@
 	<div class="user-empty-box"></div>
 	<div class="user-empty-box"></div>
 
-	<button type="button" id="btn-update" class="user-btn" onclick="return checkPassword()">update</button>
+	<button type="button" id="btn-update" class="user-btn" onclick="return checkPassword()" style="background-color: #453675;">update</button>
 </form>
 
 <script src="/js/user.js"></script>

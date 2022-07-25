@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp" %>
 
-<div class="user-header-line"><h2 class="user-header-text">J o i n</h2></div>
+<div class="user-header-line" style="background-color: #453675;"><h2 class="user-header-text">J o i n</h2></div>
 <div style="height: 40px;"></div>
 
 <form class="user-form" action="/security/join-user" method="post" onsubmit="return checkPassword()">
@@ -24,7 +24,7 @@
         <div class="user-empty-box"></div>
 
         <div>
-            <button type="button" id="btn-checkUsername" class="user-btn">check id</button>
+            <button type="button" id="btn-checkUsername" class="user-btn" style="background-color: #453675;">check id</button>
         </div>
 
         <div class="user-empty-box"></div>
@@ -102,7 +102,7 @@
         <div class="user-empty-box"></div>
         <div class="user-empty-box"></div>
 
-        <button type="submit" id="btn-join" class="user-btn">sign up</button>
+        <button type="submit" id="btn-join" class="user-btn" style="background-color: #453675;">sign up</button>
     </div>
 </form>
 
