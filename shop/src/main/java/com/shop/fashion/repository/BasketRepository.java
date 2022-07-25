@@ -20,3 +20,4 @@ public interface BasketRepository extends JpaRepository<Basket, Integer> {
 	List<Basket> findByItemIdAndUserId(@Param(value = "itemid") int itemid, @Param(value = "userid") int userid);
 
 }
+

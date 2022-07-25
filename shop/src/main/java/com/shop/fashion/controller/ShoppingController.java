@@ -168,6 +168,10 @@ public class ShoppingController {
 			return "shopping/payment_fail";
 	}
 	
+	@GetMapping("/security/test/pay")
+	public String aisdl() {
+		return "shopping/payment_success";
+	}
 	
 }
 

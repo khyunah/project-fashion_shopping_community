@@ -42,7 +42,7 @@ public class KakaoPayService {
         params.add("cid", "TC0ONETIME");
         params.add("partner_order_id", basket.get(0).getUser().getName());
         params.add("partner_user_id", sellerName);
-        params.add("item_name", basket.get(0).getItem().getName() + " 외" + (basket.size()-1) + "건");
+        params.add("item_name", basket.get(0).getItem().getName() + "외 " + (basket.size()-1) + "건");
         params.add("quantity", String.valueOf(basket.size()));
         params.add("total_amount", String.valueOf(getTotalAmount(basket)));
         params.add("tax_free_amount", String.valueOf(getTotalAmount(basket)));
@@ -65,7 +65,7 @@ public class KakaoPayService {
 	
 	public KakaoPayApprovalDto kakaoPaySuccess(String pg_token, int basketId, String tid) {
 		Basket basket = basketRepository.findById(basketId).orElseThrow(() -> {
-			return new NoSuchElementException("약오르징");
+			return new NoSuchElementException("해당 장바구니가 없습니다.");
 		});
 		List<Basket> baskets = basketRepository.findByUserId(basket.getUser().getId());
 		
@@ -92,7 +92,7 @@ public class KakaoPayService {
 				"https://kapi.kakao.com/v1/payment/approve", HttpMethod.POST, request, KakaoPayApprovalDto.class);
 	
 		KakaoPayApprovalDto dto = response.getBody();
-		 
+		
 		 
 		 return dto;
 	}
@@ -109,5 +109,6 @@ public class KakaoPayService {
 		return result;
 		
 	}
+
 	
 }

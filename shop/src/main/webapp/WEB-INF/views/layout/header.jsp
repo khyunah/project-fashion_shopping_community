@@ -19,6 +19,7 @@
     <link href="/css/style_community_home.css" rel="stylesheet" type="text/css" />
     <link href="/css/style_community_detail.css" rel="stylesheet" type="text/css" />
     <link href="/css/style_community_social.css" rel="stylesheet" type="text/css" />
+    <link href="/css/kakao_pay.css" rel="stylesheet" type="text/css" />
 
     <!-- 부트스트랩 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
