@@ -3,9 +3,11 @@ package com.shop.fashion.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
@@ -26,7 +28,10 @@ import com.shop.fashion.service.ShoppingService;
 
 @Controller
 public class ShoppingController {
-
+	
+	
+	@Autowired
+	HttpSession httpSession;
 	@Autowired
 	BasketService basketService;
 
@@ -136,18 +141,21 @@ public class ShoppingController {
 	}
 	
 	
-	@GetMapping("/security/kakaoPay/callback")
-	public String kakaoPayReady() {
-	        KakaoPayDto dto = kakaoPayService.kakaoPayReady();
+	@GetMapping("/security/kakaoPay/callback/{id}")
+	public String kakaoPayReady(@PathVariable int id) {
+	        KakaoPayDto dto = kakaoPayService.kakaoPayReady(id);
+	        httpSession.setAttribute("kakao", dto);
 	        return "redirect:" + dto.getNextRedirectPcUrl();
 	}
 	
 	
 	@GetMapping("/kakaoPaySuccess")
 	public String kakaoPaySuccess(@RequestParam("pg_token") String pg_token, Model model) {
-	       KakaoPayApprovalDto dto = kakaoPayService.kakaoPaySuccess(pg_token);
-	       model.addAttribute("pageTokenInfo", dto);
-	        return "shopping/payment_success";
+	    KakaoPayDto kakaopayDto = (KakaoPayDto)httpSession.getAttribute("kakao");   
+		KakaoPayApprovalDto dto = kakaoPayService.kakaoPaySuccess(pg_token, kakaopayDto.getBasketid());
+	    model.addAttribute("pageTokenInfo", dto);
+	    httpSession.removeAttribute("kakao");
+	    return "shopping/payment_success";
 	}	    
 	
 	@GetMapping("/kakaoPayCancel")

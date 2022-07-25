@@ -29,6 +29,7 @@
   </div>
  <div class="right" >
 	<button class="btn btn-dark" type="submit" style="width: 250px; border-radius: 20px;"> 결제<div id='sum'>${sumPrince}</div></button>
+<img src="/image/kakao_pay.png" onclick="location.href='/security/kakaoPay/callback{i}'">
 	 <c:forEach var="Basket" items="${Baskets}"> 
 		 <hr/>
 		 <div>name: ${Basket.item.name}</div>
@@ -46,6 +47,5 @@
 </c:when>
 </c:choose>
 <hr/>
-<img src="/image/kakao_pay.png" onclick="location.href='/security/kakaoPay/callback'">
 
 <script src="/js/basket.js"></script>

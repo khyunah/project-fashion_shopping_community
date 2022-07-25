@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 @JsonNaming(value = PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class KakaoPayDto {
-
+	private int basketid;
 	private String tid;
 	private String nextRedirectPcUrl;
 	private Date createdAt;
