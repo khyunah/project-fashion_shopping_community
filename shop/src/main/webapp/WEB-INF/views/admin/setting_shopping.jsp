@@ -14,20 +14,45 @@
 
 		<div class="d-flex">
 
-			<div class="form-group mr-2">
-				<select class="form-control" id="sel1">
+			<div class="form-group mr-2 columnBox">
+				<select class="form-control" id="sel1"
+					onchange="chooseShoppingColumn(this)">
+					<option>선택</option>
 					<option>ID</option>
 					<option>ITEMNAME</option>
 					<option>CATEGORY</option>
 					<option>PRICE</option>
+					<option>GENDER</option>
+					<option>COLOR</option>
 				</select>
+				<c:if test="${column eq 'GENDER'}">
+					<c:choose>
+						<c:when test="${keyword == 'MAN'}">
+							<select class="form-control oauthSelectBox"
+								onchange="chooseGender(this)">
+								<option>선택</option>
+								<option selected>MAN</option>
+								<option>WOMAN</option>
+							</select>
+						</c:when>
+						<c:otherwise>
+							<select class="form-control oauthSelectBox"
+								onchange="chooseGender(this)">
+								<option>선택</option>
+								<option>MAN</option>
+								<option selected>WOMAN</option>
+							</select>
+						</c:otherwise>
+					</c:choose>
+				</c:if>
 			</div>
 
 			<div>
-				<form class="form-inline" action="#" method="get">
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+				<form class="form-inline" action="#" method="get"
+					onsubmit="return checkColumn()">
 					<input type="text" class="form-control" name="keyword"
-						value="${keyword}" placeholder="검색어를 입력해주세요." id="keyword" />
+						value="${keyword}" placeholder="검색어를 입력해주세요." id="keyword" /> <input
+						type="hidden" id="column" name="column" value="${column}">
 					<button type="submit" class="btn btn-dark ml-2">검색</button>
 				</form>
 			</div>
@@ -35,12 +60,17 @@
 		</div>
 
 		<div class="setting-btn-box">
-			<button type="button" class="btn btn-primary" onclick="admin.shoppingDetail()">상세보기</button>
-			<a href="/admin/shopping/save_form" class="btn btn-warning">등록</a> 
-			<button type="button" class="btn btn-success" onclick="admin.shoppingUpdateForm()">수정</button>
-			<button type="button" class="btn btn-danger" onclick="admin.shoppingDelete()">삭제</button>
+			<a href="/admin/shopping/select?keyword=&column="
+				class="btn btn-dark">전제조회</a>
+			<button type="button" class="btn btn-primary"
+				onclick="admin.shoppingDetail()">상세보기</button>
+			<a href="/admin/shopping/save_form" class="btn btn-warning">등록</a>
+			<button type="button" class="btn btn-success"
+				onclick="admin.shoppingUpdateForm()">수정</button>
+			<button type="button" class="btn btn-danger"
+				onclick="admin.shoppingDelete()">삭제</button>
 		</div>
-		
+
 	</div>
 
 	<div style="height: 70px;"></div>
@@ -65,7 +95,7 @@
 					<td>${item.id}</td>
 					<td><div class="admin-img-box">
 							<img class="card-img-top" src="${item.imageurl}" alt="Card image"
-								style="width: 100%">
+								style="width: 100%;">
 						</div></td>
 					<td>${item.name}</td>
 					<td>${item.price}</td>
@@ -88,25 +118,25 @@
 
 			<li class="page-item ${userPage.first ? isDisabled : isNotDisabled}">
 				<a class="page-link"
-				href="/admin/user/select-all?page=${userPage.number - 1}">이전</a>
+				href="/admin/user/select?keyword=${keyword}&column=${column}&page=${userPage.number - 1}">이전</a>
 			</li>
 
 			<c:forEach var="num" items="${pageNumbers}">
 				<c:choose>
 					<c:when test="${userPage.number + 1 eq num}">
 						<li class="page-item active"><a class="page-link"
-							href="/admin/user/select-all?page=${num - 1}">${num}</a></li>
+							href="/admin/user/select?keyword=${keyword}&column=${column}&page=${num - 1}">${num}</a></li>
 					</c:when>
 					<c:otherwise>
 						<li class="page-item"><a class="page-link"
-							href="/admin/user/select-all?page=${num - 1}">${num}</a></li>
+							href="/admin/user/select?keyword=${keyword}&column=${column}&page=${num - 1}">${num}</a></li>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
 
 			<li class="page-item ${userPage.last ? isDisabled : isNotDisabled}">
 				<a class="page-link"
-				href="/admin/user/select-all?page=${userPage.number + 1}">다음</a>
+				href="/admin/user/select?keyword=${keyword}&column=${column}&page=${userPage.number + 1}">다음</a>
 			</li>
 		</ul>
 	</div>

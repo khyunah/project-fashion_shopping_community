@@ -2,8 +2,6 @@ package com.shop.fashion.controller;
 
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,11 +9,9 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.shop.fashion.model.CommunityBoard;
 import com.shop.fashion.model.Item;
@@ -28,14 +24,25 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 
-	// 회원관리 페이지에 기본화면 전체조회
-	@GetMapping("/admin/user/select-all")
-	public String selectAllUser(@PageableDefault(size = 20, sort = "id", direction = Direction.DESC) Pageable pageable,
-			Model model) {
-		Page<User> userPage = adminService.getUserAll(pageable);
+	// 회원정보 조회 / 검색
+	@GetMapping("/admin/user/select")
+	public String selectUser(@RequestParam String keyword, @RequestParam String column,
+			@PageableDefault(size = 20, sort = "id", direction = Direction.DESC) Pageable pageable, Model model) {
+		Page<User> userPage = null;
 
-		int nowPage = userPage.getPageable().getPageNumber() + 1; 
-		int startPage = Math.max(nowPage - 2, 1); 
+		switch (column) {
+		case "":
+			userPage = adminService.getUserAll(pageable);
+			break;
+		default:
+			userPage = adminService.searchUserKeywordPage(keyword, column, pageable);
+			model.addAttribute("column", column);
+			model.addAttribute("keyword", keyword);
+			break;
+		}
+
+		int nowPage = userPage.getPageable().getPageNumber() + 1;
+		int startPage = Math.max(nowPage - 2, 1);
 		int endPage = Math.min(nowPage + 2, userPage.getTotalPages());
 
 		ArrayList<Integer> pageNumbers = new ArrayList<>();
@@ -48,13 +55,24 @@ public class AdminController {
 		model.addAttribute("pageNumbers", pageNumbers);
 		return "admin/setting_user";
 	}
-	
-	// 상품관리 페이지에 기본화면 전체 조회 
-	@GetMapping("/admin/shopping/select-all")
-	public String selectAllShopping(@PageableDefault(size = 16, sort = "id", direction = Direction.DESC) Pageable pageable,
-			Model model) {
-		Page<Item> itemPage = adminService.getItemAll(pageable);
-		
+
+	// 상품정보 조회 / 검색
+	@GetMapping("/admin/shopping/select")
+	public String selectShopping(@RequestParam String keyword, @RequestParam String column,
+			@PageableDefault(size = 16, sort = "id", direction = Direction.DESC) Pageable pageable, Model model) {
+		Page<Item> itemPage = null;
+
+		switch (column) {
+		case "":
+			itemPage = adminService.getItemAll(pageable);
+			break;
+		default:
+			itemPage = adminService.searchItemKeywordPage(keyword, column, pageable);
+			model.addAttribute("column", column);
+			model.addAttribute("keyword", keyword);
+			break;
+		}
+
 		int nowPage = itemPage.getPageable().getPageNumber() + 1;
 		int startPage = Math.max(nowPage - 2, 1);
 		int endPage = Math.min(nowPage + 2, itemPage.getTotalPages());
@@ -67,10 +85,11 @@ public class AdminController {
 
 		model.addAttribute("itemPage", itemPage);
 		model.addAttribute("pageNumbers", pageNumbers);
+
 		return "admin/setting_shopping";
 	}
-	
-	// 상품 상세보기 
+
+	// 상품 상세보기
 	@GetMapping("/admin/shopping/item-detail/{id}")
 	public String detailItemDetail(@PathVariable int id, Model model) {
 		Item item = adminService.getItem(id);
@@ -78,12 +97,12 @@ public class AdminController {
 		return "admin/admin_shopping_detail";
 	}
 
-	// 상품 등록 페이지 
+	// 상품 등록 페이지
 	@GetMapping("/admin/shopping/save_form")
 	public String shoppingSaveForm() {
 		return "admin/admin_shopping_save_form";
 	}
-	
+
 	// 상품 수정 페이지
 	@GetMapping("/admin/shopping-item/update_form/{id}")
 	public String updateFormItem(@PathVariable int id, Model model) {
@@ -91,14 +110,25 @@ public class AdminController {
 		model.addAttribute("item", item);
 		return "admin/admin_shopping_update_form";
 	}
-	
-	// 커뮤니티 관리 페이지에 기본화면 전체 조회
-	@GetMapping("/admin/community/select-all")
-	public String selectAllCommunity(@PageableDefault(size = 20, sort = "id", direction = Direction.DESC) Pageable pageable,
-			Model model) {
-		Page<CommunityBoard> communityBoardPage = adminService.getBoardAll(pageable);
-		
-		int nowPage = communityBoardPage.getPageable().getPageNumber() + 1; 
+
+	// 커뮤니티 정보 조회 / 검색
+	@GetMapping("/admin/community/select")
+	public String searchCommunity(@RequestParam String keyword, @RequestParam String column,
+			@PageableDefault(size = 20, sort = "id", direction = Direction.DESC) Pageable pageable, Model model) {
+		Page<CommunityBoard> communityBoardPage = null;
+
+		switch (column) {
+		case "":
+			communityBoardPage = adminService.getBoardAll(pageable);
+			break;
+		default:
+			communityBoardPage = adminService.searchCommunityKeywordPage(keyword, column, pageable);
+			model.addAttribute("column", column);
+			model.addAttribute("keyword", keyword);
+			break;
+		}
+
+		int nowPage = communityBoardPage.getPageable().getPageNumber() + 1;
 		int startPage = Math.max(nowPage - 2, 1);
 		int endPage = Math.min(nowPage + 2, communityBoardPage.getTotalPages());
 
@@ -113,4 +143,12 @@ public class AdminController {
 		return "admin/setting_community";
 	}
 	
+	// 커뮤니티 상세보기
+	@GetMapping("/admin/community-detail/{id}")
+	public String detailCommunity(@PathVariable int id, Model model) {
+		CommunityBoard communityBoard = adminService.detailCommunityBoard(id);
+		model.addAttribute("communityBoard", communityBoard);
+		return "admin/admin_commu_detail";
+	}
+
 }

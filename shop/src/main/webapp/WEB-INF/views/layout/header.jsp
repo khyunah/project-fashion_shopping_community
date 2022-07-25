@@ -151,7 +151,7 @@
                   <c:when test="${principal.user.role eq 'ADMIN'}">
                     <!-- 로그인 성공하면(회원이면) 글 작성 가능 -->
                     <li class="nav-item">
-                      <a class="nav-link text-dark" href="/admin/user/select-all"
+                      <a class="nav-link text-dark" href="/admin/user/select?keyword=&column="
                         style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">MANAGEMENT</a>
                     </li>
                     <li class="nav-item">

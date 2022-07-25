@@ -28,6 +28,76 @@ function clickList(target) {
 	$("#admin-object-id").text(id);
 }
 
+function chooseUserColumn(target) {
+	let column = target.options[target.selectedIndex].text;
+	$("#column").val(column);
+
+	if (column == 'OAUTH') {
+		$(".oauthSelectBox").remove();
+		addSelectBoxOauth();
+	} else {
+		$(".oauthSelectBox").remove();
+	}
+}
+
+function chooseShoppingColumn(target){
+	let column = target.options[target.selectedIndex].text;
+	$("#column").val(column);
+
+	if (column == 'GENDER') {
+		$(".genderSelectBox").remove();
+		addSelectBoxGender();
+	} else {
+		$(".genderSelectBox").remove();
+	}
+}
+
+function chooseColumn(target) {
+	let column = target.options[target.selectedIndex].text;
+	$("#column").val(column);
+}
+
+function addSelectBoxOauth() {
+	let selectBox = `
+			<select class="form-control oauthSelectBox" onchange="chooseOauth(this)">
+  			  <option>선택</option>
+  			  <option>ORIGIN</option>
+  			  <option>KAKAO</option>
+  			</select>
+		`;
+	$(".columnBox").append(selectBox);
+}
+
+function addSelectBoxGender(){
+	let selectBox = `
+			<select class="form-control genderSelectBox" onchange="chooseGender(this)">
+  			  <option>선택</option>
+  			  <option>MAN</option>
+  			  <option>WOMAN</option>
+  			</select>
+		`;
+	$(".columnBox").append(selectBox);
+}
+
+function chooseOauth(target) {
+	let oauth = target.options[target.selectedIndex].text;
+	location.href = `/admin/user/select?keyword=` + oauth + `&column=OAUTH`;
+}
+
+function chooseGender(target) {
+	let gender = target.options[target.selectedIndex].text;
+	location.href = `/admin/shopping/select?keyword=` + gender + `&column=GENDER`;
+}
+
+function checkColumn() {
+	let column = $("#column").val();
+	if(column == '') {
+		alert('분류를 선택해주세요 !');
+		return false;
+	}
+	return true;
+}
+
 let admin = {
 	userDelete: function() {
 		let token = $("meta[name='_csrf']").attr("content");
@@ -104,7 +174,7 @@ let admin = {
 					url: `/admin/community/delete/${id}`,
 					dataType: "json"
 				}).done(function(response) {
-					location.href = response.data;
+					location.href = "/admin/community/select?keyword=&column=";
 				}).fail(function(error) {
 					alert("해당 글 삭제 실패");
 				})
@@ -155,5 +225,10 @@ let admin = {
 		} else {
 			alert("아이템을 선택해주세요");
 		}
+	},
+	
+	communityDetail: function() {
+		let id = $("#admin-object-id").text();
+		location.href = `/admin/community-detail/${id}`;
 	}
 }

@@ -71,7 +71,7 @@ public class AdminApiController {
 	@DeleteMapping("/admin/community/delete/{id}")
 	public ResponseDto<String> deleteCommunityBoard(@PathVariable int id, HttpServletRequest request) {
 		adminService.deleteCommunityBoard(id);
-
+		
 		String responceResult = "0";
 		if (request.getHeader("Referer") != null) {
 			responceResult = String.valueOf(request.getHeader("Referer"));

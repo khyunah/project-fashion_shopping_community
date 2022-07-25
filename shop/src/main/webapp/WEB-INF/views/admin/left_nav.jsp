@@ -54,21 +54,21 @@
 		<div class="admin-menu-list-box">
 			<div>
 				<div class="admin-menu-list-item">
-					<a href="/admin/user/select-all" class="btn"> <img alt=""
+					<a href="/admin/user/select?keyword=&column=" class="btn"> <img alt=""
 						src="/image/users_icon.png" class="admin-menu-nav-img">
 						<div class="admin-menu-text">회원관리</div>
 					</a>
 				</div>
 
 				<div class="admin-menu-list-item">
-					<a href="/admin/shopping/select-all" class="btn"> <img alt=""
+					<a href="/admin/shopping/select?keyword=&column=" class="btn"> <img alt=""
 						src="/image/product_icon.png" class="admin-menu-nav-img">
 						<div class="admin-menu-text">상품관리</div>
 					</a>
 				</div>
 
 				<div class="admin-menu-list-item">
-					<a href="/admin/community/select-all" class="btn"> <img alt=""
+					<a href="/admin/community/select?keyword=&column=" class="btn"> <img alt=""
 						src="/image/social_icon.png" class="admin-menu-nav-img">
 						<div class="admin-menu-text">커뮤니티관리</div>
 					</a>

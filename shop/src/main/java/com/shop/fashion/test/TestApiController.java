@@ -28,13 +28,6 @@ public class TestApiController {
 	@Autowired
 	CommunityService communityService;
 
-	@GetMapping("/test")
-	public String searchUserName() {
-		User user = userRepository.mSearchUserName("teco");
-		System.out.println("user : " + user.toString());
-		return user.toString();
-	}
-
 	@GetMapping("/test/commu")
 	public String communityHome() {
 		return "community/community_home";

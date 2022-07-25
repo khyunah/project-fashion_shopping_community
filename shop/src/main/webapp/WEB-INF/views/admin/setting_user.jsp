@@ -14,20 +14,42 @@
 
 		<div class="d-flex">
 
-			<div class="form-group mr-2">
-				<select class="form-control" id="sel1">
+			<div class="form-group mr-2 columnBox">
+				<select class="form-control " id="sel1"
+					onchange="chooseUserColumn(this)">
+					<option>선택</option>
 					<option>ID</option>
 					<option>USERNAME</option>
 					<option>NAME</option>
+					<option>ADDRESS</option>
 					<option>OAUTH</option>
 				</select>
+				<c:if test="${column eq 'OAUTH'}">
+					<c:choose>
+						<c:when test="${keyword == 'KAKAO'}">
+							<select class="form-control oauthSelectBox"
+								onchange="chooseOauth(this)">
+								<option>선택</option>
+								<option>ORIGIN</option>
+								<option selected>KAKAO</option>
+							</select>
+						</c:when>
+						<c:otherwise>
+							<select class="form-control oauthSelectBox"
+								onchange="chooseOauth(this)">
+								<option>선택</option>
+								<option selected>ORIGIN</option>
+								<option>KAKAO</option>
+							</select>
+						</c:otherwise>
+					</c:choose>
+				</c:if>
 			</div>
 
 			<div>
-				<form class="form-inline" action="#" method="get">
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-					<input type="text" class="form-control" name="keyword"
-						value="${keyword}" placeholder="검색어를 입력해주세요." id="keyword" />
+				<form class="form-inline" action="/admin/user/select" method="get" onsubmit="return checkColumn()">
+					<input type="text" class="form-control" name="keyword" value="${keyword}" placeholder="검색어를 입력해주세요." id="keyword" />
+					<input type="hidden" id="column" name="column" value="${column}">
 					<button type="submit" class="btn btn-dark ml-2">검색</button>
 				</form>
 			</div>
@@ -35,8 +57,11 @@
 		</div>
 
 		<div class="setting-user-btn-box">
-			<button type="button" class="btn btn-success" onclick="admin.userChangeRole()">권한설정</button>
-			<button type="button" class="btn btn-danger" onclick="admin.userDelete()">삭제</button>
+			<a href="/admin/user/select?keyword=&column=" class="btn btn-dark">전제조회</a>
+			<button type="button" class="btn btn-success"
+				onclick="admin.userChangeRole()">권한설정</button>
+			<button type="button" class="btn btn-danger"
+				onclick="admin.userDelete()">삭제</button>
 		</div>
 
 	</div>
@@ -74,43 +99,41 @@
 		</tbody>
 	</table>
 
-
 	<div style="height: 100px"></div>
 	<div class="admin-pagenation-container">
 		<ul class="pagination justify-content-center">
 			<c:set var="isDisabled" value="disabled"></c:set>
 			<c:set var="isNotDisabled" value=""></c:set>
 			<c:set var="isNowPage" value="active"></c:set>
-
+			
+			
 			<li class="page-item ${userPage.first ? isDisabled : isNotDisabled}">
-				<a class="page-link"
-				href="/admin/user/select-all?page=${userPage.number - 1}">이전</a>
+				<a class="page-link" href="/admin/user/select?keyword=${keyword}&column=${column}&page=${userPage.number - 1}">이전</a>
 			</li>
 
 			<c:forEach var="num" items="${pageNumbers}">
 				<c:choose>
 					<c:when test="${userPage.number + 1 eq num}">
 						<li class="page-item active"><a class="page-link"
-							href="/admin/user/select-all?page=${num - 1}">${num}</a>
-						</li>
+							href="/admin/user/select?keyword=${keyword}&column=${column}&page=${num - 1}">${num}</a></li>
 					</c:when>
 					<c:otherwise>
 						<li class="page-item"><a class="page-link"
-							href="/admin/user/select-all?page=${num - 1}">${num}</a></li>
+							href="/admin/user/select?keyword=${keyword}&column=${column}&page=${num - 1}">${num}</a></li>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
 
 			<li class="page-item ${userPage.last ? isDisabled : isNotDisabled}">
 				<a class="page-link"
-				href="/admin/user/select-all?page=${userPage.number + 1}">다음</a>
+				href="/admin/user/select?keyword=${keyword}&column=${column}&page=${userPage.number + 1}">다음</a>
 			</li>
 		</ul>
 	</div>
 	<div class="admin-id-box">
 		<span id="admin-object-id" style="display: none;"></span>
 	</div>
-	
+
 </div>
 
 <script src="/js/admin.js"></script>
