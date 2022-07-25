@@ -47,4 +47,5 @@
 </c:choose>
 <hr/>
 <img src="/image/kakao_pay.png" onclick="location.href='/security/kakaoPay/callback'">
+
 <script src="/js/basket.js"></script>

@@ -30,13 +30,13 @@ public class KakaoPayService {
         params.add("cid", "TC0ONETIME");
         params.add("partner_order_id", "1001");
         params.add("partner_user_id", "gorany");
-        params.add("item_name", "기면진 구나몁");
+        params.add("item_name", "상품명");
         params.add("quantity", "1");
         params.add("total_amount", "2100");
         params.add("tax_free_amount", "100");
         params.add("approval_url", "http://localhost:9090/kakaoPaySuccess");
         params.add("cancel_url", "http://localhost:9090/kakaoPayCancel");
-        params.add("fail_url", "http://localhost:9090/kakaoPaySuccessFail");
+        params.add("fail_url", "http://localhost:9090/kakaoPayFail");
  
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(params, headers);
         

@@ -155,7 +155,7 @@ public class ShoppingController {
 			return "shopping/payment_cancel";
 	}
 	
-	@GetMapping("/kakaoPaySuccessFail")
+	@GetMapping("/kakaoPayFail")
 	public String kakaoPayFail() {
 			return "shopping/payment_fail";
 	}
