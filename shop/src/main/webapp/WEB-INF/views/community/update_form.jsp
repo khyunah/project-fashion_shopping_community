@@ -21,7 +21,8 @@
 
 <div class="container justify-content space-between">
  
-	<form action="/board/${boardList.id}/update" enctype="multipart/form-data" method="post">
+	<form action="/board/${boardList.id}/update" enctype="multipart/form-data" onsubmit="" method="post">
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
     <div class="form-group">
       <label for="title" id=title>title</label>
       <input id="communityBoardTitle" value="${boardList.title}" type="text" class="form-control" placeholder="Enter title" name="title" id="title" />
@@ -30,9 +31,10 @@
     <div class="form-group">
       <label for="image">image</label>
       <div class="input-group">
-        <input type="file" name="file" class="custom-file-input" id="image" required="required" />
+        <input type="file" name="file" class="custom-file-input" id="image"/>
         <label class="custom-file-label" for="customFile"></label>
       </div>
+      <p>현재 이미지 - ${boardList.originImageTitle}</p>
     </div>
    
     <div class="form-group mt-3">
@@ -54,5 +56,5 @@
     $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
   });
 </script>
-<script type="text/javascript" src="/js/commu-detail.js"></script>
+<script type="text/javascript" src="/js/commu.js"></script>
 

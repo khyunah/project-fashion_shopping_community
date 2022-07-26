@@ -24,87 +24,115 @@ import com.shop.fashion.service.CommunityService;
 
 @Controller
 public class CommunityController {
-	
+
 	@Autowired
 	private CommunityService communityService;
-	
+
 	@GetMapping("/")
-	public String index(Model model, @PageableDefault(size = 2, sort = "id", direction = Direction.DESC) Pageable pageable) {
+	public String index(Model model,
+			@PageableDefault(size = 2, sort = "id", direction = Direction.DESC) Pageable pageable,
+			@AuthenticationPrincipal PrincipalUserDetail userDetail) {
 		Page<CommunityBoard> communityBoardList = communityService.getCommunityBoardList(pageable);
 		model.addAttribute("communityBoardList", communityBoardList);
-		
+
 		List<Item> itemList = communityService.getItemList();
 		Collections.shuffle(itemList);
-		
-		model.addAttribute("itemList" , itemList);
+		model.addAttribute("itemList", itemList);
+
+		if (userDetail != null) {
+			List<CommunityLike> likeList = communityService.myLike(userDetail.getUser().getId());
+			model.addAttribute("likeList", likeList);
+		}
+
 		return "index";
 	}
-	
-	@GetMapping("/index-add")
-	public String addIndex(Model model, @PageableDefault(size = 2, sort = "id", direction = Direction.DESC) Pageable pageable) {
+
+	@GetMapping("/index/index-add")
+	public String addIndex(Model model,
+			@PageableDefault(size = 2, sort = "id", direction = Direction.DESC) Pageable pageable,
+			@AuthenticationPrincipal PrincipalUserDetail userDetail) {
 		Page<CommunityBoard> communityBoardList = communityService.getCommunityBoardList(pageable);
 		model.addAttribute("communityBoardList", communityBoardList);
+
+		if (userDetail != null) {
+			List<CommunityLike> likeList = communityService.myLike(userDetail.getUser().getId());
+			model.addAttribute("likeList", likeList);
+		}
 		return "community/add_community_index";
 	}
-	
+
 	@GetMapping("/board/write")
 	public String write() {
 		return "community/write_form";
 	}
-	
+
 	@PostMapping("/board/upload")
 	public String storyUpload(CommunityDto fileDto, @AuthenticationPrincipal PrincipalUserDetail detail) {
 		communityService.upload(fileDto, detail.getUser());
 		return "redirect:/";
 	}
-	
-	// 업데이트 화면 
+
+	// 업데이트 화면
 	@GetMapping("/board/{id}/update_form")
 	public String updateForm(@PathVariable int id, Model model) {
 		model.addAttribute("boardList", communityService.boardDetail(id));
 		return "community/update_form";
 	}
-	
-	// 업데이트 
+
+	// 업데이트
 	@PostMapping("/board/{id}/update")
 	public String updateForm(@PathVariable int id, CommunityDto dto) {
 		communityService.boardUpdate(id, dto);
-		return "redirect:/";
+		return "redirect:/community/" + id;
 	}
-	
-	// 커뮤니티 상세보기 
+
+	// 커뮤니티 상세보기
 	@GetMapping("/community/{boardId}")
-	public String communityDetail(@PathVariable int boardId, Model model, @AuthenticationPrincipal PrincipalUserDetail userDetail) {
+	public String communityDetail(@PathVariable int boardId, Model model,
+			@AuthenticationPrincipal PrincipalUserDetail userDetail) {
 		CommunityBoard board = communityService.detailCommunityBoard(boardId);
 		model.addAttribute("communityBoard", board);
-		
+
 		CommunityLike checkLike = communityService.isLike(boardId, userDetail.getUser().getId());
 		model.addAttribute("like", checkLike);
 		return "community/community_detail";
 	}
-	
+
 	// 소셜 메인 처음 랜더링 주소
 	@GetMapping("/community/social-main")
-	public String communityHome(@PageableDefault(size = 3, direction = Direction.DESC, sort = "id") Pageable pageable, Model model, @AuthenticationPrincipal PrincipalUserDetail userDetail) {
+	public String communityHome(@PageableDefault(size = 3, direction = Direction.DESC, sort = "id") Pageable pageable,
+			Model model, @AuthenticationPrincipal PrincipalUserDetail userDetail) {
 		Page<CommunityBoard> communityBoardList = communityService.getCommunityBoardList(pageable);
 		model.addAttribute("communityBoardList", communityBoardList);
-		
-		System.out.println("페이지 갯수 : " + communityBoardList.getPageable().getPageSize());
-		
+
 		List<CommunityLike> likeList = communityService.myLike(userDetail.getUser().getId());
 		model.addAttribute("likeList", likeList);
 		return "community/community_social";
 	}
-	
+
 	// 소셜 메인 스크롤시 랜더링 주소
 	@GetMapping("/community/social-add")
-	public String addCommunityBoard(@PageableDefault(size = 3, direction = Direction.DESC, sort = "id") Pageable pageable, Model model, @AuthenticationPrincipal PrincipalUserDetail userDetail) {
+	public String addCommunityBoard(
+			@PageableDefault(size = 3, direction = Direction.DESC, sort = "id") Pageable pageable, Model model,
+			@AuthenticationPrincipal PrincipalUserDetail userDetail) {
 		Page<CommunityBoard> communityBoardList = communityService.getCommunityBoardList(pageable);
 		model.addAttribute("communityBoardList", communityBoardList);
-		
+
 		List<CommunityLike> likeList = communityService.myLike(userDetail.getUser().getId());
 		model.addAttribute("likeList", likeList);
 		return "community/add_community_board";
+	}
+
+	// 나의 소셜 페이지
+	@GetMapping("/community/my-page")
+	public String myCommunityPage(@PageableDefault(size = 3, direction = Direction.DESC, sort = "id") Pageable pageable,
+			Model model, @AuthenticationPrincipal PrincipalUserDetail userDetail) {
+		Page<CommunityBoard> myCommu = communityService.myCommunity(userDetail.getUser().getId(), pageable);
+		model.addAttribute("communityBoardList", myCommu);
+
+		List<CommunityLike> likeList = communityService.myLike(userDetail.getUser().getId());
+		model.addAttribute("likeList", likeList);
+		return "community/community_social";
 	}
 
 }

@@ -21,8 +21,20 @@ public interface ShoppingRepository extends JpaRepository<Item, Integer> {
 	@Query(value = "SELECT * FROM Item WHERE category =:category and gender = :gender", nativeQuery = true)
 	Page<Item> CategoryItem(@Param(value = "category") String category, @Param(value = "gender") String gender,
 			Pageable pageable);
-	
+
 	@Query(value = "select * from item where name = :name and gender = :gender", nativeQuery = true)
-	List<Item> detailItemSizeColor(@Param(value = "name") String name, @Param(value = "gender") String gender); 
-	
+	List<Item> detailItemSizeColor(@Param(value = "name") String name, @Param(value = "gender") String gender);
+
+	@Query(value = "SELECT * FROM item WHERE id = :id", nativeQuery = true)
+	Page<Item> mFindById(@Param("id") int id, Pageable pageable);
+
+	@Query(value = "SELECT * FROM item WHERE name LIKE %:name%", nativeQuery = true)
+	Page<Item> mFindByName(@Param("name") String name, Pageable pageable);
+
+	@Query(value = "SELECT * FROM item WHERE price >= :price", nativeQuery = true)
+	Page<Item> mFindByPrice(@Param("price") String price, Pageable pageable);
+
+	@Query(value = "SELECT * FROM item WHERE gender = :gender", nativeQuery = true)
+	Page<Item> mFindByGender(@Param("gender") String gender, Pageable pageable);
+
 }

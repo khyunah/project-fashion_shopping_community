@@ -20,6 +20,11 @@
     box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1), -2px -2px 3px rgba(0, 0, 0, 0.1);
 }
 
+.join-sucssess-container {
+	display: flex;
+	justify-content: center;
+}
+
 .user-input-container {
     display: block;
     position: relative;
@@ -101,3 +106,27 @@
     background: #8BC34A;
     color: #ffffff;
 }
+
+.user-success-content-box {
+	display: flex;
+	justify-content: center;
+}
+
+.user-join-success-btn-login-box{
+	display: flex;
+	justify-content: center;
+}
+
+.user-success-btn-a {
+	color: white;
+}
+
+.user-success-btn-a:hover {
+	color: white;
+	text-decoration: none;
+}
+
+.user-join-info-span {
+	font-size: 14px;
+}
+

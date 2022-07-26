@@ -64,7 +64,7 @@
 			data-bs-slide-to="2" aria-label="Slide 3"></button>
 	</div>
 	<div class="carousel-inner">
-		<div class="carousel-item active" data-bs-interval="10000">
+		<div class="carousel-item active" data-bs-interval="2000">
 			<div class="scroll-image">
 				<img class="d-block" alt="" src="https://image-cdn.hypb.st/https%3A%2F%2Fkr.hypebeast.com%2Ffiles%2F2022%2F06%2Fmilan-fashion-week-mens-spring-summer-2023-street-style-6.jpg?q=90&w=1400&cbr=1&fit=max" /> 
 				<img class="d-block" alt="" src="https://image-cdn.hypb.st/https%3A%2F%2Fkr.hypebeast.com%2Ffiles%2F2022%2F06%2Fmilan-fashion-week-mens-spring-summer-2023-street-style-8.jpg?q=90&w=1400&cbr=1&fit=max" />

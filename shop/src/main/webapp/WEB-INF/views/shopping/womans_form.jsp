@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
+
 <style>
 .d-block {
 	object-fit: cover;
@@ -67,7 +68,7 @@
 			data-bs-slide-to="2" aria-label="Slide 3"></button>
 	</div>
 	<div class="carousel-inner">
-		<div class="carousel-item active" data-bs-interval="10000">
+		<div class="carousel-item active" data-bs-interval="2000">
 			<div class="scroll-image">
 				<img class="d-block" alt=""
 					src="https://image-cdn.hypb.st/https%3A%2F%2Fkr.hypebeast.com%2Ffiles%2F2022%2F03%2Fmilan-fashion-week-fall-winter-2022-street-style-snaps-9.jpg?q=90&w=1400&cbr=1&fit=max" />
@@ -229,4 +230,3 @@
 <script src="../js/search.js">
 	
 </script>
-

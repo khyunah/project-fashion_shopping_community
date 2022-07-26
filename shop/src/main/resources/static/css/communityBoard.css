@@ -117,3 +117,9 @@ ul {
 	flex-direction: column;
 	align-items: center;
 }
+
+@media (max-width: 1000px) {
+	.cardWrapRight{
+		display: none;
+	}
+}

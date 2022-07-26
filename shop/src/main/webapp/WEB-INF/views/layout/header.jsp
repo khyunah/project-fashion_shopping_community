@@ -10,6 +10,8 @@
 <html>
   <head>
     <meta charset="UTF-8" />
+    <meta name="${_csrf.parameterName}" content="${_csrf.token}">
+    <meta name="_csrf_header" content="${_csrf.headerName}">
     <title>Milano</title>
 
     <!-- CSS 적용 경로 -->
@@ -131,27 +133,23 @@
                           <a href="/shop/womans_form/?gender=WOMAN"
                             style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">
                             WOMAN's</a>
-                          <a href="/shop/save_form"
-                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">ADD
-                            ITEM</a>
-
                         </div>
                       </div>
                     </li>
                     <li class="nav-item">
-                      <div class="dropdown">
-                      <a href="/shop/basket_form/${principal.user.id}">
+      
+                      <a href="/shop/basket_form/${principal.user.id}" style="text-decoration: none;">
                         <button class="nav-link dropbtn text-white"
                           style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675;">BASKET
                           
                         </button>
                         </a>
-                      </div>
+                    
                     </li>
                    
                   <li class="nav-item">
                       <div class="dropdown">
-                      <a href="/user/update_form">
+                      <a href="/user/update_form" style="text-decoration: none;">
                         <button class="nav-link dropbtn text-white"
                           style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675;">MYPAGE
 
@@ -167,48 +165,63 @@
                   </c:when>
                   <c:when test="${principal.user.role eq 'ADMIN'}">
                     <!-- 로그인 성공하면(회원이면) 글 작성 가능 -->
-
+                    <li class="nav-item">
+                      <a class="nav-link " href="/admin/user/select?keyword=&column="
+                        style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">MANAGEMENT</a>
+                    </li>
                     <li class="nav-item">
                       <div class="dropdown">
-                        <button class="nav-link dropbtn bg-white text-dark" 
-                        style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">SOCIAL
+                        <button class="nav-link dropbtn " 
+                        style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">SOCIAL
                         	<i class="fa fa-caret-down"></i>
                         </button>
-                        <div class="dropdown-content bg-white">
+                        <div class="dropdown-content">
                           <a href="/community/social-main"
-                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">SOCIAL MAIN</a>
+                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">SOCIAL MAIN</a>
                           <a href="/board/write"
-                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">WRITE</a>
+                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">WRITE</a>
                         </div>
                       </div>
                     </li>
                     <li class="nav-item">
                       <div class="dropdown">
-                        <button class="nav-link dropbtn bg-white text-dark"
-                          style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">STORE
+                        <button class="nav-link dropbtn "
+                          style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">STORE
                           <i class="fa fa-caret-down"></i>
                         </button>
-                        <div class="dropdown-content bg-white">
+                        <div class="dropdown-content">
                           <a href="/shop/mans_form"
-                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675;">MAN's</a>
+                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">MAN's</a>
                           <a href="/shop/womans_form"
-                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">WOMAN's</a>
+                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">WOMAN's</a>
                           <a href="/shop/save_form"
-                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">ADD
+                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">ADD
                             ITEM</a>
                         </div>
                       </div>
                     </li>
-                    <a class="nav-link text-dark" href="/board/cart_form/${principal.user.id}"><img
-                        src="/image/basket.png" class="basket"></a>
                     <li class="nav-item">
-                      <a class="nav-link text-dark" href="/user/update_form"><img src="/image/myinfo.png"
-                          class="myinfo"></a>
+                      <a href="/shop/basket_form/${principal.user.id}" style="text-decoration: none;">
+                        <button class="nav-link dropbtn text-white"
+                          style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675;">BASKET
+                        </button>
+                        </a>
+                    </li>
+                   
+                  <li class="nav-item">
+                      <div class="dropdown">
+                      <a href="/user/update_form" style="text-decoration: none;">
+                        <button class="nav-link dropbtn text-white"
+                          style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675;">MYPAGE
+
+                        </button>
+                        </a>
+                      </div>
                     </li>
                     <li class="nav-item">
                       <!-- 시큐리티를 적용하면 자동 로그아웃 처리 된다. -->
-                      <a class="nav-link text-dark" href="/logout"
-                        style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; margin-right: 20px;">LOGOUT</a>
+                      <a class="nav-link" href="/logout"
+                        style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">LOGOUT</a>
                     </li>
                   </c:when>
                 </c:choose>

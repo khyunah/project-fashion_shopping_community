@@ -1,171 +1,141 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix= "c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<sec:authorize access="isAuthenticated()">
-  <sec:authentication property="principal" var="principal" />
-</sec:authorize>
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Nerdy</title>
+	pageEncoding="UTF-8"%>
+<%@ include file="left_nav.jsp"%>
 
-	<link href="/css/style_admin.css" rel="stylesheet" type="text/css" />
-	<link href="/css/style_admin_user.css" rel="stylesheet" type="text/css" />
+<div class="container admin-container">
 
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-	<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-  </head>
+	<div style="height: 50px;"></div>
+	<h2>회원정보 관리</h2>
+	<div style="height: 20px;"></div>
 
-  <body>
-  <%@ include file="left_nav.jsp" %>
+	<hr />
 
-    <div class="container">
-    
-    <div style="height: 50px;"></div>
-      <h2>회원정보 관리</h2>
-      <div style="height: 20px;"></div>
+	<div class="setting-header-container">
 
-      <hr/>
-      
-       <div class="setting-header-container">
+		<div class="d-flex">
 
-        <div class="d-flex">
-        
-          <div class="form-group mr-2">
-  			<select class="form-control" id="sel1">
-			  <option>ID</option>
-			  <option>USERNAME</option>
-			  <option>NAME</option>
-			  <option>OAUTH</option>
-			</select>
-		   </div>
-		   
-          <div>
-          	<form class="form-inline" action="#" method="get">
-	            <input
-	              type="text"
-	              class="form-control"
-	              name="keyword"
-	              value="${keyword}"
-	              placeholder="검색어를 입력해주세요."
-	              id="keyword"/>
-	            <button type="submit" class="btn btn-dark ml-2">검색</button>
-	        </form>
-          </div>
-          
-        </div>
+			<div class="form-group mr-2 columnBox">
+				<select class="form-control " id="sel1"
+					onchange="chooseUserColumn(this)">
+					<option>선택</option>
+					<option>ID</option>
+					<option>USERNAME</option>
+					<option>NAME</option>
+					<option>ADDRESS</option>
+					<option>OAUTH</option>
+				</select>
+				<c:if test="${column eq 'OAUTH'}">
+					<c:choose>
+						<c:when test="${keyword == 'KAKAO'}">
+							<select class="form-control oauthSelectBox"
+								onchange="chooseOauth(this)">
+								<option>선택</option>
+								<option>ORIGIN</option>
+								<option selected>KAKAO</option>
+							</select>
+						</c:when>
+						<c:otherwise>
+							<select class="form-control oauthSelectBox"
+								onchange="chooseOauth(this)">
+								<option>선택</option>
+								<option selected>ORIGIN</option>
+								<option>KAKAO</option>
+							</select>
+						</c:otherwise>
+					</c:choose>
+				</c:if>
+			</div>
 
-        <div class="setting-user-btn-box">
-          <a href="#userid포함시켜서" class="btn btn-success">수정</a>
-          <a href="#userid포함시켜서" class="btn btn-warning">삭제</a>
-        </div>
-        
-      </div>
-      
-      <div style="height: 70px;"></div>
+			<div>
+				<form class="form-inline" action="/admin/user/select" method="get" onsubmit="return checkColumn()">
+					<input type="text" class="form-control" name="keyword" value="${keyword}" placeholder="검색어를 입력해주세요." id="keyword" />
+					<input type="hidden" id="column" name="column" value="${column}">
+					<button type="submit" class="btn btn-dark ml-2">검색</button>
+				</form>
+			</div>
 
-      <table class="table table-dark table-hover">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>USERNAME</th>
-            <th>NAME</th>
-            <th>EMAIL</th>
-            <th>PHONENUMBER</th>
-            <th>ADDRESS</th>
-            <th>OAUTH</th>
-            <th>CREATEDATE</th>
-          </tr>
-        </thead>
-        <tbody>
-	        <c:forEach var="user" items="${userPage.content}">
-	        	<tr onclick="clickList(this)">
-		            <td>${user.id}</td>
-		            <td>${user.username}</td>
-		            <td>${user.name}</td>
-		            <td>${user.email}</td>
-		            <td>${user.phoneNumber}</td>
-		            <td>${user.address}</td>
-		            <td>${user.oauth}</td>
-		            <td>${user.createDate}</td>
-		        </tr>
-	        </c:forEach>
-        </tbody>
-      </table>
-      
-    </div>
-    <div style="height: 100px"></div>
-    <div class="admin-pagenation-container">
-      <ul class="pagination justify-content-center">
-        <c:set var="isDisabled" value="disabled"></c:set>
-        <c:set var="isNotDisabled" value=""></c:set>
-        <c:set var="isNowPage" value="active"></c:set>
+		</div>
 
-        <li class="page-item ${userPage.first ? isDisabled : isNotDisabled}">
-          <a
-            class="page-link"
-            href="/admin/user/select-all?page=${userPage.number - 1}"
-            >이전</a
-          >
-        </li>
+		<div class="setting-user-btn-box">
+			<a href="/admin/user/select?keyword=&column=" class="btn btn-dark">전제조회</a>
+			<button type="button" class="btn btn-success"
+				onclick="admin.userChangeRole()">권한설정</button>
+			<button type="button" class="btn btn-danger"
+				onclick="admin.userDelete()">삭제</button>
+		</div>
 
-        <c:forEach var="num" items="${pageNumbers}">
-          <c:choose>
-            <c:when test="${userPage.number + 1 eq num}">
-              <li class="page-item active">
-                <a
-                  class="page-link"
-                  href="/admin/user/select-all?page=${num - 1}"
-                  >${num}</a
-                >
-              </li>
-            </c:when>
-            <c:otherwise>
-              <li class="page-item">
-                <a class="page-link" href="/admin/user/select-all?page=${num - 1}">${num}</a>
-              </li>
-            </c:otherwise>
-          </c:choose>
-        </c:forEach>
+	</div>
 
-        <li class="page-item ${userPage.last ? isDisabled : isNotDisabled}">
-          <a class="page-link" href="/admin/user/select-all?page=${userPage.number + 1}" >다음</a>
-        </li>
-      </ul>
-    </div>
+	<div style="height: 70px;"></div>
 
-    <script>
-      function clickList(target) {
-        let bb = target.parentNode;
-        let trs = bb.getElementsByTagName("tr");
+	<table class="table table-dark table-hover">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>USERNAME</th>
+				<th>NAME</th>
+				<th>EMAIL</th>
+				<th>PHONENUMBER</th>
+				<th>ADDRESS</th>
+				<th>OAUTH</th>
+				<th>ROLE</th>
+				<th>CREATEDATE</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach var="user" items="${userPage.content}">
+				<tr onclick="clickList(this)">
+					<td>${user.id}</td>
+					<td>${user.username}</td>
+					<td>${user.name}</td>
+					<td>${user.email}</td>
+					<td>${user.phoneNumber}</td>
+					<td>${user.address}</td>
+					<td>${user.oauth}</td>
+					<td>${user.role}</td>
+					<td>${user.createDate}</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
 
-        // 선택안된 
-        var backColor = "#32383e";
-        var textColor = "#ffffff";
-        // 선택 된
-        var orgBColor = "black";
-        var orgTColor = "#ffffff";
+	<div style="height: 100px"></div>
+	<div class="admin-pagenation-container">
+		<ul class="pagination justify-content-center">
+			<c:set var="isDisabled" value="disabled"></c:set>
+			<c:set var="isNotDisabled" value=""></c:set>
+			<c:set var="isNowPage" value="active"></c:set>
+			
+			
+			<li class="page-item ${userPage.first ? isDisabled : isNotDisabled}">
+				<a class="page-link" href="/admin/user/select?keyword=${keyword}&column=${column}&page=${userPage.number - 1}">이전</a>
+			</li>
 
-        let th_value = [];
+			<c:forEach var="num" items="${pageNumbers}">
+				<c:choose>
+					<c:when test="${userPage.number + 1 eq num}">
+						<li class="page-item active"><a class="page-link"
+							href="/admin/user/select?keyword=${keyword}&column=${column}&page=${num - 1}">${num}</a></li>
+					</c:when>
+					<c:otherwise>
+						<li class="page-item"><a class="page-link"
+							href="/admin/user/select?keyword=${keyword}&column=${column}&page=${num - 1}">${num}</a></li>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
 
-        for (var i = 0; i < trs.length; i++) {
-          if (trs[i] != target) {
-            trs[i].style.backgroundColor = backColor;
-            trs[i].style.color = textColor;
-          } else {
-            trs[i].style.backgroundColor = orgBColor;
-            trs[i].style.color = orgTColor;
-            var td = trs[i].getElementsByTagName("td");
-            for (let j = 0; j < td.length; j++) {
-              th_value[j] = td[0].innerText;
-            }
-          }
-        }
-      }
-    </script>
-  </body>
+			<li class="page-item ${userPage.last ? isDisabled : isNotDisabled}">
+				<a class="page-link"
+				href="/admin/user/select?keyword=${keyword}&column=${column}&page=${userPage.number + 1}">다음</a>
+			</li>
+		</ul>
+	</div>
+	<div class="admin-id-box">
+		<span id="admin-object-id" style="display: none;"></span>
+	</div>
+
+</div>
+
+<script src="/js/admin.js"></script>
+</body>
 </html>

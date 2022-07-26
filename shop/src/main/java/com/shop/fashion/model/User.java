@@ -41,7 +41,7 @@ public class User {
 	private String email;
 
 	@Column(length = 11)
-	private String phoneNumber;
+	private int phoneNumber;
 
 	private String address;
 
@@ -50,6 +50,10 @@ public class User {
 
 	@Enumerated(value = EnumType.STRING)
 	private OAuthType oauth;
+	
+	private String originImageTitle;
+
+	private String imageUrl;
 
 	@CreationTimestamp
 	private Timestamp createDate;

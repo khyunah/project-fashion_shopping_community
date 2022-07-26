@@ -1,19 +1,21 @@
 .admin-menu-super-container {
-  font-family: "IBM Plex Sans KR", sans-serif;
-  padding-top: 20px;
-  background-color: rgb(255, 255, 255);
-  color: rgb(0, 0, 0);
-  height: 100vh;
-  position: fixed;
-  width: 180px;
-  box-shadow: 0px 0px 5px #000;
+	font-family: "IBM Plex Sans KR", sans-serif;
+	padding-top: 20px;
+	background-color: rgb(255, 255, 255);
+	color: rgb(0, 0, 0);
+	height: 100vh;
+	position: fixed;
+	width: 10%;
+	min-width: 95px;
+	box-shadow: 0px 0px 5px #000;
 }
 
 .admin-menu-list-box {
 	display: flex;
 	justify-content: center;
 }
-.admin-menu-list-item{
+
+.admin-menu-list-item {
 	margin-bottom: 30px;
 	display: flex;
 	justify-content: center;
@@ -35,12 +37,26 @@
 	margin-top: 20px;
 }
 
+.admin-container {
+	left: 20%;
+}
+
 .setting-header-container {
-  padding-bottom: 20px;
-  display: flex;
-  justify-content: space-between;
+	padding-bottom: 20px;
+	display: flex;
+	justify-content: space-between;
 }
 
 .btn {
-  margin-right: 10px;
+	margin-right: 10px;
+}
+
+.admin-img-box {
+	width: 80px;
+	height: 80px;
+}
+
+.admin-detail-img-box {
+	width: 70%;
+	height: 70%;	
 }
