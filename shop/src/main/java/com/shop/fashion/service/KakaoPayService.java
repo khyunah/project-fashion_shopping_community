@@ -36,7 +36,6 @@ public class KakaoPayService {
         headers.add("Authorization", "KakaoAK " + "49288c0f3e836b32f8d5beeb7e2bde16");
         headers.add("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE + ";charset=UTF-8");
         
-        
         // 서버로 요청할 Body
         MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
         params.add("cid", "TC0ONETIME");
