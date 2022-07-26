@@ -31,12 +31,11 @@
     <div class="form-group">
       <label for="image">image</label>
       <div class="input-group">
-        <input type="file" name="file" class="custom-file-input" id="image"/>
+        <input type="file" name="file" class="form-control" id="image" required="required" accept=".jpg, .jpeg, .png, .gif">
         <label class="custom-file-label" for="customFile"></label>
       </div>
-      <p>현재 이미지 - ${boardList.originImageTitle}</p>
     </div>
-   
+
     <div class="form-group mt-3">
       <label for="content">content</label>
       <textarea id="communityBoardContent" class="form-control" rows="5" name="content" placeholder="내용을 입력하세요">${boardList.content}</textarea>

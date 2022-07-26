@@ -14,5 +14,5 @@ public class AmountVODto {
 	private Integer vat;
 	private Integer point;
 	private Integer discount;
-	
+
 }

@@ -11,13 +11,13 @@ import com.shop.fashion.model.CommunityBoard;
 public interface CommunityRepository extends JpaRepository<CommunityBoard, Integer> {
 
 	Page<CommunityBoard> findByUserId(int userId, Pageable pageable);
-	
+
 	@Query(value = "SELECT * FROM communityBoard WHERE id = :id", nativeQuery = true)
 	Page<CommunityBoard> mFindById(@Param("id") int id, Pageable pageable);
 
 	@Query(value = "SELECT * FROM communityBoard WHERE userId = :userId", nativeQuery = true)
 	Page<CommunityBoard> mFindByUser(@Param("userId") int userId, Pageable pageable);
-	
+
 	@Query(value = "SELECT * FROM communityBoard WHERE title LIKE %:title%", nativeQuery = true)
 	Page<CommunityBoard> mFindByTitle(@Param("title") String title, Pageable pageable);
 }

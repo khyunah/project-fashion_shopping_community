@@ -44,7 +44,7 @@ public class UserApiController {
 
 		User updateUserEntity = userService.updateUser(user);
 
-		if(userDetail.getUser().getOauth() == OAuthType.ORIGIN) {
+		if (userDetail.getUser().getOauth() == OAuthType.ORIGIN) {
 			Authentication authentication = authenticationManager
 					.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
 			SecurityContextHolder.getContext().setAuthentication(authentication);

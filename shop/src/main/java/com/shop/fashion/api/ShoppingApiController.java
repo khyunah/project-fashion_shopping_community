@@ -100,6 +100,5 @@ public class ShoppingApiController {
 
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), detail.getUser().getId());
 	}
-	
 
 }

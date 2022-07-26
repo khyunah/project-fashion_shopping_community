@@ -2,11 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp" %>
 
-<div class="user-header-line"><h2 class="user-header-text">C o n g r a t u l a t i o n</h2></div>
+<div class="user-header-line" style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;"><h2 class="user-header-text">C o n g r a t u l a t i o n</h2></div>
 <div style="height: 60px;"></div>
 
 <div class="user-success-content-box">
-	<h3>유신사의 회원이 되신걸 축하드립니다.</h3>
+	<h3>Milano의 회원이 되신걸 축하드립니다.</h3>
 </div>
 
 <div style="height: 60px;"></div>

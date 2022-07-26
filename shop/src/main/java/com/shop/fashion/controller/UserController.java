@@ -92,7 +92,7 @@ public class UserController {
 
 	// 토큰 정보 받기
 	private ResponseEntity<KakaoTokenDto> getKakaoToken(String code) {
-		
+
 		HttpHeaders tokenHeaders = new HttpHeaders();
 		tokenHeaders.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 
@@ -114,7 +114,7 @@ public class UserController {
 
 	// 사용자 정보 받기
 	private KakaoUserInfoDto getKakaoUserInfo(ResponseEntity<KakaoTokenDto> kakaoToken) {
-		
+
 		HttpHeaders kakaoUserInfoHeader = new HttpHeaders();
 		kakaoUserInfoHeader.add("Authorization", "Bearer " + kakaoToken.getBody().getAccessToken());
 		kakaoUserInfoHeader.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
@@ -125,10 +125,9 @@ public class UserController {
 				"https://kapi.kakao.com/v2/user/me", HttpMethod.POST, kakaoUserInfoRequest, KakaoUserInfoDto.class);
 		return kakaoUserInfoResponse.getBody();
 	}
-	
+
 	// 사용자 가입시켜주기
 	private String joinKakaoUser(KakaoUserInfoDto kakaoUserInfo) {
-		
 
 		// 사용자가 이미 가입되어 있는지 확인
 		String name = kakaoUserInfo.getProperties().getNickname();
@@ -145,7 +144,7 @@ public class UserController {
 				userService.joinUser(kakaoLoginUser);
 			}
 		}
-		
+
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(kakaoLoginUser.getUsername(), kakaoLoginUser.getPassword()));
 		SecurityContextHolder.getContext().setAuthentication(authentication);

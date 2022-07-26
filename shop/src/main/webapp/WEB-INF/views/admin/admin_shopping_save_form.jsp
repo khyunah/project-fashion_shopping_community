@@ -20,10 +20,6 @@
 			</select>
 		</div>
 		<div class="form-group">
-			<label for="size">size :</label> <select id="size" name="size">
-			</select>
-		</div>
-		<div class="form-group">
 			<label for="color">color :</label> <select id=color name="color">
 				<option value="BLACK">BLACK</option>
 				<option value="WHITE">WHITE</option>

@@ -23,7 +23,6 @@
 					<option>CATEGORY</option>
 					<option>PRICE</option>
 					<option>GENDER</option>
-					<option>COLOR</option>
 				</select>
 				<c:if test="${column eq 'GENDER'}">
 					<c:choose>
@@ -83,7 +82,6 @@
 				<th>NAME</th>
 				<th>PRICE</th>
 				<th>CATEGORY</th>
-				<th>COLOR</th>
 				<th>SIZE</th>
 				<th>GENDER</th>
 				<th>AMOUNT</th>
@@ -100,7 +98,6 @@
 					<td>${item.name}</td>
 					<td>${item.price}</td>
 					<td>${item.category}</td>
-					<td>${item.color}</td>
 					<td>${item.size}</td>
 					<td>${item.gender}</td>
 					<td>${item.amount}</td>

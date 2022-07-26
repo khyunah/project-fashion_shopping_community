@@ -131,7 +131,6 @@ public class AdminService {
 		itemEntity.setContent(item.getContent());
 		itemEntity.setAmount(item.getAmount());
 		itemEntity.setCategory(item.getCategory());
-		itemEntity.setColor(item.getColor());
 		itemEntity.setGender(item.getGender());
 		itemEntity.setImageurl(item.getImageurl());
 		itemEntity.setPrice(item.getPrice());
@@ -174,11 +173,11 @@ public class AdminService {
 			return new IllegalArgumentException("게시물이 존재하지 않습니다.");
 		});
 	}
-	
+
 	// 커뮤니티 보드 삭제
 	@Transactional
 	public void deleteCommunityBoard(int id) {
 		communityRepository.deleteById(id);
 	}
-	
+
 }

@@ -57,6 +57,14 @@ public class BasketService {
 		basketRepository.deleteById(basketId);
 	}
 
-
+	@Transactional
+	public void deleteId(int id) {
+		basketRepository.deleteById(id);
+	}
 	
+	@Transactional
+	public List<Basket> getBasket(int id){
+		return basketRepository.findByUserId(id);
+	}
+
 }

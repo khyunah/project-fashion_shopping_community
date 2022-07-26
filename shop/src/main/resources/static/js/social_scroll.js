@@ -6,7 +6,7 @@ window.addEventListener('scroll',function(){
 	if($(window).scrollTop() + $(window).height() == $(document).height()) {
        xhr_();
    }
-});s
+});
 
 let xhr_ = function(){
 	const xhr = new XMLHttpRequest();

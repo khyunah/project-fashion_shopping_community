@@ -38,18 +38,18 @@
 		</tbody>
 		<thead>
 			<tr>
-				<th>COLOR</th>
 				<th>SIZE</th>
 				<th>GENDER</th>
 				<th>AMOUNT</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
-				<td>${item.color}</td>
 				<td>${item.size}</td>
 				<td>${item.gender}</td>
 				<td>${item.amount}</td>
+				<td></td>
 			</tr>
 		</tbody>
 	</table>

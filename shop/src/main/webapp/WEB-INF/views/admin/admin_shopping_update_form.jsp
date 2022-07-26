@@ -30,13 +30,6 @@
 			</select>
 		</div>
 		<div class="form-group">
-			<input id="itemSize" type="hidden" value="${item.size}">
-			<label for="size">size :</label> 
-			<select id="size" name="size">
-				<option value="${item.size}" selected>${item.size}</option>
-			</select>
-		</div>
-		<div class="form-group">
 			<input type="hidden" id="itemColor" value="${item.color}">
 			<label for="color">color :</label> 
 			<select id=color name="color">

@@ -61,14 +61,14 @@ public class UserService {
 		originUser.setEmail(user.getEmail());
 		originUser.setPhoneNumber(user.getPhoneNumber());
 		originUser.setAddress(user.getAddress());
-		
-		if(user.getOauth() == OAuthType.ORIGIN) {
+
+		if (user.getOauth() == OAuthType.ORIGIN) {
 			originUser.setPassword(passwordEncoder.encode(user.getPassword()));
 		}
-		
+
 		return originUser;
 	}
-	
+
 	// 프로필 회원정보 수정
 	@Transactional
 	public User updateUserProfile(int id, UserUpdateDto dto) {
@@ -77,27 +77,27 @@ public class UserService {
 		});
 		System.out.println(user.getId());
 
-		if(!dto.getFile().getOriginalFilename().isEmpty()) {
+		if (!dto.getFile().getOriginalFilename().isEmpty()) {
 			user.setImageUrl(saveImageFile(dto));
 			user.setOriginImageTitle(dto.getFile().getOriginalFilename());
 		}
-		
+
 		user.setName(dto.getName());
-		if(user.getOauth() == OAuthType.ORIGIN) {
+		if (user.getOauth() == OAuthType.ORIGIN) {
 			user.setPassword(passwordEncoder.encode(dto.getPassword()));
 		}
 		user.setEmail(dto.getEmail());
 		user.setPhoneNumber(dto.getPhoneNumber());
 		user.setAddress(dto.getAddress());
-		
+
 		return user;
 	}
-	
+
 	private String saveImageFile(UserUpdateDto dto) {
 		UUID uuid = UUID.randomUUID();
 		String imgFile = uuid.toString() + "_" + dto.getUsername();
 		String newFileName = imgFile.replaceAll("\\s", "");
-		
+
 		Path forder = Paths.get(profileFolder + newFileName);
 		try {
 			Files.write(forder, dto.getFile().getBytes());

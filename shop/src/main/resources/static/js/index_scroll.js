@@ -11,7 +11,7 @@ window.addEventListener('scroll',function(){
 let xhr_ = function(){
 	const xhr = new XMLHttpRequest();
 	const method = "GET";
-	const url = `http://localhost:9090/index-add?page=${pageNumber + 1}`;
+	const url = `http://localhost:9090/index/index-add?page=${pageNumber + 1}`;
 	pageNumber++;
 	$("#pageNumber").val(pageNumber);
 	

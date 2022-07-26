@@ -1,9 +1,9 @@
 package com.shop.fashion.api;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -49,9 +49,13 @@ public class CommunityApiContoller {
 
 	// 댓글 삭제
 	@DeleteMapping("/community/reply-delete/{id}")
-	public ResponseDto<Integer> deleteReply(@PathVariable int id) {
+	public ResponseDto<String> deleteReply(@PathVariable int id, HttpServletRequest request) {
 		communityService.deleteReply(id);
-		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+		String responceResult = "0";
+		if (request.getHeader("Referer") != null) {
+			responceResult = String.valueOf(request.getHeader("Referer"));
+		}
+		return new ResponseDto<>(HttpStatus.OK.value(), responceResult);
 	}
 
 	// 댓글 수정

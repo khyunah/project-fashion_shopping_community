@@ -29,9 +29,9 @@ public class KakaoPayService {
 	@Autowired
 	BasketRepository basketRepository;
 	
-	public KakaoPayDto kakaoPayReady(int basketId) {
-		List<Basket> basket = basketRepository.mfindByUserId(basketId);
-		
+	public KakaoPayDto kakaoPayReady(int userId) {
+		List<Basket> basket = basketRepository.mfindByUserId(userId);
+			
 		HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "KakaoAK " + "49288c0f3e836b32f8d5beeb7e2bde16");
         headers.add("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE + ";charset=UTF-8");
@@ -57,17 +57,13 @@ public class KakaoPayService {
          
         KakaoPayDto dto = response.getBody();
         dto.setTid(dto.getTid());
-        dto.setBasketid(basketId);
+        dto.setBasketid(dto.getBasketid());
         return dto;
 	}
 	
 	
-	public KakaoPayApprovalDto kakaoPaySuccess(String pg_token, int basketId, String tid) {
-		Basket basket = basketRepository.findById(basketId).orElseThrow(() -> {
-			return new NoSuchElementException("해당 장바구니가 없습니다.");
-		});
-		List<Basket> baskets = basketRepository.findByUserId(basket.getUser().getId());
-		
+	public KakaoPayApprovalDto kakaoPaySuccess(String pg_token, int basketId, String tid, int userId) {
+		List<Basket> baskets = basketRepository.findByUserId(basketId);
 		// 서버로 요청할 Header
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Authorization", "KakaoAK " + "49288c0f3e836b32f8d5beeb7e2bde16");
@@ -78,7 +74,7 @@ public class KakaoPayService {
 
 		params.add("cid", "TC0ONETIME");
 		params.add("tid", tid);
-		params.add("partner_order_id", basket.getUser().getName());
+		params.add("partner_order_id", baskets.get(0).getUser().getName());
 		params.add("partner_user_id", sellerName);
 		params.add("pg_token", pg_token);
 		params.add("total_amount", String.valueOf(getTotalAmount(baskets)));
@@ -90,9 +86,10 @@ public class KakaoPayService {
 		ResponseEntity<KakaoPayApprovalDto> response = restTemplate.exchange(
 				"https://kapi.kakao.com/v1/payment/approve", HttpMethod.POST, request, KakaoPayApprovalDto.class);
 	
+		System.out.println(response);
 		KakaoPayApprovalDto dto = response.getBody();
-		
-		 
+		System.out.println("-------------------");
+		 System.out.println(dto);
 		 return dto;
 	}
 	

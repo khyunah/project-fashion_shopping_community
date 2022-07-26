@@ -10,7 +10,7 @@
 }
 
 .commu-detail-container {
-	width: 100%; /* 80할지 100 할지*/
+	width: 80%;
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
@@ -18,12 +18,12 @@
 	position: absolute;
 	padding-left: 5%;
 	padding-right: 5%;
-	box-shadow: 1px 2px 2px 1px;
+	box-shadow: 4px 3px 5px 0px #453675;
 }
 
 .commu-detail-img-container {
 	width: 500px;
-	height: 600px;
+	height: 650px;
 }
 
 .commu-detail-img {

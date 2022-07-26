@@ -1,3 +1,21 @@
+.community-container {
+	width: 100%;
+}
+
+.cmsomaincon{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.cmsocon{
+	width: 1000px;
+}
+
+.cmct {
+	width: 100%;
+}
+
 .commu-social-btn-box {
 	display: flex;
 	justify-content: flex-start;
@@ -10,20 +28,24 @@
 }
 
 .commu-social-container {
-	display: flex;
+	width: 100%; 
+	display : flex;
 	justify-content: center;
 	margin-bottom: 7%;
+	display: flex;
 }
 
 .commu-container {
 	padding-top: 5%;
 	padding-left: 6%;
 	padding-right: 6%;
-	box-shadow: 1px 1px 1px 1px;
+	box-shadow: 3px 2px 4px 0px #453675;
 }
 
 .commu-container-social {
 	margin: 0px;
+	display: flex;
+	justify-content: center;
 }
 
 .commu-profile-text-box h5 {
@@ -166,9 +188,8 @@
 	background-color: #646464;
 }
 
-@media (max-width: 1000px) {
-  .commu-profile-box {
-    display: none;
-  }
-
+@media ( max-width : 1000px) {
+	.commu-profile-box {
+		display: none;
+	}
 }
