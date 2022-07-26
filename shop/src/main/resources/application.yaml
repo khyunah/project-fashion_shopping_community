@@ -47,5 +47,8 @@ spring:
       max-request-size: 200MB
       
 file:
-  path: C:/projectImageDir/shop/upload/  
+  path: C:/projectImageDir/shop/upload/
+  
+seller:
+  key: 홈페이지 주인장  
       

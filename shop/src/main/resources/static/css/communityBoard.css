@@ -26,8 +26,7 @@ ul {
   flex-wrap: wrap;
 }
 
-.card,
-.skeleton {
+.card{
   width: 100%;
   padding: 0.5rem;
   float: left;
@@ -41,8 +40,7 @@ ul {
   object-fit: cover;
 }
 
-.card__text,
-.skeleton__text {
+.card__text{
   height: 40px;
   text-align: center;
   line-height: 40px;
@@ -50,31 +48,6 @@ ul {
   font-size: 0.9rem;
 }
 
-.skeleton__image {
-  width: 100%;
-  height: 300px;
-  animation: skeleton-gradient 3s linear infinite;
-}
-
-@keyframes skeleton-gradient {
-  0% {
-    background: rgb(212, 212, 212);
-  }
-
-  50% {
-    background: rgb(128, 128, 128);
-  }
-
-  100% {
-    background: rgb(212, 212, 212);
-  }
-}
-
-.spinner {
-  margin: 0 auto;
-  display: block;
-  width: 150px;
-}
 
 .index-container {
   width: 600px;
@@ -91,14 +64,17 @@ ul {
 .cardRight:nth-child(2n){
 	margin-left:0px;
 }
+
+
 .cardRightImgBox {
   width: 98%;
   height: 150px;
-  background-image: url("../image/test.jpg");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+
 .card-list {
   height: 100%;
   overflow-y: hidden;
@@ -130,10 +106,12 @@ ul {
   white-space: nowrap;
   line-height: 0.5;
 }
+
 .cardRightBtn:active {
   background-color: white;
   color: black;
 }
+
 .index-card-body{
 	display: flex;
 	flex-direction: column;

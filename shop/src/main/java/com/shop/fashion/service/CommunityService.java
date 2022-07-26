@@ -17,11 +17,13 @@ import org.springframework.transaction.annotation.Transactional;
 import com.shop.fashion.dto.CommunityDto;
 import com.shop.fashion.model.CommunityBoard;
 import com.shop.fashion.model.CommunityLike;
+import com.shop.fashion.model.Item;
 import com.shop.fashion.model.Reply;
 import com.shop.fashion.model.User;
 import com.shop.fashion.repository.CommunityLikeRepository;
 import com.shop.fashion.repository.CommunityReplyRepository;
 import com.shop.fashion.repository.CommunityRepository;
+import com.shop.fashion.repository.ShoppingRepository;
 
 @Service
 public class CommunityService {
@@ -34,12 +36,21 @@ public class CommunityService {
 	private CommunityReplyRepository communityReplyRepository;
 	@Autowired
 	private CommunityLikeRepository communityLikeRepository;
+	@Autowired
+	private ShoppingRepository shoppingRepository;
+	
 	
 	@Transactional
 	public Page<CommunityBoard> getCommunityBoardList(Pageable pageable) {
 		return communityRepository.findAll(pageable);
 	}
 
+	@Transactional
+	public List<Item> getItemList() {
+		return shoppingRepository.findAll();
+	}
+	
+	
 	@Transactional
 	public void upload(CommunityDto fileDto, User user) {
 		

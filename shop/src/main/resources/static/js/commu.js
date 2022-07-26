@@ -38,7 +38,7 @@ let commu = {
 		let id = $("#replyId").val();
 		
 		$.ajax({
-			type: "GET",
+			type: "DELETE",
 			url: `/community/reply-delete/${id}`,
 			dataType: "json"
 		}).done(function(response){

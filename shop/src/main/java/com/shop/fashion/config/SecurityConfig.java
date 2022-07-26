@@ -7,9 +7,12 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.firewall.DefaultHttpFirewall;
+import org.springframework.security.web.firewall.HttpFirewall;
 
 import com.shop.fashion.auth.PrincipalUserDetailService;
 
@@ -51,4 +54,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(principalUserDetailService).passwordEncoder(passwordEncoder());
 	}
+	
+	
+	
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+	    web.httpFirewall(defaultHttpFirewall());
+	}
+	 
+	@Bean
+	public HttpFirewall defaultHttpFirewall() {
+	    return new DefaultHttpFirewall();
+	}
+	
 }
