@@ -64,8 +64,8 @@
 <div class="mainWrap">
 	<div class="cardWrap cardWrapLeft">
 		<input id="pageSize" type="hidden"
-			value="${communityBoardList.pageable.pageSize}"> <input
-			id="pageNumber" type="hidden" value="${communityBoardList.number}">
+			value="${communityBoardList.pageable.pageSize}"> 
+			<input id="pageNumber" type="hidden" value="${communityBoardList.number}">
 		<ul class="card-list leftCards">
 			<%@ include file="community/add_community_index.jsp"%>
 		</ul>

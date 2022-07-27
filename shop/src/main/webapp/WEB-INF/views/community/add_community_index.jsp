@@ -5,18 +5,10 @@
 <c:forEach var="communityBoard" items="${communityBoardList.content}">
 	<input id="communityBoardId" type="hidden" value="${communityBoard.id}" />
 
-	<c:choose>
-		<c:when test="${principal.user.username eq null}">
-			<div class="commu-home-box" onclick="commu.guestCheck()"></div>
-		</c:when>
-		<c:otherwise>
-			<div class="commu-home-box"></div>
-		</c:otherwise>
-	</c:choose>
 	<div class="commu-container">
-		<div>
-			<a href="/community/${communityBoard.id}"> <img class="commu-img"
-				alt="" src="/upload/${communityBoard.imageUrl}"
+		<div class="commu-img-box">
+			<a href="/community/${communityBoard.id}"> 
+			<img class="commu-img" alt="" src="/upload/${communityBoard.imageUrl}"
 				onerror="this.src='/image/noImage.png'" />
 			</a>
 		</div>

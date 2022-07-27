@@ -6,11 +6,6 @@
 <div class="container">
 	<input type="hidden" id="principal--id" value="${item.id}">
 
-	
-	<c:if test="${principal.user.role eq USER}">
-		<a href="/item/${item.id}/update_form" class="btn btn-warning">수정</a>
-		<button class="btn btn-danger" id="btn-delete">삭제</button>	
-	</c:if>
 	<br/><br/>
 	<br/><br/>
 	<input type="hidden" id="itemname" value="${item.name}">
@@ -43,7 +38,7 @@
 	<br/>
 
 <br/>
-	
+</div>
 
 <script src="/js/item.js"></script>
 <script src="/js/basket.js"></script>

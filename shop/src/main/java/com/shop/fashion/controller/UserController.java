@@ -79,8 +79,7 @@ public class UserController {
 	// 프로필 회원정보 수정
 	@PostMapping("/user/profile-update/{id}")
 	public String updateProfile(@PathVariable int id, UserUpdateDto dto) {
-		User user = userService.updateUserProfile(id, dto);
-		System.out.println(user.getImageUrl());
+		userService.updateUserProfile(id, dto);
 		return "redirect:/user/update_form";
 	}
 

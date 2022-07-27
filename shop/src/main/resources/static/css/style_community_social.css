@@ -50,6 +50,16 @@
 
 .commu-profile-text-box h5 {
 	text-align: center;
+	margin-top: 15px;
+	color: white;
+}
+
+.commu-profile-text-box a {
+	color: white;
+	text-decoration: none;
+	margin-bottom: 5px;
+	margin-left: 10px;
+	margin-right: 10px;
 }
 
 .commu-social-img {
@@ -151,7 +161,7 @@
 	top: 10%;
 	right: 8%;
 	width: 250px;
-	height: 420px;
+	height: 400px;
 	background-color: rgba(0, 0, 0, 0.904);
 }
 
@@ -164,10 +174,6 @@
 .commu-profile-username {
 	white-space: pre-wrap;
 	text-overflow: ellipsis;
-}
-
-.commu-profile-text-box {
-	color: white;
 }
 
 .commu-profile-btn {

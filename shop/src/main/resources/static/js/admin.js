@@ -105,6 +105,7 @@ let admin = {
 
 		let result = confirm('해당 회원을 삭제할까요?');
 		let id = $("#admin-object-id").text();
+		console.log(id);
 
 		if (id != null) {
 			if (result) {
