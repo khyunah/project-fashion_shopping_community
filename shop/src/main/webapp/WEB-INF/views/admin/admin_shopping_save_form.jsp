@@ -20,19 +20,10 @@
 			</select>
 		</div>
 		<div class="form-group">
-			<label for="color">color :</label> <select id=color name="color">
-				<option value="BLACK">BLACK</option>
-				<option value="WHITE">WHITE</option>
-				<option value="GREY">GREY</option>
-				<option value="BLUE">BLUE</option>
-				<option value="RED">RED</option>
-				<option value="GREEN">GREEN</option>
-				<option value="PURPLE">PURPLE</option>
-				<option value="ORANGE">ORANGE</option>
+			<label for="size">size :</label> <select id="size" name="size">
 			</select>
 		</div>
-
-
+		
 		<div class="form-group">
 			<label for="name">name</label> <input type="text"
 				class="form-control" placeholder="Enter name" name="name" id="name">
@@ -41,6 +32,11 @@
 			<label for="price">price</label> <input type="text"
 				class="form-control" placeholder="Enter price" name="price"
 				id="price">
+		</div>
+		<div class="form-group">
+			<label for="amount">amount</label> <input type="text"
+				class="form-control" placeholder="Enter amount" name="amount"
+				id="amount">
 		</div>
 		<div class="form-group">
 			<label for="imageurl">imgUrl</label> <input type="text"
@@ -54,7 +50,7 @@
 
 
 	</form>
-	<button type="button" id="btn-save" class="btn btn-dark text-white">상품 등록</button>
+	<button type="button" id="btn-save" class="btn btn-dark text-white" style="background-color: #453675; margin-top: 20px;">상품 등록</button>
 
 
 </div>

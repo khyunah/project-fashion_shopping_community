@@ -104,7 +104,7 @@ let index = {
 			name: $("#name").val(),
 			price: $("#price").val(),
 			size: $("#size").val(),
-			color: $("#color").val()
+			amount: $("#amount").val()
 		}
 
 		$.ajax({

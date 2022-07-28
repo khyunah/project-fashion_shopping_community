@@ -24,41 +24,33 @@
 		</div>
 		<div class="form-group">
 			<input id="itemCategory" type="hidden" value="${item.category}">
-			<label for="category">category :</label>
-			<select id="category" name="category">
+			<label for="category">category :</label> <select id="category"
+				name="category">
 
 			</select>
 		</div>
 		<div class="form-group">
-			<input type="hidden" id="itemColor" value="${item.color}">
-			<label for="color">color :</label> 
-			<select id=color name="color">
-				<option value="BLACK" >BLACK</option>
-				<option value="WHITE">WHITE</option>
-				<option value="GREY">GREY</option>
-				<option value="BLUE">BLUE</option>
-				<option value="RED">RED</option>
-				<option value="GREEN">GREEN</option>
-				<option value="PURPLE">PURPLE</option>
-				<option value="ORANGE">ORANGE</option>
+			<label for="size">size :</label> <select id="size" name="size">
 			</select>
 		</div>
 
 		<div class="form-group">
-			<label for="name">name</label> 
-			<input type="text"
+			<label for="name">name</label> <input type="text"
 				class="form-control" placeholder="Enter name" name="name" id="name"
 				value="${item.name}">
 		</div>
 		<div class="form-group">
-			<label for="price">price</label> 
-			<input type="text"
+			<label for="price">price</label> <input type="text"
 				class="form-control" placeholder="Enter price" name="price"
 				id="price" value="${item.price}">
 		</div>
 		<div class="form-group">
-			<label for="imageurl">imgUrl</label> 
-			<input type="text"
+			<label for="amount">amount</label> <input type="text"
+				class="form-control" placeholder="Enter amount" name="amount"
+				id="amount">
+		</div>
+		<div class="form-group">
+			<label for="imageurl">imgUrl</label> <input type="text"
 				class="form-control" placeholder="Enter imageurl" name="imageurl"
 				id="imageurl" value="${item.imageurl}">
 		</div>
@@ -68,7 +60,9 @@
 		</div>
 
 	</form>
-	<button type="button" id="admin-shopping-btn-update" class="btn btn-dark text-white">상품 수정</button>
+	<button type="button" id="admin-shopping-btn-update"
+		class="btn btn-dark text-white"
+		style="background-color: #453675; margin-top: 20px;">상품 수정</button>
 
 </div>
 <br />
