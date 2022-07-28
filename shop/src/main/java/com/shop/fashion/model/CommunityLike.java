@@ -32,7 +32,7 @@ public class CommunityLike {
 	@JoinColumn(name = "boardId")
 	@JsonIgnoreProperties({ "replies", "itemLink", "user", "content" })
 	private CommunityBoard board;
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name = "userId")
 	private User user;
 }

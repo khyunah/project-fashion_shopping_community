@@ -91,8 +91,8 @@
 			<c:forEach var="item" items="${itemPage.content}">
 				<tr onclick="clickList(this)">
 					<td>${item.id}</td>
-					<td><div class="admin-img-box">
-							<img class="card-img-top" src="${item.imageurl}" alt="Card image"
+					<td class="admin-td-img"><div class="admin-img-box">
+							<img class="card-img-top admin-list-img" src="${item.imageurl}" alt="Card image"
 								style="width: 100%;">
 						</div></td>
 					<td>${item.name}</td>
@@ -115,25 +115,25 @@
 
 			<li class="page-item ${userPage.first ? isDisabled : isNotDisabled}">
 				<a class="page-link"
-				href="/admin/user/select?keyword=${keyword}&column=${column}&page=${userPage.number - 1}">이전</a>
+				href="/admin/shopping/select?keyword=${keyword}&column=${column}&page=${userPage.number - 1}">이전</a>
 			</li>
 
 			<c:forEach var="num" items="${pageNumbers}">
 				<c:choose>
 					<c:when test="${userPage.number + 1 eq num}">
 						<li class="page-item active"><a class="page-link"
-							href="/admin/user/select?keyword=${keyword}&column=${column}&page=${num - 1}">${num}</a></li>
+							href="/admin/shopping/select?keyword=${keyword}&column=${column}&page=${num - 1}">${num}</a></li>
 					</c:when>
 					<c:otherwise>
 						<li class="page-item"><a class="page-link"
-							href="/admin/user/select?keyword=${keyword}&column=${column}&page=${num - 1}">${num}</a></li>
+							href="/admin/shopping/select?keyword=${keyword}&column=${column}&page=${num - 1}">${num}</a></li>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
 
 			<li class="page-item ${userPage.last ? isDisabled : isNotDisabled}">
 				<a class="page-link"
-				href="/admin/user/select?keyword=${keyword}&column=${column}&page=${userPage.number + 1}">다음</a>
+				href="/admin/shopping/select?keyword=${keyword}&column=${column}&page=${userPage.number + 1}">다음</a>
 			</li>
 		</ul>
 	</div>

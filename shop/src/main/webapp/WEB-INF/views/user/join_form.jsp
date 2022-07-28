@@ -14,7 +14,7 @@
 
 	<div class="user-input-container">
 		<label class="user-input-label"> <span class="label-txt">ENTER YOUR ID</span> 
-			<input value="asd1" type="text" class="input" name="username" id="username" maxlength="16" required>
+			<input type="text" class="input" name="username" id="username" maxlength="16" required>
 			<div class="line-box">
 				<div class="line"></div>
 			</div>
@@ -36,7 +36,7 @@
 		<div class="user-input-container">
 			<div>
 				<label class="user-input-label"> <span class="label-txt">ENTER YOUR PASSWORD</span> 
-					<input value="aa" id="password" type="password" class="input" name="password"
+					<input id="password" type="password" class="input" name="password"
 						pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$" required>
 					<div class="line-box">
 						<div class="line"></div>
@@ -44,7 +44,7 @@
 				</label> 
 				
 				<label class="user-input-label"> <span class="label-txt">PASSWORD CHECK</span> 
-					<input value="aa" id="passwordCheck" type="password" class="input" required>
+					<input id="passwordCheck" type="password" class="input" required>
 					<div class="line-box">
 						<div class="line"></div>
 					</div>
@@ -62,12 +62,12 @@
 		<div class="user-input-container">
 			<div>
 				<label class="user-input-label"> <span class="label-txt">ENTER YOUR NAME</span>
-					<input value="홍길동" type="text" class="input" name="name" maxlength="20" required>
+					<input type="text" class="input" name="name" maxlength="20" required>
 					<div class="line-box">
 						<div class="line"></div>
 					</div>
 				</label> <label class="user-input-label"> <span class="label-txt">ENTER YOUR EMAIL</span> 
-					<input value="hyunah@google.com" type="email" class="input" name="email" required>
+					<input type="email" class="input" name="email" required>
 					<div class="line-box">
 						<div class="line"></div>
 					</div>
@@ -80,13 +80,13 @@
 		<div class="user-input-container">
 			<div>
 				<label class="user-input-label"> <span class="label-txt">ENTER YOUR ADDRESS</span> 
-				<input value="부산시 진구" type="text" class="input" name="address" required>
+				<input type="text" class="input" name="address" required>
 					<div class="line-box">
 						<div class="line"></div>
 					</div>
 				</label> 
 				<label class="user-input-label"> <span class="label-txt">ENTER YOUR PHONE</span> 
-					<input value="01012345432" type="number" class="input" name="phoneNumber" min="10" maxlength="11" required>
+					<input type="number" class="input" name="phoneNumber" min="10" maxlength="11" required>
 					<div class="line-box">
 						<div class="line"></div>
 					</div>

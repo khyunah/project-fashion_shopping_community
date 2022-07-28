@@ -15,7 +15,7 @@
 		<div class="d-flex">
 
 			<div class="form-group mr-2">
-				<select class="form-control" id="sel1">
+				<select class="form-control" id="sel1" onchange="chooseColumn(this)">
 					<option>선택</option>
 					<option>ID</option>
 					<option>USERNAME</option>
@@ -63,9 +63,9 @@
 				<tr onclick="clickList(this)">
 					<td>${communityBoard.id}</td>
 					<td>${communityBoard.user.username}</td>
-					<td>
+					<td class="admin-td-img">
 						<div class="admin-img-box">
-							<img class="card-img-top"
+							<img class="card-img-top admin-list-img"
 								src="/upload/${communityBoard.imageUrl}" alt="Card image"
 								style="width: 100%">
 						</div>
