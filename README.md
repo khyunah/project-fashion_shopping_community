@@ -99,32 +99,35 @@ SNS와 쇼핑몰을 같이 볼 수 있도록 메인 페이지의 화면을 2개�
 
 |회원가입|로그인|
 |------|---|
-|<img src="https://user-images.githubusercontent.com/89136556/181414680-5a58f103-9010-4e4d-a7ae-ab429432518e.gif" width="400" height="300">|<img src="https://user-images.githubusercontent.com/89136556/181424254-2564f39a-49f7-4c0d-812b-ce223a85c69d.png" width="400" height="300">|
+|<img src="https://user-images.githubusercontent.com/89136556/181453244-f5a6a5b6-4923-4e1b-a591-88c42c532c1a.gif" width="400" height="300">|<img src="https://user-images.githubusercontent.com/89136556/181424254-2564f39a-49f7-4c0d-812b-ce223a85c69d.png" width="400" height="300">|
 
 |회원정보 수정|내가 쓴 게시글|
 |------|---|
-|<img src="https://user-images.githubusercontent.com/89136556/181425426-bd283e00-06a2-4474-ac40-7ce3cbe8839b.gif" width="400" height="300">|<img src="https://user-images.githubusercontent.com/89136556/181425666-51c77305-fb71-4c41-a53d-e1b322b9b30d.png" width="400" height="300">|
+|<img src="https://user-images.githubusercontent.com/89136556/181453836-b9b91b30-4c22-4fd3-a913-6d8298508858.gif" width="400" height="300">|<img src="https://user-images.githubusercontent.com/89136556/181425666-51c77305-fb71-4c41-a53d-e1b322b9b30d.png" width="400" height="300">|
 
 <br><br><br><br><br><br><br><br>
 
 > # SNS 페이지 
 <br>
 
+
 ## 게시글 CRUD / 본인이 작성한 게시물일 경우 수정, 삭제 버튼 보이기
 ## 게시글 아래 댓글 CRUD / 본인이 작성한 댓글일 경우 수정, 삭제 버튼 보이기
 ## 좋아요 기능
 
+
 |게시글 등록, 수정|게시글 삭제|
 |------|---|
-|<img src="https://user-images.githubusercontent.com/89136556/181426802-fc78bf65-d086-4b88-a643-cc8ee8d7d3f0.gif" width="400" height="300">|<img src="https://user-images.githubusercontent.com/89136556/181426862-b7975d3b-8a60-4a64-bc8f-8f7ddccb034b.png" width="400" height="300">|
+|<img src="https://user-images.githubusercontent.com/89136556/181455166-8b3c7ac8-87a1-460d-b845-50f52e21e13f.gif" width="400" height="300">|<img src="https://user-images.githubusercontent.com/89136556/181426862-b7975d3b-8a60-4a64-bc8f-8f7ddccb034b.png" width="400" height="300">|
 
 |댓글 등록, 수정|댓글 삭제|
 |------|---|
-|<img src="https://user-images.githubusercontent.com/89136556/181427584-c3e0838e-d71d-41ac-a4dc-06afefb0babb.gif" width="400" height="300">|<img src="https://user-images.githubusercontent.com/89136556/181427778-3f8f2e6c-7f92-4bf2-ad0e-1740dd430581.gif" width="400" height="300">|
+|<img src="https://user-images.githubusercontent.com/89136556/181455564-ee712d19-d633-4de1-8bce-7111f7c4448d.gif" width="400" height="300">|<img src="https://user-images.githubusercontent.com/89136556/181455819-9c225a05-94df-405d-be52-aa6e5c751846.gif" width="400" height="300">|
 
 |좋아요|
 |------|
-|<img src="https://user-images.githubusercontent.com/89136556/181428059-d59a70af-b508-4d81-8a49-47d29d344db9.gif" width="400" height="300">|
+|<img src="https://user-images.githubusercontent.com/89136556/181456034-e22fc756-10a7-4e82-8d3b-ea70c8584ff0.gif" width="400" height="300">|
+
 
 <br><br><br><br><br><br><br><br>
 
@@ -137,16 +140,17 @@ SNS와 쇼핑몰을 같이 볼 수 있도록 메인 페이지의 화면을 2개�
 
 |아이템 카테고리별 조회, 상세보기|장바구니 담기, 취소하기|
 |------|---|
-|<img src="https://user-images.githubusercontent.com/89136556/181428611-0a0c97e1-c6a0-4e84-b9d1-df4614bf2031.gif" width="400" height="300">|<img src="https://user-images.githubusercontent.com/89136556/181428810-f8acb86c-697e-4cab-989f-79ce9319310c.gif" width="400" height="300">|
+|<img src="https://user-images.githubusercontent.com/89136556/181456353-098b1253-c0d5-48ed-8788-e4a5d8989b90.gif" width="400" height="300">|<img src="https://user-images.githubusercontent.com/89136556/181456648-0f7ea216-9dfe-4cf3-992b-d5d3b9bfaf80.gif" width="400" height="300">|
 
 |아이템 카카오페이 결제|
 |------|
-|<img src="https://user-images.githubusercontent.com/89136556/181429071-3b5de05c-f39d-4143-bffb-f3879d6f0aa9.gif" width="400" height="300">|
+|<img src="https://user-images.githubusercontent.com/89136556/181456831-f438f807-d186-413b-b990-0ac11d44dcee.gif" width="400" height="300">|
 
 <br><br><br><br><br><br><br><br>
 
 > # 관리자 페이지
 <br>
+
 
 ## 회원 페이지 | 카테고리별 검색 / 권한설정 / 삭제
 ## 쇼핑 페이지 | 카테고리별 검색 / 상품 CRUD
@@ -154,11 +158,11 @@ SNS와 쇼핑몰을 같이 볼 수 있도록 메인 페이지의 화면을 2개�
 
 |관리자 페이지|회원 페이지|
 |------|---|
-|<img src="https://user-images.githubusercontent.com/89136556/181430404-16c09bdf-7d33-4df3-9649-a36e5433a508.gif" width="400" height="300">|<img src="https://user-images.githubusercontent.com/89136556/181441472-a415b292-b097-4d1d-9f9a-3ae1c239dd8a.gif" width="400" height="300">|
+|<img src="https://user-images.githubusercontent.com/89136556/181457214-bec8f3c5-d92f-4596-9843-9da70616a35b.gif" width="400" height="300">|<img src="https://user-images.githubusercontent.com/89136556/181457439-125370d0-d24f-4dc4-bdd4-979270cd2256.gif" width="400" height="300">|
 
 |쇼핑 페이지|커뮤니티 페이지|
 |------|---|
-|<img src="https://user-images.githubusercontent.com/89136556/181446031-602094b4-7e6d-4bee-aa5c-2a97b954a438.gif" width="400" height="300">|<img src="https://user-images.githubusercontent.com/89136556/181446385-b3651a1e-0e0d-4a63-8186-1388da802ddd.gif" width="400" height="300">|
+|<img src="https://user-images.githubusercontent.com/89136556/181458009-2b48abfb-7c8d-49ee-9f12-95ec73d94d2f.gif" width="400" height="300">|<img src="https://user-images.githubusercontent.com/89136556/181458205-e7277e17-4499-4898-b24e-dfa4c0407092.gif" width="400" height="300">|
 
 <br><br><br>
 
