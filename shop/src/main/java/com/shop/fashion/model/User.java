@@ -62,8 +62,5 @@ public class User {
 
 	@CreationTimestamp
 	private Timestamp createDate;
-	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties({ "board", "user" })
-	private List<CommunityLike> communityLikes;
+
 }
