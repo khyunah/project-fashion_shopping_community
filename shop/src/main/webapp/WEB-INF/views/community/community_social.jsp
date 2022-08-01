@@ -3,6 +3,7 @@
 <%@ include file="../layout/header.jsp"%>
 
 <div class="community-container">
+<input type="hidden" value="${isMyPage}" id="isMyPage">
 	<div class="cmsomaincon">
 		<div class="cmsocon">
 			<%@ include file="add_community_board.jsp"%>

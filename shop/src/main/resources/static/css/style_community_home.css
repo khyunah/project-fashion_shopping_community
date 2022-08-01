@@ -41,12 +41,6 @@
 	height: 50px;
 }
 
-.commu-text {
-	font-family: "Gowun Batang", serif;
-	line-height: 5;
-	letter-spacing: 0.8px;
-}
-
 .span-goodlook-count {
 	font-size: 11px;
 	margin-left: 7px;
@@ -63,6 +57,10 @@
 	word-wrap: break-word;
 	line-height: 1.2em;
 	height: 2.4em;
+}
+
+.commu-home-text{
+	font-family: "Gowun Batang", serif;
 }
 
 .today_daily {
@@ -89,7 +87,7 @@
 }
 
 .hr-goodlook-line {
-	width: 288px;
+	width: 100%;
 	margin-left: 0;
 	border-top: 1px solid #dcdcdc;
 }

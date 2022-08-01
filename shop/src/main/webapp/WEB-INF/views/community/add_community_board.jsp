@@ -65,7 +65,7 @@
 
 						<div>
 							<div class="commu-social-div-title-container">
-								<h4 class="commu-text commu-title">${communityBoard.title}</h4>
+								<h4 class="commu-title">${communityBoard.title}</h4>
 							</div>
 							<div style="height: 10px"></div>
 							<div class="commu-social-div-title-container">

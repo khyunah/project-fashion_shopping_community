@@ -99,10 +99,8 @@
 	text-overflow: ellipsis;
 }
 
-.commu-text {
+.commu-title {
 	font-family: "Gowun Batang", serif;
-	line-height: 5px;
-	letter-spacing: 0.8px;
 }
 
 .commu-social-span-goodlook-count {

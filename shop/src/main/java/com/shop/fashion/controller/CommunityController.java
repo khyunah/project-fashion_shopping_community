@@ -132,7 +132,23 @@ public class CommunityController {
 
 		List<CommunityLike> likeList = communityService.myLike(userDetail.getUser().getId());
 		model.addAttribute("likeList", likeList);
+
+		model.addAttribute("isMyPage", true);
 		return "community/community_social";
 	}
 
+	// 나의 소셜 페이지
+	@GetMapping("/community/my-page-add")
+	public String addMyCommunityPage(
+			@PageableDefault(size = 3, direction = Direction.DESC, sort = "id") Pageable pageable, Model model,
+			@AuthenticationPrincipal PrincipalUserDetail userDetail) {
+		Page<CommunityBoard> myCommu = communityService.myCommunity(userDetail.getUser().getId(), pageable);
+		model.addAttribute("communityBoardList", myCommu);
+
+		List<CommunityLike> likeList = communityService.myLike(userDetail.getUser().getId());
+		model.addAttribute("likeList", likeList);
+
+		model.addAttribute("isMyPage", true);
+		return "community/community_social";
+	}
 }
