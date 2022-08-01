@@ -38,7 +38,7 @@
 		</div>
 
 		<div class="setting-btn-box">
-		<a href="/admin/community/select?keyword=&column=" class="btn btn-dark">전제조회</a>
+		<a href="/admin/community/select?keyword=&column=" class="btn btn-dark">전체조회</a>
 			<button type="button" class="btn btn-primary"
 				onclick="admin.communityDetail()">상세보기</button>
 			<button type="button" class="btn btn-danger"

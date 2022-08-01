@@ -135,12 +135,11 @@ let admin = {
 	userDelete: function() {
 		let token = $("meta[name='_csrf']").attr("content");
 		let header = $("meta[name='_csrf_header']").attr("content");
-
-		let result = confirm('해당 회원을 삭제할까요?');
+		
 		let id = $("#admin-object-id").text();
-		console.log(id);
 
-		if (id != null) {
+		if (id != '') {
+			let result = confirm('해당 회원을 삭제할까요?');
 			if (result) {
 				$.ajax({
 					beforeSend: function(xhr) {
@@ -185,7 +184,7 @@ let admin = {
 				})
 			}
 		} else {
-			alert("회원을 선택해주세요");
+			alert("회원을 선택해주세요.");
 		}
 
 
@@ -214,7 +213,7 @@ let admin = {
 				})
 			}
 		} else {
-			alert("게시글을 선택해주세요");
+			alert("게시글을 선택해주세요.");
 		}
 
 
@@ -243,7 +242,7 @@ let admin = {
 				})
 			}
 		} else {
-			alert("상품을 선택해주세요");
+			alert("상품을 선택해주세요.");
 		}
 	},
 
@@ -252,7 +251,7 @@ let admin = {
 		if (id != '') {
 			location.href = `/admin/shopping-item/update_form/${id}`;
 		} else {
-			alert("수정할 상품을 선택해주세요");
+			alert("수정할 상품을 선택해주세요.");
 		}
 	},
 
@@ -261,13 +260,18 @@ let admin = {
 		if (id != '') {
 			location.href = `/admin/shopping/item-detail/${id}`;
 		} else {
-			alert("상품을 선택해주세요");
+			alert("상품을 선택해주세요.");
 		}
 	},
 	
 	communityDetail: function() {
 		let id = $("#admin-object-id").text();
-		location.href = `/admin/community-detail/${id}`;
+		
+		if (id != '') {
+			location.href = `/admin/community-detail/${id}`;
+		} else {
+			alert("게시글을 선택해주세요.");
+		}
 	}
 }
 
