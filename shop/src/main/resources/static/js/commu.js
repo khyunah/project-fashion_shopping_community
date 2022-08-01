@@ -106,16 +106,21 @@ let commu = {
 
 	// 좋아요
 	communityLike: function(communityBoardId, likeCount) {
-
-		$.ajax({
-			type: "GET",
-			url: `/community/check-like/${communityBoardId}`,
-			dataType: "json"
-		}).done(function(response) {
-			changeLikeIcon(response, communityBoardId, likeCount);
-		}).fail(function(error) {
-			alert('서버오류 ! 다시 실행해주세요.');
-		});
+		if ($("#userId").val() != '') {
+			$.ajax({
+				type: "GET",
+				url: `/community/check-like/${communityBoardId}`,
+				dataType: "json"
+			}).done(function(response) {
+				changeLikeIcon(response, communityBoardId, likeCount);
+			}).fail(function(error) {
+				alert('서버오류 ! 다시 실행해주세요.');
+			});
+		} else {
+			if(confirm('로그인이 필요합니다. 로그인 하시겠습니까?')){
+				location.href = '/security/login_form';
+			}
+		}
 	},
 
 	// 글 수정하기
