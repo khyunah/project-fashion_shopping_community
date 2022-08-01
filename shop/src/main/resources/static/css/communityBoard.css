@@ -117,14 +117,10 @@ ul {
 
 @media ( max-width : 1510px) {
 	.cardWrapRight {
-		position: fixed;
+		position: static;
 		left: 60%;
 		width: 300px;
 		margin-top: 10px;
-	}
-	.cardWrapRight {
-		width: 300px;
-		height: 1300px;
 	}
 }
 

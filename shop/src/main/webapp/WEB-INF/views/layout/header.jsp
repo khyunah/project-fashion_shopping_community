@@ -116,6 +116,8 @@
                         <div class="dropdown-content bg-white">
                           <a href="/community/social-main"
                             style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">SOCIAL MAIN</a>
+                          <a href="/community/my-page"
+                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">MY SOCIAL</a>
                           <a href="/board/write"
                             style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">WRITE</a>
                         </div>
@@ -178,6 +180,8 @@
                         <div class="dropdown-content">
                           <a href="/community/social-main"
                             style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">SOCIAL MAIN</a>
+                          <a href="/community/my-page"
+                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">MY SOCIAL</a>
                           <a href="/board/write"
                             style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">WRITE</a>
                         </div>

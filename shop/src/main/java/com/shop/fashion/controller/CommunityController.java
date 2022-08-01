@@ -149,6 +149,7 @@ public class CommunityController {
 		model.addAttribute("likeList", likeList);
 
 		model.addAttribute("isMyPage", true);
-		return "community/community_social";
+		return "community/add_community_board";
 	}
+
 }
