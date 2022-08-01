@@ -59,6 +59,11 @@ public class UserController {
 	public String loginForm() {
 		return "user/login_form";
 	}
+	
+	@GetMapping("/security/login_fail")
+	public String loginFail() {
+		return "user/login_fail";
+	}
 
 	// 로그아웃
 	@GetMapping("/logout")
