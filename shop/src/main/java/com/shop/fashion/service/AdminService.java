@@ -57,6 +57,7 @@ public class AdminService {
 	// 회원 삭제
 	@Transactional
 	public void deleteUser(int id) {
+		communityRepository.deleteByUserId(id);
 		userRepository.deleteById(id);
 	}
 

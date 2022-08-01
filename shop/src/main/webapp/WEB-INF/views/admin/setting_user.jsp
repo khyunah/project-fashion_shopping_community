@@ -18,11 +18,11 @@
 				<select class="form-control " id="sel1"
 					onchange="chooseUserColumn(this)">
 					<option>선택</option>
-					<option>ID</option>
-					<option>USERNAME</option>
-					<option>NAME</option>
-					<option>ADDRESS</option>
-					<option>OAUTH</option>
+					<option id="ID">ID</option>
+					<option id="USERNAME">USERNAME</option>
+					<option id="NAME">NAME</option>
+					<option id="ADDRESS">ADDRESS</option>
+					<option id="OAUTH">OAUTH</option>
 				</select>
 				<c:if test="${column eq 'OAUTH'}">
 					<c:choose>
@@ -136,6 +136,5 @@
 
 </div>
 
-<script src="/js/admin.js"></script>
 </body>
 </html>

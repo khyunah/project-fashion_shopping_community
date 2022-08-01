@@ -28,33 +28,52 @@ function clickList(target) {
 	$("#admin-object-id").text(id);
 }
 
+$(document).ready(function() {
+	let column = $("#column").val();
+	if(column != ''){
+		$("#sel1").val(column).prop("selected", true);
+	} else {
+		$("#sel1").val('선택').prop("selected", true);
+	}
+});
+
 function chooseUserColumn(target) {
+	$('#keyword').attr("type", "text");
 	let column = target.options[target.selectedIndex].text;
 	$("#column").val(column);
 
 	if (column == 'OAUTH') {
 		$(".oauthSelectBox").remove();
 		addSelectBoxOauth();
+	} else if(column == 'ID'){
+		$('#keyword').attr("type", "number");
 	} else {
 		$(".oauthSelectBox").remove();
 	}
 }
 
 function chooseShoppingColumn(target){
+	$('#keyword').attr("type", "text");
 	let column = target.options[target.selectedIndex].text;
 	$("#column").val(column);
 
 	if (column == 'GENDER') {
 		$(".genderSelectBox").remove();
 		addSelectBoxGender();
+	} else if(column == 'ID'){
+		$('#keyword').attr("type", "number");
 	} else {
 		$(".genderSelectBox").remove();
 	}
 }
 
 function chooseColumn(target) {
+	$('#keyword').attr("type", "text");
 	let column = target.options[target.selectedIndex].text;
 	$("#column").val(column);
+	if(column == 'ID'){
+		$('#keyword').attr("type", "number");
+	}
 }
 
 function addSelectBoxOauth() {
@@ -91,10 +110,11 @@ function chooseGender(target) {
 
 function checkColumn() {
 	let column = $("#column").val();
+	
 	if(column == '') {
 		alert('분류를 선택해주세요 !');
 		return false;
-	}
+	} 
 	return true;
 }
 
@@ -233,3 +253,4 @@ let admin = {
 		location.href = `/admin/community-detail/${id}`;
 	}
 }
+
