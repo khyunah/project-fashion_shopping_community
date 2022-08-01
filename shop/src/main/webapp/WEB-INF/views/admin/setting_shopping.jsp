@@ -2,7 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="left_nav.jsp"%>
 
-<div class="container admin-container">
+<div class="admin-container">
+
+<div class="container">
 
 	<div style="height: 50px;"></div>
 	<h2>상품정보 관리</h2>
@@ -27,7 +29,7 @@
 				<c:if test="${column eq 'GENDER'}">
 					<c:choose>
 						<c:when test="${keyword == 'MAN'}">
-							<select class="form-control oauthSelectBox"
+							<select class="form-control genderSelectBox"
 								onchange="chooseGender(this)">
 								<option>선택</option>
 								<option selected>MAN</option>
@@ -35,7 +37,7 @@
 							</select>
 						</c:when>
 						<c:otherwise>
-							<select class="form-control oauthSelectBox"
+							<select class="form-control genderSelectBox"
 								onchange="chooseGender(this)">
 								<option>선택</option>
 								<option>MAN</option>
@@ -142,7 +144,6 @@
 	</div>
 
 </div>
-
-<script src="/js/admin.js"></script>
+</div>
 </body>
 </html>

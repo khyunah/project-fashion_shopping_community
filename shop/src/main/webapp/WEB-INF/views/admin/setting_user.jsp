@@ -2,7 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="left_nav.jsp"%>
 
-<div class="container admin-container">
+<div class="admin-container">
+
+<div class="container">
 
 	<div style="height: 50px;"></div>
 	<h2>회원정보 관리</h2>
@@ -135,6 +137,6 @@
 	</div>
 
 </div>
-
+</div>
 </body>
 </html>

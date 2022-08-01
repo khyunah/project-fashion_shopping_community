@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="left_nav.jsp"%>
 
+<div class="admin-container">
+
 <div class="container">
 
 	<div style="height: 50px;"></div>
@@ -116,6 +118,7 @@
 	<div class="admin-id-box">
 		<span id="admin-object-id" style="display: none;"></span>
 	</div>
+</div>
 </div>
 
 <script src="/js/admin.js"></script>

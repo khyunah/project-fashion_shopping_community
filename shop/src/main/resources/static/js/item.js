@@ -82,7 +82,13 @@ let index = {
 			.done(function(response) {
 
 				alert("새로운 제품을 추가했습니다.");
-				location.href = response.data;
+				history.back();
+				let historyCheck = $("#historyCheck").val();
+				if(historyCheck == 'admin'){
+					location.href = `/admin/shopping/item-detail/${response.data.id}`;
+				} else {
+					location.href = `/shop/itemdetail_form/${response.data.id}`;
+				}
 
 			})
 			.fail(function(error) {

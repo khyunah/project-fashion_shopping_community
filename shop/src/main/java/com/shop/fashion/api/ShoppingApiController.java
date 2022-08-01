@@ -40,13 +40,8 @@ public class ShoppingApiController {
 	UserService userService;
 
 	@PostMapping("/api/item")
-	public ResponseDto<String> save(@RequestBody Item item, HttpServletRequest request) {
-		shoppingService.saveItem(item);
-		String responceResult = "0";
-		if (request.getHeader("Referer") != null) {
-			responceResult = String.valueOf(request.getHeader("Referer"));
-		}
-		return new ResponseDto<>(HttpStatus.OK.value(), responceResult);
+	public ResponseDto<Item> save(@RequestBody Item item) {
+		return new ResponseDto<>(HttpStatus.OK.value(), shoppingService.saveItem(item));
 	}
 
 	@PostMapping("/api/category")

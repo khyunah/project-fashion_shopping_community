@@ -85,6 +85,5 @@
 <div class="admin-id-box">
 	<span id="admin-object-id" style="display: none;">${item.id}</span>
 </div>
-<script src="/js/admin.js"></script>
 </body>
 </html>

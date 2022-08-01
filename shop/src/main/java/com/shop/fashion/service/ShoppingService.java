@@ -34,8 +34,8 @@ public class ShoppingService {
 	}
 
 	@Transactional
-	public void saveItem(Item item) {
-		shoppingRepository.save(item);
+	public Item saveItem(Item item) {
+		return shoppingRepository.save(item);
 	}
 
 	@Transactional(readOnly = true)

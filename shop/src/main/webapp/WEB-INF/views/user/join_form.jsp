@@ -143,7 +143,7 @@
 				dataType : "json"
 			}).done(function(response) {
 				console.log(response)
-				if (response.data.username != null) {
+				if (response.data != null) {
 					$("#checkIdResult").text("사용 불가능");
 				} else {
 					$("#checkIdResult").text("사용 가능");
