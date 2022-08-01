@@ -166,3 +166,8 @@ SNS와 쇼핑몰을 같이 볼 수 있도록 메인 페이지의 화면을 2개�
 
 <br><br><br>
 
+># 4. ERD
+<br><br><br><br>
+
+<img src="https://user-images.githubusercontent.com/89136556/182067865-e059a0ea-a8c2-48f9-b1ad-f7005c04c883.png" width="800" height="500">
+
