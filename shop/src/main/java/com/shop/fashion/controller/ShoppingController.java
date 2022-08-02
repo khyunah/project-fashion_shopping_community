@@ -151,6 +151,7 @@ public class ShoppingController {
 		List<Basket> baskets = basketService.getBasket(userDetail.getUser().getId());
 		
 		for (int i = 0; i < baskets.size(); i++) {
+			
 			basketService.deleteId(baskets.get(i).getId());
 		}
 		

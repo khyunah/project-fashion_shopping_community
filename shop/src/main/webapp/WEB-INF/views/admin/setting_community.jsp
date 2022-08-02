@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="left_nav.jsp"%>
 
+<div class="admin-container">
+
 <div class="container">
 
 	<div style="height: 50px;"></div>
@@ -15,7 +17,7 @@
 		<div class="d-flex">
 
 			<div class="form-group mr-2">
-				<select class="form-control" id="sel1">
+				<select class="form-control" id="sel1" onchange="chooseColumn(this)">
 					<option>선택</option>
 					<option>ID</option>
 					<option>USERNAME</option>
@@ -36,7 +38,7 @@
 		</div>
 
 		<div class="setting-btn-box">
-		<a href="/admin/community/select?keyword=&column=" class="btn btn-dark">전제조회</a>
+		<a href="/admin/community/select?keyword=&column=" class="btn btn-dark">전체조회</a>
 			<button type="button" class="btn btn-primary"
 				onclick="admin.communityDetail()">상세보기</button>
 			<button type="button" class="btn btn-danger"
@@ -63,9 +65,9 @@
 				<tr onclick="clickList(this)">
 					<td>${communityBoard.id}</td>
 					<td>${communityBoard.user.username}</td>
-					<td>
+					<td class="admin-td-img">
 						<div class="admin-img-box">
-							<img class="card-img-top"
+							<img class="card-img-top admin-list-img"
 								src="/upload/${communityBoard.imageUrl}" alt="Card image"
 								style="width: 100%">
 						</div>
@@ -116,6 +118,7 @@
 	<div class="admin-id-box">
 		<span id="admin-object-id" style="display: none;"></span>
 	</div>
+</div>
 </div>
 
 <script src="/js/admin.js"></script>

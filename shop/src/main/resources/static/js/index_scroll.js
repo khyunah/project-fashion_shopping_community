@@ -2,8 +2,9 @@ let pageSize = $("#pageSize").val();
 let pageNumber = $("#pageNumber").val();
 
 window.addEventListener('scroll',function(){ 
-
-	if($(window).scrollTop() + $(window).height() == $(document).height()) {
+console.log($(window).scrollTop() + $(window).height());
+console.log($(document).height() - 1);
+	if(Math.floor($(window).scrollTop() + $(window).height()) == $(document).height() - 1) {
        xhr_();
    }
 });

@@ -43,10 +43,7 @@ public class UserService {
 	// 아이디 중복 체크
 	@Transactional()
 	public User checkUsername(String username) {
-		User userTemp = userRepository.findByUsername(username).orElseGet(() -> {
-			return new User();
-		});
-		return userTemp;
+		return userRepository.findByUsername(username);
 	}
 
 	// 회원정보 수정

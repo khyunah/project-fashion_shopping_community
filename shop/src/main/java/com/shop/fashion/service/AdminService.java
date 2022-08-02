@@ -57,6 +57,7 @@ public class AdminService {
 	// 회원 삭제
 	@Transactional
 	public void deleteUser(int id) {
+		communityRepository.deleteByUserId(id);
 		userRepository.deleteById(id);
 	}
 
@@ -155,10 +156,13 @@ public class AdminService {
 			resultPage = communityRepository.mFindById(id, pageable);
 			break;
 		case "USERNAME":
-			User user = userRepository.findByUsername(keyword).orElseThrow(() -> {
-				return new IllegalArgumentException("회원이 존재하지 않습니다.");
-			});
-			resultPage = communityRepository.mFindByUser(user.getId(), pageable);
+			User user = userRepository.findByUsername(keyword);
+			if(user != null) {
+				resultPage = communityRepository.mFindByUser(user.getId(), pageable);
+			} else {
+				resultPage = communityRepository.mFindByUser(0, pageable);
+			}
+			
 			break;
 		case "TITLE":
 			resultPage = communityRepository.mFindByTitle(keyword, pageable);

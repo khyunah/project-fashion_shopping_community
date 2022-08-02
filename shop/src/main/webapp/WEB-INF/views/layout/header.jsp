@@ -92,7 +92,7 @@
                         <div class="dropdown-content">
                           <a href="/shop/mans_form"
                             style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">MAN's</a>
-                          <a href="/shop/save_form"
+                          <a href="/shop/womans_form"
                             style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">WOMAN's</a>
                         </div>
                       </div>
@@ -117,6 +117,8 @@
                         <div class="dropdown-content bg-white">
                           <a href="/community/social-main"
                             style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">SOCIAL MAIN</a>
+                          <a href="/community/my-page"
+                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">MY SOCIAL</a>
                           <a href="/board/write"
                             style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">WRITE</a>
                         </div>
@@ -131,7 +133,7 @@
                         <div class="dropdown-content bg-white">
                           <a href="/shop/mans_form"
                             style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">MAN's</a>
-                          <a href="/shop/womans_form/?gender=WOMAN"
+                          <a href="/shop/womans_form"
                             style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">
                             WOMAN's</a>
                         </div>
@@ -179,6 +181,8 @@
                         <div class="dropdown-content">
                           <a href="/community/social-main"
                             style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">SOCIAL MAIN</a>
+                          <a href="/community/my-page"
+                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">MY SOCIAL</a>
                           <a href="/board/write"
                             style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">WRITE</a>
                         </div>

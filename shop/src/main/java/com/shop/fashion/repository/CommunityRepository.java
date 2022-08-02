@@ -20,4 +20,6 @@ public interface CommunityRepository extends JpaRepository<CommunityBoard, Integ
 
 	@Query(value = "SELECT * FROM communityBoard WHERE title LIKE %:title%", nativeQuery = true)
 	Page<CommunityBoard> mFindByTitle(@Param("title") String title, Pageable pageable);
+
+	long deleteByUserId(int userId);
 }

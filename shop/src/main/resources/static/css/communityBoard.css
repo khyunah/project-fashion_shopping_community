@@ -115,7 +115,21 @@ ul {
 	align-items: center;
 }
 
-@media ( max-width : 1000px) {
+@media ( max-width : 1510px) {
+	.cardWrapRight {
+		position: static;
+		left: 60%;
+		width: 300px;
+		margin-top: 10px;
+	}
+}
+
+@media ( max-width : 1210px) {
+	.mainWrap {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
 	.cardWrapRight {
 		display: none;
 	}

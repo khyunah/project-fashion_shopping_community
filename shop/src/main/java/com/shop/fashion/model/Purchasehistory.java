@@ -1,6 +1,7 @@
 package com.shop.fashion.model;
 
-import javax.persistence.Column;
+import java.sql.Timestamp;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -9,7 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,18 +23,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Entity
-public class CommunityLike {
-
+public class Purchasehistory {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(nullable = true)
-	private int isLike;
 	@ManyToOne
-	@JoinColumn(name = "boardId")
-	@JsonIgnoreProperties({ "replies", "itemLink", "user", "content" })
-	private CommunityBoard board;
-	@ManyToOne
+	private Item item;
+	@ColumnDefault("1")
+	private int count;
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "userId")
 	private User user;
+	@CreationTimestamp
+	private Timestamp createDate;
 }

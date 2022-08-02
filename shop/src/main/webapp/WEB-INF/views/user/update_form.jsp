@@ -128,7 +128,7 @@
 	<div class="user-empty-box"></div>
 	<div class="user-empty-box"></div>
 	<div class="user-empty-box"></div>
-	<button type="button" id="btn-update" class="user-btn"
+	<button type="submit" id="btn-update" class="user-btn"
 		onclick="return checkPassword()" style="background-color: #453675;">update</button>
 </form>
 <script>

@@ -59,6 +59,11 @@ public class UserController {
 	public String loginForm() {
 		return "user/login_form";
 	}
+	
+	@GetMapping("/security/login_fail")
+	public String loginFail() {
+		return "user/login_fail";
+	}
 
 	// 로그아웃
 	@GetMapping("/logout")
@@ -79,8 +84,7 @@ public class UserController {
 	// 프로필 회원정보 수정
 	@PostMapping("/user/profile-update/{id}")
 	public String updateProfile(@PathVariable int id, UserUpdateDto dto) {
-		User user = userService.updateUserProfile(id, dto);
-		System.out.println(user.getImageUrl());
+		userService.updateUserProfile(id, dto);
 		return "redirect:/user/update_form";
 	}
 

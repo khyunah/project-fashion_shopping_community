@@ -3,6 +3,7 @@
 <%@ include file="../layout/header.jsp"%>
 
 <div class="community-container">
+<input type="hidden" value="${isMyPage}" id="isMyPage">
 	<div class="cmsomaincon">
 		<div class="cmsocon">
 			<%@ include file="add_community_board.jsp"%>
@@ -12,7 +13,7 @@
 	<div class="commu-profile-box">
 		<img class="card-img-top commu-profile-img"
 			src="/upload/${principal.user.imageUrl}" alt="Card image"
-			onerror="this.src='/image/noImage.png'">
+			onerror="this.src='/image/noImage.png'" />
 		<div class="card-body commu-profile-text-box">
 			<c:choose>
 				<c:when test="${principal.user.oauth eq 'KAKAO'}">
@@ -22,10 +23,8 @@
 					<h5 class="card-title" id="commu-profile-username">${principal.user.username}</h5>
 				</c:otherwise>
 			</c:choose>
-			﻿ <a href="/community/my-page"
-				class="commu-profile-btn commu-profile-btn-my">MY SOCIAL</a> <a
-				href="/board/write"
-				class="commu-profile-btn commu-profile-btn-write-community-board">WRITE</a>
+			﻿ <a href="/community/my-page" class="commu-profile-btn commu-profile-btn-my">MY SOCIAL</a> 
+			<a href="/board/write" class="commu-profile-btn commu-profile-btn-write-community-board">WRITE</a>
 			<a href="" class="commu-profile-btn commu-profile-btn-top">TOP</a>
 		</div>
 	</div>
