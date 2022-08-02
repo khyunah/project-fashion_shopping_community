@@ -26,6 +26,7 @@ import com.shop.fashion.model.Item;
 import com.shop.fashion.service.BasketService;
 import com.shop.fashion.service.KakaoPayService;
 import com.shop.fashion.service.ShoppingService;
+import com.shop.fashion.service.UserService;
 
 @Controller
 public class ShoppingController {
@@ -34,6 +35,9 @@ public class ShoppingController {
 	HttpSession httpSession;
 	@Autowired
 	BasketService basketService;
+	
+	@Autowired
+	UserService userService;
 
 	@Autowired
 	ShoppingService shoppingService;
@@ -125,8 +129,9 @@ public class ShoppingController {
 
 	// /shopping/itemdetail_form/${item.id}
 	@GetMapping("/shop/itemdetail_form/{id}")
-	public String itemDetailform(@PathVariable int id, Model model) {
+	public String itemDetailform(@PathVariable int id, @AuthenticationPrincipal PrincipalUserDetail userDetail, Model model) {
 		model.addAttribute("item", shoppingService.itemDetail(id));
+		model.addAttribute("user", userService.getUser(userDetail.getUser().getId()));
 		return "shopping/itemdetail_form";
 	}
 
@@ -150,7 +155,7 @@ public class ShoppingController {
 		
 		List<Basket> baskets = basketService.getBasket(userDetail.getUser().getId());
 		
-		for (int i = 0; i < baskets.size(); i++) {
+		for (int i = 0; i < baskets.size(); i++) {	
 			
 			basketService.deleteId(baskets.get(i).getId());
 		}

@@ -103,9 +103,10 @@ public class UserService {
 		}
 		return newFileName;
 	}
-
+	
+	@Transactional
 	public User getUser(int id) {
+		System.out.println("서비스 ~!`~!~~!~!~ " + userRepository.findById(id));
 		return userRepository.findById(id).get();
 	}
-
 }

@@ -5,7 +5,6 @@
 
 <div class="container">
 	<input type="hidden" id="principal--id" value="${item.id}">
-
 	<br/><br/>
 	<br/><br/>
 	<input type="hidden" id="itemname" value="${item.name}">
@@ -28,13 +27,38 @@
 	</div>
 	<hr/>
 	<div class="form-group m-2">
-	<button type="button" class="btn text-white" style="background-color: #453675;">상품상세</button>
-	<img alt="" src="">
+	<button type="button" class="btn text-white" style="background-color: #453675;">상품 설명</button>
 	</div>
 	<br/>
 	<h4>${item.content}</h4>
 	<br/><br/>
 	<hr/>
+	<div>
+		<button type="button" class="btn text-white" style="background-color: #453675;">상품리뷰 작성하기</button>
+		<c:forEach var="itemReviews" items="${item.itemReviews}">
+					<div id="commu-reply-${itemReview.id}">
+						<div class="commu-detail-reply-firstline-container">
+							<span class="commu-detail-reply-user commu-detail-reply-text">${itemReviews.user.username}</span>
+							<div id="commu-detail-reply-btn-box">
+								<c:if test="${itemReviews.user.id == principal.user.id}">
+
+									<button onclick="commu.updateBtnReply(${itemReviews.id})"
+										class="commu-detail-btn-reply-update-${itemReviews.id} commu-detail-btn-reply">수정</button>
+									<button onclick="commu.deleteReply(${itemReviews.id})"
+										class="commu-detail-btn-reply-delete-${itemReviews.id} commu-detail-btn-reply">
+										삭제</button>
+								</c:if>
+							</div>
+						</div>
+						<div id="commu-detail-reply-content-box-${itemReviews.id}">
+							<textarea id="commu-detail-reply-content-${itemReviews.id}"
+								class="commu-detail-reply-content commu-detail-reply-text"
+								readonly>${itemReviews.content}</textarea>
+						</div>
+					</div>
+				</c:forEach>
+		
+	</div>
 	<br/>
 
 <br/>
