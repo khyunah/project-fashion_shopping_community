@@ -22,6 +22,7 @@
     <link href="/css/style_community_detail.css" rel="stylesheet" type="text/css" />
     <link href="/css/style_community_social.css" rel="stylesheet" type="text/css" />
     <link href="/css/kakao_pay.css" rel="stylesheet" type="text/css" />
+    <link href="/css/receipt.css" rel="stylesheet" type="text/css" />
 
     <!-- 부트스트랩 -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
@@ -209,7 +210,8 @@
                     </li>
                    
                   <li class="nav-item">
-                      <div class="dropdown">
+                  <div class=dropdown>
+                      <div class="dropdown-content">
                       <a href="/user/update_form" style="text-decoration: none;">
                         <button class="nav-link dropbtn text-white"
                           style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675;">MYPAGE
@@ -217,6 +219,7 @@
                         </button>
                         </a>
                       </div>
+                  </div>
                     </li>
                     <li class="nav-item">
                       <!-- 시큐리티를 적용하면 자동 로그아웃 처리 된다. -->

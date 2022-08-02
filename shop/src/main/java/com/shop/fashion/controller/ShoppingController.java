@@ -141,12 +141,12 @@ public class ShoppingController {
 	@GetMapping("/kakaoPaySuccess")
 	public String kakaoPaySuccess(@RequestParam("pg_token") String pg_token, Model model, @AuthenticationPrincipal PrincipalUserDetail userDetail) {
 		KakaoPayDto kakaopayDto = (KakaoPayDto) httpSession.getAttribute("kakao");
-		System.out.println("kakaopaySuccess" + userDetail.getUser().getId());
 		KakaoPayApprovalDto dto = kakaoPayService.kakaoPaySuccess(pg_token, userDetail.getUser().getId(),
 				kakaopayDto.getTid(), userDetail.getUser().getId());
 		model.addAttribute("pageTokenInfo", dto);
+		httpSession.setAttribute("pageTokenInfo", dto);
 		
-		httpSession.removeAttribute("kakao");
+		
 		
 		List<Basket> baskets = basketService.getBasket(userDetail.getUser().getId());
 		
@@ -167,4 +167,5 @@ public class ShoppingController {
 		return "shopping/payment_fail";
 	}
 
+	
 }
