@@ -150,5 +150,11 @@ public class AdminController {
 		model.addAttribute("communityBoard", communityBoard);
 		return "admin/admin_commu_detail";
 	}
+	
+	// 그래프 페이지 
+	@GetMapping("/admin/graph-join")
+	public String graphJoinPage() {
+		return "admin/graph";
+	}
 
 }

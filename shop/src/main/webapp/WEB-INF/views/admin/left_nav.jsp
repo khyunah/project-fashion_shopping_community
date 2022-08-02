@@ -80,6 +80,13 @@
 						<div class="admin-menu-text">사이트확인</div>
 					</a>
 				</div>
+				
+				<div class="admin-menu-list-item">
+					<a href="/admin/graph-join" class="btn"> <img alt="" src="/image/graph.png"
+						class="admin-menu-nav-img">
+						<div class="admin-menu-text">그래프</div>
+					</a>
+				</div>
 
 				<div class="admin-menu-list-item">
 					<a href="#" class="btn"> <img alt=""

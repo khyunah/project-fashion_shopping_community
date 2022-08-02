@@ -59,7 +59,7 @@
 		</div>
 
 		<div class="setting-user-btn-box">
-			<a href="/admin/user/select?keyword=&column=" class="btn btn-dark">전제조회</a>
+			<a href="/admin/user/select?keyword=&column=" class="btn btn-dark">전체조회</a>
 			<button type="button" class="btn btn-success"
 				onclick="admin.userChangeRole()">권한설정</button>
 			<button type="button" class="btn btn-danger"
