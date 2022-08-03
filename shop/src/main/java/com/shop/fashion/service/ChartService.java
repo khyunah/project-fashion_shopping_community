@@ -1,9 +1,12 @@
 package com.shop.fashion.service;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.util.List;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.StandardChartTheme;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,24 +23,40 @@ public class ChartService {
 	
 	public JFreeChart createChart() {
 		List<JoinDateDto> list = chartJoindateRepository.getJoinDateDtoList();
+		System.out.println("레파짓토리 완료후 서비스 시작");
 		
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 		for (JoinDateDto joinDateDto : list) {
-			dataset.setValue(joinDateDto.getCount(), "가입자 수", joinDateDto.getDayoOfMonth());
+			dataset.setValue(joinDateDto.getJoinCount(), "Join count", joinDateDto.getJoinDate());
 		}
 		
 		JFreeChart chart = null;
-		String title = "날짜 별 가입자 수";
+		String title = "JoinCount";
 		
 		chart = ChartFactory.createBarChart(
 				title, 
-				"날짜", 
-				"가입자 수", 
+				"Date", 
+				"Join User Count", 
 				dataset, 
 				PlotOrientation.VERTICAL, 
-				true, true, true);
+				true, true, false);
 		
-		// 글씨체 바꾸기 부터 
+		chart.getTitle().setFont(new Font("돋움", Font.BOLD, 15));
+		chart.getLegend().setItemFont(new Font("돋움", Font.PLAIN, 10));
+		
+		Font font = new Font("돋움", Font.PLAIN, 12);
+		Color color = new Color(20,20,20);
+		StandardChartTheme chartTheme = (StandardChartTheme) StandardChartTheme.createJFreeTheme();
+		
+		chartTheme.setAxisLabelPaint(color);
+		chartTheme.setLegendItemPaint(color);
+		chartTheme.setItemLabelPaint(color);
+		chartTheme.setSmallFont(font);
+		
+		chartTheme.setAxisLabelPaint(color);
+		chartTheme.setLegendItemPaint(color);
+		chartTheme.setItemLabelPaint(color);
+		chartTheme.apply(chart);
 		return chart;
 	}
 }

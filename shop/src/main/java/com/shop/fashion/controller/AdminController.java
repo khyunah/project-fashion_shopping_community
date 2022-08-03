@@ -151,10 +151,9 @@ public class AdminController {
 		return "admin/admin_commu_detail";
 	}
 	
-	// 그래프 페이지 
 	@GetMapping("/admin/graph-join")
-	public String graphJoinPage() {
+	public String joinDataChartPage() {
 		return "admin/graph";
 	}
-
+	
 }

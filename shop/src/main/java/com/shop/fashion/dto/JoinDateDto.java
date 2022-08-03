@@ -1,17 +1,16 @@
 package com.shop.fashion.dto;
 
-import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.sql.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
+@ToString
 public class JoinDateDto {
-	private BigDecimal dayoOfMonth;
-	private BigDecimal week;
-	private BigDecimal weekDay;
-	private BigDecimal count;
+	private Date joinDate;
+	private BigInteger joinCount;
 }

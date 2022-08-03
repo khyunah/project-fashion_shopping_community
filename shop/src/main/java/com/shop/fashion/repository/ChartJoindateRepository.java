@@ -13,26 +13,27 @@ import com.shop.fashion.dto.JoinDateDto;
 
 import lombok.RequiredArgsConstructor;
 
-@Repository
 @RequiredArgsConstructor
+@Repository
 public class ChartJoindateRepository {
 
-	private EntityManager em;
+	private final EntityManager em;
 	
 	public List<JoinDateDto> getJoinDateDtoList(){
 		List<JoinDateDto> list = new ArrayList<JoinDateDto>();
 		
-		String query = "SELECT DAY(createDate) AS dayOfYear, WEEK(createDate) AS week, WEEKDAY (createDate) AS weekDay,COUNT(createDate) "
-				+ "FROM user "
+		String query = "SELECT DATE(a.createDate) AS joinDate,COUNT(createDate) AS joinCount "
+				+ "FROM user AS a "
+				+ "WHERE DAYOFYEAR(createDate) BETWEEN DAYOFYEAR(NOW()) -7 AND DAYOFYEAR(NOW()) "
 				+ "GROUP BY DAYOFYEAR(createDate) "
-				+ "ORDER BY dayofyear ";
+				+ "ORDER BY joinDate ";
 		
 		Query nativeQuery = em.createNativeQuery(query);
 		
 		JpaResultMapper jpaResultMapper = new JpaResultMapper();
 		
 		list = jpaResultMapper.list(nativeQuery, JoinDateDto.class);
-		
+		System.out.println("레파짓토리 완료");
 		return list;
 	}
 	

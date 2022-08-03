@@ -4,7 +4,10 @@
 
 <div class="admin-container">
 
-	<div class="container"></div>
+	<div class="container">
+		<h2>그래프 그리기 테스트</h2>
+		<a href="/chart2.do">그래프</a>
+	</div>
 </div>
 </body>
 </html>
