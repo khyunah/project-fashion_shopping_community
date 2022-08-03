@@ -34,6 +34,8 @@ public class ChartJoindateRepository {
 		
 		list = jpaResultMapper.list(nativeQuery, JoinDateDto.class);
 		System.out.println("레파짓토리 완료");
+		System.out.println(list.get(0).getJoinDate());
+		System.out.println(list.get(0).getJoinCount());
 		return list;
 	}
 	

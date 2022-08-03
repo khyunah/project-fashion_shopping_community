@@ -21,6 +21,10 @@ public class ChartService {
 	@Autowired
 	private ChartJoindateRepository chartJoindateRepository;
 	
+	public List<JoinDateDto> getJoinDateList(){
+		return chartJoindateRepository.getJoinDateDtoList();
+	}
+	
 	public JFreeChart createChart() {
 		List<JoinDateDto> list = chartJoindateRepository.getJoinDateDtoList();
 		System.out.println("레파짓토리 완료후 서비스 시작");

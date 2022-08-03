@@ -2,6 +2,7 @@ package com.shop.fashion.controller;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -9,13 +10,15 @@ import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.shop.fashion.dto.JoinDateDto;
 import com.shop.fashion.service.ChartService;
 
 @Controller
@@ -23,6 +26,14 @@ public class ChartController {
 
 	@Autowired
 	private ChartService chartService;
+	
+	@GetMapping("/admin/graph-join/test")
+	@ResponseBody
+	public List<JoinDateDto> joinDateList(){
+		List<JoinDateDto> list = chartService.getJoinDateList();
+		System.out.println("서비스 돌아왔음");
+		return list;
+	}
 
 	// 그래프 페이지
 	@RequestMapping("chart1.do")
