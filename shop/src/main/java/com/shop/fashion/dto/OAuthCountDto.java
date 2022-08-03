@@ -10,7 +10,7 @@ import lombok.ToString;
 @Data
 @AllArgsConstructor
 @ToString
-public class JoinDateDto {
-	private Date joinDate;
-	private BigInteger joinCount;
+public class OAuthCountDto {
+	private String oauth;
+	private BigInteger oauthCount;
 }

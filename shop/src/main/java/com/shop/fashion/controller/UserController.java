@@ -144,13 +144,13 @@ public class UserController {
 		if (hasEmail) {
 			User originUser = userService.checkUsername(kakaoLoginUser.getUsername());
 
-			if (originUser.getUsername() == null) {
+			if (originUser == null) {
 				userService.joinUser(kakaoLoginUser);
 			}
 		}
 
 		Authentication authentication = authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(kakaoLoginUser.getUsername(), kakaoLoginUser.getPassword()));
+				new UsernamePasswordAuthenticationToken(kakaoLoginUser.getUsername(), kakaoKey));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
 		return "redirect:/";

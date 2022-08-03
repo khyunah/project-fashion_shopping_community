@@ -27,5 +27,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	@Query(value = "SELECT * FROM user WHERE oauth = :oauth", nativeQuery = true)
 	Page<User> mFindByOauth(@Param("oauth") String oauth, Pageable pageable);
+	
+	@Query(value = "SELECT * FROM user WHERE DAYOFYEAR(createDate) = DAYOFYEAR(now())", nativeQuery = true)
+	Page<User> mFindByTodayJoinUser(Pageable pageable);
 
 }

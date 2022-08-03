@@ -7,45 +7,39 @@ var chartArea = {
 		new Chart(context, {
 			type: 'line',
 			data: {
-				labels: chartArea.labels,
+				labels: dateRange,
 				datasets: [{
 					label: "가입자 수",
-					lineTension: 0.3,
-					backgroundColor: "rgba(2,117,216,0.2)",
-					borderColor: "rgba(2,117,216,1)",
-					pointRadius: 5,
-					pointBackgroundColor: "rgba(2,117,216,1)",
-					pointBorderColor: "rgba(255,255,255,0.8)",
-					pointHoverRadius: 5,
-					pointHoverBackgroundColor: "rgba(2,117,216,1)",
-					pointHitRadius: 50,
-					pointBorderWidth: 2,
-					data: chartArea.dataSets,
+					data: resultData,
+					fill: false,
+					borderWidth: 1,
+					lineTension: 0,
+					backgroundColor: "rgba(255, 0, 0, 0.65)",
+					borderColor: "rgba(255, 0, 0, 0.75)"
 				}],
 			},
 			options: {
 				responsive: true,
 				scales: {
 					xAxes: [{
-						time: {
-							unit: 'date'
-						},
+						/*
 						gridLines: {
 							display: false
-						},
+						},*/
 						ticks: {
-							maxTicksLimit: 7
+							maxTicksLimit: 7,
+							fontSize: 13
 						}
 					}],
 					yAxes: [{
-						/*          y값에 따라 최소, 최대치 표시를 자동으로 설정하기 위해 주석처리
-									  ticks: {
-									  min: 0,
-									  max: 40000,
-									  maxTicksLimit: 5
-									},*/
+						/*
 						gridLines: {
-							color: "rgba(0, 0, 0, .125)",
+							display: false
+						},*/
+						ticks: {
+							min: 0,
+							stepSize: 1,
+							fontSize: 13
 						}
 					}],
 				},
@@ -55,24 +49,206 @@ var chartArea = {
 			}
 		});
 	},
-	showData: function() {
-		console.log("메소드 확인");
-		labels = [];
-		dataSets = [];
+
+	joinData: function() {
 		$.ajax({
 			type: 'GET',
-			url: '/admin/graph-join/test',
+			url: '/admin/graph/join-count/week',
 			contentType: 'application/json',
-			//dataType 정의
 			dataType: 'json'
 		}).done(function(response) {
 			$.each(response, function(index, obj) {
 				chartArea.labels.push(obj.joinDate);
 				chartArea.dataSets.push(obj.joinCount);
 			});
+			checkData();
 			chartArea.render();
 		}).fail(function() {
 			console.log("실패");
 		});
 	}
+
 };
+
+var oauthArea = {
+	labels: [],
+	dataSets: [],
+	render: function() {
+		new Chart($("#oauth-chart"), {
+			type: 'bar',
+			data: {
+				labels: oauth,
+				datasets: [{
+					label: 'OAuth별 가입자 수',
+					fill: false,
+					data: oauthResultData,
+					backgroundColor: [
+						'rgba(0, 197, 37, 0.2)',
+						'rgba(255, 206, 86, 0.2)'
+						],
+					borderColor: [
+						'rgba(0, 197, 37, 0.75)',
+						'rgba(255, 206, 86, 1)'
+						],
+					borderWidth: 1
+				}]
+			},
+			options: {
+				responsive: true,
+				scales: {
+					yAxes: [{
+						ticks: {
+							beginAtZero: true
+						}
+					}]
+				},
+				legend: {
+					display: false
+				}
+			}
+		});
+	},
+
+	oauthData: function() {
+		$.ajax({
+			type: 'GET',
+			url: '/admin/graph/join-count/oauth',
+			contentType: 'application/json',
+			dataType: 'json'
+		}).done(function(response) {
+			$.each(response, function(index, obj) {
+				oauthArea.labels.push(obj.oauth);
+				oauthArea.dataSets.push(obj.oauthCount);
+			});
+			checkOauth();
+			oauthArea.render();
+		}).fail(function() {
+			console.log("실패");
+		});
+	}
+
+};
+
+var oauthTodayArea = {
+	labels: [],
+	dataSets: [],
+	render: function() {
+		new Chart($("#oauth-today-chart"), {
+			type: 'bar',
+			data: {
+				labels: oauth,
+				datasets: [{
+					label: '오늘 가입자 수',
+					fill: false,
+					data: oauthTodayResultData,
+					backgroundColor: [
+						'rgba(0, 197, 37, 0.2)',
+						'rgba(255, 206, 86, 0.2)'
+						],
+					borderColor: [
+						'rgba(0, 197, 37, 0.75)',
+						'rgba(255, 206, 86, 1)'
+						],
+					borderWidth: 1
+				}]
+			},
+			options: {
+				responsive: true,
+				scales: {
+					yAxes: [{
+						ticks: {
+							beginAtZero: true,
+							min: 0,
+							stepSize: 1,
+						}
+					}]
+				},
+				legend: {
+					display: false
+				}
+			}
+		});
+	},
+
+	oauthTodayData: function() {
+		$.ajax({
+			type: 'GET',
+			url: '/admin/graph/join-count/oauth-today',
+			contentType: 'application/json',
+			dataType: 'json'
+		}).done(function(response) {
+			$.each(response, function(index, obj) {
+				oauthTodayArea.labels.push(obj.oauth);
+				oauthTodayArea.dataSets.push(obj.oauthCount);
+			});
+			checkTodayOauth();
+			oauthTodayArea.render();
+		}).fail(function() {
+			console.log("실패");
+		});
+	}
+
+};
+
+var dateRange = [];
+var checkDate = [];
+var resultData = [];
+
+function checkData() {
+
+	// 날짜 x축 
+	for (var i = 6; i >= 0; i--) {
+		dateRange.push(moment().subtract(i, 'd').format("MM-DD"));
+		checkDate.push(moment().subtract(i, 'd').format("YYYY-MM-DD"));
+	}
+
+	var index = 0;
+	for (var i = 0; i < checkDate.length; i++) {
+
+		if (chartArea.labels[index] == checkDate[i]) {
+			resultData.push(chartArea.dataSets[index]);
+			index++;
+		} else {
+			resultData.push(0);
+		}
+	}
+}
+
+var oauth = [];
+var oauthResultData = [];
+
+function checkOauth() {
+
+	oauth = ['ORIGIN', 'KAKAO'];
+
+	var index = 0;
+	for (var i = 0; i < oauth.length; i++) {
+
+		if (oauthArea.labels[index] == oauth[i]) {
+			oauthResultData.push(oauthArea.dataSets[index]);
+			index++;
+		} else {
+			oauthResultData.push(0);
+		}
+	}
+}
+
+var oauthTodayResultData = [];
+
+function checkTodayOauth() {
+
+	var index = 0;
+	for (var i = 0; i < oauth.length; i++) {
+
+		if (oauthTodayArea.labels[index] == oauth[i]) {
+			oauthTodayResultData.push(oauthTodayArea.dataSets[index]);
+			index++;
+		} else {
+			oauthTodayResultData.push(0);
+		}
+	}
+}
+
+chartArea.joinData();
+oauthArea.oauthData();
+oauthTodayArea.oauthTodayData();

@@ -115,9 +115,6 @@ public class AdminService {
 		case "GENDER":
 			resultPage = shoppingRepository.mFindByGender(keyword, pageable);
 			break;
-		case "COLOR":
-
-			break;
 		}
 		return resultPage;
 	}
@@ -171,6 +168,7 @@ public class AdminService {
 		return resultPage;
 	}
 
+	// 커뮤니티 보드 상세보기
 	@Transactional
 	public CommunityBoard detailCommunityBoard(int id) {
 		return communityRepository.findById(id).orElseThrow(() -> {
@@ -183,5 +181,10 @@ public class AdminService {
 	public void deleteCommunityBoard(int id) {
 		communityRepository.deleteById(id);
 	}
-
+	
+	@Transactional
+	public Page<User> selectTodayJoinUser(Pageable pageable) {
+		return userRepository.mFindByTodayJoinUser(pageable);
+	}
+	
 }
