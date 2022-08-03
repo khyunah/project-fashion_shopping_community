@@ -1,3 +1,6 @@
+<%@page import="org.springframework.security.core.userdetails.UserDetails"%>
+<%@page import="org.hibernate.internal.build.AllowSysOut"%>
+<%@page import="com.shop.fashion.model.Purchasehistory"%>
 <%@page import="java.sql.Date"%>
 <%@page import="com.shop.fashion.dto.KakaoPayApprovalDto"%>
 <%@page import="java.util.ArrayList"%>
@@ -6,18 +9,6 @@
 
 <%@ include file="../layout/header.jsp" %>
 
-	<%	
-		session = request.getSession();
-		KakaoPayApprovalDto dto = (KakaoPayApprovalDto)session.getAttribute("pageTokenInfo");
-		
-		String itemName = dto.getItemName();
-		String number = dto.getTid();
-		Date date = dto.getApprovedAt();
-		int discount = dto.getAmount().getDiscount();
-		int total = dto.getAmount().getTotal();
-		session.removeAttribute("dto");
-		
-	%>
 
 
 	<div class="receipt-container">
@@ -38,11 +29,6 @@
 				
 		<tbody>
 			<tr>
-				<td><%=itemName%></td>
-				<td><%=number%></td>
-				<td><%=date%></td>
-				<td><%=discount+"원"%></td>
-				<td><%=total+"원"%></td>
 			</tr>
 		</tbody>
 		

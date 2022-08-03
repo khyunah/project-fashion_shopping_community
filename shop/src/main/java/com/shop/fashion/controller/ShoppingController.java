@@ -23,8 +23,10 @@ import com.shop.fashion.dto.KakaoPayApprovalDto;
 import com.shop.fashion.dto.KakaoPayDto;
 import com.shop.fashion.model.Basket;
 import com.shop.fashion.model.Item;
+import com.shop.fashion.model.Purchasehistory;
 import com.shop.fashion.service.BasketService;
 import com.shop.fashion.service.KakaoPayService;
+import com.shop.fashion.service.PurchaseHistoryService;
 import com.shop.fashion.service.ShoppingService;
 
 @Controller
@@ -41,6 +43,9 @@ public class ShoppingController {
 	@Autowired
 	KakaoPayService kakaoPayService;
 
+	@Autowired
+	PurchaseHistoryService purchaseHistoryService;
+	
 	@GetMapping({ "shop/mans_form", "/shop/search/" })
 	public String mansForm(@PathParam("gender") String gender, @PathParam("category") String category, Model model,
 			@PageableDefault(size = 8, sort = "id", direction = Direction.DESC) Pageable pageable) {
@@ -144,16 +149,26 @@ public class ShoppingController {
 		KakaoPayApprovalDto dto = kakaoPayService.kakaoPaySuccess(pg_token, userDetail.getUser().getId(),
 				kakaopayDto.getTid(), userDetail.getUser().getId());
 		model.addAttribute("pageTokenInfo", dto);
-		httpSession.setAttribute("pageTokenInfo", dto);
+//		httpSession.setAttribute("pageTokenInfo", dto);
 		
 		
 		
 		List<Basket> baskets = basketService.getBasket(userDetail.getUser().getId());
 		
+		
 		for (int i = 0; i < baskets.size(); i++) {
+			Purchasehistory entity = Purchasehistory.builder()
+					.id(baskets.get(i).getId())
+					.item(baskets.get(i).getItem())
+					.count(baskets.get(i).getCount())
+					.user(baskets.get(i).getUser())
+					.build();
 			
+			purchaseHistoryService.save(entity);
 			basketService.deleteId(baskets.get(i).getId());
+		
 		}
+
 		
 		return "shopping/payment_success";
 	}
@@ -168,5 +183,10 @@ public class ShoppingController {
 		return "shopping/payment_fail";
 	}
 
+	@GetMapping("/user/purchase_history")
+	public String purchaseHistory(@AuthenticationPrincipal PrincipalUserDetail userDetail, Model model) {
+		model.addAttribute("purchaseHistoryList", purchaseHistoryService.getPurchaseHistoryList(userDetail.getUser().getId()));
+		return "shopping/purchase_history";
+	}
 	
 }

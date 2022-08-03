@@ -150,14 +150,18 @@
                     
                     </li>
                    
-                  <li class="nav-item">
+                   <li class="nav-item">
                       <div class="dropdown">
-                      <a href="/user/update_form" style="text-decoration: none;">
-                        <button class="nav-link dropbtn text-white"
-                          style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675;">MYPAGE
-
+                        <button class="nav-link dropbtn"
+                          style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">MORE
+                          <i class="fa fa-caret-down"></i>
                         </button>
-                        </a>
+                        <div class="dropdown-content">
+                          <a href="/user/update_form"
+                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">MYPAGE</a>
+                          <a href="/user/purchase_history/"
+                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">HISTORY</a>
+                        </div>
                       </div>
                     </li>
                     <li class="nav-item">
