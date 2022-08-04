@@ -25,18 +25,22 @@
 				<th>주문번호</th>
 				<th>주문일</th>
 				<th>구매가</th>
+				<th>주소</th>
 			</tr>
 		</thead>
+		<!-- 
 		<c:out value="${purchaseHistoryList}"></c:out>
+		 -->
 				
 		<tbody>
 		<c:forEach items="${purchaseHistoryList}" var="purchaseHistory">
 		
 			<tr>
-				<td>${purchaseHistory.itemName}</td>
+				<td>${purchaseHistory.itemName}<br/><a href="#">더보기...</a></td>
 				<td>${purchaseHistory.tid}</td>
 				<td>${purchaseHistory.createdAt}</td>
-				<td><fmt:formatNumber type="number" maxFractionDigits="3" value="${purchaseHistory.total}"/></td>
+				<td><fmt:formatNumber type="number" maxFractionDigits="3" value="${purchaseHistory.total}"/>원</td>
+				<td>${principal.user.address}</td>
 			</tr>
 		</c:forEach>
 		</tbody>

@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.shop.fashion.model.Basket;
 import com.shop.fashion.model.Purchasehistory;
 import com.shop.fashion.repository.PurchaseHistoryRepository;
 
@@ -26,5 +27,10 @@ public class PurchaseHistoryService {
 		return purchaseHistoryRepository.purchaseHistory(userId);
 	}
 	
+//	@Transactional
+//	public List<Basket> findByUserId(int userId) {
+//		return purchaseHistoryRepository.findByUserId(userId);
+//	}
+//	
 	
 }
