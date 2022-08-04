@@ -85,6 +85,10 @@
 	width: 300px;
 }
 
+.chart-top {
+	width: 350px;
+}
+
 </style>
 
 
@@ -172,43 +176,42 @@
 					    </thead>
 					    <tbody class="chart-text">
 					      <tr>
-					        <td>1</td>
-					        <td id="today-income"></td>
-					        <td id="today-count"></td>
+					        <td id="name-1"></td>
+					        <td id="incom-1"></td>
+					        <td id="count-1"></td>
 					      </tr>
 					      <tr>
-					        <td>2</td>
-					        <td id="week-income"></td>
-					        <td id="week-count"></td>
+					        <td id="name-2"></td>
+					        <td id="incom-2"></td>
+					        <td id="count-2"></td>
 					      </tr>
 					      <tr>
-					        <td>3</td>
-					        <td id="total-income"></td>
-					        <td id="total-count"></td>
+					        <td id="name-3"></td>
+					        <td id="incom-3"></td>
+					        <td id="count-3"></td>
 					      </tr>
 					      <tr>
-					        <td>4</td>
-					        <td id="week-income"></td>
-					        <td id="week-count"></td>
+					        <td id="name-4"></td>
+					        <td id="incom-4"></td>
+					        <td id="count-4"></td>
 					      </tr>
 					      <tr>
-					        <td>5</td>
-					        <td id="total-income"></td>
-					        <td id="total-count"></td>
+					        <td id="name-5"></td>
+					        <td id="incom-5"></td>
+					        <td id="count-5"></td>
 					      </tr>
 					    </tbody>
 					</table>
 					
 				</div>
 
-				<div class="chart-result-container" style="margin-right: 50px;">
+				<div class="chart-top" style="margin-right: 50px;">
 					<p class="chart-p">금주 Top 5 상품 판매 금액</p>
 					<div>
 						<canvas id="chart-4"></canvas>
 					</div>
 				</div>
-				<div class="chart-second-result-container">
-					<div class="second-chart-div">
+				<div class="chart-top">
 					<p class="chart-p">금주 Top 5 상품 판매 수량</p>
 						<canvas id="chart-5"></canvas>
 					</div>

@@ -102,23 +102,8 @@ var salesItem = {
 	}, 
 	
 	setDataToInput: function (){
-		// 오늘 판매금액, 판매량
-		$("#today-income").text(resultData[6]);
-		$("#today-count").text(countList[6]);
-	
-		// 금주 판매금액, 판매량
-		var weekIncome = 0;
-		$.each(salesWeek.dataSets, function(index, count) {
-			weekIncome += count;
-		});
-		var weekCount = 0;
-		$.each(countSets, function(index, income){
-			weekCount += income;
-		});
 		
-		$("#week-income").text(weekIncome);
-		$("#week-count").text(weekCount);
-	}, 
+	}
 
 };
 
@@ -206,3 +191,4 @@ function renderLine(context, labels, label, data, color) {
 
 salesWeek.weekData();
 salesItem.weekData();
+
