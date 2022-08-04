@@ -48,7 +48,8 @@
 	font-weight: bold;
 }
 
-.chart-oauth-text {
+
+.chart-third-text {
 	font-size: 16px;
 	font-family: 'Gowun Dodum', sans-serif;
 	font-weight: bold;
@@ -61,7 +62,7 @@
 	width: 500px;
 }
 
-.chart-oauth-result-container {
+.chart-second-result-container {
 	width: 300px;
 }
 
@@ -80,12 +81,8 @@
 	font-size: 25px;
 }
 
-.oauth-today-chart-div {
-	width: 250px;
-}
-
-.oauth-canvas-div {
-	width: 200px;
+.second-chart-div {
+	width: 300px;
 }
 
 </style>
@@ -150,9 +147,76 @@
 						<canvas id="myChart"></canvas>
 					</div>
 				</div>
+				<div class="chart-second-result-container">
+					<div class="second-chart-div">
+					<p class="chart-p">금주 판매 수량</p>
+						<canvas id="second-chart"></canvas>
+					</div>
+				</div>
 			</div>
 		</div>
+		
+		<p class="chart-table-title">Top 5</p>
+		<div class="c-container">
+			<div class="chart-container">
+				<div class="chart-text-container">
+					<p class="chart-today">${today}</p>
+					
+					<table class="table table-bordered table-sm">
+					    <thead class="chart-text">
+					      <tr>
+					        <th>순위</th>
+					        <th>판매 금액</th>
+					        <th>판매량</th>
+					      </tr>
+					    </thead>
+					    <tbody class="chart-text">
+					      <tr>
+					        <td>1</td>
+					        <td id="today-income"></td>
+					        <td id="today-count"></td>
+					      </tr>
+					      <tr>
+					        <td>2</td>
+					        <td id="week-income"></td>
+					        <td id="week-count"></td>
+					      </tr>
+					      <tr>
+					        <td>3</td>
+					        <td id="total-income"></td>
+					        <td id="total-count"></td>
+					      </tr>
+					      <tr>
+					        <td>4</td>
+					        <td id="week-income"></td>
+					        <td id="week-count"></td>
+					      </tr>
+					      <tr>
+					        <td>5</td>
+					        <td id="total-income"></td>
+					        <td id="total-count"></td>
+					      </tr>
+					    </tbody>
+					</table>
+					
+				</div>
 
+				<div class="chart-result-container" style="margin-right: 50px;">
+					<p class="chart-p">금주 Top 5 상품 판매 금액</p>
+					<div>
+						<canvas id="chart-4"></canvas>
+					</div>
+				</div>
+				<div class="chart-second-result-container">
+					<div class="second-chart-div">
+					<p class="chart-p">금주 Top 5 상품 판매 수량</p>
+						<canvas id="chart-5"></canvas>
+					</div>
+				</div>	
+
+			</div>
+		</div>
+		
 	</div>
 </div>
 <script src="/js/chart_shopping.js"></script>

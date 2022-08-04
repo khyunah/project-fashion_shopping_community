@@ -48,7 +48,7 @@
 	font-weight: bold;
 }
 
-.chart-oauth-text {
+.chart-third-text {
 	font-size: 16px;
 	font-family: 'Gowun Dodum', sans-serif;
 	font-weight: bold;
@@ -61,7 +61,7 @@
 	width: 500px;
 }
 
-.chart-oauth-result-container {
+.chart-second-result-container {
 	width: 300px;
 }
 
@@ -80,11 +80,11 @@
 	font-size: 25px;
 }
 
-.oauth-today-chart-div {
+.second-chart-div {
 	width: 250px;
 }
 
-.oauth-canvas-div {
+.third-canvas-div {
 	width: 200px;
 }
 
@@ -135,14 +135,14 @@
 						<canvas id="myChart"></canvas>
 					</div>
 				</div>
-				<div class="chart-oauth-result-container">
-					<div class="oauth-today-chart-div">
+				<div class="chart-second-result-container">
+					<div class="second-chart-div">
 					<p class="chart-p">OAuth별 오늘 가입자</p>
-						<canvas id="oauth-today-chart"></canvas>
+						<canvas id="second-chart"></canvas>
 					</div>
-					<div class="oauth-canvas-div">
-						<p class="chart-oauth-text">OAuth별 총 가입자</p>
-						<canvas id="oauth-chart"></canvas>
+					<div class="third-canvas-div">
+						<p class="chart-third-text">OAuth별 총 가입자</p>
+						<canvas id="third-chart"></canvas>
 					</div>
 				</div>
 			</div>

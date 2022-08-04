@@ -10,6 +10,7 @@ import org.qlrm.mapper.JpaResultMapper;
 import org.springframework.stereotype.Repository;
 
 import com.shop.fashion.dto.ShoppingCountAndSumDto;
+import com.shop.fashion.dto.ShoppingItemDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -50,6 +51,26 @@ public class ShoppingChartRepository {
 		Query nativeQuery = em.createNativeQuery(query);
 		JpaResultMapper jpaResultMapper = new JpaResultMapper();
 		list = jpaResultMapper.list(nativeQuery, ShoppingCountAndSumDto.class);
+		
+		return list;
+	}
+	
+	// 금주 아이템별 판매금액, 판매 수량
+	public List<ShoppingItemDto> getItemSalesList(){
+		List<ShoppingItemDto> list = new ArrayList<ShoppingItemDto>();
+		
+		String query = "SELECT b.name, SUM(b.price) AS totalIncome, SUM(a.count) AS totalCount "
+				+ "FROM purchasehistory AS a "
+				+ "INNER JOIN item AS b "
+				+ "ON a.itemId = b.id "
+				+ "WHERE DAYOFYEAR(a.createDate) BETWEEN DAYOFYEAR(NOW()) -6 AND DAYOFYEAR(NOW()) "
+				+ "GROUP BY b.name "
+				+ "ORDER BY totalIncome DESC "
+				+ "LIMIT 5 ";
+		
+		Query nativeQuery = em.createNativeQuery(query);
+		JpaResultMapper jpaResultMapper = new JpaResultMapper();
+		list = jpaResultMapper.list(nativeQuery, ShoppingItemDto.class);
 		
 		return list;
 	}

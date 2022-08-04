@@ -74,7 +74,7 @@ var oauthArea = {
 	labels: [],
 	dataSets: [],
 	render: function() {
-		new Chart($("#oauth-chart"), {
+		new Chart($("#third-chart"), {
 			type: 'bar',
 			data: {
 				labels: oauth,
@@ -133,7 +133,7 @@ var oauthTodayArea = {
 	labels: [],
 	dataSets: [],
 	render: function() {
-		new Chart($("#oauth-today-chart"), {
+		new Chart($("#second-chart"), {
 			type: 'bar',
 			data: {
 				labels: oauth,

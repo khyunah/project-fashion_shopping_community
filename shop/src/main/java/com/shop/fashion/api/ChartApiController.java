@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.shop.fashion.dto.JoinCountDto;
 import com.shop.fashion.dto.OAuthCountDto;
 import com.shop.fashion.dto.ShoppingCountAndSumDto;
+import com.shop.fashion.dto.ShoppingItemDto;
 import com.shop.fashion.service.ChartService;
 
 @RestController
@@ -41,5 +42,11 @@ public class ChartApiController {
 	@GetMapping("/admin/graph/sales-result/week")
 	public List<ShoppingCountAndSumDto> getWeekSalesList(){
 		return chartService.getWeekSalesList();
+	}
+	
+	// 주간 아이템별 판매량, 금액 그래프
+	@GetMapping("/admin/graph/sales-result/item")
+	public List<ShoppingItemDto> getItemSalesList(){
+		return chartService.getItemSalesList();
 	}
 }

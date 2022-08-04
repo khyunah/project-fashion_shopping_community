@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.shop.fashion.dto.JoinCountDto;
 import com.shop.fashion.dto.OAuthCountDto;
 import com.shop.fashion.dto.ShoppingCountAndSumDto;
+import com.shop.fashion.dto.ShoppingItemDto;
 import com.shop.fashion.repository.ShoppingChartRepository;
 import com.shop.fashion.repository.UserChartRepository;
 
@@ -57,5 +58,10 @@ public class ChartService {
 	// 총 판매금액, 판매량 
 	public List<ShoppingCountAndSumDto> getTotalSalesList(){
 		return shoppingChartRepository.getTotalSalesList();
+	}
+	
+	// 금주 아이템별 판매금액, 판매량
+	public List<ShoppingItemDto> getItemSalesList(){
+		return shoppingChartRepository.getItemSalesList();
 	}
 }
