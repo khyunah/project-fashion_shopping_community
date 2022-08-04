@@ -149,26 +149,26 @@ public class ShoppingController {
 		KakaoPayApprovalDto dto = kakaoPayService.kakaoPaySuccess(pg_token, userDetail.getUser().getId(),
 				kakaopayDto.getTid(), userDetail.getUser().getId());
 		model.addAttribute("pageTokenInfo", dto);
-//		httpSession.setAttribute("pageTokenInfo", dto);
-		
-		
+	
 		
 		List<Basket> baskets = basketService.getBasket(userDetail.getUser().getId());
 		
 		
 		for (int i = 0; i < baskets.size(); i++) {
 			Purchasehistory entity = Purchasehistory.builder()
-					.id(baskets.get(i).getId())
-					.item(baskets.get(i).getItem())
-					.count(baskets.get(i).getCount())
-					.user(baskets.get(i).getUser())
+					.tid(dto.getTid())
+					.paymentMethodType(dto.getPaymentMethodType())
+					.total(dto.getAmount().getTotal())
+					.itemName(dto.getItemName())
+					.createdAt(dto.getCreatedAt())
+					.userId(userDetail.getUser().getId())
+					.basket(baskets.get(i))
 					.build();
 			
 			purchaseHistoryService.save(entity);
 			basketService.deleteId(baskets.get(i).getId());
 		
 		}
-
 		
 		return "shopping/payment_success";
 	}
@@ -186,6 +186,7 @@ public class ShoppingController {
 	@GetMapping("/user/purchase_history")
 	public String purchaseHistory(@AuthenticationPrincipal PrincipalUserDetail userDetail, Model model) {
 		model.addAttribute("purchaseHistoryList", purchaseHistoryService.getPurchaseHistoryList(userDetail.getUser().getId()));
+		
 		return "shopping/purchase_history";
 	}
 	

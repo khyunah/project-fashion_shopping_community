@@ -2,6 +2,7 @@
   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
       <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+        <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
         <sec:authorize access="isAuthenticated()">
           <sec:authentication property="principal" var="principal" />
         </sec:authorize>
@@ -218,16 +219,18 @@
                     </li>
                    
                   <li class="nav-item">
-                  <div class=dropdown>
-                      <div class="dropdown-content">
-                      <a href="/user/update_form" style="text-decoration: none;">
-                        <button class="nav-link dropbtn text-white"
-                          style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675;">MYPAGE
-
+                      <div class="dropdown">
+                        <button class="nav-link dropbtn"
+                          style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">MORE
+                          <i class="fa fa-caret-down"></i>
                         </button>
-                        </a>
+                        <div class="dropdown-content">
+                          <a href="/user/update_form"
+                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">MYPAGE</a>
+                          <a href="/user/purchase_history/"
+                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">HISTORY</a>
+                        </div>
                       </div>
-                  </div>
                     </li>
                     <li class="nav-item">
                       <!-- 시큐리티를 적용하면 자동 로그아웃 처리 된다. -->

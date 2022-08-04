@@ -10,7 +10,7 @@ import com.shop.fashion.model.Purchasehistory;
 
 public interface PurchaseHistoryRepository extends JpaRepository<Purchasehistory, Integer>{
 	
-	@Query(value = "SELECT * FROM Purchasehistory WHERE userId = 'userId'", nativeQuery = true)
+	@Query(value = "SELECT * FROM Purchasehistory WHERE userId = ?", nativeQuery = true)
 	List<Purchasehistory> purchaseHistory(@Param("userId") int id);
 	
 }
