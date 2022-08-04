@@ -9,6 +9,12 @@
 .admin-container {
 	padding-top: 50px;
 }
+
+.chart-category-container {
+	display: flex;
+	justify-content: flex-end;
+}
+
 .c-container {
 	display: flex;
 	margin-bottom: 70px;
@@ -87,6 +93,11 @@
 <div class="admin-container">
 
 	<div class="container">
+		<div class="chart-category-container">
+			<a href="/admin/graph-join" type="button" class="btn btn-outline-dark">회원 통계</a>
+			<a href="/admin/graph-sales" type="button" class="btn btn-outline-dark">상품 통계</a>
+			<a href="" type="button" class="btn btn-outline-dark">SNS 통계</a>
+		</div>
 
 		<p class="chart-table-title">회원 가입자 수 통계</p>
 		<div class="c-container">
@@ -134,9 +145,7 @@
 						<canvas id="oauth-chart"></canvas>
 					</div>
 				</div>
-
 			</div>
-
 		</div>
 		
 		<p class="chart-table-title">오늘 가입한 회원</p>
@@ -154,7 +163,7 @@
 
 	</div>
 </div>
-<script src="/js/chart.js"></script>
+<script src="/js/chart_user.js"></script>
 <script>
 function clickList(target) {
 	let list = target.parentNode;

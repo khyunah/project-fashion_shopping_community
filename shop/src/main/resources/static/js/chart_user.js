@@ -14,8 +14,8 @@ var chartArea = {
 					fill: false,
 					borderWidth: 1,
 					lineTension: 0,
-					backgroundColor: "rgba(255, 0, 0, 0.65)",
-					borderColor: "rgba(255, 0, 0, 0.75)"
+					backgroundColor: "rgba(255, 102, 0, 0.75)",
+					borderColor: "rgba(255, 102, 0, 0.65)"
 				}],
 			},
 			options: {

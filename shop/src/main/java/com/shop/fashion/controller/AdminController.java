@@ -1,9 +1,6 @@
 package com.shop.fashion.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,21 +13,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.shop.fashion.dto.JoinCountDto;
-import com.shop.fashion.dto.OAuthCountDto;
 import com.shop.fashion.model.CommunityBoard;
 import com.shop.fashion.model.Item;
 import com.shop.fashion.model.User;
 import com.shop.fashion.service.AdminService;
-import com.shop.fashion.service.ChartService;
 
 @Controller
 public class AdminController {
 
 	@Autowired
 	private AdminService adminService;
-	@Autowired
-	private ChartService chartService;
 
 	// 회원정보 조회 / 검색
 	@GetMapping("/admin/user/select")
@@ -157,51 +149,6 @@ public class AdminController {
 		CommunityBoard communityBoard = adminService.detailCommunityBoard(id);
 		model.addAttribute("communityBoard", communityBoard);
 		return "admin/admin_commu_detail";
-	}
-	
-	// 그래프 페이지 
-	@GetMapping("/admin/graph-join")
-	public String joinDataChartPage(Model model, Pageable pageable) {
-		//오늘 가입자 수
-		List<JoinCountDto> todayCount = chartService.getTodayJoinCountList();
-		if(todayCount.size() != 0) {
-			model.addAttribute("todayCount", todayCount.get(0));
-		} else {
-			model.addAttribute("todayCount", null);
-		}
-		
-		// 이번주 총 가입자 수 
-		List<JoinCountDto> weekCount = chartService.getWeekTotalJoinCountList();
-		if(weekCount.size() != 0) {
-			model.addAttribute("weekCount", weekCount.get(0));
-		} else {
-			model.addAttribute("weekCount", null);
-		}
-		
-		// 총 가입자 수 
-		List<JoinCountDto> totalCount = chartService.getTotalJoinCountList();
-		if(totalCount.size() != 0) {
-			model.addAttribute("totalCount", totalCount.get(0));
-		} else {
-			model.addAttribute("totalCount", null);
-		}
-		
-		// oauth 별 가입자 수 
-		List<OAuthCountDto> oauthCount = chartService.getOAuthJoinCountList();
-		if(oauthCount.size() != 0) {
-			model.addAttribute("oauthCount", oauthCount.get(0));
-		} else {
-			model.addAttribute("oauthCount", null);
-		}
-		
-		Date date = new Date();
-		SimpleDateFormat sf = new SimpleDateFormat("MM월 dd일");
-		String today = sf.format(date);
-		model.addAttribute("today", today);
-		
-		Page<User> userPage = adminService.selectTodayJoinUser(pageable);
-		model.addAttribute("userPage", userPage);
-		return "admin/chart_user";
 	}
 	
 }

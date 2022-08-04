@@ -1,44 +1,90 @@
 package com.shop.fashion.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shop.fashion.dto.JoinCountDto;
 import com.shop.fashion.dto.OAuthCountDto;
+import com.shop.fashion.dto.ShoppingCountAndSumDto;
+import com.shop.fashion.model.User;
+import com.shop.fashion.service.AdminService;
 import com.shop.fashion.service.ChartService;
 
 @Controller
 public class ChartController {
 
 	@Autowired
+	private AdminService adminService;
+	@Autowired
 	private ChartService chartService;
-	
-	// 주간 일자별 가입자 수 그래프
-	@GetMapping("/admin/graph/join-count/week")
-	@ResponseBody
-	public List<JoinCountDto> getWeekJoinCountList(){
-		List<JoinCountDto> list = chartService.getWeekJoinCountList();
-		return list;
-	}
-	
-	// Oauth별 가입자 그래프
-	@GetMapping("/admin/graph/join-count/oauth")
-	@ResponseBody
-	public List<OAuthCountDto> getOAuthJoinCountList(){
-		List<OAuthCountDto> list = chartService.getOAuthJoinCountList();
-		return list;
-	}
-	
-	// Oauth별 오늘 가입자 그래프
-	@GetMapping("/admin/graph/join-count/oauth-today")
-	@ResponseBody
-	public List<OAuthCountDto> getOAuthTodayJoinCountList(){
-		List<OAuthCountDto> list = chartService.getOAuthTodayJoinCountList();
-		return list;
+
+	// 회원 그래프 페이지
+	@GetMapping("/admin/graph-join")
+	public String joinDataChartPage(Model model, Pageable pageable) {
+		// 오늘 가입자 수
+		List<JoinCountDto> todayCount = chartService.getTodayJoinCountList();
+		if (todayCount.size() != 0) {
+			model.addAttribute("todayCount", todayCount.get(0));
+		} else {
+			model.addAttribute("todayCount", null);
+		}
+
+		// 이번주 총 가입자 수
+		List<JoinCountDto> weekCount = chartService.getWeekTotalJoinCountList();
+		if (weekCount.size() != 0) {
+			model.addAttribute("weekCount", weekCount.get(0));
+		} else {
+			model.addAttribute("weekCount", null);
+		}
+
+		// 총 가입자 수
+		List<JoinCountDto> totalCount = chartService.getTotalJoinCountList();
+		if (totalCount.size() != 0) {
+			model.addAttribute("totalCount", totalCount.get(0));
+		} else {
+			model.addAttribute("totalCount", null);
+		}
+
+		// oauth 별 가입자 수
+		List<OAuthCountDto> oauthCount = chartService.getOAuthJoinCountList();
+		if (oauthCount.size() != 0) {
+			model.addAttribute("oauthCount", oauthCount.get(0));
+		} else {
+			model.addAttribute("oauthCount", null);
+		}
+
+		Date date = new Date();
+		SimpleDateFormat sf = new SimpleDateFormat("MM월 dd일");
+		String today = sf.format(date);
+		model.addAttribute("today", today);
+
+		Page<User> userPage = adminService.selectTodayJoinUser(pageable);
+		model.addAttribute("userPage", userPage);
+		return "admin/chart_user";
 	}
 
+	// 상품 그래프 페이지
+	@GetMapping("/admin/graph-sales")
+	public String salesChartPage(Model model, Pageable pageable) {
+		// 총 판매 금액, 판매량
+		List<ShoppingCountAndSumDto> totalList = chartService.getTotalSalesList();
+		if(totalList != null) {
+			model.addAttribute("totalList", totalList.get(0));
+		}
+
+		Date date = new Date();
+		SimpleDateFormat sf = new SimpleDateFormat("MM월 dd일");
+		String today = sf.format(date);
+		model.addAttribute("today", today);
+
+		return "admin/chart_shopping";
+	}
 }

@@ -28,6 +28,7 @@ public class Purchasehistory {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@ManyToOne
+	@JoinColumn(name = "itemId")
 	private Item item;
 	@ColumnDefault("1")
 	private int count;
