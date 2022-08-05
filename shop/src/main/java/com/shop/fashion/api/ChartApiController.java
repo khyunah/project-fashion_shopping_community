@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.shop.fashion.dto.JoinCountDto;
-import com.shop.fashion.dto.OAuthCountDto;
-import com.shop.fashion.dto.ShoppingCountAndSumDto;
-import com.shop.fashion.dto.ShoppingItemDto;
+import com.shop.fashion.dto.chart.CommunityActionCountDto;
+import com.shop.fashion.dto.chart.CommunityTotalCountDto;
+import com.shop.fashion.dto.chart.JoinCountDto;
+import com.shop.fashion.dto.chart.OAuthCountDto;
+import com.shop.fashion.dto.chart.ShoppingCountAndSumDto;
+import com.shop.fashion.dto.chart.ShoppingItemDto;
 import com.shop.fashion.service.ChartService;
 
 @RestController
@@ -59,4 +61,23 @@ public class ChartApiController {
 	public List<ShoppingItemDto> getMonthCategoryList(){
 		return chartService.getMonthCategoryList();
 	}
+	
+	// 좋아요 top5
+	@GetMapping("/admin/graph/commu-heart")
+	public List<CommunityActionCountDto> getHeartCountList(){
+		return chartService.getHeartCountList();
+	}
+	
+	// 댓글 top5
+	@GetMapping("/admin/graph/commu-reply")
+	public List<CommunityActionCountDto> getReplyCountList(){
+		return chartService.getReplyCountList();
+	}
+	
+	// 댓글 top5
+	@GetMapping("/admin/graph/commu-board")
+	public List<CommunityTotalCountDto> getBoardCountList(){
+		return chartService.getBoardCountList();
+	}
+	
 }

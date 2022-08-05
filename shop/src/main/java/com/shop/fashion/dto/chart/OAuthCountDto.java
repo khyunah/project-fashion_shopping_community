@@ -1,4 +1,4 @@
-package com.shop.fashion.dto;
+package com.shop.fashion.dto.chart;
 
 import java.math.BigInteger;
 import java.sql.Date;
@@ -10,7 +10,7 @@ import lombok.ToString;
 @Data
 @AllArgsConstructor
 @ToString
-public class JoinCountDto {
-	private Date joinDate;
-	private BigInteger joinCount;
+public class OAuthCountDto {
+	private String oauth;
+	private BigInteger oauthCount;
 }

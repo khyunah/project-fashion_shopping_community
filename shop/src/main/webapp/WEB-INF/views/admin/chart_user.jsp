@@ -28,7 +28,7 @@
 	width: 100%;
 	height: 330px;
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 }
 
 .chart-text-container {
@@ -103,7 +103,7 @@
 		<div class="chart-category-container">
 			<a href="/admin/graph-join" type="button" class="btn btn-outline-dark">회원 통계</a>
 			<a href="/admin/graph-sales" type="button" class="btn btn-outline-dark">상품 통계</a>
-			<a href="" type="button" class="btn btn-outline-dark">SNS 통계</a>
+			<a href="/admin/graph-community" type="button" class="btn btn-outline-dark">SNS 통계</a>
 		</div>
 
 		<p class="chart-table-title">회원 가입자 수 통계</p>
@@ -124,7 +124,7 @@
 					        <td id="today-count"></td>
 					      </tr>
 					      <tr>
-					        <td>금주</td>
+					        <td>한주</td>
 					        <td id="week-count"></td>
 					      </tr>
 					      <tr>

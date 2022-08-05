@@ -9,8 +9,8 @@ import javax.persistence.Query;
 import org.qlrm.mapper.JpaResultMapper;
 import org.springframework.stereotype.Repository;
 
-import com.shop.fashion.dto.JoinCountDto;
-import com.shop.fashion.dto.OAuthCountDto;
+import com.shop.fashion.dto.chart.JoinCountDto;
+import com.shop.fashion.dto.chart.OAuthCountDto;
 
 import lombok.RequiredArgsConstructor;
 

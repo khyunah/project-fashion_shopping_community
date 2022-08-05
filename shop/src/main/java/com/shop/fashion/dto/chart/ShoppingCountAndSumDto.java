@@ -1,4 +1,4 @@
-package com.shop.fashion.dto;
+package com.shop.fashion.dto.chart;
 
 import java.math.BigDecimal;
 import java.sql.Date;

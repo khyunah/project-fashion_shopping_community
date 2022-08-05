@@ -9,8 +9,8 @@ import javax.persistence.Query;
 import org.qlrm.mapper.JpaResultMapper;
 import org.springframework.stereotype.Repository;
 
-import com.shop.fashion.dto.ShoppingCountAndSumDto;
-import com.shop.fashion.dto.ShoppingItemDto;
+import com.shop.fashion.dto.chart.ShoppingCountAndSumDto;
+import com.shop.fashion.dto.chart.ShoppingItemDto;
 
 import lombok.RequiredArgsConstructor;
 

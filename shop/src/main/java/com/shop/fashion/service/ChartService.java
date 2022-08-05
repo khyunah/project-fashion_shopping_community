@@ -5,10 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.shop.fashion.dto.JoinCountDto;
-import com.shop.fashion.dto.OAuthCountDto;
-import com.shop.fashion.dto.ShoppingCountAndSumDto;
-import com.shop.fashion.dto.ShoppingItemDto;
+import com.shop.fashion.dto.chart.CommunityActionCountDto;
+import com.shop.fashion.dto.chart.CommunityBoardCountDto;
+import com.shop.fashion.dto.chart.CommunityTotalCountDto;
+import com.shop.fashion.dto.chart.JoinCountDto;
+import com.shop.fashion.dto.chart.OAuthCountDto;
+import com.shop.fashion.dto.chart.ShoppingCountAndSumDto;
+import com.shop.fashion.dto.chart.ShoppingItemDto;
+import com.shop.fashion.repository.CommunityChartRepository;
 import com.shop.fashion.repository.ShoppingChartRepository;
 import com.shop.fashion.repository.UserChartRepository;
 
@@ -19,6 +23,8 @@ public class ChartService {
 	private UserChartRepository userChartRepository;
 	@Autowired
 	private ShoppingChartRepository shoppingChartRepository;
+	@Autowired
+	private CommunityChartRepository communityChartRepository;
 	
 	// 일자별 가입자수 
 	public List<JoinCountDto> getWeekJoinCountList(){
@@ -63,5 +69,35 @@ public class ChartService {
 	// 카테고리별 판매 금액, 판매량 
 	public List<ShoppingItemDto> getMonthCategoryList(){
 		return shoppingChartRepository.getMonthCategoryList();
+	}
+	
+	// 금주 커뮤니티 좋아요 top5
+	public List<CommunityActionCountDto> getHeartCountList(){
+		return communityChartRepository.getHeartCountList();
+	}
+	
+	// 금주 커뮤니티 댓글 top5
+	public List<CommunityActionCountDto> getReplyCountList(){
+		return communityChartRepository.getReplyCountList();
+	}
+	
+	// 한달 게시글 수 
+	public List<CommunityTotalCountDto> getBoardCountList(){
+		return communityChartRepository.getBoardCountList();
+	}
+	
+	// 총 게시글 수
+	public List<CommunityBoardCountDto> getBoardTotalCountList(){
+		return communityChartRepository.getBoardTotalCountList();
+	}
+	
+	// 오늘 게시글 수
+	public List<CommunityBoardCountDto> getBoardTodayCountList(){
+		return communityChartRepository.getBoardTodayCountList();
+	}
+	
+	// 이번주 게시글 수
+	public List<CommunityBoardCountDto> getBoardWeekCountList(){
+		return communityChartRepository.getBoardWeekCountList();
 	}
 }

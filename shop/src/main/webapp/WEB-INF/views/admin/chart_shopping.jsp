@@ -8,8 +8,8 @@
 <style>
 
 td {
-max-width: 135px;
-	word-break:break-word;
+	max-width: 135px;
+	word-break: break-word;
 }
 .admin-container {
 	padding-top: 50px;
@@ -129,7 +129,7 @@ max-width: 135px;
 		<div class="chart-category-container">
 			<a href="/admin/graph-join" type="button" class="btn btn-outline-dark">회원 통계</a> 
 			<a href="/admin/graph-sales" type="button" class="btn btn-outline-dark">상품 통계</a> 
-			<a href="" type="button" class="btn btn-outline-dark">SNS 통계</a>
+			<a href="/admin/graph-community" type="button" class="btn btn-outline-dark">SNS 통계</a>
 		</div>
 
 		<p class="chart-table-title">상품 판매 통계</p>
@@ -153,7 +153,7 @@ max-width: 135px;
 								<td id="today-count"></td>
 							</tr>
 							<tr>
-								<td>금주</td>
+								<td>한주</td>
 								<td id="week-income"></td>
 								<td id="week-count"></td>
 							</tr>
@@ -200,26 +200,18 @@ max-width: 135px;
 					</table>
 
 				</div>
-					<div class="chart-top-income" style="margin-right: 50px;">
-						<div>
-							<p class="chart-p">금주 Top 5 상품 판매 금액</p>
-							<div>
-								<canvas id="chart-4"></canvas>
-							</div>
-						</div>
-						
-					</div>
-					<div class="chart-top-count">
-						<div>
-							<p class="chart-p">금주 Top 5 상품 판매 수량</p>
-							<canvas id="chart-5"></canvas>
-						</div>
+				<div class="chart-top-income" style="margin-right: 50px;">
+					<p class="chart-p">금주 Top 5 상품 판매 금액</p>
+					<div>
+						<canvas id="chart-4"></canvas>
 					</div>
 				</div>
-				
+				<div class="chart-top-count">
+					<p class="chart-p">금주 Top 5 상품 판매 수량</p>
+					<canvas id="chart-5"></canvas>
+				</div>
 			</div>
-
-		
+		</div>
 
 		<p class="chart-table-title">이번달 구매고객 Top 5</p>
 		<div class="c-container">

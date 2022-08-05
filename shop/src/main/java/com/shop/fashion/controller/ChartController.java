@@ -11,9 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.shop.fashion.dto.JoinCountDto;
-import com.shop.fashion.dto.OAuthCountDto;
-import com.shop.fashion.dto.ShoppingCountAndSumDto;
+import com.shop.fashion.dto.chart.CommunityBoardCountDto;
+import com.shop.fashion.dto.chart.JoinCountDto;
+import com.shop.fashion.dto.chart.OAuthCountDto;
+import com.shop.fashion.dto.chart.ShoppingCountAndSumDto;
 import com.shop.fashion.model.User;
 import com.shop.fashion.service.AdminService;
 import com.shop.fashion.service.ChartService;
@@ -57,7 +58,7 @@ public class ChartController {
 
 	// 상품 그래프 페이지
 	@GetMapping("/admin/graph-sales")
-	public String salesChartPage(Model model, Pageable pageable) {
+	public String salesChartPage(Model model) {
 		// 총 판매 금액, 판매량
 		List<ShoppingCountAndSumDto> totalList = chartService.getTotalSalesList();
 		if(totalList != null) {
@@ -70,5 +71,40 @@ public class ChartController {
 		model.addAttribute("today", today);
 
 		return "admin/chart_shopping";
+	}
+	
+	// 커뮤니티 그래프 페이지
+	@GetMapping("/admin/graph-community")
+	public String communityChartPage(Model model) {
+		// 총 게시글 수
+		List<CommunityBoardCountDto> totalList = chartService.getBoardTotalCountList();
+		if(totalList != null) {
+			model.addAttribute("totalList", totalList.get(0));
+		} else {
+			model.addAttribute("totalList", "0");
+		}
+		
+		// 오늘 게시글 수 
+		List<CommunityBoardCountDto> todayList = chartService.getBoardTodayCountList();
+		if(todayList != null) {
+			model.addAttribute("todayList", todayList.get(0));
+		} else {
+			model.addAttribute("todayList", "0");
+		}
+		
+		// 이번주 게시글 수
+		List<CommunityBoardCountDto> weekList = chartService.getBoardWeekCountList();
+		if(weekList != null) {
+			model.addAttribute("weekList", weekList.get(0));
+		} else {
+			model.addAttribute("weekList", "0");
+		}
+		
+		Date date = new Date();
+		SimpleDateFormat sf = new SimpleDateFormat("MM월 dd일");
+		String today = sf.format(date);
+		model.addAttribute("today", today);
+		
+		return "admin/chart_community";
 	}
 }
