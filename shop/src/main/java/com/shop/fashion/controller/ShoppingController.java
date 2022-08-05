@@ -161,7 +161,7 @@ public class ShoppingController {
 					.total(dto.getAmount().getTotal())
 					.itemName(dto.getItemName())
 					.createdAt(dto.getCreatedAt())
-					.userId(userDetail.getUser().getId())
+					.user(userDetail.getUser())
 					.itemId(baskets.get(i).getItem())
 					.address(userDetail.getUser().getAddress())
 					.build();
@@ -186,6 +186,7 @@ public class ShoppingController {
 
 	@GetMapping("/user/purchase_history")
 	public String purchaseHistory(@AuthenticationPrincipal PrincipalUserDetail userDetail, Model model) {
+		model.addAttribute("purchaseHistoryGroupList", purchaseHistoryService.getPurchaseHistoryGroupList(userDetail.getUser().getId()));
 		model.addAttribute("purchaseHistoryList", purchaseHistoryService.getPurchaseHistoryList(userDetail.getUser().getId()));
 //		model.addAttribute("basketId", purchaseHistoryService.findByUserId(userDetail.getUser().getId()));
 		return "shopping/purchase_history";

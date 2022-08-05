@@ -12,9 +12,10 @@ import com.shop.fashion.model.Purchasehistory;
 public interface PurchaseHistoryRepository extends JpaRepository<Purchasehistory, Integer>{
 	
 	@Query(value = "SELECT * FROM Purchasehistory WHERE userId = ? GROUP BY tid", nativeQuery = true)
-	List<Purchasehistory> purchaseHistory(@Param("userId") int id);
+	List<Purchasehistory> purchaseHistoryGroupList(@Param("userId") int id);
 	
-//	@Query(value = "SELECT * FROM Purchasehistory WHERE userId = ?", nativeQuery = true)
-//	List<Basket> findByUserId(@Param("userId") int id);
+	@Query(value = "SELECT * FROM Purchasehistory WHERE userId = ?", nativeQuery = true)
+	List<Purchasehistory> purchaseHistoryList(@Param("userId") int id);
+
 	
 }

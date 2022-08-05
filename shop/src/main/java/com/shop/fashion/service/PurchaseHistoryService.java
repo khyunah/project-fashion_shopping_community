@@ -23,9 +23,15 @@ public class PurchaseHistoryService {
 	}
 	
 	@Transactional
-	public List<Purchasehistory> getPurchaseHistoryList(int userId) {
-		return purchaseHistoryRepository.purchaseHistory(userId);
+	public List<Purchasehistory> getPurchaseHistoryGroupList(int userId) {
+		return purchaseHistoryRepository.purchaseHistoryGroupList(userId);
 	}
+	
+	@Transactional
+	public List<Purchasehistory> getPurchaseHistoryList(int userId) {
+		return purchaseHistoryRepository.purchaseHistoryList(userId);
+	}
+	
 	
 //	@Transactional
 //	public List<Basket> findByUserId(int userId) {
