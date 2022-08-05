@@ -130,14 +130,6 @@
 			<div id="list-container-md" class="row">
 				<%!int index = 0;%>
 				<c:forEach var="item" items="${pageable.content}">
-					<c:choose>
-						<c:when test="#">
-
-						</c:when>
-						<c:otherwise>
-
-						</c:otherwise>
-					</c:choose>
 					<div class="col-3 mb-5">
 						<div class="card h-100">
 							<!-- Product image-->

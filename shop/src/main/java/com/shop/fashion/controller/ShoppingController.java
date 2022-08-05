@@ -16,13 +16,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shop.fashion.auth.PrincipalUserDetail;
+import com.shop.fashion.dto.CommunityDto;
+import com.shop.fashion.dto.ItemReviewDto;
 import com.shop.fashion.dto.KakaoPayApprovalDto;
 import com.shop.fashion.dto.KakaoPayDto;
 import com.shop.fashion.model.Basket;
 import com.shop.fashion.model.Item;
+import com.shop.fashion.model.ItemReview;
 import com.shop.fashion.service.BasketService;
 import com.shop.fashion.service.KakaoPayService;
 import com.shop.fashion.service.ShoppingService;
@@ -129,9 +135,30 @@ public class ShoppingController {
 
 	// /shopping/itemdetail_form/${item.id}
 	@GetMapping("/shop/itemdetail_form/{id}")
-	public String itemDetailform(@PathVariable int id, @AuthenticationPrincipal PrincipalUserDetail userDetail, Model model) {
+	public String itemDetailform(@PathVariable int id, @AuthenticationPrincipal PrincipalUserDetail userDetail, Model model,
+			@PageableDefault(size = 4, sort = "id", direction = Direction.DESC) Pageable pageable) {
 		model.addAttribute("item", shoppingService.itemDetail(id));
 		model.addAttribute("user", userService.getUser(userDetail.getUser().getId()));
+		
+		Page<ItemReview> pageItems;
+		
+		pageItems = shoppingService.findItemReviews(id, pageable);
+		
+		int nowPage = pageItems.getPageable().getPageNumber() + 1; // 현재 페이지
+		int startPage = Math.max(nowPage - 2, 1); // 두 int 값 중에 큰 값 반환
+		int endPage = Math.min(nowPage + 2, pageItems.getTotalPages());
+
+		// 페이지 번호를 배열로 만들어서 던져주기
+		ArrayList<Integer> pageNumbers = new ArrayList<>();
+		// 주의! 마지막 번호까지 저장하기
+		for (int i = startPage; i <= endPage; i++) {
+			pageNumbers.add(i);
+		}
+
+		model.addAttribute("pageable", pageItems);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("pageNumbers", pageNumbers);
 		return "shopping/itemdetail_form";
 	}
 
@@ -171,6 +198,35 @@ public class ShoppingController {
 	@GetMapping("/kakaoPayFail")
 	public String kakaoPayFail() {
 		return "shopping/payment_fail";
+	}
+	// http://locahost:9090/review/upload/3	
+	// Request Param
+	// ?name="홍길동"&age=100
+	// Object 
+	@PostMapping("/review/upload/{id}")
+	public String ReviewUpload(ItemReviewDto fileDto, @AuthenticationPrincipal PrincipalUserDetail detail, @PathVariable int id) {
+		
+		//1. URI 정확히 타서 정확한 파라미터 값을 받는가 !!! 
+		//2. form 통해서 데이터 확인 !!! 
+		// ITEM 
+		// Item Object 새로 Object 생성 해야 한다. !!! 
+		// 새로 만들기 (fileDto, user, id(itemId) )
+		
+		// select id 
+		// 서비스 
+		// 작업에 최소 단위를 묶음으로 묶어서 하나의 서비스(기능) 
+		// (이미지 업로드 기능) 
+		// (테이블에 데이터를 저장 save (ImteReview !!))
+		
+		// 아이템 리뷰 테이블에 C (object) 
+		shoppingService.writeReview(fileDto, detail.getUser(), id);
+		// controller (0)
+		// or 
+		// JPS 페이지 반환 ()
+		// json {baset64 --> 역질렬화  }
+		// json {파일이름  }
+		// path 
+		return "redirect:/shop/itemdetail_form/"+id;
 	}
 
 }

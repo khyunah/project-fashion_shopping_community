@@ -2,9 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%@ include file="../layout/header.jsp" %>
-
-<div class="container">
-	<input type="hidden" id="principal--id" value="${item.id}">
+<input type="hidden" id="itemId" name="itemId" value="${item.id}">
 	<br/><br/>
 	<br/><br/>
 	<input type="hidden" id="itemname" value="${item.name}">
@@ -26,43 +24,72 @@
 		</div>	
 	</div>
 	<hr/>
-	<div class="form-group m-2">
+	<div class="form-group m-5">
 	<button type="button" class="btn text-white" style="background-color: #453675;">상품 설명</button>
 	</div>
 	<br/>
-	<h4>${item.content}</h4>
+	<h4 style="margin-left: 50px;">${item.content}</h4>
 	<br/><br/>
 	<hr/>
 	<div>
-		<button type="button" class="btn text-white" style="background-color: #453675;">상품리뷰 작성하기</button>
-		<c:forEach var="itemReviews" items="${item.itemReviews}">
-					<div id="commu-reply-${itemReview.id}">
-						<div class="commu-detail-reply-firstline-container">
-							<span class="commu-detail-reply-user commu-detail-reply-text">${itemReviews.user.username}</span>
-							<div id="commu-detail-reply-btn-box">
-								<c:if test="${itemReviews.user.id == principal.user.id}">
-
-									<button onclick="commu.updateBtnReply(${itemReviews.id})"
-										class="commu-detail-btn-reply-update-${itemReviews.id} commu-detail-btn-reply">수정</button>
-									<button onclick="commu.deleteReply(${itemReviews.id})"
-										class="commu-detail-btn-reply-delete-${itemReviews.id} commu-detail-btn-reply">
-										삭제</button>
-								</c:if>
-							</div>
-						</div>
-						<div id="commu-detail-reply-content-box-${itemReviews.id}">
-							<textarea id="commu-detail-reply-content-${itemReviews.id}"
-								class="commu-detail-reply-content commu-detail-reply-text"
-								readonly>${itemReviews.content}</textarea>
-						</div>
-					</div>
-				</c:forEach>
-		
+	<div class="form-group m-5">
+	<button type="button" class="btn text-white" onclick="reviewWrite();" style="background-color: #453675; margin-left: 20px;">상품리뷰 작성하기</button>
 	</div>
+	<div style="height: 20px"></div>
+	
+	 <form action="/review/upload/${item.id}" enctype="multipart/form-data" method="post">
+  		<input type="hidden" name="${_csrf.parameterName}"
+		value="${_csrf.token}">
+	<div id="writeReview" style="margin-left: 20px;"></div>
+	<hr/>
+	</form>
+	<div id="updateReview" style="margin-left: 20px;"></div>
+<c:forEach var="itemreview" items="${pageable.content}">
+
+	<div>
+	<h2 style="margin-left: 150px;">작성자 : ${itemreview.user.username}</h2>
+		<img alt="" src="/upload/${itemreview.imageUrl}" style="height: 350px; width: 350px; border-radius: 15px; margin-left: 150px; object-fit: cover;">
+		<h4 style="margin-left: 150px; margin-top: 15px;]">${itemreview.content}</h4>
+		<c:if test="${itemreview.user.id == principal.user.id}">
+		<button type="button" class="btn text-white" onclick="updateBtnReview('${itemreview.content}');" style="background-color: #453675; margin-left: 150px;">수정</button>
+		<button type="button" class="btn text-white" onclick="ItemReviewDelete(${itemreview.id}, ${itemreview.item.id}, ${principal.user.id});" style="background-color: #453675; margin-left: 20px;">삭제</button>
+		</c:if>
+	</div>
+	<hr/>
+</c:forEach>
+
 	<br/>
 
 <br/>
-</div>
+<ul class="pagination justify-content-center">
+	<!-- 삼항 연산자 (set : 변수 선언) -->
+	<c:set var="isDisabled" value="disabled"></c:set>
+	<c:set var="isNotDisabled" value=""></c:set>
+	<c:set var="isNowPage" value="acive"></c:set>
+
+	<li class="page-item ${pageable.first ? isDisabled : isNotDisabled}">
+		<a class="page-link"
+		href="/shop/itemdetail_form/${item.id}/?q=${searchTitle}&page=${pageable.number - 1}">이전</a>
+	</li>
+
+	<c:forEach var="num" items="${pageNumbers}">
+		<c:choose>
+			<c:when test="${pageable.number + 1 eq num}">
+				<li class="page-item active"><a class="page-link bg-primary"
+					href="/shop/itemdetail_form/${item.id}/?q=${searchTitle}&page=${num - 1}">${num}</a></li>
+			</c:when>
+			<c:otherwise>
+				<li class="page-item"><a class="page-link"
+					href="/shop/itemdetail_form/${item.id}/?q=${searchTitle}&page=${num - 1}">${num}</a></li>
+			</c:otherwise>
+		</c:choose>
+	</c:forEach>
+
+	<li class="page-item ${pageable.last ? isDisabled : isNotDisabled}">
+		<a class="page-link test"
+		href="/shop/itemdetail_form/${item.id}/?q=${searchTitle}&page=${pageable.number + 1}">다음</a>
+	</li>
+</ul>
 
 <script src="/js/item.js"></script>
 <script src="/js/basket.js"></script>

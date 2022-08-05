@@ -10,7 +10,7 @@
 	<div class="user-input-container">
 		<label class="user-input-label">
 			<span class="label-txt">ENTER YOUR ID</span>
-			<input type="text" class="input" name="username" id="username" required>
+			<input type="text" class="input" name="username" id="username" value="aa" required>
 			<div class="line-box">
 			  <div class="line" ></div>
 			</div>
@@ -21,7 +21,7 @@
 
 	<div class="user-input-container">
 		<label class="user-input-label"> <span class="label-txt">ENTER
-				YOUR PASSWORD</span> <input id="password" type="password" class="input"
+				YOUR PASSWORD</span> <input id="password" type="password" class="input" value="!asd123456789"
 			name="password" required>
 			<div class="line-box">
 				<div class="line"></div>

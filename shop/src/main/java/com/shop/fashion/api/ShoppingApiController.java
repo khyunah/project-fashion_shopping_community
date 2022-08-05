@@ -1,7 +1,5 @@
 package com.shop.fashion.api;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -95,5 +93,17 @@ public class ShoppingApiController {
 
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), detail.getUser().getId());
 	}
+	
+	@DeleteMapping("/test/api/itemReview/{id}")
+	public ResponseDto<Integer> deleteItemReview(@PathVariable int id,
+			@AuthenticationPrincipal PrincipalUserDetail detail) {
+		System.out.println("------------------------"+id);
+		shoppingService.deleteItemReivewById(id);
+
+		return new ResponseDto<Integer>(HttpStatus.OK.value(), detail.getUser().getId());
+	}
+	
+
+
 
 }

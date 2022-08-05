@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CommunityDto {
+public class ItemReviewDto {
 
 	
 	private MultipartFile file;
@@ -24,14 +24,14 @@ public class CommunityDto {
 	private String content; 
 	private String title;
 	
-	public CommunityBoard toEntity(String storyImageUrl, User user) {
-		return CommunityBoard.builder()
+	
+	public ItemReview itemtoEntity(String storyImageUrl, User user, Item itemId) {
+		return ItemReview.builder()
 				.imageUrl(storyImageUrl)
 				.user(user)
+				.item(itemId)
 				.content(content)
-				.title(title)
 				.originImageTitle(file.getOriginalFilename())
 				.build();
 	}
-	
 }
