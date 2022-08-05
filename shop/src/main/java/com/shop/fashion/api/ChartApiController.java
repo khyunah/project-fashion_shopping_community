@@ -3,9 +3,7 @@ package com.shop.fashion.api;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shop.fashion.dto.JoinCountDto;
@@ -48,5 +46,17 @@ public class ChartApiController {
 	@GetMapping("/admin/graph/sales-result/item")
 	public List<ShoppingItemDto> getItemSalesList(){
 		return chartService.getItemSalesList();
+	}
+	
+	// 이번달 가장 많이 구매한 유저 그래프 
+	@GetMapping("/admin/graph/sales-result/user")
+	public List<ShoppingItemDto> getTop5UserList(){
+		return chartService.getTop5UserList();
+	}
+	
+	// 카테고리별 판매 금액, 판매량
+	@GetMapping("/admin/graph/sales-result/category")
+	public List<ShoppingItemDto> getMonthCategoryList(){
+		return chartService.getMonthCategoryList();
 	}
 }

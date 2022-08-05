@@ -14,28 +14,20 @@ var chartArea = {
 					fill: false,
 					borderWidth: 1,
 					lineTension: 0,
-					backgroundColor: "rgba(255, 102, 0, 0.75)",
-					borderColor: "rgba(255, 102, 0, 0.65)"
+					backgroundColor: "rgba(119, 0, 174, 0.75)",
+					borderColor: "rgba(119, 0, 174, 0.75)"
 				}],
 			},
 			options: {
 				responsive: true,
 				scales: {
 					xAxes: [{
-						/*
-						gridLines: {
-							display: false
-						},*/
 						ticks: {
 							maxTicksLimit: 7,
 							fontSize: 13
 						}
 					}],
 					yAxes: [{
-						/*
-						gridLines: {
-							display: false
-						},*/
 						ticks: {
 							min: 0,
 							stepSize: 1,
@@ -62,6 +54,7 @@ var chartArea = {
 				chartArea.dataSets.push(obj.joinCount);
 			});
 			checkData();
+			setTableData();
 			chartArea.render();
 		}).fail(function() {
 			console.log("실패");
@@ -212,6 +205,17 @@ function checkData() {
 			resultData.push(0);
 		}
 	}
+}
+
+// 회원가입 수 테이블 데이터 세팅
+function setTableData(){
+	$("#today-count").text(resultData[6]);
+	
+	var weekCount = 0;
+	$.each(chartArea.dataSets, function(index, count){
+		weekCount += count;
+	});
+	$("#week-count").text(weekCount);
 }
 
 var oauth = [];

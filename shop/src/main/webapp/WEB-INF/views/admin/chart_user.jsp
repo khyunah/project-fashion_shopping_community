@@ -34,6 +34,7 @@
 .chart-text-container {
 	width: 150px;
 	margin-right: 30px;
+	text-align: center;
 }
 
 .chart-today {
@@ -104,30 +105,28 @@
 			<div class="chart-container">
 				<div class="chart-text-container">
 					<p class="chart-today">${today}</p>
-					<c:choose>
-						<c:when test="${todayCount == null}">
-							<p class="chart-text">오늘 가입자 수 &emsp; 0</p>
-						</c:when>
-						<c:otherwise>
-							<p class="chart-text">오늘 가입자 수 &emsp; ${todayCount.joinCount}</p>
-						</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${weekCount == null}">
-							<p class="chart-text">금주 가입자 수 &emsp; 0</p>
-						</c:when>
-						<c:otherwise>
-							<p class="chart-text">금주 가입자 수 &emsp; ${weekCount.joinCount}</p>
-						</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${totalCount == null}">
-							<p class="chart-text">총 가입자 수 &emsp; 0</p>
-						</c:when>
-						<c:otherwise>
-							<p class="chart-text">총 가입자 수 &emsp; ${totalCount.joinCount}</p>
-						</c:otherwise>
-					</c:choose>
+					<table class="table table-bordered table-sm">
+					    <thead class="chart-text">
+					      <tr>
+					        <th>기간</th>
+					        <th>가입자 수</th>
+					      </tr>
+					    </thead>
+					    <tbody class="chart-text">
+					      <tr>
+					        <td>오늘</td>
+					        <td id="today-count"></td>
+					      </tr>
+					      <tr>
+					        <td>금주</td>
+					        <td id="week-count"></td>
+					      </tr>
+					      <tr>
+					        <td>총</td>
+					        <td id="total-count">${totalCount.joinCount}</td>
+					      </tr>
+					    </tbody>
+					</table>
 				</div>
 				<div class="chart-result-container" style="margin-right: 50px;">
 					<p class="chart-p">금주 일자별 가입자 수</p>

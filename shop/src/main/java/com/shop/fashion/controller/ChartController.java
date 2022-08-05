@@ -29,22 +29,6 @@ public class ChartController {
 	// 회원 그래프 페이지
 	@GetMapping("/admin/graph-join")
 	public String joinDataChartPage(Model model, Pageable pageable) {
-		// 오늘 가입자 수
-		List<JoinCountDto> todayCount = chartService.getTodayJoinCountList();
-		if (todayCount.size() != 0) {
-			model.addAttribute("todayCount", todayCount.get(0));
-		} else {
-			model.addAttribute("todayCount", null);
-		}
-
-		// 이번주 총 가입자 수
-		List<JoinCountDto> weekCount = chartService.getWeekTotalJoinCountList();
-		if (weekCount.size() != 0) {
-			model.addAttribute("weekCount", weekCount.get(0));
-		} else {
-			model.addAttribute("weekCount", null);
-		}
-
 		// 총 가입자 수
 		List<JoinCountDto> totalCount = chartService.getTotalJoinCountList();
 		if (totalCount.size() != 0) {

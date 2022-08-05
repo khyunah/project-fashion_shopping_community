@@ -24,17 +24,7 @@ public class ChartService {
 	public List<JoinCountDto> getWeekJoinCountList(){
 		return userChartRepository.getWeekJoinCountList();
 	}
-	
-	// 이번주 가입자 수
-	public List<JoinCountDto> getWeekTotalJoinCountList(){
-		return userChartRepository.getWeekTotalJoinCountList();
-	}
-	
-	// 오늘 가입자수 
-	public List<JoinCountDto> getTodayJoinCountList(){
-		return userChartRepository.getTodayJoinCountList();
-	}
-	
+
 	// 총 가입자수
 	public List<JoinCountDto> getTotalJoinCountList(){
 		return userChartRepository.getTotalJoinCountList();
@@ -63,5 +53,15 @@ public class ChartService {
 	// 금주 아이템별 판매금액, 판매량
 	public List<ShoppingItemDto> getItemSalesList(){
 		return shoppingChartRepository.getItemSalesList();
+	}
+	
+	// 이번달 가장 많이 구매한 유저 top5 
+	public List<ShoppingItemDto> getTop5UserList(){
+		return shoppingChartRepository.getTop5UserList();
+	}
+	
+	// 카테고리별 판매 금액, 판매량 
+	public List<ShoppingItemDto> getMonthCategoryList(){
+		return shoppingChartRepository.getMonthCategoryList();
 	}
 }

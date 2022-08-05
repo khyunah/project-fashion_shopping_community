@@ -32,8 +32,9 @@
 }
 
 .chart-text-container {
-	width: 180px;
 	margin-right: 30px;
+	min-width: 180px;
+	text-align: center;
 }
 
 .chart-today {
@@ -47,7 +48,6 @@
 	font-family: 'Gowun Dodum', sans-serif;
 	font-weight: bold;
 }
-
 
 .chart-third-text {
 	font-size: 16px;
@@ -86,28 +86,24 @@
 }
 
 .chart-top {
-	width: 350px;
+	width: 370px;
 }
-
 </style>
 
 
 <div class="admin-container">
-<!-- 
+	<!-- 
 쇼핑 그래프
-오늘, 금주, 총 판매 금액, 판매 수량 
 카테고리별 판매수량, 판매금액
 맨, 우먼별 판매수량, 판매금액
-아이템별 판매수량, 판매금액
-구매한 금액 top 5 유저
-
  -->
 
 	<div class="container">
 		<div class="chart-category-container">
-			<a href="/admin/graph-join" type="button" class="btn btn-outline-dark">회원 통계</a>
-			<a href="/admin/graph-sales" type="button" class="btn btn-outline-dark">상품 통계</a>
-			<a href="" type="button" class="btn btn-outline-dark">SNS 통계</a>
+			<a href="/admin/graph-join" type="button"
+				class="btn btn-outline-dark">회원 통계</a> <a href="/admin/graph-sales"
+				type="button" class="btn btn-outline-dark">상품 통계</a> <a href=""
+				type="button" class="btn btn-outline-dark">SNS 통계</a>
 		</div>
 
 		<p class="chart-table-title">판매 통계</p>
@@ -115,36 +111,36 @@
 			<div class="chart-container">
 				<div class="chart-text-container">
 					<p class="chart-today">${today}</p>
-					
+
 					<table class="table table-bordered table-sm">
-					    <thead class="chart-text">
-					      <tr>
-					        <th>기간</th>
-					        <th>판매 금액</th>
-					        <th>판매량</th>
-					      </tr>
-					    </thead>
-					    <tbody class="chart-text">
-					      <tr>
-					        <td>오늘</td>
-					        <td id="today-income"></td>
-					        <td id="today-count"></td>
-					      </tr>
-					      <tr>
-					        <td>금주</td>
-					        <td id="week-income"></td>
-					        <td id="week-count"></td>
-					      </tr>
-					      <tr>
-					        <td>총</td>
-					        <td id="total-income">${totalList.totalIncome}</td>
-					        <td id="total-count">${totalList.totalCount}</td>
-					      </tr>
-					    </tbody>
+						<thead class="chart-text">
+							<tr>
+								<th>기간</th>
+								<th>판매 금액</th>
+								<th>판매량</th>
+							</tr>
+						</thead>
+						<tbody class="chart-text">
+							<tr>
+								<td>오늘</td>
+								<td id="today-income"></td>
+								<td id="today-count"></td>
+							</tr>
+							<tr>
+								<td>금주</td>
+								<td id="week-income"></td>
+								<td id="week-count"></td>
+							</tr>
+							<tr>
+								<td>총</td>
+								<td id="total-income">${totalList.totalIncome}</td>
+								<td id="total-count">${totalList.totalCount}</td>
+							</tr>
+						</tbody>
 					</table>
-					
+
 				</div>
-				
+
 				<div class="chart-result-container" style="margin-right: 50px;">
 					<p class="chart-p">금주 판매 금액</p>
 					<div>
@@ -153,56 +149,31 @@
 				</div>
 				<div class="chart-second-result-container">
 					<div class="second-chart-div">
-					<p class="chart-p">금주 판매 수량</p>
+						<p class="chart-p">금주 판매 수량</p>
 						<canvas id="second-chart"></canvas>
 					</div>
 				</div>
 			</div>
 		</div>
-		
-		<p class="chart-table-title">Top 5</p>
+
+		<p class="chart-table-title">금주 판매 Top 5</p>
 		<div class="c-container">
 			<div class="chart-container">
 				<div class="chart-text-container">
 					<p class="chart-today">${today}</p>
-					
+
 					<table class="table table-bordered table-sm">
-					    <thead class="chart-text">
-					      <tr>
-					        <th>순위</th>
-					        <th>판매 금액</th>
-					        <th>판매량</th>
-					      </tr>
-					    </thead>
-					    <tbody class="chart-text">
-					      <tr>
-					        <td id="name-1"></td>
-					        <td id="incom-1"></td>
-					        <td id="count-1"></td>
-					      </tr>
-					      <tr>
-					        <td id="name-2"></td>
-					        <td id="incom-2"></td>
-					        <td id="count-2"></td>
-					      </tr>
-					      <tr>
-					        <td id="name-3"></td>
-					        <td id="incom-3"></td>
-					        <td id="count-3"></td>
-					      </tr>
-					      <tr>
-					        <td id="name-4"></td>
-					        <td id="incom-4"></td>
-					        <td id="count-4"></td>
-					      </tr>
-					      <tr>
-					        <td id="name-5"></td>
-					        <td id="incom-5"></td>
-					        <td id="count-5"></td>
-					      </tr>
-					    </tbody>
+						<thead class="chart-text">
+							<tr>
+								<th>순위</th>
+								<th>아이템</th>
+								<th>판매 금액</th>
+								<th>판매량</th>
+							</tr>
+						</thead>
+						<tbody class="chart-text chart-top5-item"></tbody>
 					</table>
-					
+
 				</div>
 
 				<div class="chart-top" style="margin-right: 50px;">
@@ -213,11 +184,78 @@
 				</div>
 				<div class="chart-top">
 					<p class="chart-p">금주 Top 5 상품 판매 수량</p>
-						<canvas id="chart-5"></canvas>
-					</div>
-				</div>	
-
+					<canvas id="chart-5"></canvas>
+				</div>
 			</div>
+
+		</div>
+
+		<p class="chart-table-title">이번달 구매 Top 5</p>
+		<div class="c-container">
+			<div class="chart-container">
+				<div class="chart-text-container">
+					<p class="chart-today">${today}</p>
+
+					<table class="table table-bordered table-sm">
+						<thead class="chart-text ">
+							<tr>
+								<th>순위</th>
+								<th>회원ID</th>
+								<th>판매 금액</th>
+								<th>판매량</th>
+							</tr>
+						</thead>
+						<tbody class="chart-text chart-top5-user"></tbody>
+					</table>
+
+				</div>
+
+				<div class="chart-top" style="margin-right: 50px;">
+					<p class="chart-p">이번달 구매 Top 5 고객별 구매 금액</p>
+					<div>
+						<canvas id="chart-6"></canvas>
+					</div>
+				</div>
+				<div class="chart-top">
+					<p class="chart-p">이번달 구매 Top 5 고객별 구매 수량</p>
+					<canvas id="chart-7"></canvas>
+				</div>
+			</div>
+
+		</div>
+		
+		<p class="chart-table-title">이번달 카테고리별 판매 현황</p>
+		<div class="c-container">
+			<div class="chart-container">
+				<div class="chart-text-container">
+					<p class="chart-today">${today}</p>
+
+					<table class="table table-bordered table-sm">
+						<thead class="chart-text">
+							<tr>
+								<th>순위</th>
+								<th>카테고리</th>
+								<th>판매 금액</th>
+								<th>판매량</th>
+							</tr>
+						</thead>
+						<tbody class="chart-text chart-category"></tbody>
+					</table>
+
+				</div>
+
+				<div class="chart-top" style="margin-right: 50px;">
+					<p class="chart-p">이번달 카테고리별 판매 금액</p>
+					<div>
+						<canvas id="chart-8"></canvas>
+					</div>
+				</div>
+				<div class="chart-top">
+					<p class="chart-p">이번달 카테고리별 판매 수량</p>
+					<canvas id="chart-9"></canvas>
+				</div>
+			</div>
+
 		</div>
 		
 	</div>
