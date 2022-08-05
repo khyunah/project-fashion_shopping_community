@@ -6,6 +6,11 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
 <style>
+
+td {
+max-width: 135px;
+	word-break:break-word;
+}
 .admin-container {
 	padding-top: 50px;
 }
@@ -16,7 +21,6 @@
 }
 
 .c-container {
-	display: flex;
 	margin-bottom: 70px;
 	width: 100%;
 	padding-top: 5px;
@@ -28,13 +32,16 @@
 	width: 100%;
 	height: 330px;
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .chart-text-container {
+	margin-top: 10px;
 	margin-right: 30px;
 	min-width: 180px;
 	text-align: center;
+	align-self: flex-start;
 }
 
 .chart-today {
@@ -85,28 +92,47 @@
 	width: 300px;
 }
 
-.chart-top {
-	width: 370px;
+.chart-top-income {
+	width: 400px;
 }
+
+.chart-top-count {
+	width: 320px;
+}
+
+.chart-top {
+	width: 300px;
+}
+
+.chart-top5-user-income {
+	width: 400px;
+}
+
+.chart-top5-user-count {
+	width: 300px;
+}
+
+.chart-category-income {
+	width: 450px;
+}
+
+.chart-category-count {
+	width: 300px;
+}
+
 </style>
 
 
 <div class="admin-container">
-	<!-- 
-쇼핑 그래프
-카테고리별 판매수량, 판매금액
-맨, 우먼별 판매수량, 판매금액
- -->
 
 	<div class="container">
 		<div class="chart-category-container">
-			<a href="/admin/graph-join" type="button"
-				class="btn btn-outline-dark">회원 통계</a> <a href="/admin/graph-sales"
-				type="button" class="btn btn-outline-dark">상품 통계</a> <a href=""
-				type="button" class="btn btn-outline-dark">SNS 통계</a>
+			<a href="/admin/graph-join" type="button" class="btn btn-outline-dark">회원 통계</a> 
+			<a href="/admin/graph-sales" type="button" class="btn btn-outline-dark">상품 통계</a> 
+			<a href="" type="button" class="btn btn-outline-dark">SNS 통계</a>
 		</div>
 
-		<p class="chart-table-title">판매 통계</p>
+		<p class="chart-table-title">상품 판매 통계</p>
 		<div class="c-container">
 			<div class="chart-container">
 				<div class="chart-text-container">
@@ -156,11 +182,10 @@
 			</div>
 		</div>
 
-		<p class="chart-table-title">금주 판매 Top 5</p>
+		<p class="chart-table-title">금주 상품 판매 Top 5</p>
 		<div class="c-container">
 			<div class="chart-container">
 				<div class="chart-text-container">
-					<p class="chart-today">${today}</p>
 
 					<table class="table table-bordered table-sm">
 						<thead class="chart-text">
@@ -175,26 +200,31 @@
 					</table>
 
 				</div>
-
-				<div class="chart-top" style="margin-right: 50px;">
-					<p class="chart-p">금주 Top 5 상품 판매 금액</p>
-					<div>
-						<canvas id="chart-4"></canvas>
+					<div class="chart-top-income" style="margin-right: 50px;">
+						<div>
+							<p class="chart-p">금주 Top 5 상품 판매 금액</p>
+							<div>
+								<canvas id="chart-4"></canvas>
+							</div>
+						</div>
+						
+					</div>
+					<div class="chart-top-count">
+						<div>
+							<p class="chart-p">금주 Top 5 상품 판매 수량</p>
+							<canvas id="chart-5"></canvas>
+						</div>
 					</div>
 				</div>
-				<div class="chart-top">
-					<p class="chart-p">금주 Top 5 상품 판매 수량</p>
-					<canvas id="chart-5"></canvas>
-				</div>
+				
 			</div>
 
-		</div>
+		
 
-		<p class="chart-table-title">이번달 구매 Top 5</p>
+		<p class="chart-table-title">이번달 구매고객 Top 5</p>
 		<div class="c-container">
 			<div class="chart-container">
 				<div class="chart-text-container">
-					<p class="chart-today">${today}</p>
 
 					<table class="table table-bordered table-sm">
 						<thead class="chart-text ">
@@ -210,25 +240,23 @@
 
 				</div>
 
-				<div class="chart-top" style="margin-right: 50px;">
+				<div class="chart-top5-user-income" style="margin-right: 50px;">
 					<p class="chart-p">이번달 구매 Top 5 고객별 구매 금액</p>
 					<div>
 						<canvas id="chart-6"></canvas>
 					</div>
 				</div>
-				<div class="chart-top">
+				<div class="chart-top5-user-count">
 					<p class="chart-p">이번달 구매 Top 5 고객별 구매 수량</p>
 					<canvas id="chart-7"></canvas>
 				</div>
 			</div>
-
 		</div>
 		
-		<p class="chart-table-title">이번달 카테고리별 판매 현황</p>
+		<p class="chart-table-title">이번달 상품 카테고리별 판매 현황</p>
 		<div class="c-container">
 			<div class="chart-container">
 				<div class="chart-text-container">
-					<p class="chart-today">${today}</p>
 
 					<table class="table table-bordered table-sm">
 						<thead class="chart-text">
@@ -244,20 +272,20 @@
 
 				</div>
 
-				<div class="chart-top" style="margin-right: 50px;">
+				<div class="chart-category-income" style="margin-right: 50px;">
 					<p class="chart-p">이번달 카테고리별 판매 금액</p>
 					<div>
 						<canvas id="chart-8"></canvas>
 					</div>
 				</div>
-				<div class="chart-top">
+				<div class="chart-category-count">
 					<p class="chart-p">이번달 카테고리별 판매 수량</p>
 					<canvas id="chart-9"></canvas>
 				</div>
 			</div>
 
 		</div>
-		
+	
 	</div>
 </div>
 <script src="/js/chart_shopping.js"></script>

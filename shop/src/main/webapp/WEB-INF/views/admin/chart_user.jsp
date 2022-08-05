@@ -89,6 +89,12 @@
 	width: 200px;
 }
 
+.admin-null-info {
+	font-family: 'Gowun Dodum', sans-serif;
+	font-weight: bold;
+	text-align: center;
+}
+
 </style>
 
 <div class="admin-container">

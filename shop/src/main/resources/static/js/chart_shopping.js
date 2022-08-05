@@ -123,10 +123,11 @@ var salesItem = {
 	}
 };
 
-var top5User = {
-	labels: [],
-	dataSets: [],
+var top5UserLabels = [];
+var top5UserIncomeData = [];
+var top5UsercountData = [];
 
+var top5User = {
 	userData: function() {
 		$.ajax({
 			type: 'GET',
@@ -135,20 +136,23 @@ var top5User = {
 			dataType: 'json'
 		}).done(function(response) {
 			$.each(response, function(index, obj) {
-				top5User.labels.push(obj.name);
-				top5User.dataSets.push(obj.totalIncome);
-				countSets.push(obj.totalCount);
+				console.log('유저 네임 : ' + obj.totalIncome);
+				top5UserLabels.push(obj.name);
+				top5UserIncomeData.push(obj.totalIncome);
+				top5UsercountData.push(obj.totalCount);
 			});
 			top5User.setDataToInput();
-			randerBar('chart-6', top5User.labels, '구매 금액', top5User.dataSets, top5UserBackColor, top5UserBorderColor);
-			randerBar('chart-7', top5User.labels, '구매 수량', countSets, top5UserBackColor, top5UserBorderColor);
+			top5User.subName();
+			
+			randerBar('chart-6', top5UserLabels, '구매 금액', top5UserIncomeData, top5UserBackColor, top5UserBorderColor);
+			randerBar('chart-7', top5UserLabels, '구매 수량', top5UsercountData, top5UserBackColor, top5UserBorderColor);
 		}).fail(function() {
 			console.log("실패");
 		});
 	}, 
 	
 	setDataToInput: function (){
-		$.each(top5User.labels, function(index, name){
+		$.each(top5UserLabels, function(index, name){
 			$(".chart-top5-user").append(
 				`<tr class="chart-top5-user-row-${index + 1}">
 			        <td>${index + 1}</td>
@@ -156,23 +160,31 @@ var top5User = {
 			      </tr>`
 			);
 		});
-		$.each(top5User.dataSets, function(index, income){
+		$.each(top5UserIncomeData, function(index, income){
 			$(`.chart-top5-user-row-${index + 1}`).append(
 				`<td>${income}</td>`
 			);
 		});
-		$.each(countSets, function(index, count){
+		$.each(top5UsercountData, function(index, count){
 			$(`.chart-top5-user-row-${index + 1}`).append(
 				`<td>${count}</td>`
 			)
 		});
+	},
+	
+	subName: function(){
+		$.each(top5UserLabels, function(index, name){
+			top5UserLabels[index] = name.substring(0, 12);
+		});
 	}
 };
 
-var category = {
-	labels: [],
-	dataSets: [],
 
+var categoryLabels = [];
+var incomeData = [];
+var countData = [];
+
+var category = {
 	categoryData: function() {
 		$.ajax({
 			type: 'GET',
@@ -181,21 +193,21 @@ var category = {
 			dataType: 'json'
 		}).done(function(response) {
 			$.each(response, function(index, obj) {
-				category.labels.push(obj.name);
-				category.dataSets.push(obj.totalIncome);
-				countSets.push(obj.totalCount);
+				categoryLabels.push(obj.name);
+				incomeData.push(obj.totalIncome);
+				countData.push(obj.totalCount);
 			});
-			checkCategory();
+			category.checkCategory();
 			category.setDataToInput();
-			randerBar('chart-8', category.labels, '판매 금액', category.dataSets, categoryBackColor, categoryBorderColor);
-			randerBar('chart-9', category.labels, '판매 수량', countSets, categoryBackColor, categoryBorderColor);
+			randerBar('chart-8', categoryLabels, '판매 금액', incomeData, categoryBackColor, categoryBorderColor);
+			randerBar('chart-9', categoryLabels, '판매 수량', countData, categoryBackColor, categoryBorderColor);
 		}).fail(function() {
 			console.log("실패");
 		});
 	}, 
 	
 	setDataToInput: function (){
-		$.each(category.labels, function(index, name){
+		$.each(categoryLabels, function(index, name){
 			$(".chart-category").append(
 				`<tr class="chart-category-row-${index + 1}">
 			        <td>${index + 1}</td>
@@ -203,42 +215,41 @@ var category = {
 			      </tr>`
 			);
 		});
-		$.each(category.dataSets, function(index, income){
+		$.each(incomeData, function(index, income){
 			$(`.chart-category-row-${index + 1}`).append(
 				`<td>${income}</td>`
 			);
 		});
-		$.each(countSets, function(index, count){
+		$.each(countData, function(index, count){
 			$(`.chart-category-row-${index + 1}`).append(
 				`<td>${count}</td>`
 			)
 		});
-	}
-};
-
-
-function checkCategory(){
-	var categoryList = [
-		'SHIRTS', 'PANTS', 'ACCESSORY', 'SHOES', 'SKIRT', 'ONEPIECE', 'OUTER'
-	];
-	var checkCategory = [];
-	for(var i = 0; i < category.labels.length; i++){
-		for(var j = 0; j < categoryList.length; j++){
-			if(category.labels[i] == categoryList[j]){
-				// 넘어온리스트의 값이 비교리스트의 값과 일치하면 넘어가고 
-				// 일치하지 않으면 
+	}, 
+	
+	checkCategory: function (){
+				
+		var categoryList = [
+			'SHIRTS', 'PANTS', 'ACCESSORY', 'SHOES', 'SKIRT', 'ONEPIECE', 'OUTER'
+		];
+		
+		for(var i = 0; i < categoryList.length; i++){
+			for(var j = 0; j < categoryLabels.length; j++){
+				if(categoryList[i] == categoryLabels[j]){
+					categoryList[i] = 'OK';
+				}
 			}
 		}
+		
+		$.each(categoryList, function(index, category){
+			if(category != 'OK'){
+				categoryLabels.push(category);
+				incomeData.push(0);
+				countData.push(0);
+			}
+		});
 	}
-	
-	$.each(categoryList, function(index, category){
-		category.labels.push(category);
-		category.dataSets.push(0);
-		countSets.push(0);
-	});
-
-}
-
+};
 
 var weekBackColor = [
 	'rgba(255, 99, 132, 0.7)', 

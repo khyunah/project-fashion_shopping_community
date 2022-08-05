@@ -14,8 +14,8 @@ var chartArea = {
 					fill: false,
 					borderWidth: 1,
 					lineTension: 0,
-					backgroundColor: "rgba(119, 0, 174, 0.75)",
-					borderColor: "rgba(119, 0, 174, 0.75)"
+					backgroundColor: "rgba(255, 0, 0, 1)",
+					borderColor: "rgba(255, 0, 0, 1)"
 				}],
 			},
 			options: {
@@ -76,11 +76,11 @@ var oauthArea = {
 					fill: false,
 					data: oauthResultData,
 					backgroundColor: [
-						'rgba(0, 197, 37, 0.2)',
-						'rgba(255, 206, 86, 0.2)'
+						'rgba(180, 0, 255, 0.4)',
+						'rgba(255, 206, 86, 0.4)'
 						],
 					borderColor: [
-						'rgba(0, 197, 37, 0.75)',
+						'rgba(180, 0, 255, 1)',
 						'rgba(255, 206, 86, 1)'
 						],
 					borderWidth: 1
@@ -135,11 +135,11 @@ var oauthTodayArea = {
 					fill: false,
 					data: oauthTodayResultData,
 					backgroundColor: [
-						'rgba(0, 197, 37, 0.2)',
+						'rgba(180, 0, 255, 0.4)',
 						'rgba(255, 206, 86, 0.2)'
 						],
 					borderColor: [
-						'rgba(0, 197, 37, 0.75)',
+						'rgba(180, 0, 255, 1)',
 						'rgba(255, 206, 86, 1)'
 						],
 					borderWidth: 1

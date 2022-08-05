@@ -30,6 +30,9 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	<c:if test="${empty userPage.content}">
+		<h3 class="admin-null-info">오늘 가입한 회원이 없습니다.</h3>
+	</c:if>
 
 	<div style="height: 100px"></div>
 	<div class="admin-pagenation-container">
