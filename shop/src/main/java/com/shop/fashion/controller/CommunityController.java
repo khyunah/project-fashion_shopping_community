@@ -1,5 +1,6 @@
 package com.shop.fashion.controller;
 
+import java.math.BigInteger;
 import java.util.Collections;
 import java.util.List;
 
@@ -106,13 +107,6 @@ public class CommunityController {
 
 		CommunityLike checkLike = communityService.isLike(boardId, userDetail.getUser().getId());
 		model.addAttribute("like", checkLike);
-		
-		List<CommunityCountDto> replyCount = communityService.getReplyCountList(boardId);
-		if(replyCount.size() != 0) {
-			model.addAttribute("replyCount", replyCount.get(0).getCount());
-		} else {
-			model.addAttribute("replyCount", "0");
-		}
 
 		return "community/community_detail";
 	}

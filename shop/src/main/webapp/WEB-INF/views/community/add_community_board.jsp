@@ -97,7 +97,7 @@
 								</div>
 								
 								<button type="button" class="btn-up commu-btn" id="commu-btn-insert"
-									onclick="commu.insertReply(${communityBoard.id}, ${principal.user.id})">up</button>
+									onclick="commu.insertReplyMain(${communityBoard.id}, ${principal.user.id})">up</button>
 							</div>
 
 							<div>
@@ -105,7 +105,9 @@
 							</div>
 						</div>
 					</div>
-					<div style="height: 150px"></div>
+					<div class="commu-detail-reply-container-${communityBoard.id}">
+						
+					</div>
 				</div>
 			</div>
 		</div>

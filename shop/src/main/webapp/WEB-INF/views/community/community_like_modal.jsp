@@ -17,6 +17,10 @@
     .modal-body::-webkit-scrollbar {
         display: none;
     }
+    
+    .h-modal-box {
+    	padding: 20px;
+    }
 
     .like-list-item {
         display: flex;
@@ -24,11 +28,12 @@
 
     .circle-img-box {
         border-radius: 50%;
-        width: 50px;
-        height: 50px;
+        width: 45px;
+        height: 45px;
         overflow: hidden;
         margin-right: 20px;
         margin-bottom: 18px;
+        border: 0.5px solid #aaaaaa;
 
     }
 
@@ -47,14 +52,22 @@
     .like-list-name {
         font-size: 13px;
     }
+    
+    .h-modal-text {
+    	font-family: "Gowun Batang", serif;
+    }
+    
+    .h-modal-title {
+    	font-weight: bold;
+    }
 </style>
 
     <div class="modal" id="myModal">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+            <div class="modal-content h-modal-box">
 
                 <div class="modal-header">
-                    <h5 class="modal-title">좋아요</h5>
+                    <h5 class="h-modal-title h-modal-text">좋아요</h5>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 

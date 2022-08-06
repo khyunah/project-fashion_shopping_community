@@ -42,6 +42,35 @@ let commu = {
 			alert('내용을 입력해주세요');
 		}
 	},
+	
+	// 메인에서 댓글 작성시 하나만 보이게
+	insertReplyMain: function(communityBoardId, userId){
+		let token = $("meta[name='_csrf']").attr("content");
+		let header = $("meta[name='_csrf_header']").attr("content");
+
+		let data = {
+			content: $(`#commu-input-reply-${communityBoardId}`).val(),
+		}
+
+		if (data.content != '') {
+			$.ajax({
+				beforeSend: function(xhr) {
+					xhr.setRequestHeader(header, token)
+				},
+				type: "POST",
+				url: `/community/reply-insert/${communityBoardId}`,
+				data: JSON.stringify(data),
+				contentType: "application/json; charset=utf-8",
+				dataType: "json"
+			}).done(function(response) {
+				addOneReply(response.data, userId, communityBoardId);
+			}).fail(function(error) {
+				alert("댓글 작성 실패 !");
+			});
+		} else {
+			alert('내용을 입력해주세요');
+		}
+	},
 
 	// 댓글 삭제
 	deleteReply: function(id) {
@@ -57,7 +86,6 @@ let commu = {
 			dataType: "json"
 		}).done(function(response) {
 			console.log("성공");
-			// 삭제 성공하면 해당 html 삭제해주기 비동기방식으로 해보기 
 			removeReply(id);
 		}).fail(function(error) {
 			console.log("실패");
@@ -193,26 +221,71 @@ function addReply(reply, userId, communityBoardId) {
 	let childReply = `
 		<div id="commu-reply-${reply.id}">
 			<div class="commu-detail-reply-firstline-container">
-				<span class="commu-detail-reply-user commu-detail-reply-text">${reply.user.username}</span>
+				<div class="commu-reply-profile-div">
+					<div class="commu-reply-circle-img-box-${reply.user.id} commu-reply-circle-img-box">
+		            	<c:choose>
+		            		<c:when test="${reply.user.imageUrl != null}">
+		            			<img src="/upload/${reply.user.imageUrl}" alt="" class="commu-reply-circle-img" onerror="this.src='/image/noImage.png'">
+		            		</c:when>
+		            		<c:otherwise>
+		            			<img src="/image/noImage.png" alt="" class="commu-reply-circle-img">
+		            		</c:otherwise>
+		            	</c:choose>
+		            </div>
+					<span class="commu-detail-reply-user commu-detail-reply-text">${reply.user.username}</span>
+				</div>
+				
 				<div id="commu-detail-reply-btn-box">
 					<c:if test="${reply.user.id == userId}">
-
-						<button onclick="commu.updateBtnReply(${reply.id})"
-							class="commu-detail-btn-reply-update-${reply.id} commu-detail-btn-reply">수정</button>
-						<button onclick="commu.deleteReply(${reply.id})"
-							class="commu-detail-btn-reply-delete-${reply.id} commu-detail-btn-reply">삭제</button>
+						<button onclick="commu.updateBtnReply(${reply.id})" class="commu-detail-btn-reply-update-${reply.id} commu-detail-btn-reply">수정</button>
+						<button onclick="commu.deleteReply(${reply.id})" class="commu-detail-btn-reply-delete-${reply.id} commu-detail-btn-reply"> 삭제</button>
 					</c:if>
 				</div>
 			</div>
 			<div id="commu-detail-reply-content-box-${reply.id}">
-				<textarea id="commu-detail-reply-content-${reply.id}"
-					class="commu-detail-reply-content commu-detail-reply-text"
-					readonly>${reply.content}</textarea>
+				<textarea id="commu-detail-reply-content-${reply.id}" class="commu-detail-reply-content commu-detail-reply-text" readonly>${reply.content}</textarea>
 			</div>
 		</div>
 	`;
 
 	$(".commu-detail-reply-container").prepend(childReply);
+	$(`#commu-input-reply-${communityBoardId}`).val("");
+}
+
+// 소셜 메인에서 댓글 추가 
+function addOneReply(reply, userId, communityBoardId) {
+	
+	let childReply = `
+		<div id="commu-reply-${reply.id}">
+			<div class="commu-detail-reply-firstline-container">
+				<div class="commu-reply-profile-div">
+					<div class="commu-reply-circle-img-box-${reply.user.id} commu-reply-circle-img-box">
+		            	<c:choose>
+		            		<c:when test="${reply.user.imageUrl != null}">
+		            			<img src="/upload/${reply.user.imageUrl}" alt="" class="commu-reply-circle-img" onerror="this.src='/image/noImage.png'">
+		            		</c:when>
+		            		<c:otherwise>
+		            			<img src="/image/noImage.png" alt="" class="commu-reply-circle-img">
+		            		</c:otherwise>
+		            	</c:choose>
+		            </div>
+					<span class="commu-detail-reply-user commu-detail-reply-text">${reply.user.username}</span>
+				</div>
+				
+				<div id="commu-detail-reply-btn-box">
+					<c:if test="${reply.user.id == userId}">
+						<button onclick="commu.updateBtnReply(${reply.id})" class="commu-detail-btn-reply-update-${reply.id} commu-detail-btn-reply">수정</button>
+						<button onclick="commu.deleteReply(${reply.id})" class="commu-detail-btn-reply-delete-${reply.id} commu-detail-btn-reply"> 삭제</button>
+					</c:if>
+				</div>
+			</div>
+			<div id="commu-detail-reply-content-box-${reply.id}">
+				<textarea id="commu-detail-reply-content-${reply.id}" class="commu-detail-reply-content commu-detail-reply-text" readonly>${reply.content}</textarea>
+			</div>
+		</div>
+	`;
+
+	$(`.commu-detail-reply-container-${communityBoardId}`).append(childReply);
 	$(`#commu-input-reply-${communityBoardId}`).val("");
 }
 
@@ -226,6 +299,7 @@ function changVieweReply(id) {
 // 댓글 화면에서 삭제처리 
 function removeReply(replyId) {
 	$(`#commu-reply-` + replyId).remove();
+	$(`#commu-reply`).remove();
 }
 
 // 댓글 수정버튼 클릭시 

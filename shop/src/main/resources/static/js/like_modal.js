@@ -17,7 +17,7 @@ function addList(response){
 	$(".like-null-info").remove();
 	
 	if(response.length == 0){
-		var nullInfo = `<p class="like-null-info">좋아요를 해보세요 !</p>`;
+		var nullInfo = `<p class="like-null-info h-modal-text">좋아요를 해보세요 !</p>`;
 		$(".modal-body").append(nullInfo);
 	}
 	$.each(response, function(index, likeItem){

@@ -71,13 +71,6 @@
 
 			<div>
 				<div class="commu-detail-reply-first-line-box">
-					<div>
-						<i class="fa-regular fa-comments fa-lg commu-reply-icon"></i>
-						<span class="reply-count-span">댓글 </span>
-						<span class="reply-count-span">${replyCount}</span>
-						<span class="reply-count-span"> 개</span>
-					</div>
-					
 					<button id="commu-btn-insert" class="commu-detail-btn-up commu-detail-btn" onclick="commu.insertReply(${communityBoard.id}, ${principal.user.id})">up</button>
 				</div>
 				<div>
@@ -89,12 +82,25 @@
 
 			<div class="commu-detail-reply-container">
 				<c:forEach var="reply" items="${communityBoard.replies}">
+					
 					<div id="commu-reply-${reply.id}">
 						<div class="commu-detail-reply-firstline-container">
-							<span class="commu-detail-reply-user commu-detail-reply-text">${reply.user.username}</span>
+							<div class="commu-reply-profile-div">
+								<div class="commu-reply-circle-img-box-${reply.user.id} commu-reply-circle-img-box">
+					            	<c:choose>
+					            		<c:when test="${reply.user.imageUrl != null}">
+					            			<img src="/upload/${reply.user.imageUrl}" alt="" class="commu-reply-circle-img" onerror="this.src='/image/noImage.png'">
+					            		</c:when>
+					            		<c:otherwise>
+					            			<img src="/image/noImage.png" alt="" class="commu-reply-circle-img">
+					            		</c:otherwise>
+					            	</c:choose>
+					            </div>
+								<span class="commu-detail-reply-user commu-detail-reply-text">${reply.user.username}</span>
+							</div>
+							
 							<div id="commu-detail-reply-btn-box">
 								<c:if test="${reply.user.id == principal.user.id}">
-
 									<button onclick="commu.updateBtnReply(${reply.id})" class="commu-detail-btn-reply-update-${reply.id} commu-detail-btn-reply">수정</button>
 									<button onclick="commu.deleteReply(${reply.id})" class="commu-detail-btn-reply-delete-${reply.id} commu-detail-btn-reply"> 삭제</button>
 								</c:if>

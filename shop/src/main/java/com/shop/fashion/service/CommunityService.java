@@ -213,12 +213,7 @@ public class CommunityService {
 	public Page<CommunityBoard> myCommunity(int userId, Pageable pageable) {
 		return communityRepository.findByUserId(userId, pageable);
 	}
-	
-	// 댓글 수 
-	public List<CommunityCountDto> getReplyCountList(int boardId){
-		return communityReplyCountRepository.getReplyCountList(boardId);
-	}
-	
+
 	// 모든 댓글 수 
 	public List<CommunityCountDto> getTotalReplyCountList(){
 		return communityReplyCountRepository.getTotalReplyCountList();
