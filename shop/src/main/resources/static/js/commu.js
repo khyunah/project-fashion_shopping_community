@@ -34,7 +34,6 @@ let commu = {
 				contentType: "application/json; charset=utf-8",
 				dataType: "json"
 			}).done(function(response) {
-				alert("댓글 작성 완료 !");
 				addReply(response.data, userId, communityBoardId);
 			}).fail(function(error) {
 				alert("댓글 작성 실패 !");
@@ -247,7 +246,9 @@ function changeLikeIcon(response, communityBoardId, likeCount) {
 	        		<i style="color: black" id="before-like" class="fa-regular fa-heart fa-lg" onclick="commu.communityLike(${communityBoardId}, ${likeCount})"></i>
 					
 					<button onclick="likeList(${communityBoardId})" type="button" class="btn like-count-button" data-toggle="modal" data-target="#myModal">
-						<span id="likeCount-${communityBoardId}" class="commu-social-span-goodlook-count commu-social-text">${likeCount}</span>
+						<span class="likeCount-text">좋아요 </span>
+						<span id="likeCount-${communityBoardId}" class="likeCount-text" >${likeCount}</span>
+						<span class="likeCount-text"> 개</span>
 					</button>
 	            </div>
 			`;
@@ -260,7 +261,9 @@ function changeLikeIcon(response, communityBoardId, likeCount) {
 	        		<i class="fa-solid fa-heart fa-lg" style="color: rgb(240, 81, 115)" onclick="commu.communityLike(${communityBoardId}, ${likeCount})"></i>
 
 					<button onclick="likeList(${communityBoardId})" type="button" class="btn like-count-button" data-toggle="modal" data-target="#myModal">
-						<span id="likeCount-${communityBoardId}" class="commu-social-span-goodlook-count commu-social-text">${likeCount}</span>
+						<span class="likeCount-text">좋아요 </span>
+						<span id="likeCount-${communityBoardId}" class="likeCount-text" >${likeCount}</span>
+						<span class="likeCount-text"> 개</span>
 					</button>
 	            </div>
 			`;

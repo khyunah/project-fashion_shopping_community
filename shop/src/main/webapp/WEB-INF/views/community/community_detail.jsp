@@ -37,8 +37,11 @@
 					</c:choose>
 					
 					<button onclick="likeList(${communityBoard.id})" type="button" class="btn like-count-button" data-toggle="modal" data-target="#myModal">
-						<span id="likeCount-${communityBoard.id}" class="commu-detail-span-goodlook-count commu-detail-text" >${communityBoard.likeCount}</span>
+						<span class="likeCount-text">좋아요 </span>
+						<span id="likeCount-${communityBoard.id}" class="likeCount-text" >${communityBoard.likeCount}</span>
+						<span class="likeCount-text"> 개</span>
 					</button>
+					
 				</div>
 
 			</div>
@@ -68,6 +71,13 @@
 
 			<div>
 				<div class="commu-detail-reply-first-line-box">
+					<div>
+						<i class="fa-regular fa-comments fa-lg commu-reply-icon"></i>
+						<span class="reply-count-span">댓글 </span>
+						<span class="reply-count-span">${replyCount}</span>
+						<span class="reply-count-span"> 개</span>
+					</div>
+					
 					<button id="commu-btn-insert" class="commu-detail-btn-up commu-detail-btn" onclick="commu.insertReply(${communityBoard.id}, ${principal.user.id})">up</button>
 				</div>
 				<div>

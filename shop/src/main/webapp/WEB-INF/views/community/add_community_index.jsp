@@ -33,8 +33,9 @@
 						</c:otherwise>
 					</c:choose>
 					<button onclick="likeList(${communityBoard.id})"  type="button" class="btn like-count-button" data-toggle="modal" data-target="#myModal">
-						<span id="likeCount-${communityBoard.id}"
-						class="commu-detail-span-goodlook-count commu-detail-text" >${communityBoard.likeCount}</span>
+						<span class="likeCount-text">좋아요 </span>
+						<span id="likeCount-${communityBoard.id}" class="likeCount-text" >${communityBoard.likeCount}</span>
+						<span class="likeCount-text"> 개</span>
 					</button>
 				</div>
 
@@ -60,8 +61,36 @@
 					<span class="span-content commu-home-text">${communityBoard.content}</span>
 				</div>
 			</div>
+			
+			<div class="commu-reply-firstline">
+			<div>
+				<i class="fa-regular fa-comments fa-lg commu-reply-icon"></i>
+				<c:choose>
+					<c:when test="${principal.user == null}">
+						<a href="/community/${communityBoard.id}" class="reply-count-button" onclick="return confirm('로그인이 필요합니다. 로그인 하시겠습니까?')">
+					</c:when>
+					<c:otherwise>
+						<a href="/community/${communityBoard.id}" class="reply-count-button">
+					</c:otherwise>
+				</c:choose>
+				
+					<span class="reply-count-span">댓글 </span>
+					<c:set var="thisReplyCount" value="0"></c:set>
+					<c:forEach var="replyCount" items="${replyCountList}">
+						<c:if test="${replyCount.id == communityBoard.id}">
+							<c:set var="thisReplyCount" value="${replyCount.count}"></c:set>
+						</c:if>
+					</c:forEach>
+					<span class="reply-count-span">${thisReplyCount}</span>
+					<span class="reply-count-span"> 개</span>
+					<span class="reply-count-span reply-more-view">( 더보기 )</span>
+				</a>
+			</div>
+		</div>
 
 		</div>
+		
+		
 
 	</div>
 </c:forEach>

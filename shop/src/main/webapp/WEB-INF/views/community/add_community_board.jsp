@@ -45,7 +45,9 @@
 									</c:otherwise>
 								</c:choose>
 								<button onclick="likeList(${communityBoard.id})" type="button" class="btn like-count-button" data-toggle="modal" data-target="#myModal">
-									<span id="likeCount-${communityBoard.id}" class="commu-detail-span-goodlook-count commu-detail-text" >${communityBoard.likeCount}</span>
+									<span class="likeCount-text">좋아요 </span>
+									<span id="likeCount-${communityBoard.id}" class="likeCount-text" >${communityBoard.likeCount}</span>
+									<span class="likeCount-text"> 개</span>
 								</button>
 							</div>
 
@@ -78,15 +80,28 @@
 
 						<div>
 							<div class="commu-reply-firstline">
-								<button type="button" class="btn-up commu-btn"
-									id="commu-btn-insert"
+								<div>
+									<i class="fa-regular fa-comments fa-lg commu-reply-icon"></i>
+									<a href="/community/${communityBoard.id}" class="reply-count-button">
+										<span class="reply-count-span">댓글 </span>
+										<c:set var="thisReplyCount" value="0"></c:set>
+										<c:forEach var="replyCount" items="${replyCountList}">
+											<c:if test="${replyCount.id == communityBoard.id}">
+												<c:set var="thisReplyCount" value="${replyCount.count}"></c:set>
+											</c:if>
+										</c:forEach>
+										<span class="reply-count-span">${thisReplyCount}</span>
+										<span class="reply-count-span"> 개</span>
+										<span class="reply-count-span reply-more-view">( 더보기 )</span>
+									</a>
+								</div>
+								
+								<button type="button" class="btn-up commu-btn" id="commu-btn-insert"
 									onclick="commu.insertReply(${communityBoard.id}, ${principal.user.id})">up</button>
 							</div>
 
 							<div>
-								<input type="text" placeholder="한 마디"
-									class="commu-social-input-reply commu-social-input"
-									id="commu-input-reply-${communityBoard.id}" />
+								<input type="text" placeholder="한 마디" class="commu-social-input-reply commu-social-input" id="commu-input-reply-${communityBoard.id}" />
 							</div>
 						</div>
 					</div>
