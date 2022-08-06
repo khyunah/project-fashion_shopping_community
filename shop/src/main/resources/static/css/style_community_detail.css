@@ -194,6 +194,16 @@
 	line-height: 1.6;
 }
 
+.like-count-button,
+.like-count-button:hover,
+.like-count-button:active,
+.like-count-button:focus {
+	border: none !important;
+	box-shadow: none !important;
+	outline: none !important;
+	text-decoration: none !important;
+}
+
 @media ( max-width : 900px) {
 	.commu-detail-div-main-container {
 		

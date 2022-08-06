@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="community_like_modal.jsp"%>
 
 <c:forEach var="communityBoard" items="${communityBoardList.content}">
 	<input id="communityBoardId" type="hidden" value="${communityBoard.id}" />
@@ -15,8 +16,7 @@
 
 		<div class="div-main-container">
 			<div id="commu-icon-box-${communityBoard.id}">
-				<div
-					onclick="commu.communityLike(${communityBoard.id}, ${communityBoard.likeCount})">
+				<div>
 					<c:set var="myLike" value="0"></c:set>
 					<c:forEach var="like" items="${likeList}">
 						<c:if test="${like.board.id == communityBoard.id}">
@@ -26,16 +26,16 @@
 
 					<c:choose>
 						<c:when test="${myLike == 'ok'}">
-							<i class="fa-solid fa-heart fa-lg"
-								style="color: rgb(240, 81, 115)"></i>
+							<i class="fa-solid fa-heart fa-lg" style="color: rgb(240, 81, 115)" onclick="commu.communityLike(${communityBoard.id}, ${communityBoard.likeCount})"></i>
 						</c:when>
 						<c:otherwise>
-							<i style="color: black" id="before-like"
-								class="fa-regular fa-heart fa-lg"></i>
+							<i style="color: black" id="before-like" class="fa-regular fa-heart fa-lg" onclick="commu.communityLike(${communityBoard.id}, ${communityBoard.likeCount})"></i>
 						</c:otherwise>
 					</c:choose>
-					<span id="likeCount-${communityBoard.id}"
-						class="span-goodlook-count commu-text">${communityBoard.likeCount}</span>
+					<button onclick="likeList(${communityBoard.id})"  type="button" class="btn like-count-button" data-toggle="modal" data-target="#myModal">
+						<span id="likeCount-${communityBoard.id}"
+						class="commu-detail-span-goodlook-count commu-detail-text" >${communityBoard.likeCount}</span>
+					</button>
 				</div>
 
 			</div>

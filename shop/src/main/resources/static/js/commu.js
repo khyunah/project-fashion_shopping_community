@@ -243,11 +243,12 @@ function changeLikeIcon(response, communityBoardId, likeCount) {
 		likeCount--;
 		document.getElementById(`commu-icon-box-${communityBoardId}`).innerHTML =
 			`
-				<div onclick="commu.communityLike(${communityBoardId}, ${likeCount})">
-
-	        		<i style="color: black" id="before-like" class="fa-regular fa-heart fa-lg"></i>
-	
-					<span id="likeCount-${communityBoardId}" class="commu-social-span-goodlook-count commu-social-text">${likeCount}</span>
+				<div>
+	        		<i style="color: black" id="before-like" class="fa-regular fa-heart fa-lg" onclick="commu.communityLike(${communityBoardId}, ${likeCount})"></i>
+					
+					<button onclick="likeList(${communityBoardId})" type="button" class="btn like-count-button" data-toggle="modal" data-target="#myModal">
+						<span id="likeCount-${communityBoardId}" class="commu-social-span-goodlook-count commu-social-text">${likeCount}</span>
+					</button>
 	            </div>
 			`;
 
@@ -255,11 +256,12 @@ function changeLikeIcon(response, communityBoardId, likeCount) {
 		likeCount++;
 		document.getElementById(`commu-icon-box-${communityBoardId}`).innerHTML =
 			`
-				<div onclick="commu.communityLike(${communityBoardId}, ${likeCount})">
-	
-	        		<i class="fa-solid fa-heart fa-lg" style="color: rgb(240, 81, 115)"></i>
+				<div>
+	        		<i class="fa-solid fa-heart fa-lg" style="color: rgb(240, 81, 115)" onclick="commu.communityLike(${communityBoardId}, ${likeCount})"></i>
 
-					<span id="likeCount-${communityBoardId}" class="commu-social-span-goodlook-count commu-social-text">${likeCount}</span>
+					<button onclick="likeList(${communityBoardId})" type="button" class="btn like-count-button" data-toggle="modal" data-target="#myModal">
+						<span id="likeCount-${communityBoardId}" class="commu-social-span-goodlook-count commu-social-text">${likeCount}</span>
+					</button>
 	            </div>
 			`;
 	}

@@ -8,11 +8,9 @@
 
 		<div class="commu-social-btn-box">
 			<c:if test="${communityBoard.user.id == principal.user.id}">
-				<button type="button" class="btn-up commu-btn commu-social-btn"
-					id="commu-social-btn-update"
+				<button type="button" class="btn-up commu-btn commu-social-btn" id="commu-social-btn-update"
 					onclick="location.href='/board/${communityBoard.id}/update_form'">update</button>
-				<button type="button" class="btn-up commu-btn commu-social-btn"
-					id="commu-social-btn-delete"
+				<button type="button" class="btn-up commu-btn commu-social-btn" id="commu-social-btn-delete"
 					onclick="commu.boardDelete(${communityBoard.id})">delete</button>
 			</c:if>
 		</div>
@@ -25,16 +23,12 @@
 				<div>
 
 					<div class="commu-social-img-box">
-						<a href="/community/${communityBoard.id}"><img
-							class="commu-social-img" alt=""
-							onerror="this.src='/image/noImage.png'"
-							src="/upload/${communityBoard.imageUrl}" /></a>
+						<a href="/community/${communityBoard.id}"><img class="commu-social-img" alt="" onerror="this.src='/image/noImage.png'" src="/upload/${communityBoard.imageUrl}" /></a>
 					</div>
 
 					<div class="commu-social-main-container">
 						<div id="commu-icon-box-${communityBoard.id}">
-							<div
-								onclick="commu.communityLike(${communityBoard.id}, ${communityBoard.likeCount})">
+							<div>
 								<c:set var="myLike" value="0"></c:set>
 								<c:forEach var="like" items="${likeList}">
 									<c:if test="${like.board.id == communityBoard.id}">
@@ -44,16 +38,15 @@
 
 								<c:choose>
 									<c:when test="${myLike == 'ok'}">
-										<i class="fa-solid fa-heart fa-lg"
-											style="color: rgb(240, 81, 115)"></i>
+										<i class="fa-solid fa-heart fa-lg" style="color: rgb(240, 81, 115)" onclick="commu.communityLike(${communityBoard.id}, ${communityBoard.likeCount})"></i>
 									</c:when>
 									<c:otherwise>
-										<i style="color: black" id="before-like"
-											class="fa-regular fa-heart fa-lg"></i>
+										<i style="color: black" id="before-like" class="fa-regular fa-heart fa-lg" onclick="commu.communityLike(${communityBoard.id}, ${communityBoard.likeCount})"></i>
 									</c:otherwise>
 								</c:choose>
-								<span id="likeCount-${communityBoard.id}"
-									class="commu-social-span-goodlook-count commu-text">${communityBoard.likeCount}</span>
+								<button onclick="likeList(${communityBoard.id})" type="button" class="btn like-count-button" data-toggle="modal" data-target="#myModal">
+									<span id="likeCount-${communityBoard.id}" class="commu-detail-span-goodlook-count commu-detail-text" >${communityBoard.likeCount}</span>
+								</button>
 							</div>
 
 
