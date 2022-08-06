@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.shop.fashion.dto.CommunityDto;
 import com.shop.fashion.dto.ItemReviewDto;
 import com.shop.fashion.model.Basket;
+import com.shop.fashion.model.CommunityBoard;
 import com.shop.fashion.model.Item;
 import com.shop.fashion.model.ItemReview;
 import com.shop.fashion.model.User;
@@ -144,4 +145,27 @@ public class ShoppingService {
 		itemReviewRepository.deleteById(ItemReviewId);
 	}
 	
+	@Transactional
+	public ItemReview itemReviewUpdate(int id, ItemReviewDto dto) {
+		ItemReview itemreview = itemReviewRepository.findById(id).get();
+
+		if (!dto.getFile().getOriginalFilename().isEmpty()) {
+			String updateFileName = fileNameSet(dto);
+			itemreview.setImageUrl(updateFileName);
+		}
+
+		itemreview.setContent(dto.getContent());
+
+		return itemreview;
+	}
+	
+	@Transactional
+	public void modifyItemReview(int id, ItemReview itemReview) {
+		ItemReview itemreview = itemReviewRepository.findById(id).orElseThrow(() -> {
+			return new IllegalArgumentException("해당 글은 찾을 수 없습니다");
+		});
+		itemreview.setContent(itemreview.getContent());
+		itemreview.setImageUrl(itemreview.getImageUrl());
+	}
+
 }

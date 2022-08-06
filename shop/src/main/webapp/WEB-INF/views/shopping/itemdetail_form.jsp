@@ -43,20 +43,28 @@
 	<div id="writeReview" style="margin-left: 20px;"></div>
 	<hr/>
 	</form>
-	<div id="updateReview" style="margin-left: 20px;"></div>
-<c:forEach var="itemreview" items="${pageable.content}">
 
+	
+	
+<c:forEach var="itemreview" items="${pageable.content}">
+	<form action="/review/update/${itemreview.id}" enctype="multipart/form-data" method="post">
+  		<input type="hidden" name="${_csrf.parameterName}"
+		value="${_csrf.token}">
+	<div id="updateReview" style="margin-left: 20px;"></div>	
+	</form>
 	<div>
+	<input type="hidden" id="ItemReveiwId" value="${itemreview.id}">
+	<input type="hidden" id="ItemReveiwImageUrl" value="${itemreview.imageUrl}">
 	<h2 style="margin-left: 150px;">작성자 : ${itemreview.user.username}</h2>
 		<img alt="" src="/upload/${itemreview.imageUrl}" style="height: 350px; width: 350px; border-radius: 15px; margin-left: 150px; object-fit: cover;">
-		<h4 style="margin-left: 150px; margin-top: 15px;]">${itemreview.content}</h4>
+		<h4 id ="ItemReveiwContent"style="margin-left: 150px; margin-top: 15px;]">${itemreview.content}</h4>
 		<c:if test="${itemreview.user.id == principal.user.id}">
-		<button type="button" class="btn text-white" onclick="updateBtnReview('${itemreview.content}');" style="background-color: #453675; margin-left: 150px;">수정</button>
+		<button type="button" class="btn text-white" onclick="updateBtnReview('${itemreview.content},${itemreview.originImageTitle}');" style="background-color: #453675; margin-left: 150px;">수정</button>
 		<button type="button" class="btn text-white" onclick="ItemReviewDelete(${itemreview.id}, ${itemreview.item.id}, ${principal.user.id});" style="background-color: #453675; margin-left: 20px;">삭제</button>
 		</c:if>
 	</div>
 	<hr/>
-</c:forEach>
+</c:forEach>	
 
 	<br/>
 

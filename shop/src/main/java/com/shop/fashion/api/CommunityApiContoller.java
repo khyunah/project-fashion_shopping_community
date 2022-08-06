@@ -27,6 +27,7 @@ public class CommunityApiContoller {
 	@Autowired
 	CommunityService communityService;
 
+	
 	@PutMapping("/api/board/{id}")
 	public ResponseDto<Integer> update(@PathVariable int id, @RequestBody CommunityBoard board) {
 		communityService.modifyBoard(id, board);

@@ -11,15 +11,20 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shop.fashion.auth.PrincipalUserDetail;
+import com.shop.fashion.dto.CommunityDto;
+import com.shop.fashion.dto.ItemReviewDto;
 import com.shop.fashion.dto.RequestItemDto;
 import com.shop.fashion.dto.ResponseDto;
+import com.shop.fashion.model.CommunityBoard;
 import com.shop.fashion.model.Domain;
 import com.shop.fashion.model.Item;
+import com.shop.fashion.model.ItemReview;
 import com.shop.fashion.model.User;
 import com.shop.fashion.service.BasketService;
 import com.shop.fashion.service.ShoppingService;
@@ -103,7 +108,12 @@ public class ShoppingApiController {
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), detail.getUser().getId());
 	}
 	
-
+	
+	@PostMapping("/test/api/update/itemReview/{id}")
+	public ResponseDto<Integer> update(@PathVariable int id, @RequestBody ItemReviewDto dto) {
+		shoppingService.itemReviewUpdate(id, dto);
+		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+	}
 
 
 }

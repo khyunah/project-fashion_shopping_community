@@ -230,8 +230,6 @@ function itemDetailSizeandColor(){
 function reviewWrite(){
 	
 	
-	let itemId = $("#itemId").val();
-	
 		var cell = document.getElementById("writeReview");
 		while (cell.hasChildNodes()) {
 		cell.removeChild(cell.firstChild);
@@ -277,8 +275,8 @@ function ItemReviewDelete(itemreview, item) {
 }
 
 
-function updateBtnReview(content) {
-	updateReview(content)
+function updateBtnReview(content, imageUrl) {
+	updateReview(content, imageUrl)
 	
 	
 }
@@ -308,38 +306,10 @@ function updateReview(content){
       <textarea class="form-control" rows="5" id="content" name="content" placeholder="${content}"></textarea>
     </div>
     <div class="form-group mt-3">
-  <button type="submit" onclick="ReviewUpdate(#content);" class="btn btn-dark" style="background-color: #453675; ">글 쓰기 완료</button>
+  <button type="submit" onclick="ReviewUpdate();" class="btn btn-dark" style="background-color: #453675; ">글 수정 완료</button>
 	</div>
   `;
 		$("#updateReview").append(option);
 }
 
-function ReviewUpdate(itemReviewId) {
 
-		let token = $("meta[name='_csrf']").attr("content");
-		let header = $("meta[name='_csrf_header']").attr("content");
-
-		let data = {
-			id: replyId,
-			content: $(`#commu-detail-reply-content-${replyId}`).val()
-		}
-		console.log(data.content);
-		$.ajax({
-			beforeSend: function(xhr) {
-				xhr.setRequestHeader(header, token)
-			},
-			type: "PUT",
-			url: `/community/reply-update`,
-			data: JSON.stringify(data),
-			contentType: "application/json; charset=utf-8",
-			dataType: "json"
-		}).done(function(response) {
-			console.log("성공");
-			changVieweReply(response.data.id);
-		}).fail(function(error) {
-			console.log("실패");
-		});
-
-	
-	
-}
