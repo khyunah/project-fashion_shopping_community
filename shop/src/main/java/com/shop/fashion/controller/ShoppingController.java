@@ -31,6 +31,7 @@ import com.shop.fashion.dto.ResponseDto;
 import com.shop.fashion.model.Basket;
 import com.shop.fashion.model.Item;
 import com.shop.fashion.model.ItemReview;
+import com.shop.fashion.repository.ItemReviewRepository;
 import com.shop.fashion.service.BasketService;
 import com.shop.fashion.service.KakaoPayService;
 import com.shop.fashion.service.ShoppingService;
@@ -52,6 +53,9 @@ public class ShoppingController {
 
 	@Autowired
 	KakaoPayService kakaoPayService;
+	
+	@Autowired
+	ItemReviewRepository itemReviewRepository;
 
 	@GetMapping({ "shop/mans_form", "/shop/search/" })
 	public String mansForm(@PathParam("gender") String gender, @PathParam("category") String category, Model model,
@@ -235,8 +239,13 @@ public class ShoppingController {
 	public String ReviewUpdate(@PathVariable int id, ItemReviewDto fileDto) {
 
 		shoppingService.itemReviewUpdate(id, fileDto);
+		
+		ItemReview itemReview = itemReviewRepository.ItemReviewFindById(id).get(0);
+		
+		int itemId = itemReview.getItem().getId();
+		
 
-		return "redirect:/shop/itemdetail_form/"+id;
+		return "redirect:/shop/itemdetail_form/"+itemId;
 	}
 	
 

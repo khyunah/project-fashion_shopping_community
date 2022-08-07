@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 
 <%@ include file="../layout/header.jsp" %>
+
+<div style= "left: 30%; position: absolute;">
 <input type="hidden" id="itemId" name="itemId" value="${item.id}">
 	<br/><br/>
 	<br/><br/>
@@ -23,15 +25,15 @@
 			<button class="btn text-white" onclick="history.back();" style="background-color: #453675;">뒤로 가기</button>
 		</div>	
 	</div>
-	<hr/>
+
 	<div class="form-group m-5">
 	<button type="button" class="btn text-white" style="background-color: #453675;">상품 설명</button>
 	</div>
 	<br/>
 	<h4 style="margin-left: 50px;">${item.content}</h4>
 	<br/><br/>
-	<hr/>
-	<div>
+
+
 	<div class="form-group m-5">
 	<button type="button" class="btn text-white" onclick="reviewWrite();" style="background-color: #453675; margin-left: 20px;">상품리뷰 작성하기</button>
 	</div>
@@ -41,7 +43,6 @@
   		<input type="hidden" name="${_csrf.parameterName}"
 		value="${_csrf.token}">
 	<div id="writeReview" style="margin-left: 20px;"></div>
-	<hr/>
 	</form>
 
 	
@@ -63,7 +64,7 @@
 		<button type="button" class="btn text-white" onclick="ItemReviewDelete(${itemreview.id}, ${itemreview.item.id}, ${principal.user.id});" style="background-color: #453675; margin-left: 20px;">삭제</button>
 		</c:if>
 	</div>
-	<hr/>
+
 </c:forEach>	
 
 	<br/>
@@ -98,6 +99,6 @@
 		href="/shop/itemdetail_form/${item.id}/?q=${searchTitle}&page=${pageable.number + 1}">다음</a>
 	</li>
 </ul>
-
+</div>
 <script src="/js/item.js"></script>
 <script src="/js/basket.js"></script>
