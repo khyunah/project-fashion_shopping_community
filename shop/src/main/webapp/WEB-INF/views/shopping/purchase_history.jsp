@@ -1,10 +1,5 @@
 <%@page import="java.text.NumberFormat"%>
-<%@page import="org.springframework.security.core.userdetails.UserDetails"%>
-<%@page import="org.hibernate.internal.build.AllowSysOut"%>
-<%@page import="com.shop.fashion.model.Purchasehistory"%>
-<%@page import="java.sql.Date"%>
-<%@page import="com.shop.fashion.dto.KakaoPayApprovalDto"%>
-<%@page import="java.util.ArrayList"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -22,19 +17,23 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+      <div style = "">
+      <p style="font-weight: bold; margin-top: 0px; margin-bottom:0px; font-size: 17px;  font-color: #333;">주문번호</p>
+      <p class = "orderNumberModal" style="text-indent: 2px; margin-top: 0px; font-color: #333;"></p>
+      </div>
         <table>
 		<thead class="tbl-head">
 			<tr> 
-				<th>상품명</th>
+				<th>상품목록</th>
 			</tr>
 		</thead>
 		
 		<tbody>
-		<c:forEach items="${purchaseHistoryList}" var="purchaseHistory">
+
 			<tr>
-				<td>${purchaseHistory.itemName}</td>
+				<td class = "orderItemModal"></td>
 			</tr>
-		</c:forEach>
+
 		</tbody>
 		
 		</table>
@@ -54,6 +53,7 @@
 	<table>
 		<thead class="tbl-head">
 			<tr> 
+				<th style="display:none;">orderItem</th>
 				<th>상품명</th>
 				<th>주문번호</th>
 				<th>주문일</th>
@@ -63,19 +63,27 @@
 			</tr>
 		</thead>
 		
-		 <c:out value="${purchaseHistoryList}"/>
-				
+
 		<tbody>
 		<c:forEach items="${purchaseHistoryGroupList}" var="purchaseHistory">
 			<tr>
+			<td class="orderItem" style="display:none;">
+				<c:forEach items="${purchaseHistoryList}" var="history">
+					<c:if test="${purchaseHistory.tid eq history.tid}">
+					
+					${history.itemId.name}<br/>
+						
+					</c:if>
+				</c:forEach>
+			</td>
 				<td>${purchaseHistory.itemName}</td>
-				<td>${purchaseHistory.tid}</td>
+				<td class = "orderNumber">${purchaseHistory.tid}</td>
 				<td>${purchaseHistory.createdAt}</td>
 				<td><fmt:formatNumber type="number" maxFractionDigits="3" value="${purchaseHistory.total}"/>원</td>
 				<td>${purchaseHistory.user.address}</td>
-				<td><a href="/user" role="button"  class="btn text-white" style="background-color: #453675;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+				<td><button class="btn text-white detailBtn" style="background-color: #453675;" data-bs-toggle="modal" data-bs-target="#exampleModal">
 					  상세보기
-					</a>
+					</button>
 				</td>
 			</tr>
 		</c:forEach>
@@ -88,8 +96,14 @@
 	</div> <!-- order-complete-wrap -->
 						
 </body>
+<script>
+$('.detailBtn').on('click', function(){
+	let orderNumber = $(this).parent().parent().find('.orderNumber').html();
+	$('.orderNumberModal').html(orderNumber);
+	let orderItem=$(this).parent().parent().find('.orderItem').html();
+	$('.orderItemModal').html(orderItem);
+})
 
-</html>
-	
-</body>
+</script>
+
 </html>

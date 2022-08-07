@@ -23,7 +23,7 @@
     <link href="/css/style_community_detail.css" rel="stylesheet" type="text/css" />
     <link href="/css/style_community_social.css" rel="stylesheet" type="text/css" />
     <link href="/css/kakao_pay.css" rel="stylesheet" type="text/css" />
-    <link href="/css/receipt.css" rel="stylesheet" type="text/css" />
+
 
     <!-- 부트스트랩 -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
