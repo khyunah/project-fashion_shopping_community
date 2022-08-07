@@ -80,28 +80,33 @@
 }
 
 .commu-social-div-title-container {
-	width: 100%;
+	width: 85%;
 	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
 }
 
 .commu-like-icon-box {
 	display: inline;
 }
 
-.commu-social-title {
-	font-weight: bold;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-}
-
 .commu-social-div-content-container {
 	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
+
+.commu-social-div-content-container.clicked{
+	color: white;
 }
 
 .commu-social-span-content {
 	font-size: 17px;
-	white-space: pre-wrap;
-	text-overflow: ellipsis;
 }
 
 .commu-title {

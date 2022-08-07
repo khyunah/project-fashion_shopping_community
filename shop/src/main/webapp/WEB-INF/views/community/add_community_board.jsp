@@ -71,7 +71,7 @@
 						<div style="height: 40px"></div>
 
 						<div>
-							<div class="commu-social-div-content-container">
+							<div class="commu-social-div-content-container csdcc-${communityBoard.id}" onclick="more()">
 								<span class="commu-social-span-content commu-text">${communityBoard.content}</span>
 							</div>
 						</div>
@@ -112,4 +112,5 @@
 			</div>
 		</div>
 	</div>
+
 </c:forEach>

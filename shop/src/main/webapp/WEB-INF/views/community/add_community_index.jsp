@@ -45,21 +45,17 @@
 
 			<div style="height: 10px"></div>
 
-			<div>
-				<div class="div-title-container">
-					<p class="commu-text commu-title commu-home-title">${communityBoard.title}</p>
-				</div>
-				<div class="div-title-container">
-					<span class="p-username commu-text commu-home-username">${communityBoard.user.username}</span>
-				</div>
+			<div class="div-title-container">
+				<span class="commu-text commu-title commu-home-title">${communityBoard.title}</span>
+			</div>
+			<div class="div-title-container">
+				<span class="p-username commu-text commu-home-username">${communityBoard.user.username}</span>
 			</div>
 
 			<div style="height: 20px"></div>
 
-			<div>
-				<div class="div-content-container">
-					<span class="span-content commu-home-text">${communityBoard.content}</span>
-				</div>
+			<div class="div-content-container">
+				<span class="span-content commu-home-text">${communityBoard.content}</span>
 			</div>
 			
 			<div class="commu-reply-firstline">

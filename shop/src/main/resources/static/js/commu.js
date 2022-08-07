@@ -344,4 +344,8 @@ function changeLikeIcon(response, communityBoardId, likeCount) {
 	}
 }
 
+function more(){
+	
+}
+
 commu.init();
