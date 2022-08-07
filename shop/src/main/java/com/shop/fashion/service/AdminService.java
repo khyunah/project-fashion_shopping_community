@@ -107,7 +107,7 @@ public class AdminService {
 			resultPage = shoppingRepository.mFindByName(keyword, pageable);
 			break;
 		case "CATEGORY":
-
+			resultPage = shoppingRepository.mFindByCategory(keyword, pageable);
 			break;
 		case "PRICE":
 			resultPage = shoppingRepository.mFindByPrice(keyword, pageable);

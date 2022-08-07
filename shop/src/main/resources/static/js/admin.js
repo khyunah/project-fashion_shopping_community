@@ -36,12 +36,36 @@ $(document).ready(function() {
 		$("#sel1").val('선택').prop("selected", true);
 	}
 	
-	if(column == 'ID'){
+	if(column == 'ID') {
 		$('#keyword').attr("type", "number");
-	} else if (column == 'OAUTH' || column == 'GENDER'){
+	} else if (column == 'OAUTH' || column == 'GENDER') {
 		$('#keyword').attr("readonly", true);
+	} else if (column == 'CATEGORY') {
+		$('#keyword').attr("readonly", true);
+		addCategory($("#keyword").val());
 	}
+	
 });
+
+function addCategory(keyword) {
+	var categoryList = ['OUTER', 'SHIRTS', 'PANTS', 'SKIRT', 'ONEPIECE', 'SHOES', 'ACCESSORY'];
+	var option = "";
+	$.each(categoryList, function(index, category){
+		if(category == keyword){
+			option += `<option selected>${category}</option>`;
+		} else {
+			option += `<option>${category}</option>`;
+		}
+	});
+
+	var selectBox = 
+		`<select class="form-control categorySelectBox" onchange="chooseCategory(this)">
+			<option>선택</option>
+			${option}
+		</select>`;
+		
+	$(".columnBox").append(selectBox);
+}
 
 function chooseUserColumn(target) {
 	$(".oauthSelectBox").remove();
@@ -64,6 +88,7 @@ function chooseShoppingColumn(target){
 	$('#keyword').attr("type", "text");
 	$('#keyword').attr("readonly", false);
 	$(".genderSelectBox").remove();
+	$(".categorySelectBox").remove();
 	$('#keyword').val('');
 	
 	let column = target.options[target.selectedIndex].text;
@@ -74,6 +99,9 @@ function chooseShoppingColumn(target){
 		addSelectBoxGender();
 	} else if(column == 'ID'){
 		$('#keyword').attr("type", "number");
+	} else if (column == 'CATEGORY') {
+		$('#keyword').attr("readonly", true);
+		addSelectBoxCategory();
 	}
 }
 
@@ -111,6 +139,22 @@ function addSelectBoxGender(){
 	$(".columnBox").append(selectBox);
 }
 
+function addSelectBoxCategory(){
+	let selectBox = `
+			<select class="form-control categorySelectBox" onchange="chooseCategory(this)">
+  			  <option>선택</option>
+  			  <option>OUTER</option>
+  			  <option>SHIRTS</option>
+  			  <option>PANTS</option>
+  			  <option>SKIRT</option>
+  			  <option>ONEPIECE</option>
+  			  <option>SHOES</option>
+  			  <option>ACCESSORY</option>
+  			</select>
+		`;
+	$(".columnBox").append(selectBox);
+}
+
 function chooseOauth(target) {
 	let oauth = target.options[target.selectedIndex].text;
 	location.href = `/admin/user/select?keyword=` + oauth + `&column=OAUTH`;
@@ -119,6 +163,11 @@ function chooseOauth(target) {
 function chooseGender(target) {
 	let gender = target.options[target.selectedIndex].text;
 	location.href = `/admin/shopping/select?keyword=` + gender + `&column=GENDER`;
+}
+
+function chooseCategory(target) {
+	let category = target.options[target.selectedIndex].text;
+	location.href = `/admin/shopping/select?keyword=` + category + `&column=CATEGORY`;
 }
 
 function checkColumn() {

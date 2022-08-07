@@ -75,3 +75,10 @@
 	max-width: 135px;
 	word-break:break-word;
 }
+
+.admin-menu-a:active,
+.admin-menu-a:focus {
+	border: none !important;
+	box-shadow: none !important;
+	outline: none !important;
+}
