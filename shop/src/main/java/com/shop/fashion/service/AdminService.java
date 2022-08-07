@@ -153,7 +153,7 @@ public class AdminService {
 			resultPage = communityRepository.mFindById(id, pageable);
 			break;
 		case "USERNAME":
-			User user = userRepository.findByUsername(keyword);
+			User user = userRepository.findByUsername(keyword).orElse(null);
 			if(user != null) {
 				resultPage = communityRepository.mFindByUser(user.getId(), pageable);
 			} else {

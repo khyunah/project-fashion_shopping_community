@@ -16,14 +16,13 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
-		System.out.println("로긴 핸들러 탔음");
+		
 		List<String> roleNames = new ArrayList<>();
 		authentication.getAuthorities().forEach(authority->{
 			roleNames.add(authority.getAuthority());
 		});
 		
 		if(roleNames.contains("ROLE_ADMIN")) {
-			System.out.println("관리자 이프문 들옴");
 			response.sendRedirect("/admin/graph-join");
 			return;
 		}
