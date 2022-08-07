@@ -16,6 +16,7 @@ import org.springframework.security.web.firewall.DefaultHttpFirewall;
 import org.springframework.security.web.firewall.HttpFirewall;
 
 import com.shop.fashion.auth.PrincipalUserDetailService;
+import com.shop.fashion.handler.CustomLoginSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -36,6 +37,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private PrincipalUserDetailService principalUserDetailService;
 	
+	@Bean
+	CustomLoginSuccessHandler customLoginSuccessHandler() {
+		return new CustomLoginSuccessHandler();
+	}
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf()
@@ -50,9 +56,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.formLogin()
 		.loginPage("/security/login_form")
 		.loginProcessingUrl("/security/login-user")
-		.failureUrl("/security/login_fail")
-		.defaultSuccessUrl("/")
-		;
+		.successHandler(customLoginSuccessHandler())
+		.failureUrl("/security/login_fail");
 	}
 	
 	@Override
