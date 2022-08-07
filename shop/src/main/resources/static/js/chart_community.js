@@ -206,8 +206,7 @@ function randerBar(context, labels, label, data, backColor, borderColor) {
 			scales: {
 				yAxes: [{
 					ticks: {
-						beginAtZero: true,
-						stepSize: 1
+						beginAtZero: true
 					}
 				}]
 			},
