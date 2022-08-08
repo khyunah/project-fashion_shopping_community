@@ -14,7 +14,7 @@
 
 	<div class="user-input-container">
 		<label class="user-input-label"> <span class="label-txt">ENTER YOUR ID</span> 
-			<input type="text" class="input" name="username" id="username" maxlength="16" required>
+			<input type="text" class="input" name="username" id="username" maxlength="16" oninput="handleOnInput(this)" required>
 			<div class="line-box">
 				<div class="line"></div>
 			</div>
@@ -168,6 +168,10 @@
 		} else {
 			return true;
 		}
+	}
+	
+	function handleOnInput(e)  {
+		e.value = e.value.replace(/[^A-Za-z0-9-_.]/ig, '')
 	}
 </script>
 </body>
