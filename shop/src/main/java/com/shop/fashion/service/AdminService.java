@@ -107,16 +107,13 @@ public class AdminService {
 			resultPage = shoppingRepository.mFindByName(keyword, pageable);
 			break;
 		case "CATEGORY":
-
+			resultPage = shoppingRepository.mFindByCategory(keyword, pageable);
 			break;
 		case "PRICE":
 			resultPage = shoppingRepository.mFindByPrice(keyword, pageable);
 			break;
 		case "GENDER":
 			resultPage = shoppingRepository.mFindByGender(keyword, pageable);
-			break;
-		case "COLOR":
-
 			break;
 		}
 		return resultPage;
@@ -156,7 +153,7 @@ public class AdminService {
 			resultPage = communityRepository.mFindById(id, pageable);
 			break;
 		case "USERNAME":
-			User user = userRepository.findByUsername(keyword);
+			User user = userRepository.findByUsername(keyword).orElse(null);
 			if(user != null) {
 				resultPage = communityRepository.mFindByUser(user.getId(), pageable);
 			} else {
@@ -171,6 +168,7 @@ public class AdminService {
 		return resultPage;
 	}
 
+	// 커뮤니티 보드 상세보기
 	@Transactional
 	public CommunityBoard detailCommunityBoard(int id) {
 		return communityRepository.findById(id).orElseThrow(() -> {
@@ -183,5 +181,10 @@ public class AdminService {
 	public void deleteCommunityBoard(int id) {
 		communityRepository.deleteById(id);
 	}
-
+	
+	@Transactional
+	public Page<User> selectTodayJoinUser(Pageable pageable) {
+		return userRepository.mFindByTodayJoinUser(pageable);
+	}
+	
 }

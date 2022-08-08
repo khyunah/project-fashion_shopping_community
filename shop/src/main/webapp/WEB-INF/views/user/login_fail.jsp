@@ -5,7 +5,7 @@
 <div class="order-complete-wrap">
 	<div class="order-complete-box">
 		<p class="p1">로그인 실패</p>
-		<p class="p2">아이디와 비밀번호를 확인해 주세요.</p>
+		<p class="p2">${errorMessage}</p>
 	</div>
 
 	<button style="float: right; margin-right: 190px;"

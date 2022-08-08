@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <sec:authorize access="isAuthenticated()">
@@ -41,7 +42,13 @@
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
-
+	
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+<script>
+	history.scrollRestoration = "manual"
+</script>
 </head>
 
 <body>
@@ -54,36 +61,43 @@
 		<div class="admin-menu-list-box">
 			<div>
 				<div class="admin-menu-list-item">
-					<a href="/admin/user/select?keyword=&column=" class="btn"> <img alt=""
-						src="/image/users_icon.png" class="admin-menu-nav-img">
+					<a href="/admin/graph-join" class="btn admin-menu-a"> 
+						<img alt="" src="/image/graph.png" class="admin-menu-nav-img">
+						<div class="admin-menu-text">그래프</div>
+					</a>
+				</div>
+				
+				<div class="admin-menu-list-item">
+					<a href="/admin/user/select?keyword=&column=" class="btn admin-menu-a"> 
+						<img alt="" src="/image/users_icon.png" class="admin-menu-nav-img">
 						<div class="admin-menu-text">회원관리</div>
 					</a>
 				</div>
 
 				<div class="admin-menu-list-item">
-					<a href="/admin/shopping/select?keyword=&column=" class="btn"> <img alt=""
-						src="/image/product_icon.png" class="admin-menu-nav-img">
+					<a href="/admin/shopping/select?keyword=&column=" class="btn admin-menu-a"> 
+						<img alt="" src="/image/product_icon.png" class="admin-menu-nav-img">
 						<div class="admin-menu-text">상품관리</div>
 					</a>
 				</div>
 
 				<div class="admin-menu-list-item">
-					<a href="/admin/community/select?keyword=&column=" class="btn"> <img alt=""
-						src="/image/social_icon.png" class="admin-menu-nav-img">
+					<a href="/admin/community/select?keyword=&column=" class="btn admin-menu-a"> 
+						<img alt="" src="/image/social_icon.png" class="admin-menu-nav-img">
 						<div class="admin-menu-text">커뮤니티관리</div>
 					</a>
 				</div>
 
 				<div class="admin-menu-list-item">
-					<a href="/" class="btn"> <img alt="" src="/image/ex_icon.png"
-						class="admin-menu-nav-img">
+					<a href="/" class="btn admin-menu-a"> 
+						<img alt="" src="/image/ex_icon.png" class="admin-menu-nav-img">
 						<div class="admin-menu-text">사이트확인</div>
 					</a>
 				</div>
-
+				
 				<div class="admin-menu-list-item">
-					<a href="#" class="btn"> <img alt=""
-						src="/image/setting_icon.png" class="admin-menu-nav-img">
+					<a href="#" class="btn admin-menu-a"> 
+						<img alt="" src="/image/setting_icon.png" class="admin-menu-nav-img">
 						<div class="admin-menu-text">설정</div>
 					</a>
 				</div>
