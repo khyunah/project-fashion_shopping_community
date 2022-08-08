@@ -11,29 +11,26 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shop.fashion.auth.PrincipalUserDetail;
-import com.shop.fashion.dto.CommunityDto;
 import com.shop.fashion.dto.ItemReviewDto;
 import com.shop.fashion.dto.KakaoPayApprovalDto;
 import com.shop.fashion.dto.KakaoPayDto;
-import com.shop.fashion.dto.ResponseDto;
 import com.shop.fashion.model.Basket;
 import com.shop.fashion.model.Item;
 import com.shop.fashion.model.ItemReview;
+import com.shop.fashion.model.Purchasehistory;
 import com.shop.fashion.repository.ItemReviewRepository;
 import com.shop.fashion.service.BasketService;
 import com.shop.fashion.service.KakaoPayService;
+import com.shop.fashion.service.PurchaseHistoryService;
 import com.shop.fashion.service.ShoppingService;
 import com.shop.fashion.service.UserService;
 
@@ -57,6 +54,9 @@ public class ShoppingController {
 	@Autowired
 	ItemReviewRepository itemReviewRepository;
 
+	@Autowired
+	PurchaseHistoryService purchaseHistoryService;
+	
 	@GetMapping({ "shop/mans_form", "/shop/search/" })
 	public String mansForm(@PathParam("gender") String gender, @PathParam("category") String category, Model model,
 			@PageableDefault(size = 8, sort = "id", direction = Direction.DESC) Pageable pageable) {
@@ -186,17 +186,25 @@ public class ShoppingController {
 	@GetMapping("/kakaoPaySuccess")
 	public String kakaoPaySuccess(@RequestParam("pg_token") String pg_token, Model model, @AuthenticationPrincipal PrincipalUserDetail userDetail) {
 		KakaoPayDto kakaopayDto = (KakaoPayDto) httpSession.getAttribute("kakao");
-		System.out.println("kakaopaySuccess" + userDetail.getUser().getId());
 		KakaoPayApprovalDto dto = kakaoPayService.kakaoPaySuccess(pg_token, userDetail.getUser().getId(),
 				kakaopayDto.getTid(), userDetail.getUser().getId());
 		model.addAttribute("pageTokenInfo", dto);
-		
-		httpSession.removeAttribute("kakao");
+	
 		
 		List<Basket> baskets = basketService.getBasket(userDetail.getUser().getId());
-		
-		for (int i = 0; i < baskets.size(); i++) {	
-			
+
+		for (int i = 0; i < baskets.size(); i++) {
+			Purchasehistory entity = Purchasehistory.builder()
+					.tid(dto.getTid())
+					.paymentMethodType(dto.getPaymentMethodType())
+					.total(dto.getAmount().getTotal())
+					.itemName(dto.getItemName())
+					.createdAt(dto.getCreatedAt())
+					.user(userDetail.getUser())
+					.itemId(baskets.get(i).getItem())
+					.address(userDetail.getUser().getAddress())
+					.build();
+			purchaseHistoryService.save(entity);
 			basketService.deleteId(baskets.get(i).getId());
 		}
 		
@@ -233,7 +241,12 @@ public class ShoppingController {
 
 		return "redirect:/shop/itemdetail_form/"+itemId;
 	}
-	
 
-
+	@GetMapping("/user/purchase_history")
+	public String purchaseHistory(@AuthenticationPrincipal PrincipalUserDetail userDetail, Model model) {
+		model.addAttribute("purchaseHistoryGroupList", purchaseHistoryService.getPurchaseHistoryGroupList(userDetail.getUser().getId()));
+		model.addAttribute("purchaseHistoryList", purchaseHistoryService.getPurchaseHistoryList(userDetail.getUser().getId()));
+//		model.addAttribute("basketId", purchaseHistoryService.findByUserId(userDetail.getUser().getId()));
+		return "shopping/purchase_history";
+	}
 }

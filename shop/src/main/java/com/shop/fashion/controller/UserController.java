@@ -156,4 +156,10 @@ public class UserController {
 		return "redirect:/";
 	}
 
+	@GetMapping("/user/receipt")
+	private String receipt() {
+		return "/shopping/receipt";
+	}
+	
+	
 }

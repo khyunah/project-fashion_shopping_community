@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -47,7 +48,7 @@ public class Item {
 	private String size;
 	@Column(nullable = false)
 	private int amount;
-	@OneToMany(mappedBy = "item", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "item", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
 	@JsonIgnoreProperties({ "item"})
 	private List<ItemReview> itemReviews;
 }
