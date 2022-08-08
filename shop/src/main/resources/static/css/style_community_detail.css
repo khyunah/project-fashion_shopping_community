@@ -1,5 +1,5 @@
 .commu-detail-btn-box {
-	margin-left: 13%;
+	margin-left: 15%;
 }
 
 .commu-detail-center-container {
@@ -10,7 +10,7 @@
 }
 
 .commu-detail-container {
-	width: 80%;
+	width: 70%;
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
@@ -19,6 +19,7 @@
 	padding-left: 5%;
 	padding-right: 5%;
 	padding-top:5%;
+	padding-bottom: 5%;
 	box-shadow: 4px 3px 5px 0px #453675;
 }
 

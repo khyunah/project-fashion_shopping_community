@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.shop.fashion.dto.ShoppingItemCountDto;
 import com.shop.fashion.model.Item;
 
 public interface ShoppingRepository extends JpaRepository<Item, Integer> {
@@ -39,5 +40,11 @@ public interface ShoppingRepository extends JpaRepository<Item, Integer> {
 	
 	@Query(value = "SELECT * FROM item WHERE category = :category", nativeQuery = true)
 	Page<Item> mFindByCategory(@Param("category") String category, Pageable pageable);
+	
+	@Query(value = "SELECT item_id, count FROM basket WHERE userId = :userId", nativeQuery = true)
+	List<ShoppingItemCountDto> mFindByItemCount(@Param("userId") String userId);
+	
+	@Query(value = "SELECT amount FROM item WHERE id = :id", nativeQuery = true)
+	int mFindByItemAmount(@Param("id") int id);
 
 }

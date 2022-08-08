@@ -15,6 +15,11 @@
      </tr>
    <c:forEach var="Basket" items="${Baskets}"> 
    <input type="hidden" value="${Basket.id}" id="id">
+	<c:choose>
+		<c:when test="${checkAmount }">
+			
+		</c:when>
+	</c:choose>
   	 <tr id="tr">
       <td><img src="${Basket.item.imageurl}" class="img-fluid" alt="..." style="border-radius: 15px; margin-bottom: 10px;"></td>
       <td style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; color: #453675;">${Basket.item.name}</td>

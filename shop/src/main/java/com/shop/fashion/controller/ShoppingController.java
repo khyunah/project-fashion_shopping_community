@@ -135,7 +135,11 @@ public class ShoppingController {
 		} else {
 			model.addAttribute("hasItem", false);
 		}
-
+		
+		// 재고를 확인해서 품절 상태를 알려주기 위함 
+		int checkAmount =  shoppingService.checkAmount(id);
+		model.addAttribute("checkAmount", checkAmount);
+		
 		return "/shopping/basket_form";
 	}
 
@@ -164,12 +168,15 @@ public class ShoppingController {
 		for (int i = startPage; i <= endPage; i++) {
 			pageNumbers.add(i);
 		}
+		
+		// 재고를 확인해서 품절 상태를 알려주기 위함 
+		int checkAmount =  shoppingService.checkAmount(id);
 
 		model.addAttribute("pageable", pageItems);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("pageNumbers", pageNumbers);
-		
+		model.addAttribute("checkAmount", checkAmount);
 		
 		return "shopping/itemdetail_form";
 		

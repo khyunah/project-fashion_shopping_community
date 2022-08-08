@@ -21,7 +21,14 @@
 			<h2 style="font-size: 38px; font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;"><span style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">Size :</span>&nbsp;&nbsp;${item.size}</h2>
 			<br/>
 			<input type="hidden" id=userid value="${principal.user.id}"></input>
-			<button type="button" id="inputCart" value="${item.id}" class="btn text-white" style="background-color: #453675;">장바구니에 넣기</button>
+			<c:choose>
+				<c:when test="${checkAmount < 1}">
+					<button type="button" id="inputCart" value="${item.id}" class="btn text-white" style="background-color: #453675;" disabled="disabled">장바구니에 넣기 ( 품절 )</button>
+				</c:when>
+				<c:otherwise>
+					<button type="button" id="inputCart" value="${item.id}" class="btn text-white" style="background-color: #453675;">장바구니에 넣기</button>
+				</c:otherwise>
+			</c:choose>
 			<button class="btn text-white" onclick="history.back();" style="background-color: #453675;">뒤로 가기</button>
 		</div>	
 	</div>

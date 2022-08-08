@@ -14,10 +14,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.shop.fashion.dto.CommunityDto;
 import com.shop.fashion.dto.ItemReviewDto;
+import com.shop.fashion.dto.ShoppingItemCountDto;
 import com.shop.fashion.model.Basket;
-import com.shop.fashion.model.CommunityBoard;
 import com.shop.fashion.model.Item;
 import com.shop.fashion.model.ItemReview;
 import com.shop.fashion.model.User;
@@ -168,5 +167,16 @@ public class ShoppingService {
 		itemreview.setImageUrl(itemreview.getImageUrl());
 	}
 	
+	// 재고확인 하기 
+	@Transactional
+	public int checkAmount(int ItemId) {
+		return shoppingRepository.mFindByItemAmount(ItemId);
+	}
+	
+	// 장바구니의 수량를 아이템의 현 재고와 비교하기
+	@Transactional
+	public List<ShoppingItemCountDto> checkAmountList(){
+		
+	}
 
 }
