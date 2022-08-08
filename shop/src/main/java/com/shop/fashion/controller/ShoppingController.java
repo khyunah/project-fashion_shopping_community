@@ -145,13 +145,8 @@ public class ShoppingController {
 			@PageableDefault(size = 4, sort = "id", direction = Direction.DESC) Pageable pageable) {
 		
 		
-		if(userDetail != null) {
-			model.addAttribute("purchasehistory", purchaseHistoryService.getPurchaseItemId(userDetail.getUser().getId()));
-			model.addAttribute("user", userService.getUser(userDetail.getUser().getId()));
-		} 
-		
-		
-		
+		int userId = userDetail.getUser().getId();
+		model.addAttribute("purchasehistory", purchaseHistoryService.getPurchaseItemId(userId, id));
 		model.addAttribute("item", shoppingService.itemDetail(id));
 		
 		

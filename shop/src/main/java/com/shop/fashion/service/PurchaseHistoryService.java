@@ -33,8 +33,9 @@ public class PurchaseHistoryService {
 	}
 	
 	@Transactional
-	public int getPurchaseItemId(int userId) {
-		return purchaseHistoryRepository.purchaseitemId(userId);
+	public List<Purchasehistory> getPurchaseItemId(int userId, int itemId) {
+		System.out.println("UserID" + userId + "ItemId" + itemId);
+	return purchaseHistoryRepository.purchaseitemId(userId, itemId);
 	}
 //	@Transactional
 //	public List<Basket> findByUserId(int userId) {

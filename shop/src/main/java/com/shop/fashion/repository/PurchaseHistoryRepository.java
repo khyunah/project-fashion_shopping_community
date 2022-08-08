@@ -17,7 +17,7 @@ public interface PurchaseHistoryRepository extends JpaRepository<Purchasehistory
 	@Query(value = "SELECT * FROM Purchasehistory WHERE userId = ?", nativeQuery = true)
 	List<Purchasehistory> purchaseHistoryList(@Param("userId") int id);
 	
-	@Query(value = "SELECT itemId FROM purchasehistory WHERE userId = ?", nativeQuery = true)
-	int purchaseitemId(@Param("userId") int userId);
+	@Query(value = "SELECT * FROM Purchasehistory WHERE userId = :userId and itemId = :itemId", nativeQuery = true)
+	List<Purchasehistory> purchaseitemId(@Param("userId") int userId, @Param("itemId") int itemId);
 	
 }
