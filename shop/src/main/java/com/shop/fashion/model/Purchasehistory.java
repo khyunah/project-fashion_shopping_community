@@ -35,5 +35,5 @@ public class Purchasehistory {
 	private String address;
 	@ManyToOne
 	private Item itemId;
-	
+	private int count;
 }
