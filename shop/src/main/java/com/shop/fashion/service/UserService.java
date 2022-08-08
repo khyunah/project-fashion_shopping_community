@@ -43,7 +43,7 @@ public class UserService {
 	// 아이디 중복 체크
 	@Transactional()
 	public User checkUsername(String username) {
-		return userRepository.findByUsername(username);
+		return userRepository.findByUsername(username).orElse(null);
 	}
 
 	// 회원정보 수정

@@ -62,7 +62,7 @@
 
 		<div class="setting-btn-box">
 			<a href="/admin/shopping/select?keyword=&column="
-				class="btn btn-dark">전제조회</a>
+				class="btn btn-dark">전체조회</a>
 			<button type="button" class="btn btn-primary"
 				onclick="admin.shoppingDetail()">상세보기</button>
 			<a href="/admin/shopping/save_form" class="btn btn-warning">등록</a>

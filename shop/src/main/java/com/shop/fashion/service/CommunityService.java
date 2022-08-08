@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.shop.fashion.dto.CommunityCountDto;
 import com.shop.fashion.dto.CommunityDto;
 import com.shop.fashion.model.CommunityBoard;
 import com.shop.fashion.model.CommunityLike;
@@ -21,6 +22,7 @@ import com.shop.fashion.model.Item;
 import com.shop.fashion.model.Reply;
 import com.shop.fashion.model.User;
 import com.shop.fashion.repository.CommunityLikeRepository;
+import com.shop.fashion.repository.CommunityReplyCountRepository;
 import com.shop.fashion.repository.CommunityReplyRepository;
 import com.shop.fashion.repository.CommunityRepository;
 import com.shop.fashion.repository.ShoppingRepository;
@@ -38,6 +40,8 @@ public class CommunityService {
 	private CommunityLikeRepository communityLikeRepository;
 	@Autowired
 	private ShoppingRepository shoppingRepository;
+	@Autowired
+	private CommunityReplyCountRepository communityReplyCountRepository;
 
 	@Transactional
 	public Page<CommunityBoard> getCommunityBoardList(Pageable pageable) {
@@ -208,6 +212,11 @@ public class CommunityService {
 	@Transactional
 	public Page<CommunityBoard> myCommunity(int userId, Pageable pageable) {
 		return communityRepository.findByUserId(userId, pageable);
+	}
+
+	// 모든 댓글 수 
+	public List<CommunityCountDto> getTotalReplyCountList(){
+		return communityReplyCountRepository.getTotalReplyCountList();
 	}
 
 }

@@ -150,5 +150,5 @@ public class AdminController {
 		model.addAttribute("communityBoard", communityBoard);
 		return "admin/admin_commu_detail";
 	}
-
+	
 }
