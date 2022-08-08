@@ -168,5 +168,8 @@ public class ShoppingService {
 		itemreview.setImageUrl(itemreview.getImageUrl());
 	}
 	
-
+	@Transactional
+	public void UpdateItemAmount(int amount, int id) {
+		shoppingRepository.updateStock(amount, id);
+	}
 }

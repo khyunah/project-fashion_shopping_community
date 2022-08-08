@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.origin.SystemEnvironmentOrigin;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
@@ -174,13 +175,22 @@ public class ShoppingController {
 		return "shopping/itemdetail_form";
 		
 	}
-
+	
 	@GetMapping("/security/kakaoPay/callback/{id}")
-	public String kakaoPayReady(@PathVariable int id) {
-		System.out.println("kakaopayReady: " + id);
-		KakaoPayDto dto = kakaoPayService.kakaoPayReady(id);
-		httpSession.setAttribute("kakao", dto);
-		return "redirect:" + dto.getNextRedirectPcUrl();
+	public String kakaoPayReady(@PathVariable int id, @AuthenticationPrincipal PrincipalUserDetail userDetail) {
+		
+		List<Basket> basketList = basketService.getBasket(userDetail.getUser().getId());
+
+		for (int i = 0; i < basketList.size(); i++) {
+			int amount = basketList.get(i).getItem().getAmount() - basketList.get(i).getCount();
+			System.out.println(amount);
+			if(amount >= 0) {
+				KakaoPayDto dto = kakaoPayService.kakaoPayReady(id);
+				httpSession.setAttribute("kakao", dto);
+				return "redirect:" + dto.getNextRedirectPcUrl();
+			} 
+		}
+		return "shopping/payment_fail";
 	}
 
 	@GetMapping("/kakaoPaySuccess")
@@ -206,6 +216,7 @@ public class ShoppingController {
 					.build();
 			purchaseHistoryService.save(entity);
 			basketService.deleteId(baskets.get(i).getId());
+			shoppingService.UpdateItemAmount(baskets.get(i).getCount(), baskets.get(i).getItem().getId());
 		}
 		
 		return "shopping/payment_success";

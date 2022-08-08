@@ -21,6 +21,5 @@ public interface BasketRepository extends JpaRepository<Basket, Integer> {
 	@Query(value = "select * from basket where item_id = ?1 And userid = ?2", nativeQuery = true)
 	List<Basket> findByItemIdAndUserId(@Param(value = "itemid") int itemid, @Param(value = "userid") int userid);
 	
-	//@Query(value = "DELETE FROM basket WHERE userId = :userId", nativeQuery = true)
-	//void deleteById(@Param("userId") int userId);
+
 }
