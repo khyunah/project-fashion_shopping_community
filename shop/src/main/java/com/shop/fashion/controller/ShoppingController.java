@@ -123,8 +123,21 @@ public class ShoppingController {
 
 	@GetMapping("/shop/basket_form/{id}")
 	public String cartForm(@PathVariable int id, Model model) {
+		
 		List<Basket> Baskets = shoppingService.getOnUserCart(id);
-
+		
+		if(Baskets != null) {
+			// 장바구니에 들은 아이템 id
+			List<Integer> itemIdList = new ArrayList<>();
+			for (Basket basket : Baskets) {
+				itemIdList.add(basket.getItem().getId());
+			}
+			
+			// 품절된 아이템 리스트
+			List<Item> soldoutList = shoppingService.checkAmountList(itemIdList, id);
+			model.addAttribute("soldoutList", soldoutList);
+		}
+		
 		int sum = basketService.sum(id);
 
 		model.addAttribute("Baskets", Baskets);
@@ -135,11 +148,7 @@ public class ShoppingController {
 		} else {
 			model.addAttribute("hasItem", false);
 		}
-		
-		// 재고를 확인해서 품절 상태를 알려주기 위함 
-		int checkAmount =  shoppingService.checkAmount(id);
-		model.addAttribute("checkAmount", checkAmount);
-		
+	
 		return "/shopping/basket_form";
 	}
 

@@ -114,6 +114,12 @@ public class ShoppingApiController {
 		shoppingService.itemReviewUpdate(id, dto);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
+	
+	@DeleteMapping("/basket-soldout/delete")
+	public ResponseDto<Integer> soldoutDeleteBasketItem(@AuthenticationPrincipal PrincipalUserDetail detail) {
+		basketService.soldoutDeleteBasket(detail.getUser().getId());
+		return new ResponseDto<Integer>(HttpStatus.OK.value(), detail.getUser().getId());
+	}
 
 
 }
