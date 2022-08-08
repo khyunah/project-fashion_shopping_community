@@ -8,6 +8,9 @@ let index2 = {
 	},
 
 	putItemCart: function() {
+		
+		let userid = $('#userId').val();
+		
 		let token = $("meta[name='_csrf']").attr("content");
 		let header = $("meta[name='_csrf_header']").attr("content");
 		
@@ -29,7 +32,17 @@ let index2 = {
 				alert("장바구니에 추가되었습니다.");
 			})
 			.fail(function(error) {
-				alert("장바구니에 추가하지 못했습니다.");
+				if(userid != null) {
+					alert("장바구니에 추가하지 못했습니다.");
+				} else {
+					if(confirm("로그인이 필요한 서비스입니다. 로그인 하시겠습니까?")) {
+						location.href="/security/login_form";
+					} 
+					
+				}
+				
+				
+				
 			});
 
 	},

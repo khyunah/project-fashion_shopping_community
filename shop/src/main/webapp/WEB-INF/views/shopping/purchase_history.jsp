@@ -71,7 +71,7 @@
 				<c:forEach items="${purchaseHistoryList}" var="history">
 					<c:if test="${purchaseHistory.tid eq history.tid}">
 					
-					${history.itemId.name}<br/>
+					${history.item.name}<br/>
 						
 					</c:if>
 				</c:forEach>

@@ -33,8 +33,8 @@
 	<h4 style="margin-left: 50px;">${item.content}</h4>
 	<br/><br/>
 
-	<c:if test="">
-	<div class="form-group m-5">
+	<c:if test="${purchasehistory == item.id}">
+	<div class="form-group m-5"> 
 	<button type="button" class="btn text-white" onclick="reviewWrite();" style="background-color: #453675; margin-left: 20px;">상품리뷰 작성하기</button>
 	</div>
 	</c:if>

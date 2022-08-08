@@ -32,7 +32,10 @@ public class PurchaseHistoryService {
 		return purchaseHistoryRepository.purchaseHistoryList(userId);
 	}
 	
-	
+	@Transactional
+	public int getPurchaseItemId(int userId) {
+		return purchaseHistoryRepository.purchaseitemId(userId);
+	}
 //	@Transactional
 //	public List<Basket> findByUserId(int userId) {
 //		return purchaseHistoryRepository.findByUserId(userId);

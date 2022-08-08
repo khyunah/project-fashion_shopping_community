@@ -144,11 +144,16 @@ public class ShoppingController {
 	public String itemDetailform(@PathVariable int id, @AuthenticationPrincipal PrincipalUserDetail userDetail, Model model,
 			@PageableDefault(size = 4, sort = "id", direction = Direction.DESC) Pageable pageable) {
 		
-		if(userDetail == null) {
-			return "user/login_form";
+		
+		if(userDetail != null) {
+			model.addAttribute("purchasehistory", purchaseHistoryService.getPurchaseItemId(userDetail.getUser().getId()));
+			model.addAttribute("user", userService.getUser(userDetail.getUser().getId()));
 		} 
+		
+		
+		
 		model.addAttribute("item", shoppingService.itemDetail(id));
-		model.addAttribute("user", userService.getUser(userDetail.getUser().getId()));
+		
 		
 		Page<ItemReview> pageItems;
 		
@@ -201,7 +206,7 @@ public class ShoppingController {
 					.itemName(dto.getItemName())
 					.createdAt(dto.getCreatedAt())
 					.user(userDetail.getUser())
-					.itemId(baskets.get(i).getItem())
+					.item(baskets.get(i).getItem())
 					.address(userDetail.getUser().getAddress())
 					.build();
 			purchaseHistoryService.save(entity);
@@ -249,4 +254,5 @@ public class ShoppingController {
 //		model.addAttribute("basketId", purchaseHistoryService.findByUserId(userDetail.getUser().getId()));
 		return "shopping/purchase_history";
 	}
+	
 }

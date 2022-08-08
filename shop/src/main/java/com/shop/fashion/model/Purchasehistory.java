@@ -34,6 +34,7 @@ public class Purchasehistory {
 	private User user;
 	private String address;
 	@ManyToOne
-	private Item itemId;
+	@JoinColumn(name = "itemId")
+	private Item item;
 	
 }
