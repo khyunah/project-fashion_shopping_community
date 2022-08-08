@@ -143,6 +143,10 @@ public class ShoppingController {
 	@GetMapping("/shop/itemdetail_form/{id}")
 	public String itemDetailform(@PathVariable int id, @AuthenticationPrincipal PrincipalUserDetail userDetail, Model model,
 			@PageableDefault(size = 4, sort = "id", direction = Direction.DESC) Pageable pageable) {
+		
+		if(userDetail == null) {
+			return "user/login_form";
+		} 
 		model.addAttribute("item", shoppingService.itemDetail(id));
 		model.addAttribute("user", userService.getUser(userDetail.getUser().getId()));
 		
@@ -165,7 +169,10 @@ public class ShoppingController {
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("pageNumbers", pageNumbers);
+		
+		
 		return "shopping/itemdetail_form";
+		
 	}
 
 	@GetMapping("/security/kakaoPay/callback/{id}")
@@ -205,33 +212,12 @@ public class ShoppingController {
 	public String kakaoPayFail() {
 		return "shopping/payment_fail";
 	}
-	// http://locahost:9090/review/upload/3	
-	// Request Param
-	// ?name="홍길동"&age=100
-	// Object 
+
 	@PostMapping("/review/upload/{id}")
 	public String ReviewUpload(ItemReviewDto fileDto, @AuthenticationPrincipal PrincipalUserDetail detail, @PathVariable int id) {
-		
-		//1. URI 정확히 타서 정확한 파라미터 값을 받는가 !!! 
-		//2. form 통해서 데이터 확인 !!! 
-		// ITEM 
-		// Item Object 새로 Object 생성 해야 한다. !!! 
-		// 새로 만들기 (fileDto, user, id(itemId) )
-		
-		// select id 
-		// 서비스 
-		// 작업에 최소 단위를 묶음으로 묶어서 하나의 서비스(기능) 
-		// (이미지 업로드 기능) 
-		// (테이블에 데이터를 저장 save (ImteReview !!))
-		
-		// 아이템 리뷰 테이블에 C (object) 
+
 		shoppingService.writeReview(fileDto, detail.getUser(), id);
-		// controller (0)
-		// or 
-		// JPS 페이지 반환 ()
-		// json {baset64 --> 역질렬화  }
-		// json {파일이름  }
-		// path 
+
 		return "redirect:/shop/itemdetail_form/"+id;
 	}
 	

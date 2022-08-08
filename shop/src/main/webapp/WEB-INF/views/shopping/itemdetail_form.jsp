@@ -33,10 +33,11 @@
 	<h4 style="margin-left: 50px;">${item.content}</h4>
 	<br/><br/>
 
-
+	<c:if test="">
 	<div class="form-group m-5">
 	<button type="button" class="btn text-white" onclick="reviewWrite();" style="background-color: #453675; margin-left: 20px;">상품리뷰 작성하기</button>
 	</div>
+	</c:if>
 	<div style="height: 20px"></div>
 	
 	 <form action="/review/upload/${item.id}" enctype="multipart/form-data" method="post">
@@ -45,7 +46,7 @@
 	<div id="writeReview" style="margin-left: 20px;"></div>
 	</form>
 
-	
+	<hr/>
 	
 <c:forEach var="itemreview" items="${pageable.content}">
 	<form action="/review/update/${itemreview.id}" enctype="multipart/form-data" method="post">
@@ -53,7 +54,8 @@
 		value="${_csrf.token}">
 	<div id="updateReview" style="margin-left: 20px;"></div>	
 	</form>
-	<div>
+	<div style="margin-top: 20px;">
+	
 	<input type="hidden" id="ItemReveiwId" value="${itemreview.id}">
 	<input type="hidden" id="ItemReveiwImageUrl" value="${itemreview.imageUrl}">
 	<h2 style="margin-left: 150px;">작성자 : ${itemreview.user.username}</h2>
@@ -62,6 +64,7 @@
 		<c:if test="${itemreview.user.id == principal.user.id}">
 		<button type="button" class="btn text-white" onclick="updateBtnReview('${itemreview.content},${itemreview.originImageTitle}');" style="background-color: #453675; margin-left: 150px;">수정</button>
 		<button type="button" class="btn text-white" onclick="ItemReviewDelete(${itemreview.id}, ${itemreview.item.id}, ${principal.user.id});" style="background-color: #453675; margin-left: 20px;">삭제</button>
+		<hr/>
 		</c:if>
 	</div>
 
