@@ -25,7 +25,7 @@ var salesWeek = {
 	
 	setDataToInput: function (){
 		// 오늘 판매금액, 판매량
-		$("#today-income").text(resultData[6]);
+		$("#today-income").text(formatOneIncome(resultData[6]));
 		$("#today-count").text(countList[6]);
 	
 		// 금주 판매금액, 판매량
@@ -33,6 +33,8 @@ var salesWeek = {
 		$.each(salesWeek.dataSets, function(index, count) {
 			weekIncome += count;
 		});
+		weekIncome = formatOneIncome(weekIncome);
+		
 		var weekCount = 0;
 		$.each(countSets, function(index, income){
 			weekCount += income;
@@ -43,6 +45,10 @@ var salesWeek = {
 	}, 
 
 };
+
+function formatOneIncome(income){
+	return new Intl.NumberFormat('ko-KR').format(income);
+}
 
 // 화면에 뿌려줄 날짜 
 var dateRange = [];
@@ -102,6 +108,8 @@ var salesItem = {
 	}, 
 	
 	setDataToInput: function (){
+		var formatIncome = numberFormatter(salesItem.dataSets);
+		
 		$.each(salesItem.labels, function(index, name){
 			$(".chart-top5-item").append(
 				`<tr class="chart-top5-item-row-${index + 1}">
@@ -110,7 +118,7 @@ var salesItem = {
 			      </tr>`
 			);
 		});
-		$.each(salesItem.dataSets, function(index, income){
+		$.each(formatIncome, function(index, income){
 			$(`.chart-top5-item-row-${index + 1}`).append(
 				`<td>${income}</td>`
 			);
@@ -152,6 +160,8 @@ var top5User = {
 	}, 
 	
 	setDataToInput: function (){
+		var formatIncome = numberFormatter(top5UserIncomeData);
+		
 		$.each(top5UserLabels, function(index, name){
 			$(".chart-top5-user").append(
 				`<tr class="chart-top5-user-row-${index + 1}">
@@ -160,7 +170,7 @@ var top5User = {
 			      </tr>`
 			);
 		});
-		$.each(top5UserIncomeData, function(index, income){
+		$.each(formatIncome, function(index, income){
 			$(`.chart-top5-user-row-${index + 1}`).append(
 				`<td>${income}</td>`
 			);
@@ -199,6 +209,7 @@ var category = {
 			});
 			category.checkCategory();
 			category.setDataToInput();
+
 			randerBar('chart-8', categoryLabels, '판매 금액', incomeData, categoryBackColor, categoryBorderColor);
 			randerBar('chart-9', categoryLabels, '판매 수량', countData, categoryBackColor, categoryBorderColor);
 		}).fail(function() {
@@ -207,6 +218,7 @@ var category = {
 	}, 
 	
 	setDataToInput: function (){
+		var formatIncome = numberFormatter(incomeData);
 		$.each(categoryLabels, function(index, name){
 			$(".chart-category").append(
 				`<tr class="chart-category-row-${index + 1}">
@@ -215,7 +227,7 @@ var category = {
 			      </tr>`
 			);
 		});
-		$.each(incomeData, function(index, income){
+		$.each(formatIncome, function(index, income){
 			$(`.chart-category-row-${index + 1}`).append(
 				`<td>${income}</td>`
 			);
@@ -250,6 +262,15 @@ var category = {
 		});
 	}
 };
+
+function numberFormatter(priceList){
+	var formatPriceList = [];
+	$.each(priceList, function(index, price){
+		formatPriceList.push(new Intl.NumberFormat('ko-KR').format(price));
+		console.log(formatPriceList[index]);
+	});
+	return formatPriceList;
+}
 
 var weekBackColor = [
 	'rgba(255, 99, 132, 0.7)', 

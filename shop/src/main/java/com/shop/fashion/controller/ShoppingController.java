@@ -220,6 +220,8 @@ public class ShoppingController {
 				kakaopayDto.getTid(), userDetail.getUser().getId());
 		model.addAttribute("pageTokenInfo", dto);
 	
+		String formatPrice = shoppingService.formatPrice(dto.getAmount().getTotal());
+		model.addAttribute("formatPrice", formatPrice);
 		
 		List<Basket> baskets = basketService.getBasket(userDetail.getUser().getId());
 

@@ -1,6 +1,7 @@
 package com.shop.fashion.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,16 +14,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.shop.fashion.dto.FormatPriceDto;
 import com.shop.fashion.model.CommunityBoard;
 import com.shop.fashion.model.Item;
 import com.shop.fashion.model.User;
 import com.shop.fashion.service.AdminService;
+import com.shop.fashion.service.ShoppingService;
 
 @Controller
 public class AdminController {
 
 	@Autowired
 	private AdminService adminService;
+	@Autowired
+	private ShoppingService shoppingService;
 
 	// 회원정보 조회 / 검색
 	@GetMapping("/admin/user/select")
@@ -72,6 +77,9 @@ public class AdminController {
 			model.addAttribute("keyword", keyword);
 			break;
 		}
+		
+		List<Item> itemList = itemPage.toList();
+		List<FormatPriceDto> formatPriceList = shoppingService.formatPrice(itemList);
 
 		int nowPage = itemPage.getPageable().getPageNumber() + 1;
 		int startPage = Math.max(nowPage - 2, 1);
@@ -84,6 +92,7 @@ public class AdminController {
 		}
 
 		model.addAttribute("itemPage", itemPage);
+		model.addAttribute("formatPriceList", formatPriceList);
 		model.addAttribute("pageNumbers", pageNumbers);
 
 		return "admin/setting_shopping";

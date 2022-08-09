@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -15,6 +16,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.shop.fashion.dto.FormatPriceDto;
 import com.shop.fashion.dto.ItemReviewDto;
 import com.shop.fashion.model.Basket;
 import com.shop.fashion.model.Item;
@@ -199,6 +201,23 @@ public class ShoppingService {
 		}
 		
 		return soldoutList;
+	}
+	
+	// 가격 포맷 
+	public String formatPrice(int price) {
+		NumberFormat formatter = NumberFormat.getNumberInstance();
+		return formatter.format(price);
+	}
+	
+	// 가격 포맷
+	public List<FormatPriceDto> formatPrice(List<Item> items){
+		List<FormatPriceDto> list = new ArrayList<FormatPriceDto>();
+		for (Item item : items) {
+			NumberFormat formatter = NumberFormat.getNumberInstance();
+			String fPrice = formatter.format(item.getPrice());
+			list.add(new FormatPriceDto(item.getId(), fPrice));
+		}
+		return list;
 	}
 
 }

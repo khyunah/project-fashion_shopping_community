@@ -18,6 +18,7 @@ import com.shop.fashion.dto.chart.ShoppingCountAndSumDto;
 import com.shop.fashion.model.User;
 import com.shop.fashion.service.AdminService;
 import com.shop.fashion.service.ChartService;
+import com.shop.fashion.service.ShoppingService;
 
 @Controller
 public class ChartController {
@@ -26,6 +27,8 @@ public class ChartController {
 	private AdminService adminService;
 	@Autowired
 	private ChartService chartService;
+	@Autowired
+	private ShoppingService shoppingService;
 
 	// 회원 그래프 페이지
 	@GetMapping("/admin/graph-join")
@@ -63,6 +66,8 @@ public class ChartController {
 		List<ShoppingCountAndSumDto> totalList = chartService.getTotalSalesList();
 		if(totalList != null) {
 			model.addAttribute("totalList", totalList.get(0));
+			String totalIncome = shoppingService.formatPrice(totalList.get(0).getTotalIncome().intValue());
+			model.addAttribute("totalIncome", totalIncome);
 		}
 
 		Date date = new Date();

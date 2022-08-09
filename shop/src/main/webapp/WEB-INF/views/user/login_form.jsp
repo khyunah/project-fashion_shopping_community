@@ -21,7 +21,7 @@
 
 	<div class="user-input-container">
 		<label class="user-input-label"> <span class="label-txt">ENTER
-				YOUR PASSWORD</span> <input id="password" type="password" class="input" value="!asd123456789"
+				YOUR PASSWORD</span> <input id="password" type="password" class="input" value="aa11!!aaaaa"
 			name="password" required>
 			<div class="line-box">
 				<div class="line"></div>

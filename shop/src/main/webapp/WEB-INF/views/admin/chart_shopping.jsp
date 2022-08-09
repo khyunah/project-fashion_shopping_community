@@ -159,7 +159,7 @@ td {
 							</tr>
 							<tr>
 								<td>총</td>
-								<td id="total-income">${totalList.totalIncome}</td>
+								<td id="total-income">${totalIncome}</td>
 								<td id="total-count">${totalList.totalCount}</td>
 							</tr>
 						</tbody>

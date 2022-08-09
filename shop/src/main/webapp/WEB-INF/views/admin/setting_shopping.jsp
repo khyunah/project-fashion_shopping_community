@@ -91,6 +91,13 @@
 		</thead>
 		<tbody>
 			<c:forEach var="item" items="${itemPage.content}">
+			
+				<c:forEach var="formatprice" items="${formatPriceList}">
+					<c:if test="${item.id == formatprice.id}">
+						<c:set var="price" value="${formatprice.price}"></c:set>
+					</c:if>
+				</c:forEach>
+				
 				<tr onclick="clickList(this)">
 					<td>${item.id}</td>
 					<td class="admin-td-img"><div class="admin-img-box">
@@ -98,7 +105,7 @@
 								style="width: 100%;">
 						</div></td>
 					<td>${item.name}</td>
-					<td>${item.price}</td>
+					<td>${price} 원</td>
 					<td>${item.category}</td>
 					<td>${item.size}</td>
 					<td>${item.gender}</td>
