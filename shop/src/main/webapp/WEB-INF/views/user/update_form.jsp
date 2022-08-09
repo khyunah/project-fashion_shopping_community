@@ -138,6 +138,7 @@
 		$(this).siblings(".custom-file-label").html(fileName);
 	});
 </script>
+<script> history.scrollRestoration = "manual" </script>
 <script src="/js/user.js"></script>
 </body>
 </html>

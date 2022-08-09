@@ -67,7 +67,7 @@
 						<div class="line"></div>
 					</div>
 				</label> <label class="user-input-label"> <span class="label-txt">ENTER YOUR EMAIL</span> 
-					<input type="email" class="input" name="email" required>
+					<input type="email" class="input" id="email" name="email" required>
 					<div class="line-box">
 						<div class="line"></div>
 					</div>
@@ -156,13 +156,18 @@
 	});
 
 	function checkPassword() {
-		console.log("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
-		if ($("#checkIdResult").text() == "사용 불가능"
-				|| $("#checkIdResult").text() == "") {
+		var email = $("#email").val();
+		var exptext = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+
+		if (exptext.test(email) == false) {
+			alert("이메일형식이 올바르지 않습니다.");
+			$("#email").focus();
+			return false;
+		}
+		if ($("#checkIdResult").text() == "사용 불가능" || $("#checkIdResult").text() == "") {
 			alert("아이디 중복확인을 해주세요.");
 			return false;
-		} else if ($("#checkPasswordResult").text() == "불일치"
-				|| $("#checkPasswordResult") == "") {
+		} else if ($("#checkPasswordResult").text() == "불일치" || $("#checkPasswordResult") == "") {
 			alert("비밀번호가 일치하지 않습니다.");
 			return false;
 		} else {
@@ -173,7 +178,9 @@
 	function handleOnInput(e)  {
 		e.value = e.value.replace(/[^A-Za-z0-9-_.]/ig, '')
 	}
+	
 </script>
+<script> history.scrollRestoration = "manual" </script>
 </body>
 
 </html>

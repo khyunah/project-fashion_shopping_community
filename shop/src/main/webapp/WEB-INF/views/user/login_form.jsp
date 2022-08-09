@@ -41,6 +41,6 @@
 	</div>
 
 </form>
-
+<script> history.scrollRestoration = "manual" </script>
 </body>
 </html>
