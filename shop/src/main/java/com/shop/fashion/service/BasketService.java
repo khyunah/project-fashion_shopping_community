@@ -1,5 +1,6 @@
 package com.shop.fashion.service;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.shop.fashion.dto.BasketSumDto;
+import com.shop.fashion.dto.FormatPriceDto;
 import com.shop.fashion.model.Basket;
 import com.shop.fashion.model.Item;
 import com.shop.fashion.model.User;
@@ -78,12 +80,24 @@ public class BasketService {
 
 		if (Baskets != null) {
 			for (Basket basket : Baskets) {
-				if(basket.getItem().getAmount() - basket.getCount() <= 0 ) {
+				if(basket.getItem().getAmount() - basket.getCount() < 0 ) {
 					basketRepository.deleteById(basket.getId());
 				}
 			}
 		}
 		
+	}
+	
+	// 가격 포맷
+	public List<FormatPriceDto> formatPrice(List<Basket> Baskets){
+		List<FormatPriceDto> list = new ArrayList<FormatPriceDto>();
+		for (Basket basket : Baskets) {
+			int price = basket.getItem().getPrice() * basket.getCount();
+			NumberFormat formatter = NumberFormat.getNumberInstance();
+			String fPrice = formatter.format(price);
+			list.add(new FormatPriceDto(basket.getId(), fPrice));
+		}
+		return list;
 	}
 
 }

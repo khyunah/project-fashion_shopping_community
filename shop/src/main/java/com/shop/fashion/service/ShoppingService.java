@@ -179,7 +179,7 @@ public class ShoppingService {
 	
 	// 장바구니의 수량를 아이템의 현 재고와 비교하기
 	@Transactional
-	public List<Item> checkAmountList(List<Integer> itemId, int userId){
+	public List<Basket> checkAmountList(List<Integer> itemId, int userId){
 		// item 재고
 		List<Item> list = new ArrayList<>();
 		for (Integer id : itemId) {
@@ -189,11 +189,11 @@ public class ShoppingService {
 		List<Basket> basket = basketRepository.mFindByItemCount(userId);
 		
 		// 품절이거나 수량 부족일때 넣어줄 리스트 
-		List<Item> soldoutList = new ArrayList<>();
+		List<Basket> soldoutList = new ArrayList<>();
 		for (int i = 0; i < basket.size(); i++) {
 			for (int j = 0; j < list.size(); j++) {
 				if(basket.get(i).getCount() > list.get(j).getAmount()) {
-					soldoutList.add(list.get(j));
+					soldoutList.add(basket.get(i));
 				}
 			}
 		}

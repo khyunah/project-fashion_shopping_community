@@ -203,6 +203,10 @@
 	line-height: 1.6;
 }
 
+.commu-detail-reply-content::-webkit-scrollbar {
+	display: none;
+}
+
 .commu-reply-icon {
 	margin-right: 12px;
 }

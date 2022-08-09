@@ -1,5 +1,6 @@
 package com.shop.fashion.controller;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.shop.fashion.auth.PrincipalUserDetail;
+import com.shop.fashion.dto.FormatPriceDto;
 import com.shop.fashion.dto.ItemReviewDto;
 import com.shop.fashion.dto.KakaoPayApprovalDto;
 import com.shop.fashion.dto.KakaoPayDto;
@@ -42,19 +44,14 @@ public class ShoppingController {
 	HttpSession httpSession;
 	@Autowired
 	BasketService basketService;
-	
 	@Autowired
 	UserService userService;
-
 	@Autowired
 	ShoppingService shoppingService;
-
 	@Autowired
 	KakaoPayService kakaoPayService;
-	
 	@Autowired
 	ItemReviewRepository itemReviewRepository;
-
 	@Autowired
 	PurchaseHistoryService purchaseHistoryService;
 	
@@ -135,14 +132,21 @@ public class ShoppingController {
 			}
 			
 			// 품절된 아이템 리스트
-			List<Item> soldoutList = shoppingService.checkAmountList(itemIdList, id);
+			List<Basket> soldoutList = shoppingService.checkAmountList(itemIdList, id);
 			model.addAttribute("soldoutList", soldoutList);
 		}
 		
+		List<FormatPriceDto> formatPriceList = basketService.formatPrice(Baskets);
+		model.addAttribute("formatPriceList", formatPriceList);
+		
 		int sum = basketService.sum(id);
+		
+		NumberFormat formatter = NumberFormat.getNumberInstance();
+		String totalPrice = formatter.format(sum);
 
 		model.addAttribute("Baskets", Baskets);
 		model.addAttribute("sumPrince", sum);
+		model.addAttribute("totalPrice", totalPrice);
 
 		if (sum != 0) {
 			model.addAttribute("hasItem", true);
@@ -250,22 +254,15 @@ public class ShoppingController {
 
 	@PostMapping("/review/upload/{id}")
 	public String ReviewUpload(ItemReviewDto fileDto, @AuthenticationPrincipal PrincipalUserDetail detail, @PathVariable int id) {
-
 		shoppingService.writeReview(fileDto, detail.getUser(), id);
-
 		return "redirect:/shop/itemdetail_form/"+id;
 	}
 	
 	@PostMapping("/review/update/{id}")
 	public String ReviewUpdate(@PathVariable int id, ItemReviewDto fileDto) {
-
 		shoppingService.itemReviewUpdate(id, fileDto);
-		
 		ItemReview itemReview = itemReviewRepository.ItemReviewFindById(id).get(0);
-		
 		int itemId = itemReview.getItem().getId();
-		
-
 		return "redirect:/shop/itemdetail_form/"+itemId;
 	}
 
@@ -273,7 +270,6 @@ public class ShoppingController {
 	public String purchaseHistory(@AuthenticationPrincipal PrincipalUserDetail userDetail, Model model) {
 		model.addAttribute("purchaseHistoryGroupList", purchaseHistoryService.getPurchaseHistoryGroupList(userDetail.getUser().getId()));
 		model.addAttribute("purchaseHistoryList", purchaseHistoryService.getPurchaseHistoryList(userDetail.getUser().getId()));
-//		model.addAttribute("basketId", purchaseHistoryService.findByUserId(userDetail.getUser().getId()));
 		return "shopping/purchase_history";
 	}
 	
