@@ -3,11 +3,14 @@ package com.shop.fashion.model;
 import java.sql.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.ColumnDefault;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,11 +33,13 @@ public class Purchasehistory {
 	private Date createdAt;
 	
 	@ManyToOne
+	@JoinColumn(name = "itemId")
+	private Item item;
+	@ColumnDefault("1")
+	private int count;
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "userId")
 	private User user;
 	private String address;
-	@ManyToOne
-	@JoinColumn(name = "itemId")
-	private Item item;
-	
+
 }

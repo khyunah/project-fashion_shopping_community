@@ -15,20 +15,60 @@
      </tr>
    <c:forEach var="Basket" items="${Baskets}"> 
    <input type="hidden" value="${Basket.id}" id="id">
-  	 <tr id="tr">
-      <td><img src="${Basket.item.imageurl}" class="img-fluid" alt="..." style="border-radius: 15px; margin-bottom: 10px;"></td>
-      <td style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; color: #453675;">${Basket.item.name}</td>
-      <td style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; color: #453675;">${Basket.item.size}</td>
-      <td style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; color: #453675;">${Basket.count}</td>
-      <td style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; color: #453675;">$${Basket.item.price}</td>
-      <td><button class="btn" id="btn-basket-delete" type="submit" onclick="basketItemDelete(${Basket.id},${principal.user.id})" style="border-radius: 15px;font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white; margin-right: 20px;">취소</button></td>
-     </tr>
+   
+   <!-- 솔드아웃된 id와 바스켓 아이디 일치하는지 확인 -->
+   <c:set var="soldout" value="false"></c:set>
+	<c:forEach var="soldoutItem" items="${soldoutList}">
+		<c:if test="${Basket.item.id == soldoutItem.id}">
+			<c:set var="soldout" value="true"></c:set>
+			<input type="hidden" value="true" id="soldout">
+			<input type="hidden" value="${soldoutItem.amount}" id="itemAmount">
+		</c:if>
+	</c:forEach>
+	
+		<c:choose>
+		
+			<c:when test="${soldout == true}">
+				<tr id="tr" style="background-color: #dcdcdc;">
+				<c:set var="payOk" value="false"></c:set>
+			      <td><img src="${Basket.item.imageurl}" class="img-fluid" alt="..." style="border-radius: 15px; margin: 10px;"></td>
+			      <td style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; color: #453675;">${Basket.item.name}</td>
+			      <td style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; color: #453675;">${Basket.item.size}</td>
+			      <td style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; color: #453675;">${Basket.count}</td>
+			      <td style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; color: #453675;">$${Basket.item.price}</td>
+			      <td><button class="btn" id="btn-basket-delete" type="submit" onclick="basketItemDelete(${Basket.id},${principal.user.id})" style="border-radius: 15px;font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: red; color: white; margin-right: 20px;">취소</button></td>
+			    </tr>
+			    
+			</c:when>
+			
+			<c:otherwise>
+				<tr id="tr">
+			      <td><img src="${Basket.item.imageurl}" class="img-fluid" alt="..." style="border-radius: 15px; margin: 10px;"></td>
+			      <td style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; color: #453675;">${Basket.item.name}</td>
+			      <td style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; color: #453675;">${Basket.item.size}</td>
+			      <td style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; color: #453675;">${Basket.count}</td>
+			      <td style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; color: #453675;">$${Basket.item.price}</td>
+			      <td><button class="btn" id="btn-basket-delete" type="submit" onclick="basketItemDelete(${Basket.id},${principal.user.id})" style="border-radius: 15px;font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white; margin-right: 20px;">취소</button></td>
+			    </tr>
+			</c:otherwise>
+			
+		</c:choose>
+	
+
    </c:forEach>
   </table>
   </div>
   
  <div class="right">
-	<button class="btn btn-dark" onclick="location.href='/security/kakaoPay/callback/${principal.user.id}'" type="submit" style="width: 250px; border-radius: 20px; font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white; margin-right: 20px;"> 결제<div id='sum'>$${sumPrince}</div></button>
+ 	<c:choose>
+ 		<c:when test="${payOk == false}">
+ 			<button disabled="disabled" class="btn btn-dark" onclick="location.href='/security/kakaoPay/callback/${principal.user.id}'" type="submit" style="width: 250px; border-radius: 20px; font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white; margin-right: 20px;"> 결제<div id='sum'>${sumPrince}</div></button>
+ 		</c:when>
+ 		<c:otherwise>
+ 			<button class="btn btn-dark" onclick="location.href='/security/kakaoPay/callback/${principal.user.id}'" type="submit" style="width: 250px; border-radius: 20px; font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white; margin-right: 20px;"> 결제<div id='sum'>$${sumPrince}</div></button>
+ 		</c:otherwise>
+ 	</c:choose>
+	
 	 <c:forEach var="Basket" items="${Baskets}"> 
 		 <hr/>
 		 <div style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; color: #453675;">name: ${Basket.item.name}</div>

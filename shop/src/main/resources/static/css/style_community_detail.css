@@ -1,5 +1,5 @@
 .commu-detail-btn-box {
-	margin-left: 13%;
+	margin-left: 15%;
 }
 
 .commu-detail-center-container {
@@ -10,7 +10,7 @@
 }
 
 .commu-detail-container {
-	width: 80%;
+	width: 70%;
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
@@ -18,6 +18,8 @@
 	position: absolute;
 	padding-left: 5%;
 	padding-right: 5%;
+	padding-top:5%;
+	padding-bottom: 5%;
 	box-shadow: 4px 3px 5px 0px #453675;
 }
 
@@ -81,11 +83,6 @@
 	margin-top: 20px;
 }
 
-.commu-detail-span-goodlook-count {
-	font-size: 15px;
-	margin-left: 7px;
-}
-
 .commu-detail-span-content {
 	font-size: 14px;
 }
@@ -127,7 +124,9 @@
 
 .commu-detail-reply-first-line-box {
 	display: flex;
-	justify-content: end;
+	justify-content: flex-end;
+	margin-bottom: 10px;
+	margin-top: 25px;
 }
 
 .commu-detail-btn-up:active {
@@ -136,13 +135,18 @@
 }
 
 .commu-detail-reply-container {
-	width: 93%;
+	width: 100%;
 }
 
 .hr-goodlook-line-detail {
 	width: 100%;
 	margin-left: 0;
 	border-top: 1px solid #dcdcdc;
+}
+
+.commu-detail-reply-btn-box {
+	flex-grow: 1;
+	width: 100%;
 }
 
 .commu-detail-reply-firstline-container {
@@ -158,6 +162,7 @@
 	font-size: 14px;
 	font-weight: 500;
 	margin: 0px;
+	align-self: center;
 }
 
 .commu-detail-btn-reply {
@@ -182,16 +187,65 @@
 	background-color: rgb(255, 255, 255);
 }
 
+.commu-reply-profile-div {
+	display: flex;
+}
+
 .commu-detail-reply-content {
 	font-size: 14px;
-	width: 95%;
+	width: 85%;
 	resize: none;
 	border: none;
 	outline: none;
 	overflow-y: visible;
-	padding: 1.1em;
+	padding-left: 55px;
 	padding-bottom: 0.2em;
 	line-height: 1.6;
+}
+
+.commu-reply-icon {
+	margin-right: 12px;
+}
+
+.reply-count-span {
+	font-family: "Gowun Batang", serif;
+}
+
+.likeCount-text {
+	font-family: "Gowun Batang", serif;
+	font-weight: bold;
+}
+
+.commu-reply-box {
+	display: flex;
+	width: 100%;
+}
+
+.commu-reply-circle-img-box {
+	border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    display: inline;
+    margin-right: 15px;
+    display: flex;
+    border: 0.5px solid #aaaaaa;
+}
+
+.commu-reply-circle-img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.like-count-button,
+.like-count-button:hover,
+.like-count-button:active,
+.like-count-button:focus {
+	border: none !important;
+	box-shadow: none !important;
+	outline: none !important;
+	text-decoration: none !important;
 }
 
 @media ( max-width : 900px) {

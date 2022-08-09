@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,10 +15,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.shop.fashion.dto.CommunityDto;
 import com.shop.fashion.dto.ItemReviewDto;
 import com.shop.fashion.model.Basket;
-import com.shop.fashion.model.CommunityBoard;
 import com.shop.fashion.model.Item;
 import com.shop.fashion.model.ItemReview;
 import com.shop.fashion.model.User;
@@ -27,7 +26,6 @@ import com.shop.fashion.repository.ShoppingRepository;
 
 @Service
 public class ShoppingService {
-
 	
 	@Value("${file.path}")
 	private String uploadFolder;
@@ -172,4 +170,35 @@ public class ShoppingService {
 	public void UpdateItemAmount(int amount, int id) {
 		shoppingRepository.updateStock(amount, id);
 	}
+
+	// 재고확인 하기 
+	@Transactional
+	public int checkAmount(int ItemId) {
+		return shoppingRepository.mFindByItemAmount(ItemId);
+	}
+	
+	// 장바구니의 수량를 아이템의 현 재고와 비교하기
+	@Transactional
+	public List<Item> checkAmountList(List<Integer> itemId, int userId){
+		// item 재고
+		List<Item> list = new ArrayList<>();
+		for (Integer id : itemId) {
+			list.add(shoppingRepository.mFindByAmount(id));
+		}
+		// 장바구니 아이템ID와 수량
+		List<Basket> basket = basketRepository.mFindByItemCount(userId);
+		
+		// 품절이거나 수량 부족일때 넣어줄 리스트 
+		List<Item> soldoutList = new ArrayList<>();
+		for (int i = 0; i < basket.size(); i++) {
+			for (int j = 0; j < list.size(); j++) {
+				if(basket.get(i).getCount() > list.get(j).getAmount()) {
+					soldoutList.add(list.get(j));
+				}
+			}
+		}
+		
+		return soldoutList;
+	}
+
 }

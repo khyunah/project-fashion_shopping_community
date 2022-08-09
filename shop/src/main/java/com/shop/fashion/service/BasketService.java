@@ -1,5 +1,6 @@
 package com.shop.fashion.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class BasketService {
 
 	@Autowired
 	private BasketSumRepository basketSumRepository;
+
+	@Autowired
+	private ShoppingService shoppingService;
 
 	@Transactional
 	public void putCart(Item Itemid, User userId) {
@@ -61,11 +65,25 @@ public class BasketService {
 	public void deleteId(int id) {
 		basketRepository.deleteById(id);
 	}
-	
+
 	@Transactional
-	public List<Basket> getBasket(int id){
+	public List<Basket> getBasket(int id) {
 		return basketRepository.findByUserId(id);
 	}
 
+	// 품절로 인한 장바구니 삭제 처리
+	@Transactional
+	public void soldoutDeleteBasket(int userId) {
+		List<Basket> Baskets = shoppingService.getOnUserCart(userId);
+
+		if (Baskets != null) {
+			for (Basket basket : Baskets) {
+				if(basket.getItem().getAmount() - basket.getCount() <= 0 ) {
+					basketRepository.deleteById(basket.getId());
+				}
+			}
+		}
+		
+	}
 
 }

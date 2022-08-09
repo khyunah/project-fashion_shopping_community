@@ -64,7 +64,7 @@
 			<c:forEach var="communityBoard" items="${communityBoardPage.content}">
 				<tr onclick="clickList(this)">
 					<td>${communityBoard.id}</td>
-					<td>${communityBoard.user.username}</td>
+					<td class="admin-commu-td">${communityBoard.user.username}</td>
 					<td class="admin-td-img">
 						<div class="admin-img-box">
 							<img class="card-img-top admin-list-img"

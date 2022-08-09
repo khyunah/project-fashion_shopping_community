@@ -69,3 +69,31 @@ function basketItemDelete(basket) {
 		alert("취소 실패");
 	});
 }
+
+$(document).ready(function(){
+	
+	// 품절 상품 정리 안내
+	if($('#soldout').val()){
+		if(confirm('품절된 상품이 있습니다. 정리하시겠습니까?')){
+			soldoutDelete();
+		}
+	}
+});
+
+function soldoutDelete() {
+	let token = $("meta[name='_csrf']").attr("content");
+	let header = $("meta[name='_csrf_header']").attr("content");
+	
+	$.ajax({
+		beforeSend : function(xhr) {
+				xhr.setRequestHeader(header, token)				
+		},
+		type: "DELETE",
+		url: `/basket-soldout/delete`,
+		dataType: "json"
+	}).done(function(res) {
+		location.href = `/shop/basket_form/${res.data}`
+	}).fail(function() {
+		alert("취소 실패");
+	});
+}
