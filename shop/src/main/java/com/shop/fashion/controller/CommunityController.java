@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shop.fashion.auth.PrincipalUserDetail;
 import com.shop.fashion.dto.CommunityCountDto;
 import com.shop.fashion.dto.CommunityDto;
@@ -113,6 +115,15 @@ public class CommunityController {
 
 		CommunityLike checkLike = communityService.isLike(boardId, userDetail.getUser().getId());
 		model.addAttribute("like", checkLike);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String replyJsonList = null;
+		try {
+			replyJsonList = mapper.writeValueAsString(board.getReplies());
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("replyJsonList", replyJsonList);
 
 		return "community/community_detail";
 	}

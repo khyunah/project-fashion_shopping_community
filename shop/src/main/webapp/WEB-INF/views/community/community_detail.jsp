@@ -81,6 +81,8 @@
 			<div style="height: 20px"></div>
 
 			<div class="commu-detail-reply-container">
+			
+			<input type="hidden" value="${communityBoard.replies}" id="replyList">
 				<c:forEach var="reply" items="${communityBoard.replies}">
 					
 					<div id="commu-reply-${reply.id}">
@@ -121,19 +123,13 @@
 </script>
 <script>
 	$(document).ready(function () {
-		if($("#commu-detail-reply-origin-content").val() != null){
-			fixTextAreaHeight();
-		}
+		let replyList = JSON.parse(`${replyJsonList}`);
+		console.log(replyList);
+		
+		$.each(replyList, function(index, reply){
+			fixTextAreaHeight(reply.id);
+		});
 	});
-	
-	// 댓글 불러온것 뿌릴때 태그의 높이 지정해줌
-	function fixTextAreaHeight() {
-	  var textEle = $(".commu-detail-reply-content");
-	  textEle[0].style.height = "auto";
-	  var textEleHeight = textEle.prop("scrollHeight");
-	  textEle.css("height", textEleHeight);
-	}
-
 </script>
 </body>
 </html>

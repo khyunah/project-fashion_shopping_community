@@ -1,3 +1,12 @@
+$(document).ready(function () {
+	let replyList = JSON.parse(`${replyJsonList}`);
+	console.log(replyList);
+	
+	$.each(replyList, function(index, reply){
+		fixTextAreaHeight(reply.id);
+	});
+});
+
 let commu = {
 
 	init: function() {
@@ -249,7 +258,16 @@ function addReply(reply, userId, communityBoardId) {
 	`;
 
 	$(".commu-detail-reply-container").prepend(childReply);
+	fixTextAreaHeight(reply.id);
 	$(`#commu-input-reply-${communityBoardId}`).val("");
+}
+
+// 댓글 불러온것 뿌릴때 태그의 높이 지정해줌
+function fixTextAreaHeight(replyId) {
+	var textEle = $(`#commu-detail-reply-content-` + replyId);
+	textEle.css('height', "auto");
+	var textEleHeight = textEle.prop("scrollHeight");
+	textEle.css("height", textEleHeight);
 }
 
 // 소셜 메인에서 댓글 추가 
