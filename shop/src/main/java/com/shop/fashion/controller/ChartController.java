@@ -64,7 +64,8 @@ public class ChartController {
 	public String salesChartPage(Model model) {
 		// 총 판매 금액, 판매량
 		List<ShoppingCountAndSumDto> totalList = chartService.getTotalSalesList();
-		if(totalList != null) {
+		System.out.println(totalList.size());
+		if(totalList.get(0).getTotalCount() != null) {
 			model.addAttribute("totalList", totalList.get(0));
 			String totalIncome = shoppingService.formatPrice(totalList.get(0).getTotalIncome().intValue());
 			model.addAttribute("totalIncome", totalIncome);

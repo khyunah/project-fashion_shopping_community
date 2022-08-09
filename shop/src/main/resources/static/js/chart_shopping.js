@@ -9,7 +9,8 @@ var salesWeek = {
 			contentType: 'application/json',
 			dataType: 'json'
 		}).done(function(response) {
-			$.each(response, function(index, obj) {
+			if(response != null){
+				$.each(response, function(index, obj) {
 				salesWeek.labels.push(obj.salesDate);
 				salesWeek.dataSets.push(obj.totalIncome);
 				countSets.push(obj.totalCount);
@@ -18,6 +19,8 @@ var salesWeek = {
 			salesWeek.setDataToInput();
 			renderLine('myChart', dateRange, '판매 금액', resultData, 'rgba(255, 0, 0, 0.65)');
 			randerBar('second-chart', dateRange, '판매 수량', countList, weekBackColor, weekBorderColor);
+			}
+			
 		}).fail(function() {
 			console.log("실패");
 		});
@@ -94,7 +97,8 @@ var salesItem = {
 			contentType: 'application/json',
 			dataType: 'json'
 		}).done(function(response) {
-			$.each(response, function(index, obj) {
+			if(response != null){
+				$.each(response, function(index, obj) {
 				salesItem.labels.push(obj.name);
 				salesItem.dataSets.push(obj.totalIncome);
 				countSets.push(obj.totalCount);
@@ -102,6 +106,8 @@ var salesItem = {
 			salesItem.setDataToInput();
 			randerBar('chart-4', salesItem.labels, '판매 금액', salesItem.dataSets, topBackColor, topBorderColor);
 			randerBar('chart-5', salesItem.labels, '판매 수량', countSets, topBackColor, topBorderColor);
+			}
+			
 		}).fail(function() {
 			console.log("실패");
 		});
@@ -143,7 +149,8 @@ var top5User = {
 			contentType: 'application/json',
 			dataType: 'json'
 		}).done(function(response) {
-			$.each(response, function(index, obj) {
+			if(response != null){
+				$.each(response, function(index, obj) {
 				console.log('유저 네임 : ' + obj.totalIncome);
 				top5UserLabels.push(obj.name);
 				top5UserIncomeData.push(obj.totalIncome);
@@ -154,6 +161,8 @@ var top5User = {
 			
 			randerBar('chart-6', top5UserLabels, '구매 금액', top5UserIncomeData, top5UserBackColor, top5UserBorderColor);
 			randerBar('chart-7', top5UserLabels, '구매 수량', top5UsercountData, top5UserBackColor, top5UserBorderColor);
+			}
+			
 		}).fail(function() {
 			console.log("실패");
 		});
@@ -202,7 +211,8 @@ var category = {
 			contentType: 'application/json',
 			dataType: 'json'
 		}).done(function(response) {
-			$.each(response, function(index, obj) {
+			if(response != null){
+				$.each(response, function(index, obj) {
 				categoryLabels.push(obj.name);
 				incomeData.push(obj.totalIncome);
 				countData.push(obj.totalCount);
@@ -212,6 +222,8 @@ var category = {
 
 			randerBar('chart-8', categoryLabels, '판매 금액', incomeData, categoryBackColor, categoryBorderColor);
 			randerBar('chart-9', categoryLabels, '판매 수량', countData, categoryBackColor, categoryBorderColor);
+			}
+			
 		}).fail(function() {
 			console.log("실패");
 		});

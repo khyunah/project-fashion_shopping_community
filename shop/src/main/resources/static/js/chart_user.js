@@ -30,7 +30,6 @@ var chartArea = {
 					yAxes: [{
 						ticks: {
 							min: 0,
-							stepSize: 1,
 							fontSize: 13
 						}
 					}],
@@ -152,7 +151,6 @@ var oauthTodayArea = {
 						ticks: {
 							beginAtZero: true,
 							min: 0,
-							stepSize: 1,
 						}
 					}]
 				},
