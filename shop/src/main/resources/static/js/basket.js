@@ -73,7 +73,7 @@ function basketItemDelete(basket) {
 $(document).ready(function(){
 	
 	// 품절 상품 정리 안내
-	if($('#soldout').val()){
+	if($('#soldoutInput').val()){
 		if(confirm('품절된 상품이 있습니다. 정리하시겠습니까?')){
 			soldoutDelete();
 		}

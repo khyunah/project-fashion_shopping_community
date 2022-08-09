@@ -21,7 +21,7 @@
 	<c:forEach var="soldoutItem" items="${soldoutList}">
 		<c:if test="${Basket.item.id == soldoutItem.id}">
 			<c:set var="soldout" value="true"></c:set>
-			<input type="hidden" value="true" id="soldout">
+			<input type="hidden" value="true" id="soldoutInput">
 			<input type="hidden" value="${soldoutItem.amount}" id="itemAmount">
 		</c:if>
 	</c:forEach>
