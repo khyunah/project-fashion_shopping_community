@@ -78,12 +78,16 @@ public class ShoppingController {
 		for (int i = startPage; i <= endPage; i++) {
 			pageNumbers.add(i);
 		}
+		
+		List<Item> itemList = pageItems.toList();
+		List<FormatPriceDto> formatPriceList = shoppingService.formatPrice(itemList);
 
 		model.addAttribute("pageable", pageItems);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("pageNumbers", pageNumbers);
-		// model.addAttribute("pageItems", ca);
+		model.addAttribute("formatPriceList", formatPriceList);
+		
 		return "shopping/mans_form";
 	}
 
@@ -108,11 +112,16 @@ public class ShoppingController {
 		for (int i = startPage; i <= endPage; i++) {
 			pageNumbers.add(i);
 		}
+		
+		List<Item> itemList = pageItems.toList();
+		List<FormatPriceDto> formatPriceList = shoppingService.formatPrice(itemList);
 
 		model.addAttribute("pageable", pageItems);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("pageNumbers", pageNumbers);
+		model.addAttribute("formatPriceList", formatPriceList);
+		
 		return "shopping/womans_form";
 	}
 
@@ -164,9 +173,11 @@ public class ShoppingController {
 	public String itemDetailform(@PathVariable int id, @AuthenticationPrincipal PrincipalUserDetail userDetail, Model model,
 			@PageableDefault(size = 4, sort = "id", direction = Direction.DESC) Pageable pageable) {
 		
+		if(userDetail != null) {
+			int userId = userDetail.getUser().getId();
+			model.addAttribute("purchasehistory", purchaseHistoryService.getPurchaseItemId(userId, id));
+		}
 		
-		int userId = userDetail.getUser().getId();
-		model.addAttribute("purchasehistory", purchaseHistoryService.getPurchaseItemId(userId, id));
 		model.addAttribute("item", shoppingService.itemDetail(id));
 		
 		

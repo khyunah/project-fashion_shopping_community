@@ -77,6 +77,12 @@
 
 				<c:forEach var="item" items="${itemList}" begin="0" end="3"
 					varStatus="status">
+					
+					<c:forEach var="formatprice" items="${formatPriceList}">
+						<c:if test="${item.id == formatprice.id}">
+							<c:set var="price" value="${formatprice.price}"></c:set>
+						</c:if>
+					</c:forEach>
 
 					<div class="card cardRight">
 						<div>
@@ -85,7 +91,7 @@
 						<div class="card-body index-card-body">
 							<h4 class="card-title" style="font-size: 15px;">상품명 :
 								${status.current.name}</h4>
-							<p class="card-text">가격 : $${status.current.price}</p>
+							<p class="card-text">${price} 원</p>
 							<button style="background-color: #453675" class="cardRightBtn"
 								onclick="location.href='shop/itemdetail_form/${status.current.id}'">See
 								Detail</button>

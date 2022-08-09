@@ -147,6 +147,12 @@
 			<div id="list-container-md" class="row">
 				<%!int index = 0;%>
 				<c:forEach var="item" items="${pageable.content}">
+				
+				<c:forEach var="formatprice" items="${formatPriceList}">
+					<c:if test="${item.id == formatprice.id}">
+						<c:set var="price" value="${formatprice.price}"></c:set>
+					</c:if>
+				</c:forEach>
 					<c:choose>
 						<c:when test="#">
 
@@ -167,7 +173,7 @@
 								<div
 									style="float: left; font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">${item.name}</div>
 								<div
-									style="float: right; margin-left: 100px; font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">$${item.price}</div>
+									style="float: right; margin-left: 100px; font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold;">${price} 원</div>
 								<br />
 							</div>
 							<div class="">

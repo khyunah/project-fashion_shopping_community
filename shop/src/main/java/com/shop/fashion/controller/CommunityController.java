@@ -1,6 +1,5 @@
 package com.shop.fashion.controller;
 
-import java.math.BigInteger;
 import java.util.Collections;
 import java.util.List;
 
@@ -19,16 +18,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.shop.fashion.auth.PrincipalUserDetail;
 import com.shop.fashion.dto.CommunityCountDto;
 import com.shop.fashion.dto.CommunityDto;
+import com.shop.fashion.dto.FormatPriceDto;
 import com.shop.fashion.model.CommunityBoard;
 import com.shop.fashion.model.CommunityLike;
 import com.shop.fashion.model.Item;
 import com.shop.fashion.service.CommunityService;
+import com.shop.fashion.service.ShoppingService;
 
 @Controller
 public class CommunityController {
 
 	@Autowired
 	private CommunityService communityService;
+	@Autowired
+	private ShoppingService shoppingService;
 
 	@GetMapping("/")
 	public String index(Model model,
@@ -40,6 +43,9 @@ public class CommunityController {
 		List<Item> itemList = communityService.getItemList();
 		Collections.shuffle(itemList);
 		model.addAttribute("itemList", itemList);
+
+		List<FormatPriceDto> formatPriceList = shoppingService.formatPrice(itemList);
+		model.addAttribute("formatPriceList", formatPriceList);
 
 		if (userDetail != null) {
 			List<CommunityLike> likeList = communityService.myLike(userDetail.getUser().getId());
