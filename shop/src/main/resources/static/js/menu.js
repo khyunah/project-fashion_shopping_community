@@ -1,0 +1,5 @@
+let menu = {
+	init: function(){
+		$("#")
+	}
+}

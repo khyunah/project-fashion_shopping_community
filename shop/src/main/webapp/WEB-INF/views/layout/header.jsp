@@ -63,7 +63,7 @@
             <!-- Brand -->
             <img alt="" src="/image/wanggawn-removebg-preview.png" style="width: 75px; height: 50px; margin-left: 15px; margin-bottom: 10px;">
             <a class="navbar-brand" href="/">
-              <h1 style="color: white; font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; margin-left: 20px;">Milano</h1>
+              <h1 style="color: white; font-family: 'Hahmlet', serif; margin-left: 20px;">Milano</h1>
             </a>
 
             <!-- Toggler/collapsibe Button -->
@@ -72,166 +72,148 @@
             </button>
 
             <!-- Navbar links -->
-            <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+            <div class="collapse navbar-collapse justify-content-end mr-5" id="collapsibleNavbar">
               <ul class="navbar-nav mr-5">
                 <c:choose>
+                
                   <c:when test="${principal.user eq null}">
+                  
                     <li class="nav-item">
-                      <a class="nav-link" href="/community/social-main"
-                        style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">SOCIAL</a>
+                      <a class="nav-link header-style-a" href="/community/social-main">SOCIAL</a>
                     </li>
+                    
                     <li class="nav-item">
+                    
                       <div class="dropdown">
-                        <button class="nav-link dropbtn"
-                          style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">STORE
+                      
+                        <a class="nav-link dropbtn" href="javascript:void(0);">STORE
                           <i class="fa fa-caret-down"></i>
-                        </button>
+                        </a>
+                        
                         <div class="dropdown-content">
-                          <a href="/shop/mans_form"
-                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">MAN's</a>
-                          <a href="/shop/womans_form"
-                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">WOMAN's</a>
+                          <a href="/shop/mans_form" >MAN's</a>
+                          <a href="/shop/womans_form" >WOMAN's</a>
                         </div>
+                        
                       </div>
+                      
+                    </li>
+                    
+                    <li class="nav-item">
+                      <a class="nav-link" href="/security/login_form">LOGIN</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="/security/login_form"
-                        style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">LOGIN</a>
+                      <a class="nav-link" href="/security/join_form">JOIN</a>
                     </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="/security/join_form"
-                        style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white; margin-right: 20px;">JOIN</a>
-                    </li>
+                    
                   </c:when>
+                  
                   <c:when test="${principal.user.role eq 'USER'}">
                     <!-- 로그인 성공하면(회원이면) 글 작성 가능 -->
                     <li class="nav-item">
-                      <div class="dropdown">
-                        <button class="nav-link dropbtn text-white" 
-                        style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675;">SOCIAL
-                        	<i class="fa fa-caret-down"></i>
-                        </button>
-                        <div class="dropdown-content bg-white">
-                          <a href="/community/social-main"
-                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">SOCIAL MAIN</a>
-                          <a href="/community/my-page"
-                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">MY SOCIAL</a>
-                          <a href="/board/write"
-                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">WRITE</a>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="nav-item">
-                      <div class="dropdown">
-                        <button class="nav-link dropbtn text-white"
-                          style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675;">STORE
-                          <i class="fa fa-caret-down"></i>
-                        </button>
-                        <div class="dropdown-content bg-white">
-                          <a href="/shop/mans_form"
-                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">MAN's</a>
-                          <a href="/shop/womans_form"
-                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">
-                            WOMAN's</a>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="nav-item">
-      
-                      <a href="/shop/basket_form/${principal.user.id}" style="text-decoration: none;">
-                        <button class="nav-link dropbtn text-white"
-                          style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675;">BASKET
-                          
-                        </button>
-                        </a>
                     
+                      <div class="dropdown">
+                      
+                        <a class="nav-link dropbtn text-white" href="javascript:void(0);">SOCIAL
+                        	<i class="fa fa-caret-down"></i>
+                        </a>
+                        
+                        <div class="dropdown-content">
+                          <a href="/community/social-main">SOCIAL MAIN</a>
+                          <a href="/community/my-page">MY SOCIAL</a>
+                          <a href="/board/write">WRITE</a>
+                        </div>
+                        
+                      </div>
+                      
+                    </li>
+                    
+                    <li class="nav-item">
+                    
+                      <div class="dropdown">
+                        <a class="nav-link dropbtn text-white" href="javascript:void(0);">STORE
+                          <i class="fa fa-caret-down"></i>
+                        </a>
+                        
+                        <div class="dropdown-content">
+                          <a href="/shop/mans_form">MAN's</a>
+                          <a href="/shop/womans_form">WOMAN's</a>
+                        </div>
+                        
+                      </div>
+                      
+                    </li>
+                    
+                    <li class="nav-item">
+                      <a href="/shop/basket_form/${principal.user.id}" class="nav-link dropbtn text-white">BASKET</a>
                     </li>
                    
                    <li class="nav-item">
                       <div class="dropdown">
-                        <button class="nav-link dropbtn"
-                          style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">MORE
+                        <a class="nav-link dropbtn" href="javascript:void(0);">MYPAGE
                           <i class="fa fa-caret-down"></i>
-                        </button>
+                        </a>
                         <div class="dropdown-content">
                           <a href="/user/update_form"
-                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">MYPAGE</a>
+                            >UPDATE</a>
                           <a href="/user/purchase_history/"
-                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">HISTORY</a>
+                            >HISTORY</a>
                         </div>
                       </div>
                     </li>
                     <li class="nav-item">
                       <!-- 시큐리티를 적용하면 자동 로그아웃 처리 된다. -->
-                      <a class="nav-link text-white" href="/logout"
-                        style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; margin-right: 20px;">LOGOUT</a>
+                      <a class="nav-link" href="/logout">LOGOUT</a>
                     </li>
                   </c:when>
                   <c:when test="${principal.user.role eq 'ADMIN'}">
                     <!-- 로그인 성공하면(회원이면) 글 작성 가능 -->
                     <li class="nav-item">
-                      <a class="nav-link " href="/admin/graph-join"
-                        style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">MANAGEMENT</a>
+                      <a class="nav-link " href="/admin/graph-join">MANAGEMENT</a>
                     </li>
                     <li class="nav-item">
                       <div class="dropdown">
-                        <button class="nav-link dropbtn " 
-                        style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">SOCIAL
+                        <a class="nav-link dropbtn" href="javascript:void(0);" 
+                        >SOCIAL
                         	<i class="fa fa-caret-down"></i>
-                        </button>
+                        </a>
                         <div class="dropdown-content">
-                          <a href="/community/social-main"
-                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">SOCIAL MAIN</a>
-                          <a href="/community/my-page"
-                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">MY SOCIAL</a>
-                          <a href="/board/write"
-                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">WRITE</a>
+                          <a href="/community/social-main">SOCIAL MAIN</a>
+                          <a href="/community/my-page">MY SOCIAL</a>
+                          <a href="/board/write">WRITE</a>
                         </div>
                       </div>
                     </li>
                     <li class="nav-item">
                       <div class="dropdown">
-                        <button class="nav-link dropbtn "
-                          style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">STORE
+                        <a class="nav-link dropbtn" href="javascript:void(0);">STORE
                           <i class="fa fa-caret-down"></i>
-                        </button>
+                        </a>
                         <div class="dropdown-content">
-                          <a href="/shop/mans_form"
-                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">MAN's</a>
-                          <a href="/shop/womans_form"
-                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">WOMAN's</a>
-                          <a href="/shop/save_form"
-                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">ADD
-                            ITEM</a>
+                          <a href="/shop/mans_form">MAN's</a>
+                          <a href="/shop/womans_form">WOMAN's</a>
+                          <a href="/shop/save_form">ADD ITEM</a>
                         </div>
                       </div>
                     </li>
                     <li class="nav-item">
-                      <a href="/shop/basket_form/${principal.user.id}" style="text-decoration: none;">
-                        <button class="nav-link dropbtn text-white"
-                          style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675;">BASKET
-                        </button>
-                        </a>
+                      <a href="/shop/basket_form/${principal.user.id}" class="nav-link">BASKET</a>
                     </li>
                    
                   <li class="nav-item">
                       <div class="dropdown">
-                        <button class="nav-link dropbtn"
-                          style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">MORE
+                        <a class="nav-link dropbtn" href="javascript:void(0);">MYPAGE
                           <i class="fa fa-caret-down"></i>
-                        </button>
+                        </a>
                         <div class="dropdown-content">
-                          <a href="/user/update_form"
-                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">MYPAGE</a>
-                          <a href="/user/purchase_history/"
-                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">HISTORY</a>
+                          <a href="/user/update_form">UPDATE</a>
+                          <a href="/user/purchase_history/">HISTORY</a>
                         </div>
                       </div>
                     </li>
                     <li class="nav-item">
                       <!-- 시큐리티를 적용하면 자동 로그아웃 처리 된다. -->
-                      <a class="nav-link" href="/logout"
-                        style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">LOGOUT</a>
+                      <a class="nav-link" href="/logout">LOGOUT</a>
                     </li>
                   </c:when>
                 </c:choose>

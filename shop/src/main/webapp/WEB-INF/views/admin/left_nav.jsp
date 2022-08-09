@@ -57,9 +57,17 @@
 		<div class="admin-menu-title-box">
 			<h3 class="admin-menu-title">관리자 메뉴</h3>
 		</div>
-
+		
 		<div class="admin-menu-list-box">
 			<div>
+			
+				<div class="admin-menu-list-item">
+					<a href="/admin/menu-save/form" class="btn admin-menu-a"> 
+						<img alt="" src="/image/setting_icon.png" class="admin-menu-nav-img">
+						<div class="admin-menu-text">설정</div>
+					</a>
+				</div>
+				
 				<div class="admin-menu-list-item">
 					<a href="/admin/graph-join" class="btn admin-menu-a"> 
 						<img alt="" src="/image/graph.png" class="admin-menu-nav-img">
@@ -95,12 +103,7 @@
 					</a>
 				</div>
 				
-				<div class="admin-menu-list-item">
-					<a href="#" class="btn admin-menu-a"> 
-						<img alt="" src="/image/setting_icon.png" class="admin-menu-nav-img">
-						<div class="admin-menu-text">설정</div>
-					</a>
-				</div>
+				
 			</div>
 		</div>
 	</div>
