@@ -91,7 +91,6 @@ public class ShoppingService {
 
 	@Transactional
 	public List<Item> itemDetails(String name, String gender) {
-		System.out.println(shoppingRepository.detailItemSizeColor(name, gender));
 		return shoppingRepository.detailItemSizeColor(name, gender);
 	}
 

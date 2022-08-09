@@ -47,9 +47,7 @@ public class BasketService {
 
 	@Transactional
 	public int sum(int userId) {
-		System.out.println(basketSumRepository.getBasketSum(userId));
 		List<BasketSumDto> basketSum = basketSumRepository.getBasketSum(userId);
-		System.out.println(basketSum);
 		if (basketSum != null) {
 			return basketSum.get(0).getSum().intValue();
 		} else {

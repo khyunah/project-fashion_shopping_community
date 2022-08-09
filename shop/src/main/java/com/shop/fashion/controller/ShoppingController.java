@@ -26,11 +26,13 @@ import com.shop.fashion.dto.FormatPriceDto;
 import com.shop.fashion.dto.ItemReviewDto;
 import com.shop.fashion.dto.KakaoPayApprovalDto;
 import com.shop.fashion.dto.KakaoPayDto;
+import com.shop.fashion.dto.PurCountAndIdDto;
 import com.shop.fashion.model.Basket;
 import com.shop.fashion.model.Item;
 import com.shop.fashion.model.ItemReview;
 import com.shop.fashion.model.Purchasehistory;
 import com.shop.fashion.repository.ItemReviewRepository;
+import com.shop.fashion.repository.PurchaseHistoryRepository;
 import com.shop.fashion.service.BasketService;
 import com.shop.fashion.service.KakaoPayService;
 import com.shop.fashion.service.PurchaseHistoryService;
@@ -203,7 +205,6 @@ public class ShoppingController {
 
 		for (int i = 0; i < basketList.size(); i++) {
 			int amount = basketList.get(i).getItem().getAmount() - basketList.get(i).getCount();
-			System.out.println(amount);
 			if(amount >= 0) {
 				KakaoPayDto dto = kakaoPayService.kakaoPayReady(id);
 				httpSession.setAttribute("kakao", dto);
@@ -237,10 +238,21 @@ public class ShoppingController {
 					.address(userDetail.getUser().getAddress())
 					.build();
 			purchaseHistoryService.save(entity);
+			
+		}
+		
+		// 결제 완료 했을때 히스토리 카운트 세팅해주기 
+		// 바스켓의 id와 count
+		List<PurCountAndIdDto> basketCountlist = new ArrayList<PurCountAndIdDto>();
+		for(Basket basketCount : baskets) {
+			basketCountlist.add(new PurCountAndIdDto(basketCount.getItem().getId(), basketCount.getCount()));
+		}
+		purchaseHistoryService.setCount(basketCountlist, userDetail.getUser().getId());
+		
+		for (int i = 0; i < baskets.size(); i++) {
 			basketService.deleteId(baskets.get(i).getId());
 			shoppingService.UpdateItemAmount(baskets.get(i).getCount(), baskets.get(i).getItem().getId());
 		}
-		
 		return "shopping/payment_success";
 	}
 
