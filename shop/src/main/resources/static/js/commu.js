@@ -304,6 +304,7 @@ function addOneReply(reply, userId, communityBoardId) {
 	`;
 
 	$(`.commu-detail-reply-container-${communityBoardId}`).append(childReply);
+	fixTextAreaHeight(reply.id);
 	$(`#commu-input-reply-${communityBoardId}`).val("");
 }
 
