@@ -108,7 +108,6 @@ let commu = {
 		if (btn == '수정') {
 			changeReply(id);
 		} else {
-			console.log("ㅋㅋㅋㅋㅋㅋㅋㅋㅋ");
 			this.finishUpdateReply(id);
 		}
 	},
@@ -272,9 +271,10 @@ function fixTextAreaHeight(replyId) {
 
 // 소셜 메인에서 댓글 추가 
 function addOneReply(reply, userId, communityBoardId) {
+	$(`#commu-reply-${communityBoardId}`).remove();
 	
 	let childReply = `
-		<div id="commu-reply-${reply.id}">
+		<div id="commu-reply-${communityBoardId}">
 			<div class="commu-detail-reply-firstline-container">
 				<div class="commu-reply-profile-div">
 					<div class="commu-reply-circle-img-box-${reply.user.id} commu-reply-circle-img-box">
@@ -310,8 +310,8 @@ function addOneReply(reply, userId, communityBoardId) {
 
 // 수정 완료시 화면 랜더링
 function changVieweReply(id) {
-	console.log(id);
 	$(`#commu-detail-reply-content-${id}`).attr("readonly", true);
+	fixTextAreaHeight(id);
 	$(`.commu-detail-btn-reply-update-${id}`).text('수정');
 }
 
@@ -325,8 +325,10 @@ function removeReply(replyId) {
 function changeReply(id) {
 	let content = $(`#commu-detail-reply-content-${id}`).val();
 	$(`.commu-detail-btn-reply-update-${id}`).text('완료');
+	
 	document.getElementById(`commu-detail-reply-content-box-${id}`).innerHTML =
 		`<textarea id="commu-detail-reply-content-${id}" class="commu-detail-reply-content commu-detail-reply-text">${content}</textarea>`;
+	fixTextAreaHeight(id);
 }
 
 // 좋아요 아이콘 변경 함수

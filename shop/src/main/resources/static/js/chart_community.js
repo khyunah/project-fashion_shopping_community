@@ -1,7 +1,7 @@
-var monthBoard = {
-	dateLabels: [],
-	countData: [],
+var dateList = [];
+var countList = [];
 
+var monthBoard = {
 	monthData: function() {
 		$.ajax({
 			type: 'GET',
@@ -10,12 +10,12 @@ var monthBoard = {
 			dataType: 'json'
 		}).done(function(response) {
 			$.each(response, function(index, obj) {
-				monthBoard.dateLabels.push(obj.date);
-				monthBoard.countData.push(obj.count);
+				dateList.push(obj.date);
+				countList.push(obj.count);
 			});
 			checkData();
 			monthBoard.setDataToInput();
-			renderLine('chart-1', resultDateLabels, '게시글 수', monthBoard.countData, 'rgba(102, 0, 142, 1)');
+			renderLine('chart-1', resultDateLabels, '게시글 수', resultCountData, 'rgba(102, 0, 142, 1)');
 		}).fail(function() {
 			console.log("실패");
 		});
@@ -23,11 +23,11 @@ var monthBoard = {
 	
 	setDataToInput: function (){
 		var monthCount = 0;
-		$.each(monthBoard.countData, function(index, count){
+		$.each(countList, function(index, count){
 			monthCount += count;
 		});
 		$("#month-count").text(monthCount);
-	}, 
+	}
 
 };
 
@@ -39,6 +39,9 @@ function checkData() {
 	var date = new Date();
 	var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
 	var lastday = moment(lastDay).format("DD");
+	
+	console.log(lastDay);
+	console.log(lastday);
 
 	for (var i = 1; i <= lastday; i++) {
 		resultDateLabels.push(i);
@@ -47,8 +50,8 @@ function checkData() {
 	var index = 0;
 	for (var i = 0; i < resultDateLabels.length; i++) {
 
-		if (monthBoard.dateLabels[index] == resultDateLabels[i]) {
-			resultCountData.push(monthBoard.countData[index]);
+		if (dateList[index] == resultDateLabels[i]) {
+			resultCountData.push(countList[index]);
 			index++;
 		} else {
 			resultCountData.push(0);
