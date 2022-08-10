@@ -18,8 +18,8 @@
 	position: absolute;
 	padding-left: 5%;
 	padding-right: 5%;
-	padding-top:5%;
-	padding-bottom: 5%;
+	padding-top:3%;
+	padding-bottom: 3%;
 	box-shadow: 4px 3px 5px 0px #453675;
 }
 
@@ -43,8 +43,7 @@
 }
 
 .commu-detail-div-main-container {
-	padding: 5%;
-	width: 600px;
+	width: 500px;
 	height: 600px;
 	overflow-x: hidden;
 	-ms-overflow-style: none;

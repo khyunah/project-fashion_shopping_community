@@ -119,11 +119,13 @@
 
 .user-success-btn-a {
 	color: white;
+	text-decoration: none;
 }
 
 .user-success-btn-a:hover {
 	color: white;
 	text-decoration: none;
+	
 }
 
 .user-join-info-span {

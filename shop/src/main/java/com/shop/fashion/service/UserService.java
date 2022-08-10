@@ -33,6 +33,8 @@ public class UserService {
 	private BCryptPasswordEncoder passwordEncoder;
 	@Autowired
 	private AuthenticationManager authenticationManager;
+	@Value("${kakao.key}")
+	private String kakaoKey;
 
 	// 회원가입
 	@Transactional
@@ -93,9 +95,17 @@ public class UserService {
 		user.setPhoneNumber(dto.getPhoneNumber());
 		user.setAddress(dto.getAddress());
 		
-		Authentication authentication = authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(dto.getUsername(), dto.getPassword()));
-		SecurityContextHolder.getContext().setAuthentication(authentication);
+		if (user.getOauth() == OAuthType.ORIGIN) {
+			Authentication authentication = authenticationManager.authenticate(
+					new UsernamePasswordAuthenticationToken(dto.getUsername(), dto.getPassword()));
+			SecurityContextHolder.getContext().setAuthentication(authentication);
+		} else {
+			Authentication authentication = authenticationManager
+					.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), kakaoKey));
+			SecurityContextHolder.getContext().setAuthentication(authentication);
+		}
+		
+		
 
 		return user;
 	}

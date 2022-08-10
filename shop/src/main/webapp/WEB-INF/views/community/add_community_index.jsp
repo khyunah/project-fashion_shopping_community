@@ -2,6 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="community_like_modal.jsp"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<sec:authorize access="isAuthenticated()">
+   <sec:authentication property="principal" var="principal" />
+ </sec:authorize>
 
 <c:forEach var="communityBoard" items="${communityBoardList.content}">
 	<input id="communityBoardId" type="hidden" value="${communityBoard.id}" />
@@ -63,7 +67,7 @@
 				<i class="fa-regular fa-comments fa-lg commu-reply-icon"></i>
 				<c:choose>
 					<c:when test="${principal.user == null}">
-						<a href="/community/${communityBoard.id}" class="reply-count-button" onclick="return confirm('로그인이 필요합니다. 로그인 하시겠습니까?')">
+						<a href="/community/${communityBoard.id}" class="reply-count-button" onsubmit="return confirm('로그인이 필요합니다. 로그인 하시겠습니까?')">
 					</c:when>
 					<c:otherwise>
 						<a href="/community/${communityBoard.id}" class="reply-count-button">
