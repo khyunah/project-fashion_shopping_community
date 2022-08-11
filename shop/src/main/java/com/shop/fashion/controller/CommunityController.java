@@ -88,8 +88,8 @@ public class CommunityController {
 
 	@PostMapping("/board/upload")
 	public String storyUpload(CommunityDto fileDto, @AuthenticationPrincipal PrincipalUserDetail detail) {
-		communityService.upload(fileDto, detail.getUser());
-		return "redirect:/";
+		CommunityBoard board = communityService.upload(fileDto, detail.getUser());
+		return "redirect:/community/" + board.getId();
 	}
 
 	// 업데이트 화면

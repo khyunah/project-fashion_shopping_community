@@ -54,11 +54,12 @@ public class CommunityService {
 	}
 
 	@Transactional
-	public void upload(CommunityDto fileDto, User user) {
+	public CommunityBoard upload(CommunityDto fileDto, User user) {
 		String newFileName = fileNameSet(fileDto);
 		CommunityBoard communityBoardEntity = fileDto.toEntity(newFileName, user);
 		System.out.println("-------------");
-		communityRepository.save(communityBoardEntity);
+		CommunityBoard board = communityRepository.save(communityBoardEntity);
+		return board;
 	}
 
 	@Transactional
