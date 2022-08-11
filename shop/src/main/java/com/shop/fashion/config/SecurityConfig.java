@@ -16,6 +16,8 @@ import org.springframework.security.web.firewall.DefaultHttpFirewall;
 import org.springframework.security.web.firewall.HttpFirewall;
 
 import com.shop.fashion.auth.PrincipalUserDetailService;
+import com.shop.fashion.handler.CustomLoginFailHandler;
+import com.shop.fashion.handler.CustomLoginSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -36,13 +38,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private PrincipalUserDetailService principalUserDetailService;
 	
+	@Bean
+	CustomLoginSuccessHandler customLoginSuccessHandler() {
+		return new CustomLoginSuccessHandler();
+	}
+	
+	@Bean
+	CustomLoginFailHandler customLoginFailHandler() {
+		return new CustomLoginFailHandler();
+	}
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf()
 		.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
 		.and()
 		.authorizeRequests()
-		.antMatchers("/index/**", "/", "/auth/**", "/security/**", "/shop/**", "/css/**", "/js/**", "/image/**").permitAll()
+		.antMatchers("/index/**", "/", "/auth/**", "/security/**", "/shop/**", "/css/**", "/js/**", "/image/**", "/upload/**").permitAll()
 		.antMatchers("/admin/**").hasRole("ADMIN")
 		.anyRequest()
 		.authenticated()
@@ -50,9 +62,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.formLogin()
 		.loginPage("/security/login_form")
 		.loginProcessingUrl("/security/login-user")
-		.failureUrl("/")
-		.defaultSuccessUrl("/")
-		;
+		.successHandler(customLoginSuccessHandler())
+		.failureHandler(customLoginFailHandler());
 	}
 	
 	@Override

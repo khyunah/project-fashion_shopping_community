@@ -1,11 +1,14 @@
 package com.shop.fashion.api;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,18 +18,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shop.fashion.auth.PrincipalUserDetail;
+import com.shop.fashion.dto.LikeListDto;
 import com.shop.fashion.dto.ResponseDto;
 import com.shop.fashion.model.CommunityBoard;
 import com.shop.fashion.model.CommunityLike;
 import com.shop.fashion.model.Reply;
 import com.shop.fashion.service.CommunityService;
+import com.shop.fashion.service.LikeService;
 
 @RestController
 public class CommunityApiContoller {
 
 	@Autowired
-	CommunityService communityService;
+	private CommunityService communityService;
+	@Autowired
+	private LikeService likeService;
 
+	
 	@PutMapping("/api/board/{id}")
 	public ResponseDto<Integer> update(@PathVariable int id, @RequestBody CommunityBoard board) {
 		communityService.modifyBoard(id, board);
@@ -73,4 +81,10 @@ public class CommunityApiContoller {
 		return new ResponseDto<CommunityLike>(HttpStatus.OK.value(), like);
 	}
 
+	// 좋아요 명단
+	@GetMapping("/comminity/like-list/{boardId}")
+	public List<LikeListDto> getLikeList(@PathVariable int boardId){
+		List<LikeListDto> test =  likeService.getLikeList(boardId);
+		return test;
+	}
 }

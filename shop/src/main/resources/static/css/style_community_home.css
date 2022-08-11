@@ -20,11 +20,8 @@
 	width: 190px;
 	height: 20px;
 	overflow: hidden;
-}
-
-.commu-home-title, .commu-home-username, .commu-home-text {
-	white-space: nowrap;
-	text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 #commu-like-icon-box {
@@ -39,12 +36,9 @@
 .div-content-container {
 	width: 290px;
 	height: 50px;
-}
-
-.commu-text {
-	font-family: "Gowun Batang", serif;
-	line-height: 5;
-	letter-spacing: 0.8px;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .span-goodlook-count {
@@ -55,14 +49,12 @@
 .span-content {
 	font-size: 14px;
 	width: 290px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	display: -webkit-box;
-	-webkit-line-clamp: 2;
-	-webkit-box-orient: vertical;
-	word-wrap: break-word;
 	line-height: 1.2em;
 	height: 2.4em;
+}
+
+.commu-home-text{
+	font-family: "Gowun Batang", serif;
 }
 
 .today_daily {
@@ -85,11 +77,10 @@
 	color: gray;
 	font-size: 10px;
 	display: block;
-	margin-top: 30px;
 }
 
 .hr-goodlook-line {
-	width: 288px;
+	width: 100%;
 	margin-left: 0;
 	border-top: 1px solid #dcdcdc;
 }

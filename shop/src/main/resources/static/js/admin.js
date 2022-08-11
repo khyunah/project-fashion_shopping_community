@@ -28,33 +28,93 @@ function clickList(target) {
 	$("#admin-object-id").text(id);
 }
 
+$(document).ready(function() {
+	let column = $("#column").val();
+	if(column != ''){
+		$("#sel1").val(column).prop("selected", true);
+	} else {
+		$("#sel1").val('선택').prop("selected", true);
+	}
+	
+	if(column == 'ID') {
+		$('#keyword').attr("type", "number");
+	} else if (column == 'OAUTH' || column == 'GENDER') {
+		$('#keyword').attr("readonly", true);
+	} else if (column == 'CATEGORY') {
+		$('#keyword').attr("readonly", true);
+		addCategory($("#keyword").val());
+	}
+	
+});
+
+function addCategory(keyword) {
+	var categoryList = ['OUTER', 'SHIRTS', 'PANTS', 'SKIRT', 'ONEPIECE', 'SHOES', 'ACCESSORY'];
+	var option = "";
+	$.each(categoryList, function(index, category){
+		if(category == keyword){
+			option += `<option selected>${category}</option>`;
+		} else {
+			option += `<option>${category}</option>`;
+		}
+	});
+
+	var selectBox = 
+		`<select class="form-control categorySelectBox" onchange="chooseCategory(this)">
+			<option>선택</option>
+			${option}
+		</select>`;
+		
+	$(".columnBox").append(selectBox);
+}
+
 function chooseUserColumn(target) {
+	$(".oauthSelectBox").remove();
+	$('#keyword').attr("type", "text");
+	$('#keyword').attr("readonly", false);
+	$('#keyword').val('');
+	
 	let column = target.options[target.selectedIndex].text;
 	$("#column").val(column);
 
 	if (column == 'OAUTH') {
-		$(".oauthSelectBox").remove();
+		$('#keyword').attr("readonly", true);
 		addSelectBoxOauth();
-	} else {
-		$(".oauthSelectBox").remove();
-	}
+	} else if(column == 'ID'){
+		$('#keyword').attr("type", "number");
+	} 
 }
 
 function chooseShoppingColumn(target){
+	$('#keyword').attr("type", "text");
+	$('#keyword').attr("readonly", false);
+	$(".genderSelectBox").remove();
+	$(".categorySelectBox").remove();
+	$('#keyword').val('');
+	
 	let column = target.options[target.selectedIndex].text;
 	$("#column").val(column);
 
 	if (column == 'GENDER') {
-		$(".genderSelectBox").remove();
+		$('#keyword').attr("readonly", true);
 		addSelectBoxGender();
-	} else {
-		$(".genderSelectBox").remove();
+	} else if(column == 'ID'){
+		$('#keyword').attr("type", "number");
+	} else if (column == 'CATEGORY') {
+		$('#keyword').attr("readonly", true);
+		addSelectBoxCategory();
 	}
 }
 
 function chooseColumn(target) {
+	$('#keyword').attr("type", "text");
+	$('#keyword').val('');
+	
 	let column = target.options[target.selectedIndex].text;
 	$("#column").val(column);
+	
+	if(column == 'ID'){
+		$('#keyword').attr("type", "number");
+	}
 }
 
 function addSelectBoxOauth() {
@@ -79,6 +139,22 @@ function addSelectBoxGender(){
 	$(".columnBox").append(selectBox);
 }
 
+function addSelectBoxCategory(){
+	let selectBox = `
+			<select class="form-control categorySelectBox" onchange="chooseCategory(this)">
+  			  <option>선택</option>
+  			  <option>OUTER</option>
+  			  <option>SHIRTS</option>
+  			  <option>PANTS</option>
+  			  <option>SKIRT</option>
+  			  <option>ONEPIECE</option>
+  			  <option>SHOES</option>
+  			  <option>ACCESSORY</option>
+  			</select>
+		`;
+	$(".columnBox").append(selectBox);
+}
+
 function chooseOauth(target) {
 	let oauth = target.options[target.selectedIndex].text;
 	location.href = `/admin/user/select?keyword=` + oauth + `&column=OAUTH`;
@@ -89,12 +165,18 @@ function chooseGender(target) {
 	location.href = `/admin/shopping/select?keyword=` + gender + `&column=GENDER`;
 }
 
+function chooseCategory(target) {
+	let category = target.options[target.selectedIndex].text;
+	location.href = `/admin/shopping/select?keyword=` + category + `&column=CATEGORY`;
+}
+
 function checkColumn() {
 	let column = $("#column").val();
+	
 	if(column == '') {
 		alert('분류를 선택해주세요 !');
 		return false;
-	}
+	} 
 	return true;
 }
 
@@ -102,12 +184,11 @@ let admin = {
 	userDelete: function() {
 		let token = $("meta[name='_csrf']").attr("content");
 		let header = $("meta[name='_csrf_header']").attr("content");
-
-		let result = confirm('해당 회원을 삭제할까요?');
+		
 		let id = $("#admin-object-id").text();
-		console.log(id);
 
-		if (id != null) {
+		if (id != '') {
+			let result = confirm('해당 회원을 삭제할까요?');
 			if (result) {
 				$.ajax({
 					beforeSend: function(xhr) {
@@ -131,11 +212,11 @@ let admin = {
 	userChangeRole: function() {
 		let token = $("meta[name='_csrf']").attr("content");
 		let header = $("meta[name='_csrf_header']").attr("content");
-
-		let result = confirm('유저에게 권한을 부여할까요?\n[ 확인 - 관리자     취소 - 회원 ]');
+		
 		let id = $("#admin-object-id").text();
 
-		if (id != null) {
+		if (id != '') {
+			let result = confirm('유저에게 권한을 부여할까요?\n[ 확인 - 관리자     취소 - 회원 ]');
 			if (result != null) {
 				$.ajax({
 					beforeSend: function(xhr) {
@@ -152,7 +233,7 @@ let admin = {
 				})
 			}
 		} else {
-			alert("회원을 선택해주세요");
+			alert("회원을 선택해주세요.");
 		}
 
 
@@ -161,11 +242,11 @@ let admin = {
 	communityDelete: function() {
 		let token = $("meta[name='_csrf']").attr("content");
 		let header = $("meta[name='_csrf_header']").attr("content");
-
-		let result = confirm('해당 글을 삭제할까요?');
+		
 		let id = $("#admin-object-id").text();
 
-		if (id != null) {
+		if (id != '') {
+			let result = confirm('해당 글을 삭제할까요?');
 			if (result) {
 				$.ajax({
 					beforeSend: function(xhr) {
@@ -181,7 +262,7 @@ let admin = {
 				})
 			}
 		} else {
-			alert("게시글을 선택해주세요");
+			alert("게시글을 선택해주세요.");
 		}
 
 
@@ -191,10 +272,10 @@ let admin = {
 		let token = $("meta[name='_csrf']").attr("content");
 		let header = $("meta[name='_csrf_header']").attr("content");
 
-		let result = confirm('해당 아이템을 삭제할까요?');
 		let id = $("#admin-object-id").text();
 
-		if (id != null) {
+		if (id != '') {
+			let result = confirm('해당 아이템을 삭제할까요?');
 			if (result) {
 				$.ajax({
 					beforeSend: function(xhr) {
@@ -204,32 +285,42 @@ let admin = {
 					url: `/admin/shopping-item/delete/${id}`,
 					dataType: "json"
 				}).done(function(response) {
-					location.href = response.data;
+					history.go(-1);
 				}).fail(function(error) {
 					alert("해당 상품 삭제 실패");
 				})
 			}
 		} else {
-			alert("아이템을 선택해주세요");
+			alert("상품을 선택해주세요.");
 		}
 	},
 
 	shoppingUpdateForm: function() {
 		let id = $("#admin-object-id").text();
-		location.href = `/admin/shopping-item/update_form/${id}`;
+		if (id != '') {
+			location.href = `/admin/shopping-item/update_form/${id}`;
+		} else {
+			alert("수정할 상품을 선택해주세요.");
+		}
 	},
 
 	shoppingDetail: function() {
 		let id = $("#admin-object-id").text();
-		if (id != null) {
+		if (id != '') {
 			location.href = `/admin/shopping/item-detail/${id}`;
 		} else {
-			alert("아이템을 선택해주세요");
+			alert("상품을 선택해주세요.");
 		}
 	},
 	
 	communityDetail: function() {
 		let id = $("#admin-object-id").text();
-		location.href = `/admin/community-detail/${id}`;
+		
+		if (id != '') {
+			location.href = `/admin/community-detail/${id}`;
+		} else {
+			alert("게시글을 선택해주세요.");
+		}
 	}
 }
+

@@ -1,5 +1,7 @@
 package com.shop.fashion.service;
 
+import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.shop.fashion.dto.BasketSumDto;
+import com.shop.fashion.dto.FormatPriceDto;
 import com.shop.fashion.model.Basket;
 import com.shop.fashion.model.Item;
 import com.shop.fashion.model.User;
@@ -21,6 +24,9 @@ public class BasketService {
 
 	@Autowired
 	private BasketSumRepository basketSumRepository;
+
+	@Autowired
+	private ShoppingService shoppingService;
 
 	@Transactional
 	public void putCart(Item Itemid, User userId) {
@@ -41,9 +47,7 @@ public class BasketService {
 
 	@Transactional
 	public int sum(int userId) {
-		System.out.println(basketSumRepository.getBasketSum(userId));
 		List<BasketSumDto> basketSum = basketSumRepository.getBasketSum(userId);
-		System.out.println(basketSum);
 		if (basketSum != null) {
 			return basketSum.get(0).getSum().intValue();
 		} else {
@@ -61,10 +65,37 @@ public class BasketService {
 	public void deleteId(int id) {
 		basketRepository.deleteById(id);
 	}
-	
+
 	@Transactional
-	public List<Basket> getBasket(int id){
+	public List<Basket> getBasket(int id) {
 		return basketRepository.findByUserId(id);
+	}
+
+	// 품절로 인한 장바구니 삭제 처리
+	@Transactional
+	public void soldoutDeleteBasket(int userId) {
+		List<Basket> Baskets = shoppingService.getOnUserCart(userId);
+
+		if (Baskets != null) {
+			for (Basket basket : Baskets) {
+				if(basket.getItem().getAmount() - basket.getCount() < 0 ) {
+					basketRepository.deleteById(basket.getId());
+				}
+			}
+		}
+		
+	}
+	
+	// 가격 포맷
+	public List<FormatPriceDto> formatPrice(List<Basket> Baskets){
+		List<FormatPriceDto> list = new ArrayList<FormatPriceDto>();
+		for (Basket basket : Baskets) {
+			int price = basket.getItem().getPrice() * basket.getCount();
+			NumberFormat formatter = NumberFormat.getNumberInstance();
+			String fPrice = formatter.format(price);
+			list.add(new FormatPriceDto(basket.getId(), fPrice));
+		}
+		return list;
 	}
 
 }

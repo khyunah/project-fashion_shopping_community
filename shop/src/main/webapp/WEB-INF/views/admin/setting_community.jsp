@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="left_nav.jsp"%>
 
+<div class="admin-container">
+
 <div class="container">
 
 	<div style="height: 50px;"></div>
@@ -36,7 +38,7 @@
 		</div>
 
 		<div class="setting-btn-box">
-		<a href="/admin/community/select?keyword=&column=" class="btn btn-dark">전제조회</a>
+		<a href="/admin/community/select?keyword=&column=" class="btn btn-dark">전체조회</a>
 			<button type="button" class="btn btn-primary"
 				onclick="admin.communityDetail()">상세보기</button>
 			<button type="button" class="btn btn-danger"
@@ -62,7 +64,7 @@
 			<c:forEach var="communityBoard" items="${communityBoardPage.content}">
 				<tr onclick="clickList(this)">
 					<td>${communityBoard.id}</td>
-					<td>${communityBoard.user.username}</td>
+					<td class="admin-commu-td">${communityBoard.user.username}</td>
 					<td class="admin-td-img">
 						<div class="admin-img-box">
 							<img class="card-img-top admin-list-img"
@@ -116,6 +118,7 @@
 	<div class="admin-id-box">
 		<span id="admin-object-id" style="display: none;"></span>
 	</div>
+</div>
 </div>
 
 <script src="/js/admin.js"></script>

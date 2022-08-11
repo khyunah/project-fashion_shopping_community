@@ -38,7 +38,7 @@
 }
 
 .admin-container {
-	left: 20%;
+	margin-left: 95px;
 }
 
 .setting-header-container {
@@ -69,5 +69,16 @@
 .admin-detail-img-box {
 	width: 70%;
 	height: 70%;
-	
+}
+
+.admin-commu-td {
+	max-width: 135px;
+	word-break:break-word;
+}
+
+.admin-menu-a:active,
+.admin-menu-a:focus {
+	border: none !important;
+	box-shadow: none !important;
+	outline: none !important;
 }

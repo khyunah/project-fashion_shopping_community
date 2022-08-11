@@ -57,6 +57,7 @@ public class AdminService {
 	// 회원 삭제
 	@Transactional
 	public void deleteUser(int id) {
+		communityRepository.deleteByUserId(id);
 		userRepository.deleteById(id);
 	}
 
@@ -106,16 +107,13 @@ public class AdminService {
 			resultPage = shoppingRepository.mFindByName(keyword, pageable);
 			break;
 		case "CATEGORY":
-
+			resultPage = shoppingRepository.mFindByCategory(keyword, pageable);
 			break;
 		case "PRICE":
 			resultPage = shoppingRepository.mFindByPrice(keyword, pageable);
 			break;
 		case "GENDER":
 			resultPage = shoppingRepository.mFindByGender(keyword, pageable);
-			break;
-		case "COLOR":
-
 			break;
 		}
 		return resultPage;
@@ -155,10 +153,13 @@ public class AdminService {
 			resultPage = communityRepository.mFindById(id, pageable);
 			break;
 		case "USERNAME":
-			User user = userRepository.findByUsername(keyword).orElseThrow(() -> {
-				return new IllegalArgumentException("회원이 존재하지 않습니다.");
-			});
-			resultPage = communityRepository.mFindByUser(user.getId(), pageable);
+			User user = userRepository.findByUsername(keyword).orElse(null);
+			if(user != null) {
+				resultPage = communityRepository.mFindByUser(user.getId(), pageable);
+			} else {
+				resultPage = communityRepository.mFindByUser(0, pageable);
+			}
+			
 			break;
 		case "TITLE":
 			resultPage = communityRepository.mFindByTitle(keyword, pageable);
@@ -167,6 +168,7 @@ public class AdminService {
 		return resultPage;
 	}
 
+	// 커뮤니티 보드 상세보기
 	@Transactional
 	public CommunityBoard detailCommunityBoard(int id) {
 		return communityRepository.findById(id).orElseThrow(() -> {
@@ -179,5 +181,10 @@ public class AdminService {
 	public void deleteCommunityBoard(int id) {
 		communityRepository.deleteById(id);
 	}
-
+	
+	@Transactional
+	public Page<User> selectTodayJoinUser(Pageable pageable) {
+		return userRepository.mFindByTodayJoinUser(pageable);
+	}
+	
 }

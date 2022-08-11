@@ -7,6 +7,7 @@
 <div class="container">
 
 	<form action="">
+		<input type="hidden" value="admin" id="historyCheck">
 
 		<div class="form-group">
 			<label for="gender">gender :</label> <select id="gender">

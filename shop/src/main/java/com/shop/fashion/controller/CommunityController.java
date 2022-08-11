@@ -15,18 +15,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shop.fashion.auth.PrincipalUserDetail;
+import com.shop.fashion.dto.CommunityCountDto;
 import com.shop.fashion.dto.CommunityDto;
+import com.shop.fashion.dto.FormatPriceDto;
 import com.shop.fashion.model.CommunityBoard;
 import com.shop.fashion.model.CommunityLike;
 import com.shop.fashion.model.Item;
 import com.shop.fashion.service.CommunityService;
+import com.shop.fashion.service.ShoppingService;
 
 @Controller
 public class CommunityController {
 
 	@Autowired
 	private CommunityService communityService;
+	@Autowired
+	private ShoppingService shoppingService;
 
 	@GetMapping("/")
 	public String index(Model model,
@@ -39,10 +46,18 @@ public class CommunityController {
 		Collections.shuffle(itemList);
 		model.addAttribute("itemList", itemList);
 
+		List<FormatPriceDto> formatPriceList = shoppingService.formatPrice(itemList);
+		model.addAttribute("formatPriceList", formatPriceList);
+
 		if (userDetail != null) {
 			List<CommunityLike> likeList = communityService.myLike(userDetail.getUser().getId());
 			model.addAttribute("likeList", likeList);
 		}
+		
+		List<CommunityCountDto> replyCountList = communityService.getTotalReplyCountList();
+		if(replyCountList.size() != 0) {
+			model.addAttribute("replyCountList", replyCountList);
+		} 
 
 		return "index";
 	}
@@ -58,6 +73,11 @@ public class CommunityController {
 			List<CommunityLike> likeList = communityService.myLike(userDetail.getUser().getId());
 			model.addAttribute("likeList", likeList);
 		}
+		
+		List<CommunityCountDto> replyCountList = communityService.getTotalReplyCountList();
+		if(replyCountList.size() != 0) {
+			model.addAttribute("replyCountList", replyCountList);
+		} 
 		return "community/add_community_index";
 	}
 
@@ -68,8 +88,8 @@ public class CommunityController {
 
 	@PostMapping("/board/upload")
 	public String storyUpload(CommunityDto fileDto, @AuthenticationPrincipal PrincipalUserDetail detail) {
-		communityService.upload(fileDto, detail.getUser());
-		return "redirect:/";
+		CommunityBoard board = communityService.upload(fileDto, detail.getUser());
+		return "redirect:/community/" + board.getId();
 	}
 
 	// 업데이트 화면
@@ -95,6 +115,16 @@ public class CommunityController {
 
 		CommunityLike checkLike = communityService.isLike(boardId, userDetail.getUser().getId());
 		model.addAttribute("like", checkLike);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String replyJsonList = null;
+		try {
+			replyJsonList = mapper.writeValueAsString(board.getReplies());
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("replyJsonList", replyJsonList);
+
 		return "community/community_detail";
 	}
 
@@ -107,6 +137,11 @@ public class CommunityController {
 
 		List<CommunityLike> likeList = communityService.myLike(userDetail.getUser().getId());
 		model.addAttribute("likeList", likeList);
+		
+		List<CommunityCountDto> replyCountList = communityService.getTotalReplyCountList();
+		if(replyCountList.size() != 0) {
+			model.addAttribute("replyCountList", replyCountList);
+		} 
 		return "community/community_social";
 	}
 
@@ -132,7 +167,24 @@ public class CommunityController {
 
 		List<CommunityLike> likeList = communityService.myLike(userDetail.getUser().getId());
 		model.addAttribute("likeList", likeList);
+
+		model.addAttribute("isMyPage", true);
 		return "community/community_social";
+	}
+
+	// 나의 소셜 페이지
+	@GetMapping("/community/my-page-add")
+	public String addMyCommunityPage(
+			@PageableDefault(size = 3, direction = Direction.DESC, sort = "id") Pageable pageable, Model model,
+			@AuthenticationPrincipal PrincipalUserDetail userDetail) {
+		Page<CommunityBoard> myCommu = communityService.myCommunity(userDetail.getUser().getId(), pageable);
+		model.addAttribute("communityBoardList", myCommu);
+
+		List<CommunityLike> likeList = communityService.myLike(userDetail.getUser().getId());
+		model.addAttribute("likeList", likeList);
+
+		model.addAttribute("isMyPage", true);
+		return "community/add_community_board";
 	}
 
 }

@@ -1,3 +1,6 @@
+let token = $("meta[name='_csrf']").attr("content");
+let header = $("meta[name='_csrf_header']").attr("content");
+
 let domain;
 
 let index = {
@@ -82,7 +85,13 @@ let index = {
 			.done(function(response) {
 
 				alert("새로운 제품을 추가했습니다.");
-				location.href = response.data;
+				history.back();
+				let historyCheck = $("#historyCheck").val();
+				if(historyCheck == 'admin'){
+					location.href = `/admin/shopping/item-detail/${response.data.id}`;
+				} else {
+					location.href = `/shop/itemdetail_form/${response.data.id}`;
+				}
 
 			})
 			.fail(function(error) {
@@ -217,3 +226,90 @@ function itemDetailSizeandColor(){
 		.fail(function(error) {
 		});
 }
+
+function reviewWrite(){
+	
+	
+		var cell = document.getElementById("writeReview");
+		while (cell.hasChildNodes()) {
+		cell.removeChild(cell.firstChild);
+	}
+	
+	
+		let option = `
+    <div class="form-group">
+      <label for="image">image</label>
+      <div class="input-group">
+        <input type="file" name="file" class="form-control" id="image" required="required" accept=".jpg, .jpeg, .png, .gif">
+        <label class="custom-file-label" for="customFile"></label>
+      </div>
+    </div>
+
+    <div class="form-group mt-3">
+      <label for="content">content</label>
+      <textarea class="form-control" rows="5" id="content" name="content" placeholder="내용을 입력하세요"></textarea>
+    </div>
+    <div class="form-group mt-3">
+  <button type="submit" id="save" class="btn btn-dark" style="background-color: #453675;">글 쓰기 완료</button>
+	</div>
+  `;
+		$("#writeReview").append(option);
+}
+
+function ItemReviewDelete(itemreview, item) {
+	let token = $("meta[name='_csrf']").attr("content");
+	let header = $("meta[name='_csrf_header']").attr("content");
+
+	$.ajax({
+		beforeSend : function(xhr) {
+				xhr.setRequestHeader(header, token)				
+		},
+		type: "DELETE",
+		url: `/test/api/itemReview/${itemreview}`,
+		dataType: "json"
+	}).done(function() {
+		location.href = `/shop/itemdetail_form/${item}`
+	}).fail(function() {
+		alert("취소 실패");
+	});
+}
+
+
+function updateBtnReview(content, imageUrl) {
+	updateReview(content, imageUrl)
+	
+	
+}
+
+
+
+function updateReview(content){
+	
+	
+		var cell = document.getElementById("updateReview");
+		while (cell.hasChildNodes()) {
+		cell.removeChild(cell.firstChild);
+	}
+	
+	
+		let option = `
+    <div class="form-group">
+      <label for="image">image</label>
+      <div class="input-group">
+        <input id="filetext"type="file" name="file" class="form-control" id="image" accept=".jpg, .jpeg, .png, .gif">
+        <label class="custom-file-label" for="customFile"></label>
+      </div>
+    </div>
+
+    <div class="form-group mt-3">
+      <label for="content">content</label>
+      <textarea class="form-control" rows="5" id="content" name="content" placeholder="${content}"></textarea>
+    </div>
+    <div class="form-group mt-3">
+  <button type="submit" onclick="ReviewUpdate();" class="btn btn-dark" style="background-color: #453675; ">글 수정 완료</button>
+	</div>
+  `;
+		$("#updateReview").append(option);
+}
+
+

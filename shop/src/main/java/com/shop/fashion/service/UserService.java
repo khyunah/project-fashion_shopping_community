@@ -8,6 +8,10 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +31,10 @@ public class UserService {
 	private UserRepository userRepository;
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
+	@Autowired
+	private AuthenticationManager authenticationManager;
+	@Value("${kakao.key}")
+	private String kakaoKey;
 
 	// 회원가입
 	@Transactional
@@ -43,10 +51,7 @@ public class UserService {
 	// 아이디 중복 체크
 	@Transactional()
 	public User checkUsername(String username) {
-		User userTemp = userRepository.findByUsername(username).orElseGet(() -> {
-			return new User();
-		});
-		return userTemp;
+		return userRepository.findByUsername(username).orElse(null);
 	}
 
 	// 회원정보 수정
@@ -89,6 +94,18 @@ public class UserService {
 		user.setEmail(dto.getEmail());
 		user.setPhoneNumber(dto.getPhoneNumber());
 		user.setAddress(dto.getAddress());
+		
+		if (user.getOauth() == OAuthType.ORIGIN) {
+			Authentication authentication = authenticationManager.authenticate(
+					new UsernamePasswordAuthenticationToken(dto.getUsername(), dto.getPassword()));
+			SecurityContextHolder.getContext().setAuthentication(authentication);
+		} else {
+			Authentication authentication = authenticationManager
+					.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), kakaoKey));
+			SecurityContextHolder.getContext().setAuthentication(authentication);
+		}
+		
+		
 
 		return user;
 	}
@@ -106,9 +123,9 @@ public class UserService {
 		}
 		return newFileName;
 	}
-
+	
+	@Transactional
 	public User getUser(int id) {
 		return userRepository.findById(id).get();
 	}
-
 }

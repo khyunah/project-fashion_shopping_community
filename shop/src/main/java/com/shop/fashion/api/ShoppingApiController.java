@@ -1,7 +1,5 @@
 package com.shop.fashion.api;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,15 +11,20 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shop.fashion.auth.PrincipalUserDetail;
+import com.shop.fashion.dto.CommunityDto;
+import com.shop.fashion.dto.ItemReviewDto;
 import com.shop.fashion.dto.RequestItemDto;
 import com.shop.fashion.dto.ResponseDto;
+import com.shop.fashion.model.CommunityBoard;
 import com.shop.fashion.model.Domain;
 import com.shop.fashion.model.Item;
+import com.shop.fashion.model.ItemReview;
 import com.shop.fashion.model.User;
 import com.shop.fashion.service.BasketService;
 import com.shop.fashion.service.ShoppingService;
@@ -40,13 +43,8 @@ public class ShoppingApiController {
 	UserService userService;
 
 	@PostMapping("/api/item")
-	public ResponseDto<String> save(@RequestBody Item item, HttpServletRequest request) {
-		shoppingService.saveItem(item);
-		String responceResult = "0";
-		if (request.getHeader("Referer") != null) {
-			responceResult = String.valueOf(request.getHeader("Referer"));
-		}
-		return new ResponseDto<>(HttpStatus.OK.value(), responceResult);
+	public ResponseDto<Item> save(@RequestBody Item item) {
+		return new ResponseDto<>(HttpStatus.OK.value(), shoppingService.saveItem(item));
 	}
 
 	@PostMapping("/api/category")
@@ -100,5 +98,28 @@ public class ShoppingApiController {
 
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), detail.getUser().getId());
 	}
+	
+	@DeleteMapping("/test/api/itemReview/{id}")
+	public ResponseDto<Integer> deleteItemReview(@PathVariable int id,
+			@AuthenticationPrincipal PrincipalUserDetail detail) {
+		System.out.println("------------------------"+id);
+		shoppingService.deleteItemReivewById(id);
+
+		return new ResponseDto<Integer>(HttpStatus.OK.value(), detail.getUser().getId());
+	}
+	
+	
+	@PostMapping("/test/api/update/itemReview/{id}")
+	public ResponseDto<Integer> update(@PathVariable int id, @RequestBody ItemReviewDto dto) {
+		shoppingService.itemReviewUpdate(id, dto);
+		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+	}
+	
+	@DeleteMapping("/basket-soldout/delete")
+	public ResponseDto<Integer> soldoutDeleteBasketItem(@AuthenticationPrincipal PrincipalUserDetail detail) {
+		basketService.soldoutDeleteBasket(detail.getUser().getId());
+		return new ResponseDto<Integer>(HttpStatus.OK.value(), detail.getUser().getId());
+	}
+
 
 }

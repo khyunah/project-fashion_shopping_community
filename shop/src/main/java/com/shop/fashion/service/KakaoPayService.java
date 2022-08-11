@@ -86,10 +86,7 @@ public class KakaoPayService {
 		ResponseEntity<KakaoPayApprovalDto> response = restTemplate.exchange(
 				"https://kapi.kakao.com/v1/payment/approve", HttpMethod.POST, request, KakaoPayApprovalDto.class);
 	
-		System.out.println(response);
 		KakaoPayApprovalDto dto = response.getBody();
-		System.out.println("-------------------");
-		 System.out.println(dto);
 		 return dto;
 	}
 	

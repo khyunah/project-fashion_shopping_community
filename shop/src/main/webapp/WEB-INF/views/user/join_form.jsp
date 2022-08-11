@@ -14,7 +14,7 @@
 
 	<div class="user-input-container">
 		<label class="user-input-label"> <span class="label-txt">ENTER YOUR ID</span> 
-			<input type="text" class="input" name="username" id="username" maxlength="16" required>
+			<input type="text" class="input" name="username" id="username" maxlength="16" oninput="handleOnInput(this)" required>
 			<div class="line-box">
 				<div class="line"></div>
 			</div>
@@ -67,7 +67,7 @@
 						<div class="line"></div>
 					</div>
 				</label> <label class="user-input-label"> <span class="label-txt">ENTER YOUR EMAIL</span> 
-					<input type="email" class="input" name="email" required>
+					<input type="email" class="input" id="email" name="email" required>
 					<div class="line-box">
 						<div class="line"></div>
 					</div>
@@ -143,7 +143,7 @@
 				dataType : "json"
 			}).done(function(response) {
 				console.log(response)
-				if (response.data.username != null) {
+				if (response.data != null) {
 					$("#checkIdResult").text("사용 불가능");
 				} else {
 					$("#checkIdResult").text("사용 가능");
@@ -156,20 +156,31 @@
 	});
 
 	function checkPassword() {
-		console.log("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
-		if ($("#checkIdResult").text() == "사용 불가능"
-				|| $("#checkIdResult").text() == "") {
+		var email = $("#email").val();
+		var exptext = new RegExp(/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]+$/);
+
+		if (exptext.test(email) == false) {
+			alert("이메일형식이 올바르지 않습니다.");
+			$("#email").focus();
+			return false;
+		}
+		if ($("#checkIdResult").text() == "사용 불가능" || $("#checkIdResult").text() == "") {
 			alert("아이디 중복확인을 해주세요.");
 			return false;
-		} else if ($("#checkPasswordResult").text() == "불일치"
-				|| $("#checkPasswordResult") == "") {
+		} else if ($("#checkPasswordResult").text() == "불일치" || $("#checkPasswordResult") == "") {
 			alert("비밀번호가 일치하지 않습니다.");
 			return false;
 		} else {
 			return true;
 		}
 	}
+	
+	function handleOnInput(e)  {
+		e.value = e.value.replace(/[^A-Za-z0-9-_.]/ig, '')
+	}
+	
 </script>
+<script> history.scrollRestoration = "manual" </script>
 </body>
 
 </html>

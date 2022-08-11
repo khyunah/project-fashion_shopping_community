@@ -62,51 +62,49 @@
 	</div>
 </div>
 <div class="mainWrap">
+	<input type="hidden" value="${principal.user.id}" id="userId">
 	<div class="cardWrap cardWrapLeft">
 		<input id="pageSize" type="hidden"
-			value="${communityBoardList.pageable.pageSize}"> 
-			<input id="pageNumber" type="hidden" value="${communityBoardList.number}">
+			value="${communityBoardList.pageable.pageSize}"> <input
+			id="pageNumber" type="hidden" value="${communityBoardList.number}">
 		<ul class="card-list leftCards">
 			<%@ include file="community/add_community_index.jsp"%>
 		</ul>
 	</div>
 
-	<div class="cardWrap cardWrapRight">
-		<div class="container index-container">
-			<div class="mainWrap">
-				<div class="cardWrap cardWrapRight">
-					<div class="container index-container">
+		<div class="cardWrap cardWrapRight">
+			<div class="container index-container">
 
-						<c:forEach var="item" items="${itemList}" begin="0" end="3"
-							varStatus="status">
+				<c:forEach var="item" items="${itemList}" begin="0" end="3"
+					varStatus="status">
+					
+					<c:forEach var="formatprice" items="${formatPriceList}">
+						<c:if test="${item.id == formatprice.id}">
+							<c:set var="price" value="${formatprice.price}"></c:set>
+						</c:if>
+					</c:forEach>
 
-							<div class="card cardRight">
-								<div>
-									<img class="cardRightImgBox" src="${status.current.imageurl}">
-								</div>
-								<div class="card-body index-card-body">
-									<h4 class="card-title" style="font-size: 15px;">상품명 : ${status.current.name}</h4>
-									<p class="card-text">가격 : $${status.current.price}</p>
-									<button style="background-color: #453675" class="cardRightBtn"
-										onclick="location.href='shop/itemdetail_form/${status.current.id}'">See
-										Detail</button>
-								</div>
-							</div>
-
-						</c:forEach>
+					<div class="card cardRight">
+						<div>
+							<img class="cardRightImgBox" src="${status.current.imageurl}">
+						</div>
+						<div class="card-body index-card-body">
+							<h4 class="card-title" style="font-size: 15px;">상품명 :
+								${status.current.name}</h4>
+							<p class="card-text">${price} 원</p>
+							<button style="background-color: #453675" class="cardRightBtn"
+								onclick="location.href='shop/itemdetail_form/${status.current.id}'">See
+								Detail</button>
+						</div>
 					</div>
-					<!-- container -->
-				</div>
 
-				<!--cardWrap-->
-
+				</c:forEach>
 			</div>
 			<!-- container -->
 		</div>
-		<!--cardWrap-->
-	</div>
-	<!--mainWrap-->
-	<input id="pageNumber" type="hidden" value="${communityBoardList.number}">
+
+	<input id="pageNumber" type="hidden"
+		value="${communityBoardList.number}">
 </div>
 </body>
 <script src="/js/commu.js"></script>

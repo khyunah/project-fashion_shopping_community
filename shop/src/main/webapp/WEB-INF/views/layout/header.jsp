@@ -2,6 +2,7 @@
   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
       <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+        <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
         <sec:authorize access="isAuthenticated()">
           <sec:authentication property="principal" var="principal" />
         </sec:authorize>
@@ -23,15 +24,12 @@
     <link href="/css/style_community_social.css" rel="stylesheet" type="text/css" />
     <link href="/css/kakao_pay.css" rel="stylesheet" type="text/css" />
 
+
     <!-- 부트스트랩 -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
-    
-       <!-- include summernote css/js -->
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
     <!-- include plugin -->
     <script src="[folder where script is located]/[plugin script].js"></script>
@@ -116,6 +114,8 @@
                         <div class="dropdown-content bg-white">
                           <a href="/community/social-main"
                             style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">SOCIAL MAIN</a>
+                          <a href="/community/my-page"
+                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">MY SOCIAL</a>
                           <a href="/board/write"
                             style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">WRITE</a>
                         </div>
@@ -147,14 +147,18 @@
                     
                     </li>
                    
-                  <li class="nav-item">
+                   <li class="nav-item">
                       <div class="dropdown">
-                      <a href="/user/update_form" style="text-decoration: none;">
-                        <button class="nav-link dropbtn text-white"
-                          style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675;">MYPAGE
-
+                        <button class="nav-link dropbtn"
+                          style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">MORE
+                          <i class="fa fa-caret-down"></i>
                         </button>
-                        </a>
+                        <div class="dropdown-content">
+                          <a href="/user/update_form"
+                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">MYPAGE</a>
+                          <a href="/user/purchase_history/"
+                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">HISTORY</a>
+                        </div>
                       </div>
                     </li>
                     <li class="nav-item">
@@ -166,7 +170,7 @@
                   <c:when test="${principal.user.role eq 'ADMIN'}">
                     <!-- 로그인 성공하면(회원이면) 글 작성 가능 -->
                     <li class="nav-item">
-                      <a class="nav-link " href="/admin/user/select?keyword=&column="
+                      <a class="nav-link " href="/admin/graph-join"
                         style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">MANAGEMENT</a>
                     </li>
                     <li class="nav-item">
@@ -178,6 +182,8 @@
                         <div class="dropdown-content">
                           <a href="/community/social-main"
                             style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">SOCIAL MAIN</a>
+                          <a href="/community/my-page"
+                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">MY SOCIAL</a>
                           <a href="/board/write"
                             style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">WRITE</a>
                         </div>
@@ -210,12 +216,16 @@
                    
                   <li class="nav-item">
                       <div class="dropdown">
-                      <a href="/user/update_form" style="text-decoration: none;">
-                        <button class="nav-link dropbtn text-white"
-                          style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675;">MYPAGE
-
+                        <button class="nav-link dropbtn"
+                          style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">MORE
+                          <i class="fa fa-caret-down"></i>
                         </button>
-                        </a>
+                        <div class="dropdown-content">
+                          <a href="/user/update_form"
+                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">MYPAGE</a>
+                          <a href="/user/purchase_history/"
+                            style="font-family: 'Black Han Sans', sans-serif; font-family: 'Hahmlet', serif; font-weight: bold; background-color: #453675; color: white;">HISTORY</a>
+                        </div>
                       </div>
                     </li>
                     <li class="nav-item">

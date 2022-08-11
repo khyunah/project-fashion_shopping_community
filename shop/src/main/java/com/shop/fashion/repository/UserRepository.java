@@ -13,6 +13,8 @@ import com.shop.fashion.model.User;
 public interface UserRepository extends JpaRepository<User, Integer> {
 
 	// 회원가입시 아이디 중복체크
+	//User findByUsername(String username);
+	
 	Optional<User> findByUsername(String username);
 
 	@Query(value = "SELECT * FROM user WHERE id = :id", nativeQuery = true)
@@ -29,5 +31,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	@Query(value = "SELECT * FROM user WHERE oauth = :oauth", nativeQuery = true)
 	Page<User> mFindByOauth(@Param("oauth") String oauth, Pageable pageable);
+	
+	@Query(value = "SELECT * FROM user WHERE DAYOFYEAR(createDate) = DAYOFYEAR(now())", nativeQuery = true)
+	Page<User> mFindByTodayJoinUser(Pageable pageable);
 
 }

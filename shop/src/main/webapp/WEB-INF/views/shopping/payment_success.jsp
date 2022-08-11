@@ -32,7 +32,7 @@
 					<td>${pageTokenInfo.itemName}</td>
 					<td>${pageTokenInfo.quantity}개</td>
 					<td>${pageTokenInfo.paymentMethodType}</td>
-					<td>${pageTokenInfo.amount.total}원</td>
+					<td>${formatPrice} 원</td>
 				</tr>
 		
 		</tbody>

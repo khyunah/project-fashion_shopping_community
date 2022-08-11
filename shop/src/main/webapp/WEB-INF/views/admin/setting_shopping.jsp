@@ -2,7 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="left_nav.jsp"%>
 
-<div class="container admin-container">
+<div class="admin-container">
+
+<div class="container">
 
 	<div style="height: 50px;"></div>
 	<h2>상품정보 관리</h2>
@@ -27,7 +29,7 @@
 				<c:if test="${column eq 'GENDER'}">
 					<c:choose>
 						<c:when test="${keyword == 'MAN'}">
-							<select class="form-control oauthSelectBox"
+							<select class="form-control genderSelectBox"
 								onchange="chooseGender(this)">
 								<option>선택</option>
 								<option selected>MAN</option>
@@ -35,7 +37,7 @@
 							</select>
 						</c:when>
 						<c:otherwise>
-							<select class="form-control oauthSelectBox"
+							<select class="form-control genderSelectBox"
 								onchange="chooseGender(this)">
 								<option>선택</option>
 								<option>MAN</option>
@@ -60,7 +62,7 @@
 
 		<div class="setting-btn-box">
 			<a href="/admin/shopping/select?keyword=&column="
-				class="btn btn-dark">전제조회</a>
+				class="btn btn-dark">전체조회</a>
 			<button type="button" class="btn btn-primary"
 				onclick="admin.shoppingDetail()">상세보기</button>
 			<a href="/admin/shopping/save_form" class="btn btn-warning">등록</a>
@@ -89,6 +91,13 @@
 		</thead>
 		<tbody>
 			<c:forEach var="item" items="${itemPage.content}">
+			
+				<c:forEach var="formatprice" items="${formatPriceList}">
+					<c:if test="${item.id == formatprice.id}">
+						<c:set var="price" value="${formatprice.price}"></c:set>
+					</c:if>
+				</c:forEach>
+				
 				<tr onclick="clickList(this)">
 					<td>${item.id}</td>
 					<td class="admin-td-img"><div class="admin-img-box">
@@ -96,7 +105,7 @@
 								style="width: 100%;">
 						</div></td>
 					<td>${item.name}</td>
-					<td>${item.price}</td>
+					<td>${price} 원</td>
 					<td>${item.category}</td>
 					<td>${item.size}</td>
 					<td>${item.gender}</td>
@@ -142,7 +151,6 @@
 	</div>
 
 </div>
-
-<script src="/js/admin.js"></script>
+</div>
 </body>
 </html>

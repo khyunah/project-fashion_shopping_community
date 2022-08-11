@@ -21,6 +21,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 import com.shop.fashion.dto.KakaoTokenDto;
@@ -56,7 +57,22 @@ public class UserController {
 
 	// 로그인 화면
 	@GetMapping("/security/login_form")
-	public String loginForm() {
+	public String loginForm(@RequestParam(value = "error", required = false) String error, 
+			@RequestParam(value = "exception", required = false) String exception, Model model) {
+		
+		String errorMessage = "";
+		if(error != null) {
+			if(exception.equals("match")) {
+				errorMessage = "아이디와 비밀번호가 일치하지 않습니다.";
+			} else if (exception.equals("exist")) {
+				errorMessage = "존재하지 않는 아이디 입니다.";
+			} else {
+				errorMessage = "다시 시도해 주세요.";
+			}
+		}
+		
+		model.addAttribute("error", error);
+		model.addAttribute("errorMessage", errorMessage);
 		return "user/login_form";
 	}
 
@@ -139,16 +155,22 @@ public class UserController {
 		if (hasEmail) {
 			User originUser = userService.checkUsername(kakaoLoginUser.getUsername());
 
-			if (originUser.getUsername() == null) {
+			if (originUser == null) {
 				userService.joinUser(kakaoLoginUser);
 			}
 		}
 
 		Authentication authentication = authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(kakaoLoginUser.getUsername(), kakaoLoginUser.getPassword()));
+				new UsernamePasswordAuthenticationToken(kakaoLoginUser.getUsername(), kakaoKey));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
 		return "redirect:/";
 	}
 
+	@GetMapping("/user/receipt")
+	private String receipt() {
+		return "/shopping/receipt";
+	}
+	
+	
 }
